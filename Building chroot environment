@@ -83,7 +83,7 @@ mkdir -v $LFS/sources
 ln -sv $LFS/tools /
 chmod -v a+wt $LFS/sources
 
-# make nomal user 
+# making nomal user in your host system
 
 groupadd lfs
 useradd -s /bin/bash -g lfs -m -k /dev/null lfs
@@ -837,8 +837,8 @@ cd ..
 rm -rf util-linux-2.37.2
 
 
->>>>>>>>>>>>>
-
+#######################################
+#######################################
 #strip
 #strip --strip-debug /tools/lib/*
 #/usr/bin/strip --strip-unneeded /tools/{,s}bin/*
@@ -856,9 +856,6 @@ rm -rf /tools/{,share}/{info,man,doc}
 # cd $LFS &&
 # rm -rf tools && mkdir tools && cd tools
 # tar -xpf /DATA/linux/distribution/LFS/tools11-base.tar.xz
-
->>>>>>>>>>>>>>>
-
 
 chown -R root:root $LFS/tools
 mkdir -pv $LFS/{dev,proc,sys,run,etc/{opt,sysconfig}}
