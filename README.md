@@ -6,7 +6,7 @@ This OS is build according to Linux From Scratch 11.0 book and install with pacm
 
 Host OS must pass version-check.sh of LFSbook.
 
-machine architecture: x86_64, UEFI, GPTpartition.
+Machine architecture: x86_64, UEFI, GPTpartition.
 
 Graphics: nvidia card (or any Integrated GPU).
 
