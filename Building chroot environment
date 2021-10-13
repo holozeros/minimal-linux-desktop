@@ -1,16 +1,15 @@
 
+#################################################
+### Build preparation ia follow lfs-11.0 book ###
+#################################################
+
 su -
 
 #root file system partition: ext4
-
-mkfs.ext4 /dev/"root file system partition"
-
+#mkfs.ext4 /dev/"root file system partition"
 #ETI System Partition: fat32
 #if need
-
-mkfs.vfat /dev/"ESP"
-
-
+#mkfs.vfat /dev/"ESP"
 
 # check host system requirement
 
@@ -74,10 +73,14 @@ bash version-check.sh
 [ ! -e /etc/bash.bashrc ] || mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
 
 
-# directory settings
+##########################
+### directory settings ###
+##########################
 
 export LFS=/mnt/lfs
-mount /dev/"root file system partition" $LFS
+
+# mount /dev/"root file system partition" $LFS
+
 mkdir -v $LFS/tools
 mkdir -v $LFS/sources
 ln -sv $LFS/tools /
@@ -99,7 +102,7 @@ set +h
 umask 022
 LFS=/mnt/lfs
 LC_ALL=POSIX
-MAKEFLAGS=-j17
+MAKEFLAGS=-j17 # number of cpu core
 LFS_TGT=$(uname -m)-lfs-linux-gnu
 PATH=/tools/bin:/bin:/usr/bin
 export LFS LC_ALL LFS_TGT PATH MAKEFLAGS
@@ -115,8 +118,33 @@ pushd $LFS/sources
 popd
 wget https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
 wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.26.orig.tar.gz
-
-
+wget https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
+wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.2.29.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/gnutls/v3.7/gnutls-3.7.2.tar.xz
+wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.16.0.tar.bz2
+wget https://ftp.gnu.org/gnu/nettle/nettle-3.7.3.tar.gz
+wget https://github.com/p11-glue/p11-kit/releases/download/0.24.0/p11-kit-0.24.0.tar.xz
+wget https://www.nano-editor.org/dist/v5/nano-5.8.tar.xz
+wget https://github.com/libarchive/libarchive/releases/download/v3.5.2/libarchive-3.5.2.tar.xz
+wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.5.5.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.9.4.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.42.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.6.0.tar.bz2
+wget https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.17.0.tar.gz
+wget https://ftp.gnu.org/gnu/libunistring/libunistring-0.9.10.tar.xz
+wget https://dist.libuv.org/dist/v1.42.0/libuv-v1.42.0.tar.gz
+wget http://xmlsoft.org/sources/libxml2-2.9.12.tar.gz
+wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.6.tar.bz2
+wget http://ftp.rpm.org/popt/releases/popt-1.x/popt-1.18.tar.gz
+wget https://downloads.sourceforge.net/freetype/freetype-2.11.0.tar.xz
+wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.13.1.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/pinentry/pinentry-1.2.0.tar.bz2
+wget https://cmake.org/files/v3.21/cmake-3.21.2.tar.gz
+wget https://www.samba.org/ftp/rsync/src/rsync-3.2.3.tar.gz
+wget https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
+wget https://curl.se/download/curl-7.78.0.tar.xz
+wget https://github.com/nghttp2/nghttp2/releases/download/v1.44.0/nghttp2-1.44.0.tar.xz
+wget https://github.com/thkukuk/libnsl/releases/download/v1.3.0/libnsl-1.3.0.tar.xz
 
 cd $LFS/sources
 
@@ -837,11 +865,12 @@ cd ..
 rm -rf util-linux-2.37.2
 
 
-#######################################
-#######################################
-#strip
-#strip --strip-debug /tools/lib/*
-#/usr/bin/strip --strip-unneeded /tools/{,s}bin/*
+##############
+### chroot ###
+##############
+
+### strip ###
+
 rm -rf /tools/{,share}/{info,man,doc}
 
 ### backup ###
@@ -1956,16 +1985,16 @@ echo '/tools/lib/libfakeroot' > /etc/ld.so.conf.d/fakeroot.conf
 cd ..
 rm -rf fakeroot-1.26
 
-##################
-### pacman-6.0 ###
-##################
+################$$##
+### pacman-5.0.2 ###
+####################
 
 # 6.0
 # meson build
 # ninja -C build
 # ninja -C build install
 
-# 5.0
+# 5.0.2
 
 tar xf pacman-5.0.2.tar.gz
 cd pacman-5.0.2
@@ -1992,15 +2021,6 @@ make PREFIX=/tools install
 
 cd ..
 rm -rf archlinux-keyring-20210902
-
-################################
-### init and settings pacman ###
-################################
-
-pacman-key --init
-pacman-key --populate archlinux
-pacman -Syu
-pacman -Syu --force filesystem iana-etc
 
 #################
 ### popt-1.18 ###
@@ -2038,8 +2058,14 @@ make install
 cd ..
 rm -rf rsync-3.2.3
 
-##########################
-##########################
+################
+### settings ###
+################
+
+pacman-key --init
+pacman-key --populate archlinux
+pacman -Syu
+pacman -Syu --force filesystem iana-etc
 
 groupadd lfs
 useradd -s /tools/bin/bash -g lfs -m -k /dev/null lfs
