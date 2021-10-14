@@ -1,4 +1,7 @@
 
+#	Follow those instructions in this order throughout
+#	If the state of the shell changes due to interruption of work, you need to revert to the previous environment. 
+
 ##############################################
 ### Build preparation follow lfs-11.0 book ###
 ##############################################
