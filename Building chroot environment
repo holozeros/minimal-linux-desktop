@@ -89,7 +89,9 @@ mkdir -v $LFS/sources
 ln -sv $LFS/tools /
 chmod -v a+wt $LFS/sources
 
-# making nomal user in your host system
+#############################################
+### making nomal user in your host system ###
+#############################################
 
 groupadd lfs
 useradd -s /bin/bash -g lfs -m -k /dev/null lfs
@@ -112,6 +114,10 @@ export LFS LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
 source ~/.bash_profile
 
+############################
+###  downloading sources ###
+############################
+
 cd $LFS/sources
 wget https://www.linuxfromscratch.org/lfs/view/stable/wget-list
 wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
@@ -119,6 +125,12 @@ wget https://www.linuxfromscratch.org/lfs/view/stable/md5sums
 pushd $LFS/sources
   md5sum -c md5sums
 popd
+
+################################################
+### additional sources for arch build system ###
+################################################
+
+cd $LFS/sources
 wget https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
 wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.26.orig.tar.gz
 wget https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
@@ -147,7 +159,6 @@ wget https://www.samba.org/ftp/rsync/src/rsync-3.2.3.tar.gz
 wget https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
 wget https://curl.se/download/curl-7.78.0.tar.xz
 wget https://github.com/nghttp2/nghttp2/releases/download/v1.44.0/nghttp2-1.44.0.tar.xz
-wget https://github.com/thkukuk/libnsl/releases/download/v1.3.0/libnsl-1.3.0.tar.xz
 
 cd $LFS/sources
 
