@@ -162,6 +162,10 @@ wget https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
 wget https://curl.se/download/curl-7.78.0.tar.xz
 wget https://github.com/nghttp2/nghttp2/releases/download/v1.44.0/nghttp2-1.44.0.tar.xz
 
+# example: latest-version archlinux-keyring-20210902.tar.gz 
+wget https://sources.archlinux.org/other/archlinux-keyring/<larest-version>
+
+
 cd $LFS/sources
 
 ###########################
