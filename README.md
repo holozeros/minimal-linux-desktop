@@ -1,6 +1,6 @@
 # minimal linux desktop
-Here we will build a desktop environment from source to learn Linux. 
-This OS is build according to Linux From Scratch 11.0 book and install with pacman-5.0.
+Here, we will build a desktop environment from source to learn Linux. 
+This OS is built with reference to the Linux From Scratch 11.0 book and installed use pacman-5.0. 
 
               This repository is still incomplete !!!
 
