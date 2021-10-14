@@ -2090,6 +2090,8 @@ pacman-key --populate archlinux
 pacman -Syu
 pacman -Syu --force filesystem iana-etc
 
+# for using ABS 
+
 groupadd lfs
 useradd -s /tools/bin/bash -g lfs -m -k /dev/null lfs
 passwd lfs
@@ -2110,11 +2112,13 @@ source ~/.bash_profile
 
 
 cd /sources
-mkdir build
-cd build
+mkdir work
+cd work
 
 
 cp /sources/<tarball.tar.xx> .
+# If necessary, additionally copy the files to your working directory. 
+
 nano PKGBUILD
 makepkg --skipchecksums
 pacman -U <pkg.tar.xx>
