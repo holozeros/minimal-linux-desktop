@@ -19,7 +19,7 @@ export LFS=/mnt/lfs
 
 cat > version-check.sh << "EOF"
 #!/bin/bash
-# Simple script to list version numbers of critical development tools
+# Simple script to list version numbers of critical development tools.
 export LC_ALL=C
 bash --version | head -n1 | cut -d" " -f2-4
 MYSH=$(readlink -f /bin/sh)
@@ -168,8 +168,8 @@ wget https://sources.archlinux.org/other/archlinux-keyring/archlinux-keyring-202
 
 cd $LFS/sources
 
-# The bellow instructions are different from the lfs-11.0 book
-# Here we will install the chroot environment in the / tools directory
+# The bellow instructions are different from the lfs-11.0 book.
+# Here we should install the chroot environment in /tools directory.
 
 ###########################
 ### binutils-2.37-pass1 ###
