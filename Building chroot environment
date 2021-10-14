@@ -4,15 +4,16 @@
 ##############################################
 
 su -
+export LFS=/mnt/lfs
+
 
 # root file system partition: ext4
 # if need
-# mkfs.ext4 /dev/"root file system partition"
+# mkfs.ext4 /dev/<root file system partition>
 # ETI System Partition: fat32
 # mkfs.vfat /dev/"ESP"
 # mkdir /mnt/lfs 
-# mount /dev/"root file system partition" /mnt/lfs
-# export LFS=/mnt/lfs
+# mount /dev/<root file system partition> $LFS
 
 # checking host system requirement
 
@@ -118,7 +119,9 @@ source ~/.bash_profile
 ###  downloading sources ###
 ############################
 
+export LFS=/mnt/lfs
 cd $LFS/sources
+
 wget https://www.linuxfromscratch.org/lfs/view/stable/wget-list
 wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
 wget https://www.linuxfromscratch.org/lfs/view/stable/md5sums
@@ -131,6 +134,7 @@ popd
 ################################################
 
 cd $LFS/sources
+
 wget https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
 wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.26.orig.tar.gz
 wget https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
@@ -890,15 +894,17 @@ rm -rf /tools/{,share}/{info,man,doc}
 ### backup ###
 
 #exit && cd $LFS/tools
-#tar -cJpf /DATA/linux/distribution/LFS/tools11-base.tar.xz .
+#tar -cJpf <any>/tools11-base.tar.xz .
 #sync
 
 ### retry ###
 
 # from root user on HOST 
-# cd $LFS &&
+# cd $LFS
 # rm -rf tools && mkdir tools && cd tools
-# tar -xpf /DATA/linux/distribution/LFS/tools11-base.tar.xz
+# tar -xpf <any>/tools11-base.tar.xz
+
+# chroot
 
 chown -R root:root $LFS/tools
 mkdir -pv $LFS/{dev,proc,sys,run,etc/{opt,sysconfig}}
@@ -906,7 +912,6 @@ mknod -m 600 $LFS/dev/console c 5 1
 mknod -m 666 $LFS/dev/null c 1 3
 cp /etc/resolv.conf /mnt/lfs/etc
 
-mount /dev/sdb4 /mnt/lfs
 mount -v --bind /dev $LFS/dev
 mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
 mount -vt proc proc $LFS/proc
@@ -936,7 +941,6 @@ PATH=/tools/bin:/tools/sbin:/bin:/sbin:/usr/bin:/usr/sbin
 export LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
 source ~/.bash_profile
-
 
 cat > /etc/passwd << "EOF"
 root:x:0:0:root:/root:/bin/bash
