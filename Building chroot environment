@@ -5,13 +5,16 @@
 
 su -
 
-#root file system partition: ext4
-#mkfs.ext4 /dev/"root file system partition"
-#ETI System Partition: fat32
-#if need
-#mkfs.vfat /dev/"ESP"
+# root file system partition: ext4
+# if need
+# mkfs.ext4 /dev/"root file system partition"
+# ETI System Partition: fat32
+# mkfs.vfat /dev/"ESP"
+# mkdir /mnt/lfs 
+# mount /dev/"root file system partition" /mnt/lfs
+# export LFS=/mnt/lfs
 
-# check host system requirement
+# checking host system requirement
 
 cat > version-check.sh << "EOF"
 #!/bin/bash
@@ -68,7 +71,7 @@ EOF
 bash version-check.sh
 
 
-# bash settig
+# bash setting
 
 [ ! -e /etc/bash.bashrc ] || mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
 
