@@ -168,7 +168,7 @@ wget https://sources.archlinux.org/other/archlinux-keyring/archlinux-keyring-202
 
 cd $LFS/sources
 
-# The following instructions are different from the lfs-11.0 book
+# The bellow instructions are different from the lfs-11.0 book
 # Here we will install the chroot environment in the / tools directory
 
 ###########################
