@@ -19,6 +19,6 @@ This OS is build according to Linux From Scratch 11.0 book and install with pacm
 
     3.Chroot into the above chroot environment, and make package-taballs from the PKGBUILDs with makepkg command, then install packages with pacaman into / of chroot environment. 
 
-    4.Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel, bootloader mount the minimal linux desktop to root-filsesystem.
+    4.Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel, bootloader does mount the minimal linux desktop to root-filsesystem.
 
-    5.Settings of the minmal linux desktop system.
+    5.Settings of the minimal linux desktop system.
