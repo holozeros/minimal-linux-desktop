@@ -1,5 +1,7 @@
 # minimal linux desktop
-This OS is build according to Linux From Scratch 11.0 book and install with pacman-5.0
+This OS is build according to Linux From Scratch 11.0 book and install with pacman-5.0.
+Here we will build a desktop environment from source to learn Linux. It is based on the LFS Book, with the difference being the include of pacman and ABS(arch build system) as a package manager. 
+
 
 
               This repository is still incomplete !!!
