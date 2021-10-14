@@ -901,14 +901,14 @@ rm -rf /tools/{,share}/{info,man,doc}
 
 ### backup ###
 
-#exit && cd $LFS/tools
-#tar -cJpf <any>/tools11-base.tar.xz .
-#sync
+# cd $LFS/tools
+# tar -cJpf <any>/tools11-base.tar.xz .
+# sync
+# cd $LFS/spurces
 
-### when retry ###
+### When starting over from here in a later step ###
 
-# exit
-# su -
+# As root user.
 # export $LFS
 # cd $LFS
 # rm -rf tools && mkdir tools && cd tools
