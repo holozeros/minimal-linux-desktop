@@ -8,7 +8,7 @@ export LFS=/mnt/lfs
 
 
 # root file system partition: ext4
-# if need
+# if needed
 # mkfs.ext4 /dev/<root file system partition>
 # ETI System Partition: fat32
 # mkfs.vfat /dev/"ESP"
