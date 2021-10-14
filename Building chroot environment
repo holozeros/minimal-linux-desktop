@@ -11,7 +11,7 @@ export LFS=/mnt/lfs
 # if needed
 # mkfs.ext4 /dev/<root file system partition>
 # ETI System Partition: fat32
-# mkfs.vfat /dev/"ESP"
+# mkfs.vfat /dev/<ESP>
 # mkdir /mnt/lfs 
 # mount /dev/<root file system partition> $LFS
 
