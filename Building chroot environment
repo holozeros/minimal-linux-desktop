@@ -905,14 +905,16 @@ rm -rf /tools/{,share}/{info,man,doc}
 #tar -cJpf <any>/tools11-base.tar.xz .
 #sync
 
-### retry ###
+### when retry ###
 
-# from root user on HOST 
+# exit
+# su -
+# export $LFS
 # cd $LFS
 # rm -rf tools && mkdir tools && cd tools
 # tar -xpf <any>/tools11-base.tar.xz
 
-# chroot
+### chroot ###
 
 chown -R root:root $LFS/tools
 mkdir -pv $LFS/{dev,proc,sys,run,etc/{opt,sysconfig}}
