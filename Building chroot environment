@@ -71,11 +71,9 @@ EOF
 
 bash version-check.sh
 
-
 # bash setting
 
 [ ! -e /etc/bash.bashrc ] || mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
-
 
 ##########################
 ### directory settings ###
@@ -91,7 +89,7 @@ ln -sv $LFS/tools /
 chmod -v a+wt $LFS/sources
 
 #############################################
-### making nomal user in your host system ###
+### making local user in your host system ###
 #############################################
 
 groupadd lfs
