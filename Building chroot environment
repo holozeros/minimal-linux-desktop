@@ -1,5 +1,5 @@
 
-#	Follow those instructions in this order throughout
+#	Follow those instructions in this order throughout.
 #	If the state of the shell changes due to interruption of work, you need to revert to the previous environment. 
 
 ##############################################
@@ -8,7 +8,6 @@
 
 su -
 export LFS=/mnt/lfs
-
 
 # For new creation root file system partition: ext4
 # if needed
