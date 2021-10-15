@@ -938,7 +938,7 @@ chroot "$LFS" /tools/bin/env -i \
     HOME=/root                  \
     TERM="$TERM"                \
     PS1='\u:\w\$ '              \
-    PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin:/tools/sbin \
+    PATH=/tools/bin:/tools/sbin \
     /tools/bin/bash --login +h
 umount -lR /mnt/lfs/*
 
