@@ -175,7 +175,9 @@ wget https://github.com/nghttp2/nghttp2/releases/download/v1.44.0/nghttp2-1.44.0
 
 # example: latest-version archlinux-keyring-20210902.tar.gz 
 wget https://sources.archlinux.org/other/archlinux-keyring/archlinux-keyring-20210902.tar.gz
-# This system uses ABS to build custom packages and installs using pacman, so it doesn't require an archlinux repository, but it also allows you to build archlinux distributions using only pacman.
+# This system uses ABS to build custom packages and installs using pacman, 
+# so it doesn't require an archlinux repository, 
+# but it also allows you to build archlinux distributions using only pacman.
 
 cd $LFS/sources
 
