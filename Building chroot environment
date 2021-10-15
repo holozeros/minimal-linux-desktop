@@ -909,7 +909,7 @@ rm -rf /tools/{,share}/{info,man,doc}
 # cd $LFS/tools
 # tar -cJpf <any>/tools11-base.tar.xz .
 # sync
-# cd $LFS/spurces
+# cd $LFS/sources
 
 ### When starting over from here in a later step ###
 
