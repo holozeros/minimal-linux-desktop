@@ -951,7 +951,7 @@ umask 022
 LC_ALL=POSIX
 MAKEFLAGS=-j17
 LFS_TGT=$(uname -m)-lfs-linux-gnu
-PATH=/tools/bin:/tools/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+PATH=/tools/bin:/tools/sbin
 export LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
 source ~/.bash_profile
