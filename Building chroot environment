@@ -132,6 +132,9 @@ pushd $LFS/sources
   md5sum -c md5sums
 popd
 
+# If there are some tarballs that could not be downloaded automatically from the list, 
+# check the download address with LFS-11.0 Book or Google search and make up for it manually. 
+
 ################################################
 ### additional sources for arch build system ###
 ################################################
