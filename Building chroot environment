@@ -10,13 +10,13 @@ su -
 export LFS=/mnt/lfs
 
 
-# root file system partition: ext4
+# For new creation root file system partition: ext4
 # if needed
-# mkfs.ext4 /dev/<root file system partition>
+# mkfs.ext4 /dev/<For new creation root file system partition>
 # ETI System Partition: fat32
 # mkfs.vfat /dev/<ESP>
 # mkdir /mnt/lfs 
-# mount /dev/<root file system partition> $LFS
+# mount /dev/<For new creation root file system partition> $LFS
 
 # checking host system requirement
 
@@ -84,7 +84,7 @@ bash version-check.sh
 
 export LFS=/mnt/lfs
 
-# mount /dev/"root file system partition" $LFS
+# mount /dev/"For new creation root file system partition" $LFS
 
 mkdir -v $LFS/tools
 mkdir -v $LFS/sources
