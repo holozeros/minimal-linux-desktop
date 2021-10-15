@@ -479,7 +479,6 @@ sed 's:/usr/local/bin:/bin:' configure.orig > configure
             --with-tcl=/tools/lib \
             --with-tclinclude=/tools/include
 make
-make test
 make SCRIPTS="" install
 ln -s /tools/lib/expect5.45.4/libexpect5.45.4.so /tools/lib/libexpect-5.45.4.so
 
@@ -498,9 +497,8 @@ cd       build
 
 ../configure --prefix=/tools
 make install
-make check
 
-cd ..
+cd ../..
 rm -rf dejagnu-1.6.3
 
 ####################
@@ -512,7 +510,6 @@ cd check-0.15.2
 
 PKG_CONFIG= ./configure --prefix=/tools
 make
-make check
 make install
 
 cd ..
