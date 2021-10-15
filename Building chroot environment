@@ -181,6 +181,8 @@ cd $LFS/sources
 
 # The bellow instructions are different from the lfs-11.0 book.
 # Here we should install the chroot environment in /tools directory.
+# Test procedures that are possible but not required are commented out. 
+# This is a temporary chroot environment, so avoid testing here as much as possible. 
 
 ###########################
 ### binutils-2.37-pass1 ###
@@ -457,7 +459,7 @@ cd tcl8.6.11
 cd unix
 ./configure --prefix=/tools
 make
-TZ=UTC make test
+# TZ=UTC make test
 make install
 chmod -v u+w /tools/lib/libtcl8.6.so
 make install-private-headers
@@ -553,7 +555,6 @@ cd bash-5.1.8
 ./configure --prefix=/tools                 \
             --without-bash-malloc
 make
-make tests
 make install
 ln -sv bash /tools/bin/sh 
 
@@ -595,7 +596,7 @@ cd coreutils-8.32
 ./configure --prefix=/tools                   \
             --enable-install-program=hostname
 make
-make RUN_EXPENSIVE_TESTS=yes check
+# make RUN_EXPENSIVE_TESTS=yes check
 make install
 mv -v /tools/bin/chroot /tools/sbin
 mkdir -pv /tools/share/man/man8
@@ -614,7 +615,7 @@ cd diffutils-3.8
 
 ./configure --prefix=/tools
 make
-make check
+# make check
 make install
 
 cd ..
@@ -643,12 +644,11 @@ cd findutils-4.8.0
 
 ./configure --prefix=/tools
 make
-make check
+# make check
 make install
 
 cd ..
 rm -rf findutils-4.8.0
-
 
 ##################
 ### gawk-5.1.0 ###
@@ -659,7 +659,6 @@ cd gawk-5.1.0
 
 ./configure --prefix=/tools
 make
-make check
 make install
 
 cd ..
@@ -689,7 +688,7 @@ cd grep-3.7
 
 ./configure --prefix=/tools
 make
-make check
+# make check
 make install
 
 cd ..
@@ -704,7 +703,7 @@ cd gzip-1.10
 
 ./configure --prefix=/tools
 make
-make check
+# make check
 make install
 
 cd ..
@@ -719,7 +718,7 @@ cd m4-1.4.19
 
 ./configure --prefix=/tools
 make
-make check
+# make check
 make install
 
 cd ..
@@ -734,7 +733,7 @@ cd make-4.3
 
 ./configure --prefix=/tools --without-guile
 make
-make check
+# make check
 make install
 
 cd ..
@@ -749,7 +748,7 @@ cd patch-2.7.6
 
 ./configure --prefix=/tools
 make
-make check
+# make check
 make install
 
 cd ..
@@ -773,7 +772,7 @@ sh Configure -des                                          \
              -Dvendorlib=/tools/lib/perl5/5.34/vendor_perl \
              -Dvendorarch=/tools/lib/perl5/5.34/vendor_perl
 make
-make test
+# make test
 make install
 cp -v perl cpan/podlators/scripts/pod2man /tools/bin
 cp -Rv lib/* /tools/lib/perl5/5.34
@@ -790,7 +789,7 @@ cd sed-4.8
 
 ./configure --prefix=/tools
 make
-make check
+# make check
 make install
 
 cd ..
@@ -806,7 +805,7 @@ cd tar-1.34
 
 ./configure --prefix=/tools
 make
-make check
+# make check
 make install
 
 cd ..
@@ -823,7 +822,6 @@ sed -e 's/__attribute_nonnull__/__nonnull/' \
     -i gnulib/lib/malloc/dynarray-skeleton.c
 ./configure --prefix=/tools
 make
-make check
 make install
 
 cd ..
@@ -838,7 +836,7 @@ cd bison-3.7.6
 
 ./configure --prefix=/tools
 make
-make check
+# make check
 make install
 
 cd ..
@@ -853,7 +851,7 @@ cd xz-5.2.5
 
 ./configure --prefix=/tools
 make
-make check
+# make check
 make install
 
 cd ..
@@ -2125,14 +2123,9 @@ cd /sources
 mkdir work
 cd work
 
-
 cp /sources/<tarball.tar.xx> .
 # If necessary, additionally copy the files to your working directory. 
 
 nano PKGBUILD
 makepkg --skipchecksums
 pacman -U <pkg.tar.xx>
-
-
-
-
