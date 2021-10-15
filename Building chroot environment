@@ -141,6 +141,9 @@ popd
 
 cd $LFS/sources
 
+# The following downloads refer to BeyondLinux® FromScratch (System V Edition) version 11.0, Archlinux PKGBLD, etc.
+# Please verify md5sum arbitrarily. 
+
 wget https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
 wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.26.orig.tar.gz
 wget https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
