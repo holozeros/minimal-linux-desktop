@@ -192,7 +192,7 @@ cd binutils-2.37
 mkdir -v build
 cd       build
 ../configure --prefix=/tools            \
-             --with-sysroot=$LFS/tools  \
+             --with-sysroot=$LFS        \
              --with-lib-path=/tools/lib \
              --target=$LFS_TGT          \
              --disable-nls              \
@@ -247,7 +247,7 @@ cd       build
     --target=$LFS_TGT                              \
     --prefix=/tools                                \
     --with-glibc-version=2.11                      \
-    --with-sysroot=$LFS/tools                      \
+    --with-sysroot=$LFS                            \
     --with-newlib                                  \
     --without-headers                              \
     --with-local-prefix=/tools                     \
