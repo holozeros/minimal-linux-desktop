@@ -915,6 +915,7 @@ rm -rf /tools/{,share}/{info,man,doc}
 
 # As root user.
 # export $LFS
+# mount /dev/<For new creation root file system partition> $LFS
 # cd $LFS
 # rm -rf tools && mkdir tools && cd tools
 # tar -xpf <any>/tools11-base.tar.xz
