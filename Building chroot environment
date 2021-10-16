@@ -1067,17 +1067,22 @@ exec /tools/bin/bash --login +h
 ###################
 ### zlib-1.2.11 ###
 ###################
-
 tar xf zlib-1.2.11.tar.xz
 cd zlib-1.2.11
 
-./configure --prefix=/tools
+./configure --prefix=/usr
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf zlib-1.2.11
+
+
+
+# mkdir /tmp
+
+
 
 #################
 ### gmp-6.2.1 ###
@@ -1086,17 +1091,25 @@ rm -rf zlib-1.2.11
 tar xf gmp-6.2.1.tar.xz
 cd gmp-6.2.1
 
-./configure --prefix=/tools    \
+./configure --prefix=/usr    \
             --enable-cxx       \
             --disable-static   \
-            --docdir=/tools/share/doc/gmp-6.2.1
+            --docdir=/share/doc/gmp-6.2.1
 make
 make check 2>&1 | tee gmp-check-log
 awk '/# PASS:/{total+=$3} ; END{print total}' gmp-check-log
-make install
+
+#	 197
+
+make DESTDIR=/tools install
 
 cd ..
 rm -rf gmp-6.2.1
+
+cd /usr/lib
+ln -s libgmp.la
+ln -s libgmp.so
+cd $LFS/sources
 
 ##################
 ### mpfr-4.1.0 ###
@@ -1105,13 +1118,13 @@ rm -rf gmp-6.2.1
 tar xf mpfr-4.1.0.tar.xz
 cd mpfr-4.1.0
 
-./configure --prefix=/tools        \
+./configure --prefix=/usr        \
             --disable-static       \
             --enable-thread-safe   \
-            --docdir=/tools/share/doc/mpfr-4.1.0
+            --docdir=/share/doc/mpfr-4.1.0
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf mpfr-4.1.0
@@ -1123,12 +1136,12 @@ rm -rf mpfr-4.1.0
 tar xf mpc-1.2.1.tar.gz
 cd mpc-1.2.1
 
-./configure --prefix=/tools    \
+./configure --prefix=/usr    \
             --disable-static   \
-            --docdir=/tools/share/doc/mpc-1.2.1
+            --docdir=/share/doc/mpc-1.2.1
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf mpc-1.2.1
