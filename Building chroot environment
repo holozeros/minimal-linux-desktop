@@ -128,6 +128,7 @@ cd $LFS/sources
 wget https://www.linuxfromscratch.org/lfs/view/stable/wget-list
 wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
 wget https://www.linuxfromscratch.org/lfs/view/stable/md5sums
+wget --no-check-certificate https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz
 pushd $LFS/sources
   md5sum -c md5sums
 popd
@@ -146,6 +147,8 @@ cd $LFS/sources
 
 wget https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
 wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.26.orig.tar.gz
+
+
 wget https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
 wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.2.29.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/gnutls/v3.7/gnutls-3.7.2.tar.xz
