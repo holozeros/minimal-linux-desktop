@@ -1102,8 +1102,8 @@ cd ..
 rm -rf gmp-6.2.1
 
 cd /usr/lib
-ln -s libgmp.la
-ln -s libgmp.so
+ln -s /tools/lib/libgmp.la
+ln -s /tools/lib/libgmp.so
 cd $LFS/sources
 
 ##################
