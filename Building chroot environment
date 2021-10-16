@@ -220,11 +220,12 @@ cd $LFS/sources
 # Here we should install the chroot environment in /tools directory.
 # Test procedures that are possible but not required are commented out. 
 # This is a temporary chroot environment, so avoid testing here as much as possible. 
-# Check again that the current directory of the terminal is $ LFS/sources,
-# select lines 228-936 of this text (drag with the mouse),
-# copy and paste into the terminal, and you can do it at onc time.
-# Ryzen 2700x takes about 20 minutes. 
+# Check again that the current directory of the terminal is $ LFS/sources.
+# Now,begining build the base of chroot environment.
+# First, create a script that builds at once, and then execute the script on the terminal.
+# Lines 229 to 938 in this text are a series of scripts. 
 
+cat > build-chroot-environment.sh << "END"
 ###########################
 ### binutils-2.37-pass1 ###
 ###########################
@@ -933,7 +934,11 @@ make install
 
 cd ..
 rm -rf util-linux-2.37.2
+############################################################
+END
 
+chmod +x build-chroot-environment.sh
+./build-chroot-environment.sh
 
 ##############
 ### chroot ###
