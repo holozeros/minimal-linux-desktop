@@ -1209,42 +1209,6 @@ chmod -v 755 /tools/lib/lib{cap,psx}.so.2.53
 cd ..
 rm -rf libcap-2.53
 
-##################
-### shadow-4.9 ###
-##################
-
-tar xf shadow-4.9.tar.xz
-cd shadow-4.9
-
-sed -i 's/groups$(EXEEXT) //' src/Makefile.in
-find man -name Makefile.in -exec sed -i 's/groups\.1 / /'   {} \;
-find man -name Makefile.in -exec sed -i 's/getspnam\.3 / /' {} \;
-find man -name Makefile.in -exec sed -i 's/passwd\.5 / /'   {} \;
-sed -e 's:#ENCRYPT_METHOD DES:ENCRYPT_METHOD SHA512:' \
-    -e 's:/var/spool/mail:/var/mail:'                 \
-    -e '/PATH=/{s@/sbin:@@;s@/bin:@@}'                \
-    -i etc/login.defs
-sed -e "224s/rounds/min_rounds/" -i libmisc/salt.c
-touch /usr/bin/passwd
-sed -i 's/1000/999/' etc/useradd
-
-./configure --prefix=/tools         \
-            --sysconfdir=/tools/etc \
-            --with-group-name-max-length=32
-make
-make exec_prefix=/tools install
-#make -C man install-man
-mkdir -p /etc/default
-useradd -D --gid 999
-pwconv
-grpconv
-sed -i 's/yes/no/' /etc/default/useradd
-
-passwd root
-
-cd ..
-rm -rf shadow-4.9
-
 ###################
 ### psmisc-23.4 ###
 ###################
@@ -1257,11 +1221,11 @@ cd $LFS/sources
 tar xf psmisc-23.4.tar.xz
 cd psmisc-23.4
 
-./configure --prefix=/tools
+./configure --prefix=/usr
 make
-make install
-mv -v /tools/bin/fuser   /bin
-mv -v /tools/bin/killall /bin
+make DESTDIR=/tools install
+mv -v /tools/usr/bin/fuser   /tools/bin
+mv -v /tools/usr/bin/killall /tools/bin
 
 cd ..
 rm -rf psmisc-23.4
@@ -1273,7 +1237,7 @@ rm -rf psmisc-23.4
 tar xf iana-etc-20210611.tar.gz
 cd iana-etc-20210611
 
-cp services protocols /etc
+cp services protocols /tools/etc
 
 cd ..
 rm -rf iana-etc-20210611
@@ -1285,11 +1249,11 @@ rm -rf iana-etc-20210611
 tar xf flex-2.6.4.tar.gz
 cd flex-2.6.4
 
-./configure --prefix=/tools
+./configure --prefix=/usr
 make
 make check
-make install
-ln -sv flex /tools/bin/lex
+make DESTDIR=/tools  install
+ln -sv /tools/usr/bin/flex /tools/usr/bin/lex
 
 cd ..
 rm -rf flex-2.6.4
@@ -1302,10 +1266,10 @@ cd $LFS/sources
 tar xf bc-5.0.0.tar.xz
 cd bc-5.0.0
 
-CC=gcc ./configure --prefix=/tools -G -O3
+CC=gcc ./configure --prefix=/usr -G -O3
 make
 make test
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf bc-5.0.0
@@ -1319,12 +1283,12 @@ cd readline-8.1
 
 sed -i '/MV.*old/d' Makefile.in
 sed -i '/{OLDSUFF}/c:' support/shlib-install
-./configure --prefix=/tools    \
+./configure --prefix=/usr    \
             --disable-static   \
             --with-curses      \
-            --docdir=/tools/share/doc/readline-8.1
+            --docdir=/share/doc/readline-8.1
 make SHLIB_LIBS="-lncursesw"
-make SHLIB_LIBS="-lncursesw" install
+make DESTDIR=/tools SHLIB_LIBS="-lncursesw" install
 ldconfig
 
 cd ..
@@ -1337,10 +1301,10 @@ rm -rf readline-8.1
 tar xf libtool-2.4.6.tar.xz
 cd libtool-2.4.6
 
-./configure --prefix=/tools
+./configure --prefix=/usr
 make
 make check
-make install
+make DESTDIR=/tools install
 rm -fv /tools/lib/libltdl.a
 
 cd ..
@@ -1353,11 +1317,11 @@ rm -rf libtool-2.4.6
 tar xf gdbm-1.20.tar.gz
 cd gdbm-1.20
 
-./configure --prefix=/tools    \
+./configure --prefix=/usr    \
             --disable-static   \
             --enable-libgdbm-compat
 make
-make install
+make DESTDIR=/tools install
 make -k check
 
 cd ..
@@ -1370,10 +1334,9 @@ rm -rf gdbm-1.20
 tar xf gperf-3.1.tar.gz
 cd gperf-3.1
 
-./configure --prefix=/tools --docdir=/tools/share/doc/gperf-3.1
+./configure --prefix=/usr --docdir=/share/doc/gperf-3.1
 make
-make -j1 check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf gperf-3.1
@@ -1385,12 +1348,12 @@ rm -rf gperf-3.1
 tar xf expat-2.4.1.tar.xz
 cd expat-2.4.1
 
-./configure --prefix=/tools    \
+./configure --prefix=/usr    \
             --disable-static \
-            --docdir=/tools/share/doc/expat-2.4.1
+            --docdir=/share/doc/expat-2.4.1
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf expat-2.4.1
