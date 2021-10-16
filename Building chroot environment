@@ -1002,7 +1002,7 @@ chroot "$LFS" /tools/bin/env -i \
 umount -lR /mnt/lfs/*
 
 ln -sv /usr/bin /bin
-ln -sv /tools/bin/{bash,cat,echo,pwd,stty,uname} /usr/bin
+ln -sv /tools/bin/{bash,cat,echo,env,pwd,stty,uname} /usr/bin
 ln -sv /tools/bin/bash /usr/bin/sh
 ln -sv /tools/bin/perl /usr/bin
 ln -sv /tools/lib/libgcc_s.so{,.1} /usr/lib
@@ -1327,6 +1327,41 @@ rm -fv /tools/lib/libltdl.a
 cd ..
 rm -rf libtool-2.4.6
 
+##################
+### shadow-4.9 ###
+##################
+
+tar xf shadow-4.9.tar.xz
+cd shadow-4.9
+
+sed -i 's/groups$(EXEEXT) //' src/Makefile.in
+find man -name Makefile.in -exec sed -i 's/groups\.1 / /'   {} \;
+find man -name Makefile.in -exec sed -i 's/getspnam\.3 / /' {} \;
+find man -name Makefile.in -exec sed -i 's/passwd\.5 / /'   {} \;
+sed -e 's:#ENCRYPT_METHOD DES:ENCRYPT_METHOD SHA512:' \
+    -e 's:/var/spool/mail:/var/mail:'                 \
+    -e '/PATH=/{s@/sbin:@@;s@/bin:@@}'                \
+    -i etc/login.defs
+sed -e "224s/rounds/min_rounds/" -i libmisc/salt.c
+touch /usr/bin/passwd
+sed -i 's/1000/999/' etc/useradd
+
+./configure --prefix=/usr         \
+            --sysconfdir=/etc \
+            --with-group-name-max-length=32
+make
+make DESTDIR=/tools install
+mkdir -p /etc/default
+useradd -D --gid 999
+pwconv
+grpconv
+sed -i 's/yes/no/' /etc/default/useradd
+
+# passwd root
+
+cd ..
+rm -rf shadow-4.9
+
 #################
 ### gdbm-1.20 ###
 #################
@@ -1407,9 +1442,9 @@ rm -rf inetutils-2.1
 tar xf less-590.tar.gz
 cd less-590
 
-./configure --prefix=/tools --sysconfdir=/tools/etc
+./configure --prefix=/usr --sysconfdir=/tools/etc
 make
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf less-590
@@ -1421,12 +1456,12 @@ rm -rf less-590
 tar xf elfutils-0.185.tar.bz2
 cd elfutils-0.185
 
-./configure --prefix=/tools                \
+./configure --prefix=/usr                  \
             --disable-debuginfod           \
             --enable-libdebuginfod=dummy
 make
-make check
-make -C libelf install
+make check # FAIL: run-backtrace-native.sh
+make -C libelf DESTDIR=/tools install
 install -vm644 config/libelf.pc /tools/lib/pkgconfig
 rm /tools/lib/libelf.a
 
@@ -1440,13 +1475,13 @@ rm -rf elfutils-0.185
 tar xf libffi-3.4.2.tar.gz
 cd libffi-3.4.2
 
-./configure --prefix=/tools          \
+./configure --prefix=/usr            \
             --disable-static         \
             --with-gcc-arch=native   \
             --disable-exec-static-tramp
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf libffi-3.4.2
@@ -1458,18 +1493,16 @@ rm -rf libffi-3.4.2
 tar xf openssl-1.1.1l.tar.gz
 cd openssl-1.1.1l
 
-ln -s /tools/bin/env /usr/bin/env
-
-./config --prefix=/tools             \
-         --openssldir=/tools/etc/ssl \
+./config --prefix=/usr               \
+         --openssldir=/etc/ssl       \
          --libdir=lib                \
          shared                      \
          zlib-dynamic
 make
 make test
 sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
-make MANSUFFIX=ssl install
-mv -v /tools/share/doc/openssl /tools/share/doc/openssl-1.1.1l
+make DESTDIR=/tools MANSUFFIX=ssl install
+mv -v /tools/usr/share/doc/openssl /tools/usr/share/doc/openssl-1.1.1l
 
 cd ..
 rm -rf openssl-1.1.1l
@@ -1529,10 +1562,10 @@ tar xf intltool-0.51.0.tar.gz
 cd intltool-0.51.0
 
 sed -i 's:\\\${:\\\$\\{:' intltool-update.in
-./configure --prefix=/tools
+./configure --prefix=/usr
 make
 make check
-make install
+make DESTDIR=/tools install
 install -v -Dm644 doc/I18N-HOWTO /tools/share/doc/intltool-0.51.0/I18N-HOWTO
 
 cd ..
