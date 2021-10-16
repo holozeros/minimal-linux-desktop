@@ -908,7 +908,7 @@ rm -rf /tools/{,share}/{info,man,doc}
 ### backup ###
 
 # cd $LFS/tools
-# tar -cJpf <any>/tools11-base.tar.xz .
+# tar -cJpf <Path>/tools11-base.tar.xz .
 # sync
 # cd $LFS/sources
 
@@ -919,7 +919,7 @@ rm -rf /tools/{,share}/{info,man,doc}
 # mount /dev/<For new creation root file system partition> $LFS
 # cd $LFS
 # rm -rf tools && mkdir tools && cd tools
-# tar -xpf <any>/tools11-base.tar.xz
+# tar -xpf <Path>/tools11-base.tar.xz
 
 ### chroot ###
 
