@@ -1022,7 +1022,7 @@ umask 022
 LC_ALL=POSIX
 MAKEFLAGS=-j17
 LFS_TGT=$(uname -m)-lfs-linux-gnu
-PATH=/tools/bin:/tools/sbin
+PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin
 export LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
 source ~/.bash_profile
@@ -1294,6 +1294,23 @@ ldconfig
 cd ..
 rm -rf readline-8.1
 
+################
+### nano-5.8 ###
+################
+
+tar xf nano-5.8.tar.xz
+cd nano-5.8
+
+./configure --prefix=/usr           \
+            --sysconfdir=/etc   \
+            --enable-utf8             \
+            --docdir=/share/doc/nano-5.8
+make
+make DESTDIR=/tools install
+
+cd ..
+rm -rf nano-5.8
+
 #####################
 ### libtool-2.4.6 ###
 #####################
@@ -1365,9 +1382,9 @@ rm -rf expat-2.4.1
 tar xf inetutils-2.1.tar.xz
 cd inetutils-2.1
 
-./configure --prefix=/tools            \
-            --bindir=/tools/bin        \
-            --localstatedir=/tools/var \
+./configure --prefix=/usr              \
+            --bindir=/usr/bin          \
+            --localstatedir=/usr/var   \
             --disable-logger           \
             --disable-whois            \
             --disable-rcp              \
@@ -1377,7 +1394,7 @@ cd inetutils-2.1
             --disable-servers
 make
 make check
-make install
+make DESTDIR=/tools install
 mv -v /tools/{,s}bin/ifconfig
 
 cd ..
@@ -2025,23 +2042,6 @@ make install
 
 cd ..
 rm -rf gnupg-2.2.29
-
-################
-### nano-5.8 ###
-################
-
-tar xf nano-5.8.tar.xz
-cd nano-5.8
-
-./configure --prefix=/tools           \
-            --sysconfdir=/tools/etc   \
-            --enable-utf8             \
-            --docdir=/tools/share/doc/nano-5.8
-make
-make install
-
-cd ..
-rm -rf nano-5.8
 
 #####################
 ### fakeroot-1.26 ###
