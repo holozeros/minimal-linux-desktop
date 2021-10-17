@@ -2188,6 +2188,20 @@ ln -s /tools/usr/bin/gpg-agent /usr/bin/
 
 pacman-key --init
 pacman-key --populate archlinux
+cat >> /etc/pacman.conf << "EOF"
+[core]
+Include = /etc/pacman.d/mirrorlist
+[extra]
+Include = /etc/pacman.d/mirrorlist
+[community]
+Include = /etc/pacman.d/mirrorlist
+EOF
+cat > /etc/pacman.d/mirrorlist << "EOF"
+# This is an example when your location is Japan
+# Server = ftp://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
+Server = http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
+EOF
+
 pacman -Syu
 # pacman -Syu --force filesystem iana-etc
 
