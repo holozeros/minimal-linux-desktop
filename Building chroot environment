@@ -1645,8 +1645,6 @@ rm -rf kmod-29
 ### Python-3.9.6 ###
 ####################
 
-cd /usr/include && ln -s /tools/include/{*.h} && cd /sources
-
 tar xf Python-3.9.6.tar.xz
 cd Python-3.9.6
 
