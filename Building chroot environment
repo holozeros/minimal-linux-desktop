@@ -1318,10 +1318,10 @@ rm -rf nano-5.8
 tar xf libtool-2.4.6.tar.xz
 cd libtool-2.4.6
 
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
 make check
-make DESTDIR=/tools install
+make install
 rm -fv /tools/lib/libltdl.a
 
 cd ..
@@ -1620,17 +1620,18 @@ rm -rf zstd-1.5.0
 ### kmod-29 ###
 ###############
 
-cd $LFS/sources
+cd / && ln -s /tools/lib/pkgconfig && /sources
+
 tar xf kmod-29.tar.xz
 cd kmod-29
 
-./configure --prefix=/tools              \
-            --sysconfdir=/tools/etc      \
+./configure --prefix=/usr                \
+            --sysconfdir=/etc            \
             --with-xz                    \
             --with-zstd                  \
             --with-zlib
 make
-make install
+make DESTDIR=/tools install
 for target in depmod insmod modinfo modprobe rmmod; do
   ln -sfv ../bin/kmod /tools/sbin/$target
 done
@@ -1643,6 +1644,8 @@ rm -rf kmod-29
 ####################
 ### Python-3.9.6 ###
 ####################
+
+cd /usr/include && ln -s /tools/include/{*.h} && cd /sources
 
 tar xf Python-3.9.6.tar.xz
 cd Python-3.9.6
@@ -1711,10 +1714,10 @@ rm -rf meson-0.59.1
 tar xf libtasn1-4.17.0.tar.gz
 cd libtasn1-4.17.0
 
-./configure --prefix=/tools --disable-static &&
+./configure --prefix=/usr --disable-static &&
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf libtasn1-4.17.0
@@ -1725,17 +1728,19 @@ ldconfig -n /tools/lib
 ### libuv-v1.42.0 ###
 #####################
 
+cd /usr/bin && ln -s /tools/bin/autom4te && cd /sources
+cd /usr/share && ln -s /tools/share/autoconf && cd /sources
+
 tar xf libuv-v1.42.0.tar.gz
 cd libuv-v1.42.0
 
 sh autogen.sh
-./configure --prefix=/tools --disable-static
+./configure --prefix=/usr --disable-static
 make
-make check
-make install
+make DESTDIR=/tools install
 
 cd ..
-rm rf libuv-v1.42.0
+rm -rf libuv-v1.42.0
 
 ######################
 ### libxml2-2.9.12 ###
@@ -1744,12 +1749,12 @@ rm rf libuv-v1.42.0
 tar xf libxml2-2.9.12.tar.gz
 cd libxml2-2.9.12
 
-./configure --prefix=/tools    \
+./configure --prefix=/usr    \
             --disable-static   \
             --with-history     \
             --with-python=/tools/bin/python3 &&
 make
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf libxml2-2.9.12
@@ -1761,12 +1766,12 @@ rm -rf libxml2-2.9.12
 tar xf nghttp2-1.44.0.tar.xz
 cd nghttp2-1.44.0
 
-./configure --prefix=/tools   \
+./configure --prefix=/usr   \
             --disable-static  \
             --enable-lib-only \
-            --docdir=/tools/share/doc/nghttp2-1.44.0 &&
+            --docdir=/share/doc/nghttp2-1.44.0 &&
 make
-make install
+make DESTDIR=/tools install
 cd ..
 rm -rf nghttp2-1.44.0
 
@@ -1781,8 +1786,8 @@ make install &&
 install -vdm755 /etc/ssl/local
 #/tools/sbin/make-ca -g
 
-mv /usr/sbin/make-ca /tools/sbin
-mv /usr/libexec/make-ca /tools/libexec/
+mv -v /usr/sbin/make-ca /tools/sbin
+mv -v /usr/libexec/make-ca /tools/libexec/
 
 cd ..
 rm -rf make-ca-1.7
@@ -1822,7 +1827,7 @@ ln -s /tools/bin/cut
 ln -s /tools/bin/openssl
 ln -s /tools/bin/md5sum
 ln -s /tools/bin/trust
-
+cd /sources
 /tools/sbin/make-ca -g
 
 ###################
@@ -1832,12 +1837,12 @@ ln -s /tools/bin/trust
 tar xf wget-1.21.1.tar.gz
 cd wget-1.21.1
 
-./configure --prefix=/tools      \
+./configure --prefix=/usr      \
             --sysconfdir=/etc    \
             --with-ssl=openssl
 make
-make check
-make install
+# make check
+make DESTDIR=/tools install
 
 cd ..
 rm -rf wget-1.21.1
@@ -1850,14 +1855,14 @@ tar xf curl-7.78.0.tar.xz
 cd curl-7.78.0
 
 grep -rl '#!.*python$' | xargs sed -i '1s/python/&3/'
-./configure --prefix=/tools                         \
+./configure --prefix=/usr                         \
             --disable-static                        \
             --with-openssl                          \
             --enable-threaded-resolver              \
             --with-ca-path=/etc/ssl/certs &&
 make
 make test
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf curl-7.78.0
@@ -1866,13 +1871,15 @@ rm -rf curl-7.78.0
 ### libarchive-3.5.2 ###
 ########################
 
+cd /usr/lib && ln -s /tools/usr/lib/libattr.so && cd /sources
+
 tar xf libarchive-3.5.2.tar.xz
 cd libarchive-3.5.2
 
-./configure --prefix=/tools --disable-static &&
+./configure --prefix=/usr --disable-static &&
 make
 LC_ALL=C make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf libarchive-3.5.2
@@ -1905,10 +1912,10 @@ rm -rf cmake-3.21.2
 tar xf libgpg-error-1.42.tar.bz2
 cd libgpg-error-1.42
 
-./configure --prefix=/tools
+./configure --prefix=/usr
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf libgpg-error-1.42
@@ -1920,10 +1927,10 @@ rm -rf libgpg-error-1.42
 tar xf libassuan-2.5.5.tar.bz2
 cd libassuan-2.5.5
 
-./configure --prefix=/tools
+./configure --prefix=/usr
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf libassuan-2.5.5
@@ -1932,13 +1939,16 @@ rm -rf libassuan-2.5.5
 ### GPGME-1.16.0 ###
 ####################
 
+ln -s /tools/lib/libgpg-error.{so,la} /usr/lib/
+ln -s /tools/lib/libasshuan.{so.la} /usr/lib/
+
 tar xf gpgme-1.16.0.tar.bz2
 cd gpgme-1.16.0
 
 sed 's/defined(__sun.*$/1/' -i src/posix-io.c
-./configure --prefix=/tools --disable-gpg-test
+./configure --prefix=/usr --disable-gpg-test
 make
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf gpgme-1.16.0
@@ -1950,10 +1960,10 @@ rm -rf gpgme-1.16.0
 tar xf npth-1.6.tar.bz2
 cd npth-1.6
 
-./configure --prefix=/tools
+./configure --prefix=/usr
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf npth-1.6
@@ -1965,10 +1975,10 @@ rm -rf npth-1.6
 tar xf libksba-1.6.0.tar.bz2
 cd libksba-1.6.0
 
-./configure --prefix=/tools
+./configure --prefix=/usr
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf libksba-1.6.0
@@ -1980,10 +1990,10 @@ rm -rf libksba-1.6.0
 tar xf libgcrypt-1.9.4.tar.bz2
 cd libgcrypt-1.9.4
 
-./configure --prefix=/tools
+./configure --prefix=/usr
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf libgcrypt-1.9.4
@@ -1995,9 +2005,9 @@ rm -rf libgcrypt-1.9.4
 tar xf pinentry-1.2.0.tar.bz2
 cd pinentry-1.2.0
 
-./configure --prefix=/tools --enable-pinentry-tty
+./configure --prefix=/usr --enable-pinentry-tty
 make
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf pinentry-1.2.0
@@ -2008,10 +2018,10 @@ rm -rf pinentry-1.2.0
 
 tar xf nettle-3.7.3.tar.gz
 cd nettle-3.7.3
-./configure --prefix=/tools --disable-static
+./configure --prefix=/usr --disable-static
 make
 make check
-make install
+make DESTDIR=/tools install
 chmod   -v   755 /tools/lib/lib{hogweed,nettle}.so
 install -v -m755 -d /tools/share/doc/nettle-3.7.3 &&
 install -v -m644 nettle.html /tools/share/doc/nettle-3.7.3
@@ -2026,12 +2036,12 @@ rm -fr nettle-3.7.3
 tar xf libunistring-0.9.10.tar.xz
 cd libunistring-0.9.10
 
-./configure --prefix=/tools  \
+./configure --prefix=/usr  \
             --disable-static \
-            --docdir=/tools/share/doc/libunistring-0.9.10
+            --docdir=/share/doc/libunistring-0.9.10
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf libunistring-0.9.10
@@ -2043,14 +2053,14 @@ rm -rf libunistring-0.9.10
 tar xf gnutls-3.7.2.tar.xz
 cd gnutls-3.7.2
 
-./configure --prefix=/tools                        \
-            --docdir=/tools/share/doc/gnutls-3.7.2 \
+./configure --prefix=/usr                        \
+            --docdir=/share/doc/gnutls-3.7.2 \
             --disable-guile \
             --disable-rpath \
             --with-default-trust-store-pkcs11="pkcs11:"
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf gnutls-3.7.2
@@ -2065,13 +2075,13 @@ cd gnupg-2.2.29
 sed -e '/noinst_SCRIPTS = gpg-zip/c sbin_SCRIPTS += gpg-zip' \
     -i tools/Makefile.in
 
-./configure --prefix=/tools            \
-            --localstatedir=/tools/var     \
-            --sysconfdir=/toolsl/etc        \
-            --docdir=/tools/share/doc/gnupg-2.2.29 &&
+./configure --prefix=/usr            \
+            --localstatedir=/var     \
+            --sysconfdir=/etc        \
+            --docdir=/share/doc/gnupg-2.2.29 &&
 make
 make -j17 check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf gnupg-2.2.29
@@ -2098,6 +2108,11 @@ rm -rf fakeroot-1.26
 ### pacman-5.0.2 ###
 ####################
 
+ln -vs /tools/lib/libacl.{so,la} /usr/lib/
+ln -vs /tools/lib/libexpat.{so,la} /usr/lib/
+ln -vs /tools/lib/libxml2.{so,la} /usr/lib/
+ln -vs /tools/lib/libnghttp2.{so,la} /usr/lib/
+
 # 6.0
 # meson build
 # ninja -C build
@@ -2108,13 +2123,13 @@ rm -rf fakeroot-1.26
 tar xf pacman-5.0.2.tar.gz
 cd pacman-5.0.2
 
-./configure --prefix=/tools   \
+./configure --prefix=/usr   \
             --disable-doc     \
             --disable-shared  \
-            --sysconfdir=/tools/etc \
-            --localstatedir=/tools/var
+            --sysconfdir=/etc \
+            --localstatedir=/var
 make
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf pacman-5.0.2
@@ -2126,7 +2141,7 @@ rm -rf pacman-5.0.2
 tar xf archlinux-keyring-20210902.tar.gz
 cd archlinux-keyring-20210902
 
-make PREFIX=/tools install
+make PREFIX=/usr install
 
 cd ..
 rm -rf archlinux-keyring-20210902
@@ -2138,13 +2153,13 @@ rm -rf archlinux-keyring-20210902
 tar xf popt-1.18.tar.gz
 cd popt-1.18
 
-./configure --prefix=/tools --disable-static &&
+./configure --prefix=/usr --disable-static &&
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
-rm -rf popt-1.18.tar.gz
+rm -rf popt-1.18
 
 ###################
 ### rsync-3.2.3 ###
@@ -2156,13 +2171,13 @@ cd rsync-3.2.3
 groupadd -g 48 rsyncd &&
 useradd -c "rsyncd Daemon" -m -d /home/rsync -g rsyncd \
     -s /bin/false -u 48 rsyncd
-./configure --prefix=/tools    \
+./configure --prefix=/usr    \
             --disable-lz4      \
             --disable-xxhash   \
             --without-included-zlib &&
 make
 make check
-make install
+make DESTDIR=/tools install
 
 cd ..
 rm -rf rsync-3.2.3
@@ -2174,14 +2189,16 @@ rm -rf rsync-3.2.3
 pacman-key --init
 pacman-key --populate archlinux
 pacman -Syu
-pacman -Syu --force filesystem iana-etc
+# pacman -Syu --force filesystem iana-etc
 
 # for using ABS 
 
 groupadd lfs
 useradd -s /tools/bin/bash -g lfs -m -k /dev/null lfs
 passwd lfs
+
 su - lfs
+
 cat > ~/.bash_profile << "EOF"
 exec /tools/bin/env -i HOME=$HOME TERM=$TERM PS1='(chroot)\u:\w\$ ' /tools/bin/bash
 EOF
@@ -2195,7 +2212,6 @@ PATH=/tools/bin:/tools/sbin:/bin:/sbin:/usr/bin:/usr/sbin
 export LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
 source ~/.bash_profile
-
 
 cd /sources
 mkdir work
