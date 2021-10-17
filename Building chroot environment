@@ -2186,6 +2186,8 @@ rm -rf rsync-3.2.3
 ### settings ###
 ################
 
+ln -s /tools/usr/bin/gpg-agent /usr/bin/
+
 pacman-key --init
 pacman-key --populate archlinux
 pacman -Syu
