@@ -2203,7 +2203,6 @@ Server = http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
 EOF
 
 pacman -Syu
-# pacman -Syu --force filesystem iana-etc
 
 # for using ABS 
 
