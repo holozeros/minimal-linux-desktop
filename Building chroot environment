@@ -1620,7 +1620,7 @@ rm -rf zstd-1.5.0
 ### kmod-29 ###
 ###############
 
-cd / && ln -s /tools/lib/pkgconfig && /sources
+cd / && ln -s /tools/lib/pkgconfig && cd /sources
 
 tar xf kmod-29.tar.xz
 cd kmod-29
