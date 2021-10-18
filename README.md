@@ -2,7 +2,7 @@
 Here, we will build a desktop environment from source to learn Linux. 
 This OS is built with reference to the Linux From Scratch 11.0 book and installed use pacman-5.0. 
 
-# 1.Building chroot environment
+## 1.Building chroot environment
 
 	1.Install arch build system in the chroot environment.
 
@@ -13,7 +13,7 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
 		Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel,
 		bootloader does mount the minimal linux desktop to root-filsesystem.
 	
-# 2.Building minimal linux desktop
+## 2.Building minimal linux desktop
 
 	1.List of mandatory packages in build order.
 
@@ -27,9 +27,10 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
 
 
               This repository is still incomplete !!!
+		
+		
 
-
-[Prerequisites]
+## [Prerequisites]
 
     Host OS must pass version-check.sh of LFS-11.0 book.
             With a tiny mistake in build process can irreparably destroy the host system.
