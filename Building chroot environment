@@ -2096,6 +2096,7 @@ cd fakeroot-1.26
     --disable-static \
     --with-ipc=sysv
 make
+make install
 install -dm0755 /etc/ld.so.conf.d/
 echo '/tools/lib/libfakeroot' > /etc/ld.so.conf.d/fakeroot.conf
 
