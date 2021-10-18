@@ -1064,6 +1064,10 @@ EOF
 
 exec /tools/bin/bash --login +h
 
+
+# Lines 1071-2181 in this text are a series of scripts. 
+
+cat > build-ABS.sh << "END"
 ###################
 ### zlib-1.2.11 ###
 ###################
@@ -2175,6 +2179,11 @@ make DESTDIR=/tools install
 
 cd ..
 rm -rf rsync-3.2.3
+#############################
+END
+
+chmod +x build-ABS.sh
+./build-ABS.sh
 
 ################
 ### settings ###
