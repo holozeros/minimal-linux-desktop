@@ -938,9 +938,9 @@ END
 # This is a temporary chroot environment, so avoid testing here as much as possible. 
 # Check again that the current directory of the terminal is $ LFS/sources.
 
-#############
-### BUILD ###
-#############
+###########################################
+### BUILD (build-chroot-environment.sh) ###
+###########################################
 # Ryzen2700x(8 core) takes about 20 minuits.
 
 cd $LFS/sources
@@ -2182,6 +2182,12 @@ rm -rf rsync-3.2.3
 #############################
 END
 
+############################
+### BUILD (build-ABS.sh) ###
+############################
+# Ryzen2700x(8 core) takes about xx minuits.
+
+cd /sources
 chmod +x build-ABS.sh
 ./build-ABS.sh
 
