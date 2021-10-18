@@ -937,7 +937,7 @@ rm -rf util-linux-2.37.2
 ############################################################
 END
 
-# This is a temporary chroot environment, so avoid testing here as much as possible. 
+# This is a temporary chroot environment, so avoid run test here as much as possible. 
 # Check again that the current directory of the terminal is $ LFS/sources.
 
 ###########################################
