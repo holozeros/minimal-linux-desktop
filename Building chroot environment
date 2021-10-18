@@ -21,6 +21,8 @@ export LFS=/mnt/lfs
 # mount /dev/<For new creation root file system partition> $LFS
 
 # checking host system requirement
+# Lines 28 to 75 in this text are a series of scripts. 
+@ all lines select and copy, then past in the terminal.
 
 cat > version-check.sh << "EOF"
 #!/bin/bash
@@ -221,7 +223,7 @@ cd $LFS/sources
 # Test procedures that are possible but not required are commented out. 
 # Now,begining build the base of chroot environment.
 # First, create a script that builds at once, then execute the script on the terminal.
-# Lines 227 to 936 in this text are a series of scripts. 
+# Lines 229 to 938 in this text are a series of scripts. 
 
 cat > build-chroot-environment.sh << "END"
 ###########################
@@ -1065,7 +1067,7 @@ EOF
 exec /tools/bin/bash --login +h
 
 
-# Lines 1071-2181 in this text are a series of scripts. 
+# Lines 1073 to 2183 in this text are a series of scripts. 
 
 cat > build-ABS.sh << "END"
 ###################
