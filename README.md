@@ -12,8 +12,7 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
 	
 		Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel,
 		bootloader does mount the minimal linux desktop to root-filsesystem.
-		Settings of the chroot environment.
-
+	
 # 2.Building minimal linux desktop
 
 	1.List of mandatory packages in build order.
