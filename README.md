@@ -7,7 +7,7 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
 [Prerequisites]
 
     Host OS must pass version-check.sh of LFS-11.0 book.
-            With a tiny mistake in the chroot environment build process can irreparably destroy the host system.
+            With a tiny mistake in build process can irreparably destroy the host system.
             Therefore, it is recommended to use a various Live-USB with persistence function which using Overlayfs as the host OS.
             If it had desktop environment and browser, is better.
             If you can't find a suitable existing Live-USB distribution,
