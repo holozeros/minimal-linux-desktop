@@ -11,7 +11,7 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
             Therefore, it is recommended to use a various Live-USB with persistence function which using Overlayfs as the host OS.
             If it had desktop environment and browser, is better.
             If you can't find a suitable existing Live-USB distribution,
-            Install a new OS dedicated to LFS build works into an USB strage.
+            Install a new OS dedicated to host of build works into an USB strage.
             Refer to:
                 https://wiki.archlinux.org/title/Install_Arch_Linux_on_a_removable_medium 
 
