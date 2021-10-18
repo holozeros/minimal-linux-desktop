@@ -21,7 +21,7 @@ export LFS=/mnt/lfs
 # mount /dev/<For new creation root file system partition> $LFS
 
 # checking host system requirement
-# Lines 28 to 75 in this text are a series of scripts. 
+# Lines 28 to 77 in this text are a series of scripts. 
 @ all lines select and copy, then past in the terminal.
 
 cat > version-check.sh << "EOF"
