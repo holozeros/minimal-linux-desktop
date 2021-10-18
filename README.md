@@ -6,8 +6,13 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
 
 	1.Install arch build system in the chroot environment.
 
-	2.With a original stub kernel Booting the chroot environment as root filesystem.
+		Building a chroot environment where /tools has the required commands to run chroot and Arch Build System(gcc,pacman,makepkg..).
 
+ 	2.With a original stub kernel Booting the chroot environment as root filesystem.
+	
+		Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel,
+		bootloader does mount the minimal linux desktop to root-filsesystem.
+		Settings of the chroot environment.
 
 # 2.Building minimal linux desktop
 
@@ -17,8 +22,13 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
 
 		1.Editing PKGBUILD.
 		2.Installing with pacamn.
+		
+		Chroot into the above chroot environment, and make package-tarballs from the PKGBUILDs with makepkg command,
+		then install packages with pacaman into / of chroot environment.
+
 
               This repository is still incomplete !!!
+
 
 [Prerequisites]
 
@@ -50,15 +60,3 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
             Thankfully, for Linux users, Nvidia has published the driver packages that combines proprietary binaries with a collection of their wrappers.
             There are some caveats, such as kernel compilation, to install the proprietary Nvidia driver. 
 
-
-# [Summary]
-
-    1.Building a chroot environment where /tools has the required commands to run chroot and Arch Build System(gcc,pacman,makepkg..).
- 
-    2.Editing PKGBUILDs of all packages for minimal linux desktop.
-
-    3.Chroot into the above chroot environment, and make package-tarballs from the PKGBUILDs with makepkg command, then install packages with pacaman into / of chroot environment. 
-
-    4.Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel, bootloader does mount the minimal linux desktop to root-filsesystem.
-
-    5.Settings of the minimal linux desktop system.
