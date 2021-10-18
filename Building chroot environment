@@ -22,7 +22,7 @@ export LFS=/mnt/lfs
 
 # checking host system requirement
 # Lines 28 to 77 in this text are a series of scripts. 
-@ all lines select and copy, then past in the terminal.
+# Select all the lines in that range, copy them, and paste them into your terminal. 
 
 cat > version-check.sh << "EOF"
 #!/bin/bash
