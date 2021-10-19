@@ -21,7 +21,8 @@ As root user on host
         /tools/bin/bash --login +h
     umount -lR /mnt/lfs/*
     
-Making skelton of PKGBUILD (for example [PKGBUILD.skl](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/PKGBUILD.skl))
+Making skelton of PKGBUILD
+##### (for example [PKGBUILD.skl](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/PKGBUILD.skl))
  
     cd /sources
     cat > PKGBUILD.skl << "EOF"
@@ -29,13 +30,13 @@ Making skelton of PKGBUILD (for example [PKGBUILD.skl](https://github.com/holoze
     EOF
     
 Making PKGBUILD (Almost source tar ball name format have been looks like "packagename"-"version".tar.xz)
-case in making [PKGBUILD of zlib-1.2.11.tar.xz](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/zlib-1.2.11)
+##### case in making [PKGBUILD of zlib-1.2.11.tar.xz](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/zlib-1.2.11)
 
     mkdir -p /sources/zlib/1.2.11
     cd /sources/zlib/1.2.11
     cp ../../PKGBUILD.skl . && mv PKGBUILD.skl PKGBUILD
     nano PKGBUILD
     
- if host is desktop environment,
+ If host is desktop environment,
  you are able to refer to editor, browser and then needed text do copy&past to nano on the terminal.
- When you are modified on Nano, refer to LFS-11.0 book or the instruction of the packages of building chroot environent and archlinux's original PKGBUILD..and other infomations on web.
+ ##### When you are modified on Nano, refer to LFS-11.0 book or the instruction of the packages of building chroot environent and archlinux's original PKGBUILD..and other infomations on web.
