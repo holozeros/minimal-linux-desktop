@@ -20,11 +20,13 @@ As root user on host
         PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
         /tools/bin/bash --login +h
     umount -lR /mnt/lfs/*
+
+As local user into chroot environment
+
+      su - lfs
     
 ##### Making skelton of PKGBUILD (e.g [PKGBUILD.skl](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/PKGBUILD.skl))
  
-    su - lfs
-    
     cd /sources
     cat > PKGBUILD.skl << "EOF"
     pkgname=""
