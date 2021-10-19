@@ -21,9 +21,11 @@ List of mandatory packages in build order.
 
 Editing PKGBUILD
 
-     Chroot into the above chroot environment, and make package-tarballs from the PKGBUILDs with makepkg command,
+Make custum packages
 
-Installing with pacamn
+     Chroot into the above chroot environment, and make package-tarballs from the PKGBUILD with makepkg command,
+
+Installing custum packages with pacamn
 
     Install packages with pacaman into / of chroot environment.
 
