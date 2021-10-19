@@ -63,13 +63,6 @@ As root user on host
     EOF
     
 Almost source tar ball name format have been looks like "packagename"-"version".tar.xz.
-##### case in making [PKGBUILD of zlib-1.2.11.tar.xz](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/zlib-1.2.11)
-
-    mkdir -p /sources/zlib/1.2.11
-    cd /sources/zlib/1.2.11
-    cp ../../PKGBUILD.skl . && mv PKGBUILD.skl PKGBUILD
-    nano PKGBUILD
-    
  If host is desktop environment, you are able to refer to editor, browser and then needed text do copy&paste to nano on the terminal. When you are modified on Nano, refer to LFS-11.0 book or the instruction of the packages of building chroot environent and archlinux's original PKGBUILD..and other infomations on web.
 Following values of variables refer to file name of the target source-tar-ball. 
 
@@ -83,7 +76,6 @@ A propary value of these variables refer to the Arch Linux's PKGBULD that corres
         license=(' ')
         url='https://.. '
  
-
 This function is constant here.
 
         arch=('x86_64')
@@ -100,4 +92,43 @@ These variable add as needed.
         provides=(' ')
         options=(' ')
 
+##### case in making [PKGBUILD of zlib-1.2.11.tar.xz](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/zlib-1.2.11)
 
+    mkdir -p /sources/zlib/1.2.11
+    cd /sources/zlib/1.2.11
+    cp ../../PKGBUILD.skl . && mv PKGBUILD.skl PKGBUILD
+    nano PKGBUILD
+
+or with cat    
+    cat > PKGBUILD << "EOF"
+    pkgname="zlib"
+    pkgver="1.2.11" 
+    pkgrel="1"
+    pkgdesc="Compression library implementing the deflate compression method found in gzip and PKZIP"
+    arch=('x86_64')
+    url="http://zlib.net"
+    license=('custum')
+    #backup=()
+    source=(${pkgname}-${pkgver}.tar.xz)
+    #install=glibc.install
+    
+    #prepare() {
+    #}
+    
+    build() {
+    cd "${pkgname}-${pkgver}"
+    ./configure --prefix=/usr
+    make
+    }
+    
+    check() {
+    cd "${pkgname}-${pkgver}"
+    make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+    }
+    EOF
+
+
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
