@@ -128,7 +128,7 @@ or don't use PKGBUILD.skl, write with cat command directly.
     
     check() {
     cd "${pkgname}-${pkgver}"
-    make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+    make check 2>&1 | ../../${pkgname}-${pkgver}-test.log
     }
     package() {
     cd "${pkgname}-${pkgver}"
