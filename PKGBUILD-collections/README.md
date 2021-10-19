@@ -21,7 +21,7 @@ As root user on host.
         /tools/bin/bash --login +h
     umount -lR /mnt/lfs/*
     
- Making skelton of PKGBUILD (or [PKGBUILD.sk;](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/PKGBUILD.skl)).
+ Making skelton of PKGBUILD (or [PKGBUILD.skl](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/PKGBUILD.skl)).
  
     cd /sources
     cat > PKGBUILD.skl << "EOF"
