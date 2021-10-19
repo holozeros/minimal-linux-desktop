@@ -8,7 +8,7 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
 
 		Building a chroot environment where /tools has the required commands to run chroot and Arch Build System(gcc,pacman,makepkg..).
 
- 	2.With a original stub kernel Booting the chroot environment as root filesystem.
+ 	2.With a original stub kernel booting the chroot environment as root filesystem.
 	
 		Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel,
 		bootloader does mount the minimal linux desktop to root-filsesystem.
