@@ -45,11 +45,11 @@ As root user on host
     make
     }
     
-    check() {
-    cd "${pkgname}-${pkgver}"
-    make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
-       # 2>&1 directive is mixed standard out and error out.
-    }
+    #check() {
+    #cd "${pkgname}-${pkgver}"
+    #make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+    #   # 2>&1 directive is mixed standard out and error out.
+    #}
     
     #test() {
     #cd "${pkgname}-${pkgver}"
