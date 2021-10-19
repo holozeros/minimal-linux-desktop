@@ -113,7 +113,7 @@ set +h
 umask 022
 LFS=/mnt/lfs
 LC_ALL=POSIX
-MAKEFLAGS=-j17 # number of cpu core
+MAKEFLAGS="-j$(nproc)"
 LFS_TGT=$(uname -m)-lfs-linux-gnu
 PATH=/tools/bin:/bin:/usr/bin
 export LFS LC_ALL LFS_TGT PATH MAKEFLAGS
@@ -1022,7 +1022,7 @@ cat > ~/.bashrc << "EOF"
 set +h
 umask 022
 LC_ALL=POSIX
-MAKEFLAGS=-j17
+MAKEFLAGS="-j$(nproc)"
 LFS_TGT=$(uname -m)-lfs-linux-gnu
 PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin
 export LC_ALL LFS_TGT PATH MAKEFLAGS
@@ -2232,7 +2232,7 @@ cat > ~/.bashrc << "EOF"
 set +h
 umask 022
 LC_ALL=POSIX
-MAKEFLAGS=-j17
+MAKEFLAGS="-j$(nproc)"
 LFS_TGT=$(uname -m)-lfs-linux-gnu
 PATH=/tools/bin:/tools/sbin:/bin:/sbin:/usr/bin:/usr/sbin
 export LC_ALL LFS_TGT PATH MAKEFLAGS
