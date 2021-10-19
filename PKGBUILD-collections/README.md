@@ -52,7 +52,7 @@ As local user into chroot environment
     #check() {
     #cd "${pkgname}-${pkgver}"
     #make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
-    #   # 2> & 1 directive mixes error output into standard out.
+    #   # 2>&1 directive mixes error output into standard out.
     #   # tee passes standard out to the log file.  
     #   #}
     
