@@ -30,8 +30,10 @@ As root user on host.
     
  Making PKGBUILD.
 
-    mkdir -p /sources/<package-name>/<version>
-    cd /sources/<package-name>/<version>
+Almost source tar balls have been looks like <package-name>-<version>.tar.xz.for example, case in making PKGBUILD of zlib-1.2.11
+
+    mkdir -p /sources/zlib/1.2.11
+    cd /sources/zlib/1.2.11
     cp ../../PKGBUILD.skl . && mv PKGBUILD.skl PKGBUILD
     nano PKGBUILD
     
