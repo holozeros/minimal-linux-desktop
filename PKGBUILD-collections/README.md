@@ -80,7 +80,7 @@ A propary value of these variables refer to the Arch Linux's PKGBULD that corres
         license=(' ')
         url='https://.. '
  
-This function is constant here.
+This variable is constant here.
 
         arch=('x86_64')
 
