@@ -57,6 +57,7 @@ Storage for building this OS: SATA(HDD,SSD), m.2-SSD
             If you want to use USB storage, shuld install Dracut and create initramfs.
 
 Graphics: nvidia card (or any Integrated GPU).
+
             When using the nouveau driver, you may not be able to use multiple displays or select the desired resolution, depending on the type of Nvidia card.
             Thankfully, for Linux users, Nvidia has published the driver packages that combines proprietary binaries with a collection of their wrappers.
             There are some caveats, such as kernel compilation, to install the proprietary Nvidia driver. 
