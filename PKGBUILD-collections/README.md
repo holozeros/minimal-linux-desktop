@@ -51,7 +51,7 @@ A propary value of these variables refer to the Arch Linux's PKGBULD that corres
         url='https://.. '
  
 
-This function is constant
+This function is constant here.
 
         arch=('x86_64')
 
