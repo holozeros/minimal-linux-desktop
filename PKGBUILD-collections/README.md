@@ -47,13 +47,13 @@ As root user on host
     
     #check() {
     #cd "${pkgname}-${pkgver}"
-    #make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+    #make check 2>&1 | ../../${pkgname}-${pkgver}-test.log
     #   # 2>&1 directive is mixed standard out and error out.
     #}
     
     #test() {
     #cd "${pkgname}-${pkgver}"
-    #make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+    #make test 2>&1 | ../../${pkgname}-${pkgver}-test.log
     #}
 
     package() {
