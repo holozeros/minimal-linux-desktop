@@ -1,7 +1,7 @@
 # Making PKGBUILD for minimal linux desktop
  Must already done building the chroot environment.
  
-As root user on host.
+As root user on host
 
     export $LFS
     mount /dev/<partition name of the chroot environment> $LFS
@@ -21,16 +21,15 @@ As root user on host.
         /tools/bin/bash --login +h
     umount -lR /mnt/lfs/*
     
- Making skelton of PKGBUILD (for example [PKGBUILD.skl](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/PKGBUILD.skl)).
+Making skelton of PKGBUILD (for example [PKGBUILD.skl](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/PKGBUILD.skl))
  
     cd /sources
     cat > PKGBUILD.skl << "EOF"
     ...    
     EOF
     
- Making PKGBUILD.
-
-Almost source tar balls have been looks like <package-name>-<version>.tar.xz.for example, case in making PKGBUILD of zlib-1.2.11
+Making PKGBUILD
+ Almost source tar balls have been looks like <package-name>-<version>.tar.xz.for example, case in making PKGBUILD of zlib-1.2.11
 
     mkdir -p /sources/zlib/1.2.11
     cd /sources/zlib/1.2.11
