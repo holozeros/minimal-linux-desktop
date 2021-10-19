@@ -19,7 +19,7 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
 
 	2.With Arch Build System of the chroot environment, buiding minimal linux desktop. 
 
-		1.[Editing PKGBUILD](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/README.md).
+		1.Editing PKGBUILD.
 		2.Installing with pacamn.
 		
 		Chroot into the above chroot environment, and make package-tarballs from the PKGBUILDs with makepkg command,
