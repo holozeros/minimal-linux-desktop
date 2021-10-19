@@ -2235,14 +2235,3 @@ PATH=/tools/bin:/tools/sbin:/bin:/sbin:/usr/bin:/usr/sbin
 export LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
 source ~/.bash_profile
-
-cd /sources
-mkdir work
-cd work
-
-cp /sources/<tarball.tar.xx> .
-# If necessary, additionally copy the files to your working directory. 
-
-nano PKGBUILD
-makepkg --skipchecksums
-pacman -U <pkg.tar.xx>
