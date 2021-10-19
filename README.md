@@ -30,7 +30,7 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
 		
 		
 
-## [Prerequisites]
+## Prerequisites
 
     Host OS must pass version-check.sh of LFS-11.0 book.
             With a tiny mistake in build process can irreparably destroy the host system.
@@ -38,8 +38,7 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
             The host should have a desktop environment and a browser.
             If you can't find a suitable existing Live-USB distribution,
             Install a new OS dedicated to host of build works into an USB storage.
-            Refer to:
-                https://wiki.archlinux.org/title/Install_Arch_Linux_on_a_removable_medium 
+Refer to: [Install_Arch_Linux_on_a_removable_medium](https://wiki.archlinux.org/title/Install_Arch_Linux_on_a_removable_medium)
 
     Machine architecture: x86_64, UEFI, GPTpartition.
             When booting the stub kernel on a UEFI motherboard,
