@@ -23,6 +23,8 @@ As root user on host
     
 ##### Making skelton of PKGBUILD (e.g [PKGBUILD.skl](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/PKGBUILD.skl))
  
+    su - lfs
+    
     cd /sources
     cat > PKGBUILD.skl << "EOF"
     pkgname=""
