@@ -29,7 +29,8 @@ Making skelton of PKGBUILD (for example [PKGBUILD.skl](https://github.com/holoze
     EOF
     
 Making PKGBUILD
- Almost source tar balls have been looks like <package-name>-<version>.tar.xz.for example, case in making PKGBUILD of zlib-1.2.11
+
+##### Almost source tar balls have been looks like <package-name>-<version>.tar.xz.for example, case in making PKGBUILD of zlib-1.2.11
 
     mkdir -p /sources/zlib/1.2.11
     cd /sources/zlib/1.2.11
