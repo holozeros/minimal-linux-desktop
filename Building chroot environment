@@ -173,11 +173,11 @@ wget https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
 wget https://curl.se/download/curl-7.78.0.tar.xz
 wget https://github.com/nghttp2/nghttp2/releases/download/v1.44.0/nghttp2-1.44.0.tar.xz
 
-# example: latest-version archlinux-keyring-20210902.tar.gz 
+# e.g: latest-version archlinux-keyring-20210902.tar.gz 
 wget https://sources.archlinux.org/other/archlinux-keyring/archlinux-keyring-20210902.tar.gz
 # This system uses ABS to build custom packages and installs using pacman, 
 # so it doesn't require an archlinux repository, 
-# but it also allows you to build archlinux distributions using only pacman.
+# but it also allows you to build an archlinux distribution using only pacman.
 
 cat >> $LFS/sources/md5sums << "EOF" 
 f36f5e7e95a89436febe1bcca874fc33  pacman-5.0.2.tar.gz
