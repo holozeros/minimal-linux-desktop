@@ -1,0 +1,29 @@
+pkgname=""
+pkgver=""
+pkgrel=""
+pkgdesc=""
+arch=('x86_64')
+url="http://www."
+license=('')
+#backup=()
+source=()
+#install=glibc.install
+
+#prepare() {
+#}
+
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/usr
+make
+}
+
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
