@@ -2,22 +2,22 @@
 Here is for the biginners. Build a desktop environment from source to learn Linux. 
 This OS is built with reference to the Linux From Scratch 11.0 book and installed use pacman-5.0. 
 
-## 1.[Building chroot environment](https://github.com/holozeros/minimal-linux-desktop/blob/master/Building%20chroot%20environment)
+## 1.Building chroot environment
 
-	1.Install arch build system in the chroot environment.
+[Install arch build system in the chroot environment](https://github.com/holozeros/minimal-linux-desktop/blob/master/Building%20chroot%20environment).
 
 		Building a chroot environment where /tools has the required commands to run chroot and Arch Build System(gcc,pacman,makepkg..).
 
- 	2.With a original stub kernel booting the chroot environment as root filesystem.
+With a original stub kernel booting the chroot environment as root filesystem.
 	
 		Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel,
 		bootloader does mount the minimal linux desktop to root-filsesystem.
 	
 ## 2.Building minimal linux desktop
 
-	1.List of mandatory packages in build order.
+List of mandatory packages in build order.
 
-	2.With Arch Build System of the chroot environment, buiding minimal linux desktop. 
+With Arch Build System of the chroot environment, buiding minimal linux desktop. 
 
 		1.Editing PKGBUILD.
 		2.Installing with pacamn.
