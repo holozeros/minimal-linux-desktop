@@ -99,7 +99,7 @@ These variable add as needed.
     cp ../../PKGBUILD.skl . && mv PKGBUILD.skl PKGBUILD
     nano PKGBUILD
 
-or with cat
+or with cat directly
 
     cat > PKGBUILD << "EOF"
     pkgname="zlib"
