@@ -40,9 +40,6 @@ Making PKGBUILD
  If host is desktop environment,
  you are able to refer to editor, browser and then needed text do copy&past to nano on the terminal.
  ##### When you are modified on Nano, refer to LFS-11.0 book or the instruction of the packages of building chroot environent and archlinux's original PKGBUILD..and other infomations on web.
-
-# Note that 
-
 These values of variables refer to file name of the target source-tar-ball. 
 
         pkgname=' '
@@ -63,13 +60,13 @@ This function is constant
 These variables shuld be comment out, add top of the line #.
 
         # depends=()
-        # groups=('or may refer to ArchLinux's PKGBULD')
+        # groups=()
         # validpgpkeys=
         # sha256sums=
 
 These variable add as needed.
 
         provides=(' ')
-        options=('  ')
+        options=(' ')
 
 
