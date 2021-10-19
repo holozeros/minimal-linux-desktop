@@ -19,13 +19,13 @@ With a original stub kernel booting the chroot environment as root filesystem.
 
 List of mandatory packages in build order.
 
-With Arch Build System of the chroot environment, buiding minimal linux desktop. 
+Editing PKGBUILD
 
-		1.Editing PKGBUILD.
-		2.Installing with pacamn.
-		
-		Chroot into the above chroot environment, and make package-tarballs from the PKGBUILDs with makepkg command,
-		then install packages with pacaman into / of chroot environment.
+     Chroot into the above chroot environment, and make package-tarballs from the PKGBUILDs with makepkg command,
+
+Installing with pacamn
+
+    Install packages with pacaman into / of chroot environment.
 
 
               This repository is still incomplete !!!
