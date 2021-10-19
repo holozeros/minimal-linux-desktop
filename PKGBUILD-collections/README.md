@@ -51,13 +51,14 @@ As local user into chroot environment
     
     #check() {
     #cd "${pkgname}-${pkgver}"
-    #make check 2>&1 | ../../${pkgname}-${pkgver}-test.log
-    #   # 2>&1 directive is mixed standard out and error out.
-    #}
+    #make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+    #   # 2> & 1 directive mixes error output into standard out.
+    #   # tee passes standard out to the log file.  
+    #   #}
     
     #test() {
     #cd "${pkgname}-${pkgver}"
-    #make test 2>&1 | ../../${pkgname}-${pkgver}-test.log
+    #make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
     #}
 
     package() {
