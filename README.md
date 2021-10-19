@@ -41,6 +41,7 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
             Install a new OS dedicated to host of build works into an USB storage.
 
 Machine architecture: x86_64, UEFI, GPTpartition.
+
             When booting the stub kernel on a UEFI motherboard,
             Archlinux's boot loader, systemd-boot, can be mounted directly on the stub kernel (without initramfs) if it is a root partition known to the kernel,
             even if it is not the root file system partition that does systemd's init processing.
@@ -49,6 +50,7 @@ Machine architecture: x86_64, UEFI, GPTpartition.
             Compared to Grub, systemd-boot has the advantage of making it easier to know and control the boot behavior. 
     
 Storage for building this OS: SATA(HDD,SSD), m.2-SSD
+
             For the root file system partition of this OS, an USB storage is not available.
             If you boot your machine connected some USB storage to a USB port that you don't know in advance what will be connected,
             the stub kernel may can not recognize the USB storage well. 
