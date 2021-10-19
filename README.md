@@ -1,5 +1,5 @@
 # MINIMAL LINUX DESKTOP
-Build a desktop environment from source to learn Linux. 
+Build a desktop environment from source codes to learn Linux. 
 This OS is built with reference to the Linux From Scratch 11.0 book and installed use pacman-5.0. 
 Even beginners can create this chroot environment on their PC by following this procedure, but beginners don't understand the meaning of each command.
 First, you need to read the Linux From Scratch book and experience building LFS yourself. 
