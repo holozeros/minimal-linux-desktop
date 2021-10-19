@@ -40,8 +40,7 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
             If you can't find a suitable existing Live-USB distribution,
             Install a new OS dedicated to host of build works into an USB storage.
 
-
-    Machine architecture: x86_64, UEFI, GPTpartition.
+Machine architecture: x86_64, UEFI, GPTpartition.
             When booting the stub kernel on a UEFI motherboard,
             Archlinux's boot loader, systemd-boot, can be mounted directly on the stub kernel (without initramfs) if it is a root partition known to the kernel,
             even if it is not the root file system partition that does systemd's init processing.
@@ -49,14 +48,13 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
             you can boot an OS you just created by adding a small config file.
             Compared to Grub, systemd-boot has the advantage of making it easier to know and control the boot behavior. 
     
-    Storage for building this OS: SATA(HDD,SSD), m.2-SSD
+Storage for building this OS: SATA(HDD,SSD), m.2-SSD
             For the root file system partition of this OS, an USB storage is not available.
             If you boot your machine connected some USB storage to a USB port that you don't know in advance what will be connected,
             the stub kernel may can not recognize the USB storage well. 
             If you want to use USB storage, shuld install Dracut and create initramfs.
 
-    Graphics: nvidia card (or any Integrated GPU).
+Graphics: nvidia card (or any Integrated GPU).
             When using the nouveau driver, you may not be able to use multiple displays or select the desired resolution, depending on the type of Nvidia card.
             Thankfully, for Linux users, Nvidia has published the driver packages that combines proprietary binaries with a collection of their wrappers.
             There are some caveats, such as kernel compilation, to install the proprietary Nvidia driver. 
-
