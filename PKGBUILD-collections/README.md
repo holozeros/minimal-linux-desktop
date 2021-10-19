@@ -99,7 +99,8 @@ These variable add as needed.
     cp ../../PKGBUILD.skl . && mv PKGBUILD.skl PKGBUILD
     nano PKGBUILD
 
-or with cat    
+or with cat
+
     cat > PKGBUILD << "EOF"
     pkgname="zlib"
     pkgver="1.2.11" 
@@ -125,10 +126,8 @@ or with cat
     cd "${pkgname}-${pkgver}"
     make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
     }
-    EOF
-
-
-package() {
+    package() {
     cd "${pkgname}-${pkgver}"
     make DESTDIR=${pkgdir} install
-}
+    }
+    EOF
