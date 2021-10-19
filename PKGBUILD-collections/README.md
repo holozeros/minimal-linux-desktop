@@ -25,7 +25,41 @@ As root user on host
  
     cd /sources
     cat > PKGBUILD.skl << "EOF"
-    ...    
+    pkgname=""
+    pkgver=""
+    pkgrel=""
+    pkgdesc=""
+    arch=('x86_64')
+    url="http://www."
+    license=('')
+    #backup=()
+    source=()
+    #install=glibc.install
+    
+    #prepare() {
+    #}
+    
+    build() {
+    cd "${pkgname}-${pkgver}"
+    ./configure --prefix=/usr
+    make
+    }
+    
+    check() {
+    cd "${pkgname}-${pkgver}"
+    make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+       # 2>&1 directive is mixed standard out and error out.
+    }
+    
+    #test() {
+    #cd "${pkgname}-${pkgver}"
+    #make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+    #}
+
+    package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+    }
     EOF
     
 Almost source tar ball name format have been looks like "packagename"-"version".tar.xz
