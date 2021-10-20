@@ -23,7 +23,7 @@ With a original stub kernel booting the chroot environment as root filesystem.
 
 List of mandatory packages in build order.
 
-[Editing PKGBUILD]
+[Editing PKGBUILD](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/README.md)
 
 Make custum packages
 
