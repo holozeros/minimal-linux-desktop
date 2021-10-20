@@ -1007,7 +1007,7 @@ Because all directories in $LFS are unmounted for safety confirmation, output of
 
 # This is very important !
         
-If returned the host environment, to check the mount status. Issue:
+When back to the host environment, to check the mount status. Issue:
 
     mount
 
