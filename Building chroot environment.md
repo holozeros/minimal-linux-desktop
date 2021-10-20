@@ -1022,5 +1022,5 @@ Look at the output of mount, make sure the following directories are not mounted
 If left mounted kernel's virtual file systems on these directories, the storage and hardware of the host PC will be damaged.
 If you cannot unmount these, interrupt further operations and reboot the host immediately. 
 
-If return to the host environment and /mnt/lfs/dev,/mnt/lfs/sys/,/mnt/lfs/proc/,/mnt/lfs/run had been succsesed unmount, 
-you're safely back on the host. You can ignore some warnnings of the exit output in the chroot environment. 
+When return to the host, if /mnt/lfs/dev,/mnt/lfs/sys/,/mnt/lfs/proc/,/mnt/lfs/run had been succsesed unmount, you were safely back on the host,
+ you can ignore some warnnings of the exit output in the chroot environment.
