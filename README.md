@@ -21,7 +21,7 @@ With a original stub kernel booting the chroot environment as root filesystem.
 	
 ## 2.Building minimal linux desktop
 
-[List of mandatory packages in build order](minimal-linux-desktop/blob/master/List%20of%20mandatory%20packages).
+[List of mandatory packages in build order](List%20of%20mandatory%20packages).
 
 [Editing PKGBUILD](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/README.md)
 
