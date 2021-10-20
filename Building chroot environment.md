@@ -86,7 +86,7 @@ Mount the new root file system partition to /mnt/lfs. for example in case /dev/s
     rm -f dummy.c dummy
     EOF
 
-Run below shell script and check outputs of script.
+Run following the shell script and check outputs of script.
 
     bash version-check.sh
 
