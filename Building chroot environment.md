@@ -220,7 +220,7 @@ Please verify md5sum arbitrarily.
 
 
 
-The bellow instructions are different from the lfs-11.0 book.
+The following instructions are different from the lfs-11.0 book.
 Here we should install the chroot environment in /tools directory.
 Test procedures that are possible but not required are commented out. 
 Now,begining build the base of chroot environment.
