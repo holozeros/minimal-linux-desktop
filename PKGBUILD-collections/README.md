@@ -25,7 +25,7 @@ As local user into chroot environment
 
       su - lfs
     
-##### Making skelton of PKGBUILD (e.g [PKGBUILD.skl](PKGBUILD-collections/PKGBUILD.skl))
+##### Making skelton of PKGBUILD (e.g [PKGBUILD.skl](PKGBUILD.skl))
  
     cd /sources
     cat > PKGBUILD.skl << "EOF"
@@ -97,7 +97,7 @@ These variable add as needed.
         provides=(' ')
         options=(' ')
 
-##### case in making [PKGBUILD of zlib-1.2.11.tar.xz](PKGBUILD-collections/zlib-1.2.11)
+##### case in making [PKGBUILD of zlib-1.2.11.tar.xz](zlib-1.2.11)
 
     mkdir -p /sources/zlib/1.2.11
     cd /sources/zlib/1.2.11
