@@ -999,3 +999,22 @@ chroot "$LFS" /tools/bin/env -i \
     PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
     /tools/bin/bash --login +h
 umount -lR /mnt/lfs/*
+
+# return the host environment.
+
+exit
+
+# If return host and /dev,/sys/,/proc/,/run had been succsesed unmount, some unmount warnnings may be ignore.
+# If had been returned the host environment, to check the mount status. Issue:
+
+mount
+
+# Look at the output of the mount command, make sure the following directories are not mounted.
+
+/mnt/lfs/dev
+/mnt/lfs/sys
+/mnt/lfs/proc
+/mnt/lfs/run
+
+# If the system is left mounted on these, the storage and hardware of the host PC will be damaged.
+# If you cannot unmount it, interrupt further operations and reboot the host immediately. 
