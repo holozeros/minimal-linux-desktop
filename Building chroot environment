@@ -224,7 +224,7 @@ cd $LFS/sources
 # Now,begining build the base of chroot environment.
 # It's best to install each package step by step, but you can also run a long script to install it all at once. 
 # If install it all at once, create a script that builds at once, then execute the script on the terminal.
-# Lines 229 to 938 in this text are a series of scripts. 
+# Lines 229 to 939 in this text are a series of scripts. 
 
 cat > build-chroot-environment.sh << "END"
 ###########################
@@ -935,7 +935,7 @@ make install
 
 cd ..
 rm -rf util-linux-2.37.2
-############################################################
+
 END
 
 ###########################################
