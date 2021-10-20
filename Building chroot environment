@@ -1001,7 +1001,7 @@ chroot "$LFS" /tools/bin/env -i \
     /tools/bin/bash --login +h
 umount -lR /mnt/lfs/*
 
-# return the host environment.issue:
+# return to the host environment.Issue:
           exit
 # Because all directories in $LFS are unmounted for safety confirmation, output of exit display some warnnings.
 
