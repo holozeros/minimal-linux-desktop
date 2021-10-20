@@ -12,7 +12,7 @@ If $LFS is empty, there is a risk of destroying the host.
 
     export LFS=/mnt/lfs
 
-For new creation root file system partition: ext4.
+For new creation root file system partition is ext4.
 That physical storage shuld be SATA or M.2 connected, not USB storage.
 This chroot environment will eventually become the root partition of a bootable linux OS.
 Partition of the USB will not be perhaps recognized by a stub kernel at boot time without initramfs, but initramfs is can not support yet.
@@ -25,11 +25,11 @@ If it doesn't exist, create a new one.
 
     # mkfs.vfat /dev/<EFI System Partition>
 
-Mount the partition formated ext4 to /mnt/lfs. for example in case /dev/sda2 is the target partition:
+Mount the new root file system partition to /mnt/lfs. for example in case /dev/sda2 is the target partition:
 
     mkdir -v /mnt/lfs
     
-    # below directive is examle, you shuld cheng the propery real partition name 
+    # below directive is example, you shuld cheng the propery real partition name 
     mount -v /dev/sda2 $LFS
 
 ## checking host system requirement
