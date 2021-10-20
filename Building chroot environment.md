@@ -32,7 +32,7 @@ Mount the new root file system partition to /mnt/lfs. for example in case /dev/s
     # below directive is example, you shuld cheng the propery real partition name 
     mount -v /dev/sda2 $LFS
 
-## checking host system requirement
+## Checking host system requirement
 
     cat > version-check.sh << "EOF"
     #!/bin/bash
@@ -90,11 +90,11 @@ Run following the shell script and check outputs of script.
 
     bash version-check.sh
 
-## bash setting
+## Bash setting
 
     [ ! -e /etc/bash.bashrc ] || mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
 
-## directory settings
+## Directory settings
 
     export LFS=/mnt/lfs
     # mount /dev/<For new creation root file system partition> $LFS
@@ -104,7 +104,7 @@ Run following the shell script and check outputs of script.
     ln -sv $LFS/tools /
     chmod -v a+wt $LFS/sources
 
-## making local user in your host system
+## Making local user in your host system
 
     groupadd lfs
     useradd -s /bin/bash -g lfs -m -k /dev/null lfs
@@ -131,7 +131,7 @@ Run following the shell script and check outputs of script.
     
     source ~/.bash_profile
 
-## downloading sources
+## Downloading sources
 
     export LFS=/mnt/lfs
     cd $LFS/sources
@@ -144,7 +144,7 @@ Run following the shell script and check outputs of script.
 If there are some tarballs that could not be downloaded automatically from the list, 
 check the download address with LFS-11.0 Book or Google search and make up for it manually. 
 
-## additional sources for arch build system
+## Additional sources for arch build system
 
     cd $LFS/sources
 
@@ -945,11 +945,11 @@ chmod +x build-chroot-environment.sh
 ./build-chroot-environment.sh
 ```
 
-## strip
+## Strip
 
     rm -rf /tools/{,share}/{info,man,doc}
 
-## backup
+## Backup
 ```
 # cd $LFS/tools
 # tar -cJpf <Path>/tools11-base.tar.xz .
@@ -969,13 +969,16 @@ As root user.
 # tar -xpf <Path>/tools11-base.tar.xz
 ```
 
-## chroot
+## Chroot
 
 changeing to root user from lfs
 ```
 exit
 ```
 
+```
+export LFS=/mnt/lfs
+```
 ```
 chown -R root:root $LFS/tools
 mkdir -pv $LFS/{dev,proc,sys,run,root,tmp,usr/{bin,lib},etc}
@@ -1001,8 +1004,11 @@ chroot "$LFS" /tools/bin/env -i \
     /tools/bin/bash --login +h
 umount -lR /mnt/lfs/*
 ```
-## return to the host environment.Issue:
+## Back to to the host environment.
+Issue:
+
     exit
+
 Because all directories in $LFS are unmounted for safety confirmation, output of exit display some warnnings.
 
 # This is very important !
