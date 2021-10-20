@@ -218,14 +218,7 @@ Please verify md5sum arbitrarily.
       md5sum -c md5sums
     popd
 
-
-
-The following instructions are different from the lfs-11.0 book.
-Here we should install the chroot environment in /tools directory.
-Test procedures that are possible but not required are commented out. 
-Now,begining build the base of chroot environment.
-It's best to install each package step by step, but you can also run a long script to install it all at once. 
-If install it all at once, create a script that builds at once, then execute the script on the terminal.
+The following description is different from the lfs-11.0 book. Here you need to install the chroot environment in the / tools directory. Test procedures that are possible but not required are commented out. Now start building the base for your chroot environment. We recommend that you install each package in stages, but you can also run a long script to install them all at once. If you want to install at once, create a script to build at once and execute it on the terminal. 
 ```
 
 cd $LFS/sources
