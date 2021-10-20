@@ -6,7 +6,7 @@ First, you need to read the Linux From Scratch book and experience building LFS 
 
 ## 1.Building chroot environment
 
-[Building basic chroot environment](Building%20chroot%20environment).
+[Building basic chroot environment](Building%20chroot%20environment.md).
 
      Building a chroot environment where /tools has the required commands to run chroot.
 
