@@ -1003,8 +1003,12 @@ umount -lR /mnt/lfs/*
 # return the host environment.
 
 exit
+# exit output Some warnnings.
 
-# If return the host and /dev,/sys/,/proc/,/run had been succsesed unmount, some unmount warnnings shuld be ignore.
+        ################################
+        ### This is very important ! ###
+        ################################
+
 # If returned the host environment, to check the mount status. Issue:
 
 mount
@@ -1016,5 +1020,8 @@ mount
 /mnt/lfs/proc
 /mnt/lfs/run
 
-# If the system is left mounted on these, the storage and hardware of the host PC will be damaged.
+# If left mounted kernel's virtual file systems on these deirectories, the storage and hardware of the host PC will be damaged.
 # If you cannot unmount these, interrupt further operations and reboot the host immediately. 
+
+# If return the host and /mnt/lfs/dev,/mnt/lfs/sys/,/mnt/lfs/proc/,/mnt/lfs/run had been succsesed unmount, 
+# you're safely back on the host, you can ignore some warnnings of the exit output in the chroot environment. 
