@@ -57,7 +57,7 @@ Machine architecture: x86_64, UEFI, GPTpartition.
             you can boot an OS you just created by adding a small config file.
             Compared to Grub, systemd-boot has the advantage of making it easier to know and control the boot behavior. 
     
-Storage for building this OS: SATA(HDD,SSD), m.2-SSD
+Storage for building this OS: SATA(HDD,SSD), M.2-SSD
 
             For the root file system partition of this OS, an USB storage is not available.
             If you boot your machine connected some USB storage to a USB port that you don't know in advance what will be connected,
