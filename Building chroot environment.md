@@ -971,7 +971,7 @@ As root user.
 
 ## chroot
 
-changeing to root user
+changeing to root user from lfs
 ```
 exit
 ```
