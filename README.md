@@ -19,7 +19,7 @@ With a original stub kernel booting the chroot environment as root filesystem.
 
 List of mandatory packages in build order.
 
-Editing PKGBUILD
+[Editing PKGBUILD]
 
 Make custum packages
 
