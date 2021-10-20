@@ -13,9 +13,9 @@ If $LFS is empty, there is a risk of destroying the host.
     export LFS=/mnt/lfs
 
 For new creation root file system partition: ext4.
-That physical strage shuld be SATA or M.2, not USB strage.
+That physical storage shuld be SATA or M.2 connected, not USB storage.
 This chroot environment will eventually become the root partition of a bootable linux OS.
-Partition of the USB storage will not be perhaps recognized by a stub kernel at boot time without initramfs, but initramfs is can not support yet.
+Partition of the USB will not be perhaps recognized by a stub kernel at boot time without initramfs, but initramfs is can not support yet.
 Therefore, the chroot environment should be built on an SSD or HDD partition with a SATA or M.2 connection. 
 
     # mkfs.ext4 /dev/<new root file system partition>
