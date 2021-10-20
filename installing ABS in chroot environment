@@ -2,6 +2,35 @@
 ### prepere ###
 ###############
 
+# On the terminal of the host
+
+su - 
+
+# Makesure that the partition of chroot environment mount to /mnt/lfs
+
+lsblk
+
+# if already mounted the partition of chroot environment mount to /mnt/lfs, do chroot in the chroot environment
+
+export LFS=/mnt/lfs
+mount -v --bind /dev $LFS/dev
+mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
+mount -vt proc proc $LFS/proc
+mount -vt sysfs sysfs $LFS/sys
+mount -vt tmpfs tmpfs $LFS/run
+if [ -h $LFS/dev/shm ]; then
+  mkdir -pv $LFS/$(readlink $LFS/dev/shm)
+fi
+chroot "$LFS" /tools/bin/env -i \
+    HOME=/root                  \
+    TERM="$TERM"                \
+    PS1='\u:\w\$ '              \
+    PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
+    /tools/bin/bash --login +h
+umount -lR /mnt/lfs/*
+
+# settings the filesystem
+
 ln -sv /usr/bin /bin
 ln -sv /tools/bin/{bash,cat,echo,env,pwd,stty,uname} /usr/bin
 ln -sv /tools/bin/bash /usr/bin/sh
@@ -13,6 +42,8 @@ ln -sv /tools/include /tools/usr/include
 sed 's/tools/usr/' /tools/lib/libstdc++.la > /usr/lib/libstdc++.la
 
 ln -sv /proc/self/mounts /etc/mtab
+
+# settings the root user environment
 
 cat > ~/.bash_profile << "EOF"
 exec /tools/bin/env -i HOME=$HOME TERM=$TERM PS1='(chroot)\u:\w\$ ' /tools/bin/bash
