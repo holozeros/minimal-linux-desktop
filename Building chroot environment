@@ -222,9 +222,9 @@ cd $LFS/sources
 # Here we should install the chroot environment in /tools directory.
 # Test procedures that are possible but not required are commented out. 
 # Now,begining build the base of chroot environment.
+# It's best to install each package step by step, but you can also run this long script to install it all at once. 
 # First, create a script that builds at once, then execute the script on the terminal.
 # Lines 229 to 938 in this text are a series of scripts. 
-# It's best to install each package step by step, but you can also run this long script to install it all at once. 
 
 cat > build-chroot-environment.sh << "END"
 ###########################
