@@ -1003,7 +1003,7 @@ umount -lR /mnt/lfs/*
 
 # return the host environment.issue:
           exit
-# Therefor, because all directories in $LFS are unmounted for safety confirmation, output of exit display some warnnings.
+# Because all directories in $LFS are unmounted for safety confirmation, output of exit display some warnnings.
 
         ################################
         ### This is very important ! ###
