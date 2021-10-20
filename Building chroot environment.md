@@ -974,7 +974,9 @@ As root user.
 changeing to root user
 ```
 exit
+```
 
+```
 chown -R root:root $LFS/tools
 mkdir -pv $LFS/{dev,proc,sys,run,root,tmp,usr/{bin,lib},etc}
 mkdir -v $LFS/tools/usr
