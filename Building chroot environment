@@ -1004,12 +1004,12 @@ umount -lR /mnt/lfs/*
 
 exit
 
-# If return host and /dev,/sys/,/proc/,/run had been succsesed unmount, some unmount warnnings may be ignore.
-# If had been returned the host environment, to check the mount status. Issue:
+# If return the host and /dev,/sys/,/proc/,/run had been succsesed unmount, some unmount warnnings shuld be ignore.
+# If returned the host environment, to check the mount status. Issue:
 
 mount
 
-# Look at the output of the mount command, make sure the following directories are not mounted.
+# Look at the output of mount, make sure the following directories are not mounted.
 
 /mnt/lfs/dev
 /mnt/lfs/sys
@@ -1017,4 +1017,4 @@ mount
 /mnt/lfs/run
 
 # If the system is left mounted on these, the storage and hardware of the host PC will be damaged.
-# If you cannot unmount it, interrupt further operations and reboot the host immediately. 
+# If you cannot unmount these, interrupt further operations and reboot the host immediately. 
