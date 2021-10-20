@@ -7,7 +7,7 @@ If the state of the shell changes due to interruption of work, you need to rever
 
     su -
 
-Below directive is very impotant, because $LFS is used frequently in many directives.
+Below directive is very important, because $LFS is used frequently in many directives.
 If $LFS is empty, there is a risk of destroying the host. 
 
     export LFS=/mnt/lfs
