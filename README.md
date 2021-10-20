@@ -6,11 +6,11 @@ First, you need to read the Linux From Scratch book and experience building LFS 
 
 ## 1.Building chroot environment
 
-[Building basic chroot environment](https://github.com/holozeros/minimal-linux-desktop/blob/master/Building%20chroot%20environment).
+[Building basic chroot environment](Building%20chroot%20environment).
 
      Building a chroot environment where /tools has the required commands to run chroot.
 
-[Install arch build system in the chroot environment](https://github.com/holozeros/minimal-linux-desktop/blob/master/installing%20ABS%20in%20chroot%20environment).
+[Install arch build system in the chroot environment](installing%20ABS%20in%20chroot%20environment).
 
      Add Arch Build System (gcc,pacman,makepkg..) in the basic chroot system.
 
@@ -23,7 +23,7 @@ With a original stub kernel booting the chroot environment as root filesystem.
 
 [List of mandatory packages in build order](List%20of%20mandatory%20packages).
 
-[Editing PKGBUILD](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/README.md)
+[Editing PKGBUILD](PKGBUILD-collections/README.md)
 
 Make custum packages
 
