@@ -1037,7 +1037,7 @@ last line of chroot script
 
 	umount -lR /mnt/lfs/*
 
-If changing to folloing scriptts, will eliminate the extra error.
+If changing to following scriptts, will eliminate the extra error.
 ```
 umount /mnt/dev/pts
 umount /mnt/lfs/dev
