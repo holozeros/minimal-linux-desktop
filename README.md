@@ -1,8 +1,20 @@
 # MINIMAL LINUX DESKTOP
 Build a desktop environment from source codes to learn Linux. 
 This OS is built with reference to the Linux From Scratch 11.0 book and installed use pacman-5.0. 
-Even beginners can create this chroot environment on their PC by following this procedure, but beginners don't understand the meaning of each command.
-First, you need to read the Linux From Scratch book and experience building LFS yourself. 
+
+[Linux From Scratch Version 11.0](https://www.linuxfromscratch.org/lfs/view/stable/)
+
+	I. Introduction
+	II. Preparing for the Build
+	  2.Preparing the Host System
+	  3.Packages and Patches
+	  4.Final Preparations
+	III. Building the LFS Cross Toolchain and Temporary Tools
+	  5.Compiling a Cross-Toolchain
+
+Follow the LFS-11.0 book until just before Chapter 5 Compiling the Cross Toolchain. 
+Follow this text steps for Chapter 5 and beyond.
+For that purpose, required to have the experience of reading the Linux From Scratch book from start to finish and completing the LFS build. 
 
 ## 1.Building chroot environment
 
