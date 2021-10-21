@@ -12,8 +12,8 @@ This OS is built with reference to the Linux From Scratch 11.0 book and installe
 	III. Building the LFS Cross Toolchain and Temporary Tools
 	  5.Compiling a Cross-Toolchain
 
-Follow the LFS-11.0 book until just before Chapter 5 Compiling the Cross Toolchain. 
-Follow this text steps for Chapter 5 and beyond.
+Follow the LFS-11.0 book until just before Chapter5"Compiling the Cross Toolchain". 
+Follow this text steps for Chapter5 and beyond.
 For that purpose, required to have the experience of reading the Linux From Scratch book from start to finish and completing the LFS build. 
 
 ## 1.Building chroot environment
