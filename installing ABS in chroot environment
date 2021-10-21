@@ -39,6 +39,7 @@ ln -sv /tools/lib/libgcc_s.so{,.1} /usr/lib
 ln -sv /tools/lib/libstdc++.so{,.6} /usr/lib
 ln -sv /tools/lib /tools/usr/lib
 ln -sv /tools/include /tools/usr/include
+ln -sv /tools/include/ncursesw/ncurses.h /tools/include/
 sed 's/tools/usr/' /tools/lib/libstdc++.la > /usr/lib/libstdc++.la
 
 ln -sv /proc/self/mounts /etc/mtab
