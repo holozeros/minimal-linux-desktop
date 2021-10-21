@@ -1,9 +1,10 @@
 ## Build preparation
+Follow to the LFS book, complete up to Chapter 4 of LFS.
+In this section, I will briefly summarize up to Chapter 4 of the LFS book and supplement it a little. 
 
-This part is refer to lfs-11.0 book.
-The host OS should use live USB, as work mistakes can corrupt the host OS. 
-Follow those instructions in this order throughout.
-If the state of the shell changes due to interruption of work, you need to revert to the previous environment. 
+ The host OS should use live USB, as work mistakes can corrupt the host OS. 
+ Follow those instructions in this order throughout.
+ If the state of the shell changes due to interruption of work, you need to revert to the previous environment. 
 
     su -
 
@@ -12,24 +13,25 @@ If $LFS is empty, there is a risk of destroying the host.
 
     export LFS=/mnt/lfs
 
-For new creation root file system partition is ext4.
 That physical storage shuld be SATA or M.2 connected, not USB storage.
 This chroot environment will eventually become the root partition of a bootable linux OS.
 Partition of the USB will not be perhaps recognized by a stub kernel at boot time without initramfs, but initramfs is can not support yet.
 Therefore, the chroot environment should be built on an SSD or HDD partition with a SATA or M.2 connection. 
+If you need a new partition for building chroot environment, use cgdisk, gparted, etc. to create a GPT partition of appropriate size.
+File system format is as follows. 
 
-    # mkfs.ext4 /dev/<new root file system partition>
+    # mkfs.ext4 /dev/<new partition for building chroot environment>
 
-ETI System Partition: fat32.
+Format of ETI System Partition is fat32.
 If it doesn't exist, create a new one.
 
     # mkfs.vfat /dev/<EFI System Partition>
 
-Mount the new root file system partition to /mnt/lfs. for example in case /dev/sda2 is the target partition:
+Mount the new partition for building chroot environment to /mnt/lfs. for example in case /dev/sda2
 
     mkdir -v /mnt/lfs
     
-    # below directive is example, you shuld cheng the propery real partition name 
+    # below directive is example, you shuld cheng the propery partition name 
     mount -v /dev/sda2 $LFS
 
 ## Checking host system requirement
@@ -218,7 +220,9 @@ Please verify md5sum arbitrarily.
       md5sum -c md5sums
     popd
 
-The following description is different from the lfs-11.0 book. Here you need to install the chroot environment in the / tools directory. Test procedures that are possible but not required are commented out. Now start building the base for your chroot environment. We recommend that you install each package in stages, but you can also run a long script to install them all at once. If you want to install at once, create a script to build at once and execute it on the terminal. 
+# Building chroot environment
+
+In this section is different from the lfs-11.0 book. Here you need to install all of the chroot environment in the / tools directory. Test procedures that are possible but not required are commented out. Now start building the base for your chroot environment. We recommend that you install each package in stages, but you can also run a long script to install them all at once. If you want to install at once, create a script to build at once and execute it on the terminal. 
 ```
 
 cd $LFS/sources
