@@ -1,4 +1,4 @@
-# Making PKGBUILD for minimal linux desktop
+# Making PKGBUILD
  Must already done building the chroot environment and mounted the partition tof chroot environment to /mnt/lfs on the host.
  
 As root user on host
