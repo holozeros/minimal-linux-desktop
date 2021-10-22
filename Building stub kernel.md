@@ -11,7 +11,7 @@ cd linux-5.13.12
 make defconfig
 make menuconfig
 ```
-As an example machine
+As example of machine
 ```
 CPU is Ryzen7
 Graphics is NVIDIA card
