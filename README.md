@@ -26,7 +26,7 @@ For that purpose, required to have the experience of reading the Linux From Scra
 
      Add Arch Build System (gcc,pacman,makepkg..) in the basic chroot system.
 
-With a original stub kernel booting the chroot environment as root filesystem.
+With a custum stub kernel booting the chroot environment as root filesystem.
 
      Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel,
      bootloader does mount the minimal linux desktop to root-filsesystem.
