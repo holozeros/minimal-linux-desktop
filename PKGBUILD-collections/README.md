@@ -68,8 +68,11 @@ As local user into chroot environment
     EOF
 
 ## Tutorial editting PKGBUILD
-Almost source tar ball name format have been looks like "packagename"-"version".tar.xz.
- If host is desktop environment, you are able to refer to editor, browser and then needed text do copy&paste to nano on the terminal. When you are modified on Nano, refer to LFS-11.0 book or the instruction of the packages of building chroot environent and archlinux's original PKGBUILD..and other infomations on web.
+Almost source tar ball name format have been looks like
+```
+"package name"-"version".tar.xz.
+````
+If host is desktop environment, you are able to refer to editor, browser and then needed text do copy&paste to nano on the terminal. When you are modified on Nano, refer to LFS-11.0 book or the instruction of the packages of building chroot environent and archlinux's original PKGBUILD..and other infomations on web.
 Following values of variables refer to file name of the target source-tar-ball. 
 
         pkgname=' '
