@@ -17,7 +17,7 @@ CPU is Ryzen7
 Graphics is NVIDIA card
 Storage is SSD with M.2 connection
 ```
-Kernel config for SystemV-init ( not systemd )
+Kernel config for SystemV-init ( not systemd ). Check if it is set as follows, and if not, correct it.
 ```
 General setup  --->
   [*] System V IPC
@@ -150,3 +150,4 @@ Pseudo Filesystems --->
     [*] sysfs file system support
 
 ```
+Leave defconfig except for the above.
