@@ -9,6 +9,8 @@ su -
 # Makesure that the partition of chroot environment mount to /mnt/lfs
 
 lsblk
+export LFS=/mnt/lfs
+
 
 # if already mounted the partition of chroot environment mount to /mnt/lfs, do chroot in the chroot environment
 
