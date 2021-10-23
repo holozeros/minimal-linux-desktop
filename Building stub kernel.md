@@ -97,7 +97,10 @@ Device Drivers --->
       <*>   PPP support for sync tty ports
 
     Input device support --->
-      <*>  Event interface
+     <*> Generic input layer (needed for keyboard, mouse, ...) 
+     <*>   Event interface
+     [*]   Miscellaneous devices  ---> 
+       <*>    User level driver support
 
 # for external nvidia card
     Character devices --->
