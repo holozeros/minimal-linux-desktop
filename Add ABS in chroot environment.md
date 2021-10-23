@@ -1,19 +1,14 @@
-###############
-### prepere ###
-###############
+# prepere
+On the terminal of the host
 
-# On the terminal of the host
+    su - 
 
-su - 
+Makesure that the partition of chroot environment mount to /mnt/lfs
 
-# Makesure that the partition of chroot environment mount to /mnt/lfs
+    lsblk
 
-lsblk
-export LFS=/mnt/lfs
-
-
-# if already mounted the partition of chroot environment mount to /mnt/lfs, do chroot in the chroot environment
-
+if already mounted the partition of chroot environment mount to /mnt/lfs, do chroot in the chroot environment
+```
 export LFS=/mnt/lfs
 mount -v --bind /dev $LFS/dev
 mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
@@ -30,9 +25,10 @@ chroot "$LFS" /tools/bin/env -i \
     PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
     /tools/bin/bash --login +h
 umount -lR /mnt/lfs/*
+```
 
-# settings the filesystem
-
+## Settings the filesystem
+```
 ln -sv /usr/bin /bin
 ln -sv /tools/bin/{bash,cat,echo,env,pwd,stty,uname} /usr/bin
 ln -sv /tools/bin/bash /usr/bin/sh
@@ -43,14 +39,17 @@ ln -sv /tools/lib /tools/usr/lib
 ln -sv /tools/include /tools/usr/include
 ln -sv /tools/include/ncursesw/ncurses.h /tools/include/
 sed 's/tools/usr/' /tools/lib/libstdc++.la > /usr/lib/libstdc++.la
-
+```
+```
 ln -sv /proc/self/mounts /etc/mtab
-
-# settings the root user environment
-
+```
+## Settings the root user environment
+```
 cat > ~/.bash_profile << "EOF"
 exec /tools/bin/env -i HOME=$HOME TERM=$TERM PS1='(chroot)\u:\w\$ ' /tools/bin/bash
 EOF
+```
+```
 cat > ~/.bashrc << "EOF"
 set +h
 umask 022
@@ -60,8 +59,11 @@ LFS_TGT=$(uname -m)-lfs-linux-gnu
 PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin
 export LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
+```
+```
 source ~/.bash_profile
-
+```
+```
 cat > /etc/passwd << "EOF"
 root:x:0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/dev/null:/bin/false
@@ -69,6 +71,8 @@ daemon:x:6:6:Daemon User:/dev/null:/bin/false
 messagebus:x:18:18:D-Bus Message Daemon User:/var/run/dbus:/bin/false
 nobody:x:99:99:Unprivileged User:/dev/null:/bin/false
 EOF
+```
+```
 cat > /etc/group << "EOF"
 root:x:0:
 bin:x:1:daemon
@@ -96,16 +100,14 @@ wheel:x:97:
 nogroup:x:99:
 users:x:999:
 EOF
-
+```
+```
 exec /tools/bin/bash --login +h
+```
 
-###################
-### Install ABS ###
-###################
-
-# It's best to install each package step by step, but you can also run this long script to install it all at once. 
-# Lines 75 to 1187 in this text are a series of scripts. 
-
+## Install ABS
+It's best to install each package step by step, but you can also run this long script to install it all at once. 
+```
 cat > build-ABS.sh << "END"
 ###################
 ### zlib-1.2.11 ###
@@ -1220,24 +1222,23 @@ cd ..
 rm -rf rsync-3.2.3
 #############################
 END
+```
 
-############################
-### BUILD (build-ABS.sh) ###
-############################
-# Ryzen2700x(8 core) takes about xx minuits.
-
+## BUILD (build-ABS.sh)
+Ryzen2700x(8 core) takes about xx minuits.
+```
 cd /sources
 chmod +x build-ABS.sh
 ./build-ABS.sh
-
-################
-### settings ###
-################
-
+```
+## settings
+```
 ln -s /tools/usr/bin/gpg-agent /usr/bin/
 
 pacman-key --init
 pacman-key --populate archlinux
+```
+```
 cat >> /etc/pacman.conf << "EOF"
 [core]
 Include = /etc/pacman.d/mirrorlist
@@ -1246,25 +1247,33 @@ Include = /etc/pacman.d/mirrorlist
 [community]
 Include = /etc/pacman.d/mirrorlist
 EOF
+```
+```
 cat > /etc/pacman.d/mirrorlist << "EOF"
 # This is an example when your location is Japan
 # Server = ftp://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
 Server = http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
 EOF
-
+```
+```
 pacman -Syu
-
-# for using ABS 
-
+```
+## for using ABS
+ABS enable use only local user (disable root user).
+```
 groupadd lfs
 useradd -s /tools/bin/bash -g lfs -m -k /dev/null lfs
 passwd lfs
-
+```
+```
 su - lfs
-
+```
+```
 cat > ~/.bash_profile << "EOF"
 exec /tools/bin/env -i HOME=$HOME TERM=$TERM PS1='(chroot)\u:\w\$ ' /tools/bin/bash
 EOF
+```
+```
 cat > ~/.bashrc << "EOF"
 set +h
 umask 022
@@ -1274,4 +1283,7 @@ LFS_TGT=$(uname -m)-lfs-linux-gnu
 PATH=/tools/bin:/tools/sbin:/bin:/sbin:/usr/bin:/usr/sbin
 export LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
+```
+```
 source ~/.bash_profile
+```
