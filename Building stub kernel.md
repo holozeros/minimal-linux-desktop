@@ -169,3 +169,19 @@ Pseudo Filesystems --->
 
 ```
 Keep defconfig, except the above.
+
+## Make
+    make -j$(nproc)
+## Install
+```
+su -
+make modules_install
+
+  # <EFI System Partition> chenge to real device name of your EFI system partition.
+mount /dev/<EFI System Partition> /boot
+
+make install
+```
+Make sure that installed the file names.
+
+    ls /boot
