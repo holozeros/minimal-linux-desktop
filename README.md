@@ -24,7 +24,9 @@ Building a chroot environment where /tools has the required commands to run chro
 
 ## Install arch build system in the chroot environment.
 Add Arch Build System (gcc,pacman,makepkg..) in the basic chroot system. 
-##### see: [Add ABS in chroot environment](Add%20ABS%20in%20chroot%20environment.md), About pacman-5.0:[Pacman Home Page](https://archlinux.org/pacman/),[pacman-5.0 source download](https://sources.archlinux.org/other/pacman/), Other soueces:[Byound Linux From Scratch v11.0-stable-sysV](https://www.linuxfromscratch.org/blfs/downloads/stable/BLFS-BOOK-11.0-nochunks.html)
+##### see: [Add ABS in chroot environment](Add%20ABS%20in%20chroot%20environment.md)
+
+##### refer to: [Pacman Home Page](https://archlinux.org/pacman/), [Byound Linux From Scratch v11.0-stable-sysV](https://www.linuxfromscratch.org/blfs/downloads/stable/BLFS-BOOK-11.0-nochunks.html)
 
 ## With a custum stub kernel booting the chroot environment as root filesystem.
 Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel,
