@@ -129,6 +129,7 @@ Device Drivers --->
 	  [*] PCI sound devices  --->
             #Select the driver for your audio controller.e,g:
 	    <*>   Intel/SiS/nVidia/AMD/ALi AC97 Controller  
+	    
     HD-Audio  --->
       <*> HD Audio PCI
       [*] Build hwdep interface for HD-audio driver
