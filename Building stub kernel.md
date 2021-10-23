@@ -182,6 +182,6 @@ mount /dev/<EFI System Partition> /boot
 
 make install
 ```
-Make sure that installed the file names.
+Make sure that names of installed the file.
 
     ls /boot
