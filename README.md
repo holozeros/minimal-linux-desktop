@@ -2,7 +2,7 @@
 Build a desktop environment from source codes to learn Linux. 
 This OS is built with reference to the Linux From Scratch 11.0 book and installed use pacman-5.0. 
 
-[Linux From Scratch Version 11.0](https://www.linuxfromscratch.org/lfs/view/stable/)
+see: [Linux From Scratch Version 11.0](https://www.linuxfromscratch.org/lfs/view/stable/)
 
 	I. Introduction
 	II. Preparing for the Build
@@ -16,41 +16,47 @@ Follow the LFS-11.0 book until just before Chapter5"Compiling the Cross Toolchai
 Follow this text steps for Chapter5 and beyond.
 For that purpose, required to have the experience of reading the Linux From Scratch book from start to finish and completing the LFS build. 
 
-## 1.Building chroot environment
+# 1.Building chroot environment
 
-[Building basic chroot environment](Building%20chroot%20environment.md).
+## Building basic chroot environment.
+Building a chroot environment where /tools has the required commands to run chroot.
+##### see: [Building chroot environment](Building%20chroot%20environment.md)
 
-     Building a chroot environment where /tools has the required commands to run chroot.
+## Install arch build system in the chroot environment.
+Add Arch Build System (gcc,pacman,makepkg..) in the basic chroot system. 
+##### see: [Add ABS in chroot environment](Add%20ABS%20in%20chroot%20environment.md), About pacman-5.0:[Pacman Home Page](https://archlinux.org/pacman/),[pacman-5.0 source download](https://sources.archlinux.org/other/pacman/), Other soueces:[Byound Linux From Scratch v11.0-stable-sysV](https://www.linuxfromscratch.org/blfs/downloads/stable/BLFS-BOOK-11.0-nochunks.html)
 
-[Install arch build system in the chroot environment](installing%20ABS%20in%20chroot%20environment).
+## With a custum stub kernel booting the chroot environment as root filesystem.
+Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel,
+bootloader does mount the minimal linux desktop to root-filsesystem.
+##### see: [Building stub kernel](Building%20stub%20kernel.md) 
 
-     Add Arch Build System (gcc,pacman,makepkg..) in the basic chroot system.
+# 2.Building minimal linux desktop
 
-With a custum stub kernel booting the chroot environment as root filesystem.
-see:[Building stub kernel.md](Building%20stub%20kernel.md) 
+## List of mandatory packages in build order.
+##### see: [List of packages](List%20of%20mandatory%20packages).
 
-     Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel,
-     bootloader does mount the minimal linux desktop to root-filsesystem.
-	
-## 2.Building minimal linux desktop
+## Editing PKGBUILD.
+##### see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
 
-[List of mandatory packages in build order](List%20of%20mandatory%20packages).
+## Make custum packages
+Chroot into the above chroot environment, and make package-tarballs from the PKGBUILD with makepkg command,
 
-[Editing PKGBUILD](PKGBUILD-collections/README.md)
+    cd /sources/PKGBUILD/$pkgname/$pkgver
+    makepkg --skipchecksums --skippgpcheck
 
-Make custum packages
+## Installing custum packages with pacamn
+Install packages with pacaman into / of chroot environment.
 
-     Chroot into the above chroot environment, and make package-tarballs from the PKGBUILD with makepkg command,
+    mv /sources/PKGBUILD/$pkgname/$pkgver/$pkgname-$pkgver.pkg.tar.zst /var/cache/pacman/pkg
+    cd /var/cache/pacman/pkg
+    pacman -U "$pkgname-$pkgver.pkg.tar.zst"
 
-Installing custum packages with pacamn
+If quit for error which conflict existing package under the / directory(not under /tools),  issue:
 
-    Install packages with pacaman into / of chroot environment.
-
-
-              This repository is still incomplete !!!
+    pacman -U  --force $pkgname-$pkgver.pkg.tar.zst
+##### The --force directive is obsolete in Pacman 5.0 and later versions. 
 		
-		
-
 ## Prerequisites
 
     Host OS must pass version-check.sh of LFS-11.0 book.
