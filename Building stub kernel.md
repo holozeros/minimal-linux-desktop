@@ -150,4 +150,4 @@ Pseudo Filesystems --->
     [*] sysfs file system support
 
 ```
-Leave defconfig except for the above.
+Keep defconfig, except the above.
