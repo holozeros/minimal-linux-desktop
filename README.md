@@ -69,7 +69,7 @@ su - lfs
 cd /sources/PKGBUILD/$pkgname/$pkgver
 makepkg --skipchecksums --skippgpcheck
 ```
-## Installing custum packages with pacamn
+## Installing custum packages with pacman
 Install packages with pacaman into / of chroot environment.
 ```
 mv /sources/PKGBUILD/$pkgname/$pkgver/$pkgname-$pkgver.pkg.tar.zst /var/cache/pacman/pkg
@@ -94,7 +94,7 @@ When booting the stub kernel on a UEFI motherboard, Archlinux's boot loader, sys
     
     Storage for building this OS: SATA(HDD,SSD), M.2-SSD
 
-For the root file system partition of this OS, an USB storage is not available. If you boot your machine connected some USB storage to a USB port that you don't know in advance what will be connected, the stub kernel may can not recognize the USB storage well. If you want to use USB storage, shuld install Dracut and create initramfs.
+For the root file system partition of this OS, an USB storage is not available. If you boot your machine connected some USB storage to a USB port that you don't know in advance what will be connected, the stub kernel may can not recognize the USB storage well. If you want to use USB storage, shuld install dracut(and dependency packages) and create initramfs.
 
     Graphics: nvidia card (or any Integrated GPU).
 
