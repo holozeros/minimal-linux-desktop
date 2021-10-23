@@ -70,7 +70,7 @@ cd /sources/PKGBUILD/$pkgname/$pkgver
 makepkg --skipchecksums --skippgpcheck
 ```
 ## Installing custum packages with pacman
-Install packages with pacaman into / of chroot environment.
+Install packages with pacman into / of chroot environment.
 ```
 mv /sources/PKGBUILD/$pkgname/$pkgver/$pkgname-$pkgver.pkg.tar.zst /var/cache/pacman/pkg
 cd /var/cache/pacman/pkg
