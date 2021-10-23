@@ -16,6 +16,7 @@ As example of machine
 CPU is Ryzen7
 Graphics is NVIDIA card
 Storage is SSD with M.2 connection
+Audio device: [AMD] Family 17h (Models 00h-0fh) HD Audio Controller
 ```
 Kernel config for SystemV-init ( not systemd ). Check if it is set as follows, and if not, correct it.
 ```
@@ -137,7 +138,6 @@ Device Drivers --->
       <*> HD Audio PCI
       [*] Build hwdep interface for HD-audio driver
 	  #Select a codec or enable all and let the generic parse choose the right one:
-      [*] Build Realtek HD-audio codec support
       <*> Build HDMI/DisplayPort HD-audio codec support 
       [*] Enable generic HD-audio codec parser
 
