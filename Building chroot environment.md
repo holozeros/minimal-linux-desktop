@@ -150,7 +150,7 @@ check the download address with LFS-11.0 Book or Google search and make up for i
 
     cd $LFS/sources
 
-The following downloads refer to BeyondLinux® FromScratch (System V Edition) version 11.0, Archlinux PKGBUILD, etc.
+The following downloads refer to BeyondLinux® FromScratch (System V Edition) version 11.0, Archlinux's PKGBUILD,..etc.
 
     wget https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
     wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.26.orig.tar.gz
