@@ -42,21 +42,44 @@ bootloader does mount the minimal linux desktop to root-filsesystem.
 ##### see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
 
 ## Make custum packages
-Chroot into the above chroot environment, and make package-tarballs from the PKGBUILD with makepkg command,
-
-    cd /sources/PKGBUILD/$pkgname/$pkgver
-    makepkg --skipchecksums --skippgpcheck
-
+Chroot into the above chroot environment, and make package-tarballs from the PKGBUILD with makepkg command,as local user lfs.
+On the host
+```
+su -
+export LFS=/mnt/lfs
+mount -v --bind /dev $LFS/dev
+mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
+mount -vt proc proc $LFS/proc
+mount -vt sysfs sysfs $LFS/sys
+mount -vt tmpfs tmpfs $LFS/run
+if [ -h $LFS/dev/shm ]; then
+  mkdir -pv $LFS/$(readlink $LFS/dev/shm)
+fi
+chroot "$LFS" /tools/bin/env -i \
+    HOME=/root                  \
+    TERM="$TERM"                \
+    PS1='\u:\w\$ '              \
+    PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
+    /tools/bin/bash --login +h
+umount -lR /mnt/lfs/*
+```
+On the chroot environment
+```
+su - lfs
+cd /sources/PKGBUILD/$pkgname/$pkgver
+makepkg --skipchecksums --skippgpcheck
+```
 ## Installing custum packages with pacamn
 Install packages with pacaman into / of chroot environment.
-
-    mv /sources/PKGBUILD/$pkgname/$pkgver/$pkgname-$pkgver.pkg.tar.zst /var/cache/pacman/pkg
-    cd /var/cache/pacman/pkg
-    pacman -U "$pkgname-$pkgver.pkg.tar.zst"
-
+```
+mv /sources/PKGBUILD/$pkgname/$pkgver/$pkgname-$pkgver.pkg.tar.zst /var/cache/pacman/pkg
+cd /var/cache/pacman/pkg
+pacman -U "$pkgname-$pkgver.pkg.tar.zst"
+```
 If quit for error which conflict existing package under the / directory(not under /tools),  issue:
-
-    pacman -U  --force $pkgname-$pkgver.pkg.tar.zst
+```
+pacman -U  --force $pkgname-$pkgver.pkg.tar.zst
+```
 ##### The --force directive is obsolete in Pacman 5.0 and later versions. 
 		
 ## Prerequisites
