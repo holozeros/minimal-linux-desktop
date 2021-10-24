@@ -1,2 +1,258 @@
-1.zlib
-2.binutils
+*acl                https://download.savannah.gnu.org/releases/acl/acl-2.3.1.tar.xz
+archlinux-keyring
+*attr               https://download.savannah.gnu.org/releases/attr/attr-2.5.1.tar.gz
+audit
+*autoconf           https://ftp.gnu.org/gnu/autoconf/autoconf-2.71.tar.xz
+*automake           https://ftp.gnu.org/gnu/automake/automake-1.16.4.tar.xz
+*bash               https://ftp.gnu.org/gnu/bash/bash-5.1.8.tar.gz
+*bc                 https://github.com/gavinhoward/bc/releases/download/5.0.0/bc-5.0.0.tar.xz
+*binutils           https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
+*bison              https://ftp.gnu.org/gnu/bison/bison-3.7.6.tar.xz
+*bzip2              https://www.sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz
+ca-certificates
+ca-certificates-mozilla
+ca-certificates-utils
+*check              https://github.com/libcheck/check/releases/download/0.15.2/check-0.15.2.tar.gz
+*coreutils          https://ftp.gnu.org/gnu/coreutils/coreutils-8.32.tar.xz
+cracklib
+curl
+db
+*dbus               https://dbus.freedesktop.org/releases/dbus/dbus-1.12.20.tar.gz
+*dejagnu            https://ftp.gnu.org/gnu/dejagnu/dejagnu-1.6.3.tar.gz
+*diffutils          https://ftp.gnu.org/gnu/diffutils/diffutils-3.8.tar.xz
+*e2fsprogs          https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.46.4/e2fsprogs-1.46.4.tar.gz
+*elfutils           https://sourceware.org/ftp/elfutils/0.185/elfutils-0.185.tar.bz2
+*eudev              https://dev.gentoo.org/~blueness/eudev/eudev-3.2.10.tar.gz
+*expat              https://prdownloads.sourceforge.net/expat/expat-2.4.1.tar.xz
+*expect             https://prdownloads.sourceforge.net/expect/expect5.45.4.tar.gz
+fakeroot
+*file               https://astron.com/pub/file/file-5.40.tar.gz
+filesystem
+*findutils          https://ftp.gnu.org/gnu/findutils/findutils-4.8.0.tar.xz
+*flex               https://github.com/westes/flex/releases/download/v2.6.4/flex-2.6.4.tar.gz
+*gawk               https://ftp.gnu.org/gnu/gawk/gawk-5.1.0.tar.xz
+gc
+*gcc                https://ftp.gnu.org/gnu/gcc/gcc-11.2.0/gcc-11.2.0.tar.xz
+gcc-libs
+*gdbm               https://ftp.gnu.org/gnu/gdbm/gdbm-1.20.tar.gz
+*gettext            https://ftp.gnu.org/gnu/gettext/gettext-0.21.tar.xz
+git
+glib2
+*glibc              https://ftp.gnu.org/gnu/glibc/glibc-2.34.tar.xz
+*gmp                https://ftp.gnu.org/gnu/gmp/gmp-6.2.1.tar.xz
+gnupg
+gnutls
+*gperf              https://ftp.gnu.org/gnu/gperf/gperf-3.1.tar.gz
+gpgme
+*grep               https://ftp.gnu.org/gnu/grep/grep-3.7.tar.xz
+*groff              https://ftp.gnu.org/gnu/groff/groff-1.22.4.tar.gz
+*grub               https://ftp.gnu.org/gnu/grub/grub-2.06.tar.xz
+guile
+*gzip               https://ftp.gnu.org/gnu/gzip/gzip-1.10.tar.xz
+*iana-etc           https://github.com/Mic92/iana-etc/releases/download/20210611/iana-etc-20210611.tar.gz
+icu
+*inetutils          https://ftp.gnu.org/gnu/inetutils/inetutils-2.1.tar.xz
+*intltool           https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz
+*iproute2           https://www.kernel.org/pub/linux/utils/net/iproute2/iproute2-5.13.0.tar.xz
+*Jinja2             https://files.pythonhosted.org/packages/source/J/Jinja2/Jinja2-3.0.1.tar.gz
+*kbd                https://www.kernel.org/pub/linux/utils/kbd/kbd-2.4.0.tar.xz
+keyutils
+*kmod               https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-29.tar.xz
+krb5
+*less               https://www.greenwoodsoftware.com/less/less-590.tar.gz
+*lfs-bootscripts    https://www.linuxfromscratch.org/lfs/downloads/11.0/lfs-bootscripts-20210608.tar.xz
+libarchive
+libassuan
+*libcap             https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/libcap-2.53.tar.xz
+libcap-ng
+libcroco
+libdrm
+libedit
+libelf
+*libffi             https://github.com/libffi/libffi/releases/download/v3.4.2/libffi-3.4.2.tar.gz
+libgcrypt
+libglvnd
+libgpg-error
+libidn2
+libksba
+libldap
+libmicrohttpd
+libmpc
+libnghttp2
+libomxil-bellagio
+libp11-kit
+libpciaccess
+*libbpipeline       https://download.savannah.gnu.org/releases/libpipeline/libpipeline-1.5.3.tar.gz
+libpsl
+libsasl
+libseccomp
+libsecret
+libssh2
+libtasn1
+libtirpc
+*libtool            https://ftp.gnu.org/gnu/libtool/libtool-2.4.6.tar.xz
+libunistring
+libunwind
+libutil-linux
+libx11
+libxau
+libxcb
+libxdamage
+libxdmcp
+libxext
+libxfixes
+libxml2
+libxshmfence
+libxxf86vm
+*linux              https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.13.12.tar.xz
+linux-api-headers
+llvm-libs
+lm_sensors
+lz4
+*m4                 https://ftp.gnu.org/gnu/m4/m4-1.4.19.tar.xz
+*make               https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
+*man-db             https://download.savannah.gnu.org/releases/man-db/man-db-2.9.4.tar.xz
+*man-pages          https://www.kernel.org/pub/linux/docs/man-pages/man-pages-5.13.tar.xz
+*MarkupSafe         https://files.pythonhosted.org/packages/source/M/MarkupSafe/MarkupSafe-2.0.1.tar.gz
+*meson              https://github.com/mesonbuild/meson/releases/download/0.59.1/meson-0.59.1.tar.gz
+mesa
+*mpc                https://ftp.gnu.org/gnu/mpc/mpc-1.2.1.tar.gz
+*mpfr               https://www.mpfr.org/mpfr-4.1.0/mpfr-4.1.0.tar.xz
+*ncurses            https://ftp.gnu.org/gnu/ncurses/ncurses-6.2.tar.gz
+nettle
+*ninja              https://github.com/ninja-build/ninja/archive/v1.10.2/ninja-1.10.2.tar.gz
+npth
+*openssl            https://www.openssl.org/source/openssl-1.1.1l.tar.gz
+p11-kit
+pacman
+pacman-mirrorlist
+pam
+pambase
+*patch              https://ftp.gnu.org/gnu/patch/patch-2.7.6.tar.xz
+pcre
+pcre2
+*perl               https://www.cpan.org/src/5.0/perl-5.34.0.tar.xz
+perl-error
+perl-mailtools
+perl-timedate
+pinentry
+
+pkgconf
+       ### makepkg custum_PKGBUILD
+mkdir /mnt/lfs/sources/pkgconf
+cd /mnt/lfs/sources/pkgconf
+cat > PKGBUILD << "EOF"
+pkgname=pkgconf
+pkgver=1.8.0
+pkgrel=1
+pkgdesc="Package compiler and linker metadata toolkit"
+url="https://github.com/pkgconf/pkgconf"
+license=(custom:ISC)
+arch=(x86_64)
+depends=(glibc sh)
+makedepends=(git meson)
+provides=(pkg-config pkgconfig libpkgconf.so)
+conflicts=(pkg-config)
+replaces=(pkg-config)
+groups=(base-devel)
+_commit=cef30268e1a3f79efd607c26abcf556aa314c9c4  # tags/pkgconf-1.8.0
+source=("git+$url#commit=$_commit"
+        i686-pc-linux-gnu.personality
+        x86_64-pc-linux-gnu.personality)
+sha256sums=('SKIP'
+            '6697c6db7deaae269ea75624a70e80949241f2cf59a537f31ecfcac726d90bc1'
+            'c8297817ba0b57d003878db247ff34b4c47a7594c9f67dcfe8ff8d6567956cd5')
+
+pkgver() {
+  cd $pkgname
+  git describe --tags | sed 's/^pkgconf-//;s/-/+/g'
+}
+
+prepare() {
+  cd $pkgname
+}
+
+build() {
+  arch-meson $pkgname build -D tests=false
+  meson compile -C build
+}
+
+check() {
+  meson test -C build --print-errorlogs
+}
+
+package() {
+  meson install -C build --destdir "$pkgdir"
+
+  install -Dt "$pkgdir/usr/share/pkgconfig/personality.d" -m644 \
+    x86_64-pc-linux-gnu.personality
+
+  ln -s pkgconf "$pkgdir/usr/bin/x86_64-pc-linux-gnu-pkg-config"
+  ln -s pkgconf "$pkgdir/usr/bin/pkg-config"
+
+  ln -s pkgconf.1 "$pkgdir/usr/share/man/man1/pkg-config.1"
+
+  install -Dt "$pkgdir/usr/share/licenses/$pkgname" -m644 $pkgname/COPYING
+}
+
+EOF
+cat > x86_64-pc-linux-gnu.personality << "EOF"
+Triplet: x86_64-pc-linux-gnu
+SysrootDir: /
+DefaultSearchPaths: /usr/lib/pkgconfig:/usr/share/pkgconfig
+SystemIncludePaths: /usr/include
+SystemLibraryPaths: /usr/lib
+EOF
+
+# pkg-config  https://pkg-config.freedesktop.org/releases/pkg-config-0.29.2.tar.gz
+
+readline
+sed
+shadow
+sqlite
+sudo
+tar
+texinfo
+tzdata
+util-linux
+wayland
+which
+xcb-proto
+xorgproto
+xz
+zlib
+zstd
+
+
+
+https://sourceforge.net/projects/procps-ng/files/Production/procps-ng-3.3.17.tar.xz
+https://sourceforge.net/projects/psmisc/files/psmisc/psmisc-23.4.tar.xz
+https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tar.xz
+https://www.python.org/ftp/python/doc/3.9.6/python-3.9.6-docs-html.tar.bz2
+https://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz
+https://ftp.gnu.org/gnu/sed/sed-4.8.tar.xz
+https://github.com/shadow-maint/shadow/releases/download/v4.9/shadow-4.9.tar.xz
+https://www.infodrom.org/projects/sysklogd/download/sysklogd-1.5.1.tar.gz
+https://github.com/systemd/systemd/archive/v249/systemd-249.tar.gz
+https://anduin.linuxfromscratch.org/LFS/systemd-man-pages-249.tar.xz
+https://download.savannah.gnu.org/releases/sysvinit/sysvinit-2.99.tar.xz
+https://ftp.gnu.org/gnu/tar/tar-1.34.tar.xz
+https://downloads.sourceforge.net/tcl/tcl8.6.11-src.tar.gz
+https://downloads.sourceforge.net/tcl/tcl8.6.11-html.tar.gz
+https://ftp.gnu.org/gnu/texinfo/texinfo-6.8.tar.xz
+https://www.iana.org/time-zones/repository/releases/tzdata2021a.tar.gz
+https://anduin.linuxfromscratch.org/LFS/udev-lfs-20171102.tar.xz
+https://www.kernel.org/pub/linux/utils/util-linux/v2.37/util-linux-2.37.2.tar.xz
+https://anduin.linuxfromscratch.org/LFS/vim-8.2.3337.tar.gz
+https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz
+https://tukaani.org/xz/xz-5.2.5.tar.xz
+https://zlib.net/zlib-1.2.11.tar.xz
+https://github.com/facebook/zstd/releases/download/v1.5.0/zstd-1.5.0.tar.gz
+https://www.linuxfromscratch.org/patches/lfs/11.0/binutils-2.37-upstream_fix-1.patch
+https://www.linuxfromscratch.org/patches/lfs/11.0/bzip2-1.0.8-install_docs-1.patch
+https://www.linuxfromscratch.org/patches/lfs/11.0/coreutils-8.32-i18n-1.patch
+https://www.linuxfromscratch.org/patches/lfs/11.0/glibc-2.34-fhs-1.patch
+https://www.linuxfromscratch.org/patches/lfs/11.0/kbd-2.4.0-backspace-1.patch
+https://www.linuxfromscratch.org/patches/lfs/11.0/perl-5.34.0-upstream_fixes-1.patch
+https://www.linuxfromscratch.org/patches/lfs/11.0/sysvinit-2.99-consolidated-1.patch
+https://www.linuxfromscratch.org/patches/lfs/11.0/systemd-249-upstream_fixes-1.patch
