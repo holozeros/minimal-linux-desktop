@@ -28,8 +28,8 @@ Add Arch Build System (gcc,pacman,makepkg..) in the basic chroot system.
 
 ##### refer to: [Pacman Home Page](https://archlinux.org/pacman/), [Byound Linux From Scratch v11.0-stable-sysV](https://www.linuxfromscratch.org/blfs/downloads/stable/BLFS-BOOK-11.0-nochunks.html)
 
-## 3.With a custum stub kernel booting the chroot environment as root filesystem.
-Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel,
+## 3.booting the chroot environment.
+Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file. When booted the stub kernel,
 bootloader does mount the minimal linux desktop to root-filsesystem.
 ##### see: [Building stub kernel](Building%20stub%20kernel.md) 
 
