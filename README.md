@@ -18,17 +18,17 @@ Here you need experience reading the Linux From Scratch book from start to finis
 
 # 1.Building chroot environment
 
-## Building basic chroot environment.
+## 1.Building basic chroot environment.
 Building a chroot environment where /tools has the required commands to run chroot.
 ##### see: [Building chroot environment](Building%20chroot%20environment.md)
 
-## Install arch build system in the chroot environment.
+## 2.Install arch build system in the chroot environment.
 Add Arch Build System (gcc,pacman,makepkg..) in the basic chroot system. 
 ##### see: [Add ABS in chroot environment](Add%20ABS%20in%20chroot%20environment.md)
 
 ##### refer to: [Pacman Home Page](https://archlinux.org/pacman/), [Byound Linux From Scratch v11.0-stable-sysV](https://www.linuxfromscratch.org/blfs/downloads/stable/BLFS-BOOK-11.0-nochunks.html)
 
-## With a custum stub kernel booting the chroot environment as root filesystem.
+## 3.With a custum stub kernel booting the chroot environment as root filesystem.
 Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file.When booted the stub kernel,
 bootloader does mount the minimal linux desktop to root-filsesystem.
 ##### see: [Building stub kernel](Building%20stub%20kernel.md) 
@@ -38,10 +38,10 @@ bootloader does mount the minimal linux desktop to root-filsesystem.
 ## List of mandatory packages in build order.
 ##### see: [List of packages](List%20of%20mandatory%20packages).
 
-## Editing PKGBUILD.
+## 1.Editing PKGBUILD.
 ##### see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
 
-## Make custum packages
+## 2.Make custum packages
 Chroot into the above chroot environment, and make package-tarballs from the PKGBUILD with makepkg command,as local user lfs.
 On the host
 ```
@@ -69,7 +69,7 @@ su - lfs
 cd /sources/PKGBUILD/$pkgname/$pkgver
 makepkg --skipchecksums --skippgpcheck
 ```
-## Installing custum packages with pacman
+## 3.Installing custum packages with pacman
 Install packages with pacman into / of chroot environment.
 ```
 mv /sources/PKGBUILD/$pkgname/$pkgver/$pkgname-$pkgver.pkg.tar.zst /var/cache/pacman/pkg
