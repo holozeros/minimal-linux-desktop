@@ -186,23 +186,110 @@ make DESTDIR=/tools install
 cd ..
 rm -rf mpc-1.2.1
 
-#########################
-### pkg-config-0.29.2 ###
-#########################
+#####################
+### pkgconf-1.8.0 ###
+#####################
 
-tar xf pkg-config-0.29.2.tar.gz
-cd pkg-config-0.29.2
+mkdir /sources/pkgconf
+cd /sources/pkgconf
+cat > PKGBUILD << "EOF"
+pkgname=pkgconf
+pkgver=1.8.0
+pkgrel=1
+pkgdesc="Package compiler and linker metadata toolkit"
+url="https://github.com/pkgconf/pkgconf"
+license=(custom:ISC)
+arch=(x86_64)
+depends=(glibc sh)
+makedepends=(git meson)
+provides=(pkg-config pkgconfig libpkgconf.so)
+conflicts=(pkg-config)
+replaces=(pkg-config)
+groups=(base-devel)
+_commit=cef30268e1a3f79efd607c26abcf556aa314c9c4  # tags/pkgconf-1.8.0
+source=("git+$url#commit=$_commit"
+        i686-pc-linux-gnu.personality
+        x86_64-pc-linux-gnu.personality)
+sha256sums=('SKIP'
+            '6697c6db7deaae269ea75624a70e80949241f2cf59a537f31ecfcac726d90bc1'
+            'c8297817ba0b57d003878db247ff34b4c47a7594c9f67dcfe8ff8d6567956cd5')
+pkgver() {
+  cd $pkgname
+  git describe --tags | sed 's/^pkgconf-//;s/-/+/g'
+}
+prepare() {
+  cd $pkgname
+}
+EOF
 
-./configure --prefix=/usr              \
-            --with-internal-glib         \
-            --disable-host-tool          \
-            --docdir=/share/doc/pkg-config-0.29.2
-make
-make check
-make DESTDIR=/tools install
+su - 
+cat > /tools/bin/arch-meson << "EOF"
+#!/bin/bash -ex
+# Highly opinionated wrapper for Arch Linux packaging
+exec meson setup \
+  --prefix        /usr \
+  --libexecdir    lib \
+  --sbindir       bin \
+  --buildtype     plain \
+  --auto-features enabled \
+  --wrap-mode     nodownload \
+  -D              b_lto=true \
+  -D              b_pie=true \
+  "$@"
+EOF
 
-cd ..
-rm -rf pkg-config-0.29.2
+exit # change as lfs
+cd /sources/pkgconf
+
+cat >> PKGBUILD << "EOF"
+build() {
+  arch-meson $pkgname build -D tests=false
+  meson compile -C build
+}
+check() {
+  meson test -C build --print-errorlogs
+}
+package() {
+  meson install -C build --destdir "$pkgdir"
+  install -Dt "$pkgdir/tools/share/pkgconfig/personality.d" -m644 \
+    x86_64-pc-linux-gnu.personality
+  ln -s pkgconf "$pkgdir/tools/bin/x86_64-pc-linux-gnu-pkg-config"
+  ln -s pkgconf "$pkgdir/tools/bin/pkg-config"
+  ln -s pkgconf.1 "$pkgdir/tools/share/man/man1/pkg-config.1"
+  install -Dt "$pkgdir/tools/share/licenses/$pkgname" -m644 $pkgname/COPYING
+}
+EOF
+
+cat > src/x86_64-pc-linux-gnu.personality << "EOF"
+Triplet: x86_64-pc-linux-gnu
+SysrootDir: /
+DefaultSearchPaths: /tools/lib/pkgconfig:/tools/share/pkgconfig
+SystemIncludePaths: /tools/include
+SystemLibraryPaths: /tools/lib
+EOF
+
+makepkg
+mv pkgconf-1.8.0.pkg.tar.zst /tools/var/cache/pacman/pkg/
+cd /tools/var/cache/pacman/pkg
+pacman -U pkgconf-1.8.0.pkg.tar.zst
+exit # change as lfs
+cd /sources
+rm -rf pkgconf
+
+# pkg-config is specific of LFS: https://pkg-config.freedesktop.org/releases/pkg-config-0.29.2.tar.gz
+#tar xf pkg-config-0.29.2.tar.gz
+#cd pkg-config-0.29.2
+#
+#./configure --prefix=/usr              \
+#            --with-internal-glib         \
+#            --disable-host-tool          \
+#            --docdir=/share/doc/pkg-config-0.29.2
+#make
+#make check
+#make DESTDIR=/tools install
+#
+#cd ..
+#rm -rf pkg-config-0.29.2
 
 ##################
 ### attr-2.5.1 ###
