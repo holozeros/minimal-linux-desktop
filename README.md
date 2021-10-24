@@ -14,7 +14,7 @@ see: [Linux From Scratch Version 11.0](https://www.linuxfromscratch.org/lfs/view
 
 Follow the LFS-11.0 book until just before Chapter5"Compiling the Cross Toolchain". 
 Then follow this text for Chapter5 and beyond.
-For that purpose, required to have the experience of reading the Linux From Scratch book from start to finish and completing the LFS build. 
+Here you need experience reading the Linux From Scratch book from start to finish and completing the LFS build. 
 
 # 1.Building chroot environment
 
