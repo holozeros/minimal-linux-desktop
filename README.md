@@ -12,7 +12,7 @@ see: [Linux From Scratch Version 11.0](https://www.linuxfromscratch.org/lfs/view
 	III. Building the LFS Cross Toolchain and Temporary Tools
 	  5.Compiling a Cross-Toolchain
 
-Follow the LFS-11.0 book until just before Chapter5"Compiling the Cross Toolchain". 
+Follow the LFS-11.0 book until just before Chapter5 "Compiling the Cross Toolchain". 
 Then follow this text for Chapter5 and beyond.
 Here you need experience reading the Linux From Scratch book from start to finish and completing the LFS build. 
 
