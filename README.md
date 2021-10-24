@@ -90,7 +90,7 @@ The host should have a desktop environment and a browser. If you can't find a su
 
      Machine architecture: x86_64, UEFI, GPTpartition.
 
-When booting the stub kernel on a UEFI motherboard, Archlinux's boot loader, systemd-boot, can be mounted directly on the stub kernel (without initramfs), if it is a root partition known to the kernel, even if it is not the root file system partition that does systemd's init processing. If you already have systemd-boot installed on your computer's EFI system partition, you can boot an OS you just created by adding a small config file. Compared to Grub, systemd-boot has the advantage of making it easier to know and control the boot behavior. 
+When booting the stub kernel on a UEFI motherboard, Archlinux's boot loader called systemd-boot can be mount directly the stub kernel (without initramfs),  even the root file system partition that doesn't systemd's init processing. If you already have systemd-boot installed on your computer's EFI system partition, you can boot an OS you just created by adding a small config file. Compared to Grub, systemd-boot has the advantage of making it easier to know and control the boot behavior. 
     
     Storage for building this OS: SATA(HDD,SSD), M.2-SSD
 
