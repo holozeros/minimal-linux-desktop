@@ -141,8 +141,11 @@ su - lfs
 
     wget https://www.linuxfromscratch.org/lfs/view/stable/wget-list
     wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
-    wget https://www.linuxfromscratch.org/lfs/view/stable/md5sums
     wget --no-check-certificate https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz
+    wget --no-check-certificate https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tar.xz
+    wget --no-check-certificate https://www.python.org/ftp/python/doc/3.9.6/python-3.9.6-docs-html.tar.bz2
+    wget https://www.linuxfromscratch.org/lfs/view/stable/md5sums
+
 
 If there are some tarballs that could not be downloaded automatically from the list, 
 check the download address with LFS-11.0 Book or Google search and make up for it manually. 
