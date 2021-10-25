@@ -29,6 +29,7 @@ diffutils           https://ftp.gnu.org/gnu/diffutils/diffutils-3.8.tar.xz
 doxygen             https://doxygen.nl/files/doxygen-1.9.2.src.tar.gz
 e2fsprogs           https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.46.4/e2fsprogs-1.46.4.tar.gz
 elfutils            https://sourceware.org/ftp/elfutils/0.185/elfutils-0.185.tar.bz2
+elogind             https://github.com/elogind/elogind/archive/v246.10/elogind-246.10.tar.gz
 eudev               https://dev.gentoo.org/~blueness/eudev/eudev-3.2.10.tar.gz
 expat               https://prdownloads.sourceforge.net/expat/expat-2.4.1.tar.xz
 expect              https://prdownloads.sourceforge.net/expect/expect5.45.4.tar.gz
@@ -65,6 +66,7 @@ inetutils           https://ftp.gnu.org/gnu/inetutils/inetutils-2.1.tar.xz
 intltool            https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz
 iproute2            https://www.kernel.org/pub/linux/utils/net/iproute2/iproute2-5.13.0.tar.xz
 Jinja2              https://files.pythonhosted.org/packages/source/J/Jinja2/Jinja2-3.0.1.tar.gz
+js78                https://archive.mozilla.org/pub/firefox/releases/78.13.0esr/source/firefox-78.13.0esr.source.tar.xz
 kbd                 https://www.kernel.org/pub/linux/utils/kbd/kbd-2.4.0.tar.xz
                     https://www.linuxfromscratch.org/patches/lfs/11.0/kbd-2.4.0-backspace-1.patch
 keyutils
@@ -81,9 +83,13 @@ libdrm
 libedit
 libelf
 libffi              https://github.com/libffi/libffi/releases/download/v3.4.2/libffi-3.4.2.tar.gz
+libFS               https://www.x.org/pub/individual/lib/libFS-1.0.8.tar.bz2
+                    md5sum 4e1196275aa743d6ebd3d3d5ec1dff9c
 libgcrypt           https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.9.4.tar.bz2
 libglvnd
 libgpg-error        https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.42.tar.bz2
+libICE              https://www.x.org/pub/individual/lib/libICE-1.0.10.tar.bz2
+                    md5sum 76d77499ee7120a56566891ca2c0dbcf
 libidn2
 libksba             https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.6.0.tar.bz2
 libldap
@@ -98,6 +104,8 @@ libpsl
 libsasl
 libseccomp
 libsecret
+libSM               https://www.x.org/pub/individual/lib/libSM-1.2.3.tar.bz2
+                    md5sum 87c7fad1c1813517979184c8ccd76628
 libssh2
 libtasn1            https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.17.0.tar.gz
 libtirpc
@@ -106,18 +114,40 @@ libunistring        https://ftp.gnu.org/gnu/libunistring/libunistring-0.9.10.tar
 libunwind
 libutil-linux
 libuv               https://dist.libuv.org/dist/v1.42.0/libuv-v1.42.0.tar.gz
-libx11
+libx11              https://www.x.org/pub/individual/lib/libX11-1.7.2.tar.bz2
+                    md5sum a9a24be62503d5e34df6b28204956a7b
 libxau              https://www.x.org/pub/individual/lib/libXau-1.0.9.tar.bz2
+libXaw              https://www.x.org/pub/individual/lib/libXaw-1.0.14.tar.bz2
+                    md5sum c1ce21c296bbf3da3e30cf651649563e
 libxcb              https://xorg.freedesktop.org/archive/individual/lib/libxcb-1.14.tar.xz
-libxdamage
+libXcomposite       https://www.x.org/pub/individual/lib/libXcomposite-0.4.5.tar.bz2
+                    md5sum 3fa0841ea89024719b20cd702a9b54e0
+libXcursor          https://www.x.org/pub/individual/lib/libXcursor-1.2.0.tar.bz2
+                    md5sum 9b9be0e289130fb820aedf67705fc549
+libXdamage          https://www.x.org/pub/individual/lib/libXdamage-1.1.5.tar.bz2
+                    md5sum e3f554267a7a04b042dc1f6352bd6d99
 libXdmcp            https://www.x.org/pub/individual/lib/libXdmcp-1.1.3.tar.bz2
-libxext
-libxfixes
+libxext             https://www.x.org/pub/individual/lib/libXext-1.3.4.tar.bz2
+                    md5sum f5b48bb76ba327cd2a8dc7a383532a95
+libXfixes           https://www.x.org/pub/individual/lib/libXfixes-6.0.0.tar.bz2
+                    md5sum 86f182f487f4f54684ef6b142096bb0f
 libxml2             http://xmlsoft.org/sources/libxml2-2.9.12.tar.gz
+libXmu              https://www.x.org/pub/individual/lib/libXmu-1.1.3.tar.bz2
+                    md5sum ac774cff8b493f566088a255dbf91201
+libXpm              https://www.x.org/pub/individual/lib/libXpm-3.5.13.tar.bz2
+                    md5sum 6f0ecf8d103d528cfc803aa475137afa
+libXrender          https://www.x.org/pub/individual/lib/libXrender-0.9.10.tar.bz2
+                    md5sum 802179a76bded0b658f4e9ec5e1830a4
+libXScrnSaver       https://www.x.org/pub/individual/lib/libXScrnSaver-1.2.3.tar.bz2
+                    md5sum eeea9d5af3e6c143d0ea1721d27a5e49
 libxshmfence
+libxslt             http://xmlsoft.org/sources/libxslt-1.1.34.tar.gz
+libXt               https://www.x.org/pub/individual/lib/libXt-1.2.1.tar.bz2
+                    md5sum b122ff9a7ec70c94dbbfd814899fffa5
 libxxf86vm
 linux               https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.13.12.tar.xz
 linux-api-headers
+linux-pam           https://github.com/linux-pam/linux-pam/releases/download/v1.5.1/Linux-PAM-1.5.1.tar.xz
 llvm-libs
 lm_sensors
 lz4
@@ -153,6 +183,8 @@ perl-mailtools
 perl-timedate
 pinentry            https://www.gnupg.org/ftp/gcrypt/pinentry/pinentry-1.2.0.tar.bz2
 pkgconf
+polkit              https://www.freedesktop.org/software/polkit/releases/polkit-0.119.tar.gz
+                    https://www.linuxfromscratch.org/patches/blfs/11.0/polkit-0.119-fix_elogind_detection-1.patch
 popt                http://ftp.rpm.org/popt/releases/popt-1.x/popt-1.18.tar.gz
 procps-ng           https://sourceforge.net/projects/procps-ng/files/Production/procps-ng-3.3.17.tar.xz
 psmisc              https://sourceforge.net/projects/psmisc/files/psmisc/psmisc-23.4.tar.xz
@@ -179,47 +211,19 @@ wayland
 wget                https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
 which
 xcb-proto           https://xorg.freedesktop.org/archive/individual/proto/xcb-proto-1.14.1.tar.xz
+XML-Parser          https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz
 xorgproto           https://xorg.freedesktop.org/archive/individual/proto/xorgproto-2021.4.tar.bz2
 xorg-util-macros    https://www.x.org/pub/individual/util/util-macros-1.19.3.tar.bz2
-XML-Parser          https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz
+xtrans              https://www.x.org/pub/individual/lib/xtrans-1.4.0.tar.bz2
+                    md5sum ce2fb8100c6647ee81451ebe388b17ad
 xz                  https://tukaani.org/xz/xz-5.2.5.tar.xz
 zlib                https://zlib.net/zlib-1.2.11.tar.xz
 zstd                https://github.com/facebook/zstd/releases/download/v1.5.0/zstd-1.5.0.tar.gz
-
     
+https://www.x.org/pub/individual/lib/
 
-    js78
-https://archive.mozilla.org/pub/firefox/releases/78.13.0esr/source/firefox-78.13.0esr.source.tar.xz
-    polkit
-http://xmlsoft.org/sources/libxslt-1.1.34.tar.gz
-https://www.linuxfromscratch.org/patches/blfs/11.0/polkit-0.119-fix_elogind_detection-1.patch
-    linux-pam
-https://github.com/linux-pam/linux-pam/releases/download/v1.5.1/Linux-PAM-1.5.1.tar.xz
-    dbus
-https://dbus.freedesktop.org/releases/dbus/dbus-1.12.20.tar.gz
-    elogind
-https://github.com/elogind/elogind/archive/v246.10/elogind-246.10.tar.gz
-    dbus
-https://dbus.freedesktop.org/releases/dbus/dbus-1.12.20.tar.gz
 
-    Xorg-libraries
-cat > lib-7.md5 << "EOF"
-ce2fb8100c6647ee81451ebe388b17ad  xtrans-1.4.0.tar.bz2
-a9a24be62503d5e34df6b28204956a7b  libX11-1.7.2.tar.bz2
-f5b48bb76ba327cd2a8dc7a383532a95  libXext-1.3.4.tar.bz2
-4e1196275aa743d6ebd3d3d5ec1dff9c  libFS-1.0.8.tar.bz2
-76d77499ee7120a56566891ca2c0dbcf  libICE-1.0.10.tar.bz2
-87c7fad1c1813517979184c8ccd76628  libSM-1.2.3.tar.bz2
-eeea9d5af3e6c143d0ea1721d27a5e49  libXScrnSaver-1.2.3.tar.bz2
-b122ff9a7ec70c94dbbfd814899fffa5  libXt-1.2.1.tar.bz2
-ac774cff8b493f566088a255dbf91201  libXmu-1.1.3.tar.bz2
-6f0ecf8d103d528cfc803aa475137afa  libXpm-3.5.13.tar.bz2
-c1ce21c296bbf3da3e30cf651649563e  libXaw-1.0.14.tar.bz2
-86f182f487f4f54684ef6b142096bb0f  libXfixes-6.0.0.tar.bz2
-3fa0841ea89024719b20cd702a9b54e0  libXcomposite-0.4.5.tar.bz2
-802179a76bded0b658f4e9ec5e1830a4  libXrender-0.9.10.tar.bz2
-9b9be0e289130fb820aedf67705fc549  libXcursor-1.2.0.tar.bz2
-e3f554267a7a04b042dc1f6352bd6d99  libXdamage-1.1.5.tar.bz2
+
 6447db6a689fb530c218f0f8328c3abc  libfontenc-1.1.4.tar.bz2
 bdf528f1d337603c7431043824408668  libXfont2-2.0.5.tar.bz2
 5004d8e21cdddfe53266b7293c1dfb1b  libXft-2.3.4.tar.bz2
