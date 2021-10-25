@@ -17,6 +17,7 @@ ca-certificates
 ca-certificates-mozilla
 ca-certificates-utils
 check               https://github.com/libcheck/check/releases/download/0.15.2/check-0.15.2.tar.gz
+clang               https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.1/clang-12.0.1.src.tar.xz
 cmake               https://cmake.org/files/v3.21/cmake-3.21.2.tar.gz
 coreutils           https://ftp.gnu.org/gnu/coreutils/coreutils-8.32.tar.xz
                     https://www.linuxfromscratch.org/patches/lfs/11.0/coreutils-8.32-i18n-1.patch
@@ -62,6 +63,8 @@ guile
 gzip                https://ftp.gnu.org/gnu/gzip/gzip-1.10.tar.xz
 iana-etc            https://github.com/Mic92/iana-etc/releases/download/20210611/iana-etc-20210611.tar.gz
 icu                 https://github.com/unicode-org/icu/releases/download/release-69-1/icu4c-69_1-src.tgz
+iceauth             https://www.x.org/pub/individual/app/iceauth-1.0.8.tar.bz2
+                    md5sum 3b9b79fa0f9928161f4bad94273de7ae  
 inetutils           https://ftp.gnu.org/gnu/inetutils/inetutils-2.1.tar.xz
 intltool            https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz
 iproute2            https://www.kernel.org/pub/linux/utils/net/iproute2/iproute2-5.13.0.tar.xz
@@ -81,7 +84,7 @@ libcap-ng
 libcroco
 libdmx              https://www.x.org/pub/individual/lib/libdmx-1.1.4.tar.bz2
                     md5sum d2f1f0ec68ac3932dd7f1d9aa0a7a11c
-libdrm
+libdrm              https://dri.freedesktop.org/libdrm/libdrm-2.4.107.tar.xz
 libedit
 libelf
 libffi              https://github.com/libffi/libffi/releases/download/v3.4.2/libffi-3.4.2.tar.gz
@@ -104,7 +107,9 @@ libomxil-bellagio
 libp11-kit
 libpciaccess        https://www.x.org/pub/individual/lib/libpciaccess-0.16.tar.bz2
                     md5sum b34e2cbdd6aa8f9cc3fa613fd401a6d6
-libbpipeline        https://download.savannah.gnu.org/releases/libpipeline/libpipeline-1.5.3.tar.gz
+libpipeline         https://download.savannah.gnu.org/releases/libpipeline/libpipeline-1.5.3.tar.gz
+libpng              https://downloads.sourceforge.net/libpng/libpng-1.6.37.tar.xz
+                    https://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-1.6.37-apng.patch.gz
 libpsl
 libsasl
 libseccomp
@@ -119,6 +124,7 @@ libunistring        https://ftp.gnu.org/gnu/libunistring/libunistring-0.9.10.tar
 libunwind
 libutil-linux
 libuv               https://dist.libuv.org/dist/v1.42.0/libuv-v1.42.0.tar.gz
+libvdpau            https://gitlab.freedesktop.org/vdpau/libvdpau/-/archive/1.4/libvdpau-1.4.tar.bz2
 libx11              https://www.x.org/pub/individual/lib/libX11-1.7.2.tar.bz2
                     md5sum a9a24be62503d5e34df6b28204956a7b
 libxau              https://www.x.org/pub/individual/lib/libXau-1.0.9.tar.bz2
@@ -177,17 +183,25 @@ libXvMC             https://www.x.org/pub/individual/lib/libXvMC-1.0.12.tar.bz2
 linux               https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.13.12.tar.xz
 linux-api-headers
 linux-pam           https://github.com/linux-pam/linux-pam/releases/download/v1.5.1/Linux-PAM-1.5.1.tar.xz
+llvm                https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.1/llvm-12.0.1.src.tar.xz
+compiler-rt         https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.1/compiler-rt-12.0.1.src.tar.xz
 llvm-libs
 lm_sensors
+luit                https://www.x.org/pub/individual/app/luit-1.1.1.tar.bz2
+                    md5sum c4a3664e08e5a47c120ff9263ee2f20c
 lz4
 m4                  https://ftp.gnu.org/gnu/m4/m4-1.4.19.tar.xz
 make                https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
 make-ca             https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
+Mako                https://files.pythonhosted.org/packages/source/M/Mako/Mako-1.1.5.tar.gz
 man-db              https://download.savannah.gnu.org/releases/man-db/man-db-2.9.4.tar.xz
 man-pages           https://www.kernel.org/pub/linux/docs/man-pages/man-pages-5.13.tar.xz
 MarkupSafe          https://files.pythonhosted.org/packages/source/M/MarkupSafe/MarkupSafe-2.0.1.tar.gz
+mesa                https://mesa.freedesktop.org/archive/mesa-21.2.1.tar.xz
+                    https://www.linuxfromscratch.org/patches/blfs/11.0/mesa-21.2.1-add_xdemos-1.patch
 meson               https://github.com/mesonbuild/meson/releases/download/0.59.1/meson-0.59.1.tar.gz
-mesa
+mkfontscale         https://www.x.org/pub/individual/app/mkfontscale-1.2.1.tar.bz2
+                    md5sum 215940de158b1a3d8b3f8b442c606e2f  
 mpc                 https://ftp.gnu.org/gnu/mpc/mpc-1.2.1.tar.gz
 mpfr                https://www.mpfr.org/mpfr-4.1.0/mpfr-4.1.0.tar.xz
 nano                https://www.nano-editor.org/dist/v5/nano-5.8.tar.xz
@@ -222,7 +236,13 @@ Python              https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tar.xz
 readline            https://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz
 rsync               https://www.samba.org/ftp/rsync/src/rsync-3.2.3.tar.gz
 sed                 https://ftp.gnu.org/gnu/sed/sed-4.8.tar.xz
+sessreg             https://www.x.org/pub/individual/app/sessreg-1.1.2.tar.bz2
+                    md5sum 92be564d4be7d8aa7b5024057b715210
+setxkbmap           https://www.x.org/pub/individual/app/setxkbmap-1.3.2.tar.bz2
+                    md5sum 93e736c98fb75856ee8227a0c49a128d
 shadow              https://github.com/shadow-maint/shadow/releases/download/v4.9/shadow-4.9.tar.xz
+smproxy             https://www.x.org/pub/individual/app/smproxy-1.0.6.tar.bz2
+                    md5sum 3a93d9f0859de5d8b65a68a125d48f6a
 sysklogd            https://www.infodrom.org/projects/sysklogd/download/sysklogd-1.5.1.tar.gz
 sysvinit            https://download.savannah.gnu.org/releases/sysvinit/sysvinit-2.99.tar.xz
                     https://www.linuxfromscratch.org/patches/lfs/11.0/sysvinit-2.99-consolidated-1.patch
@@ -236,101 +256,88 @@ tzdata              https://www.iana.org/time-zones/repository/releases/tzdata20
 udev-lfs            https://anduin.linuxfromscratch.org/LFS/udev-lfs-20171102.tar.xz
 util-linux          https://www.kernel.org/pub/linux/utils/util-linux/v2.37/util-linux-2.37.2.tar.xz
 vim                 https://anduin.linuxfromscratch.org/LFS/vim-8.2.3337.tar.gz
-wayland
+wayland             https://wayland.freedesktop.org/releases/wayland-1.19.0.tar.xz
+wayland-protocols   https://wayland.freedesktop.org/releases/wayland-protocols-1.21.tar.xz
 wget                https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
 which
+x11perf             https://www.x.org/pub/individual/app/x11perf-1.6.1.tar.bz2
+                    md5sum e96b56756990c56c24d2d02c2964456b
+xauth               https://www.x.org/pub/individual/app/xauth-1.1.tar.bz2
+                    md5sum e50587c1bb832aafd1a19d91a0890a0b
+xbacklight          https://www.x.org/pub/individual/app/xbacklight-1.2.3.tar.bz2
+                    md5sum 5b6405973db69c0443be2fba8e1a8ab7
+xbitmaps            https://www.x.org/pub/individual/data/xbitmaps-1.1.2.tar.bz2
 xcb-proto           https://xorg.freedesktop.org/archive/individual/proto/xcb-proto-1.14.1.tar.xz
+xcb-util            https://xcb.freedesktop.org/dist/xcb-util-0.4.0.tar.bz2
+xcb-util-cursor     https://xcb.freedesktop.org/dist/xcb-util-cursor-0.1.3.tar.bz2
+xcb-util-image      https://xcb.freedesktop.org/dist/xcb-util-image-0.4.0.tar.bz2
+xcb-util-keysyms    https://xcb.freedesktop.org/dist/xcb-util-keysyms-0.4.0.tar.bz2
+xcb-util-renderutil https://xcb.freedesktop.org/dist/xcb-util-renderutil-0.3.9.tar.bz2
+xcb-util-wm         https://xcb.freedesktop.org/dist/xcb-util-wm-0.4.1.tar.bz2
+xcmsdb              https://www.x.org/pub/individual/app/xcmsdb-1.0.5.tar.bz2
+                    md5sum 9956d751ea3ae4538c3ebd07f70736a0
+xcursorgen          https://www.x.org/pub/individual/app/xcursorgen-1.0.7.tar.bz2
+                    md5sum 25cc7ca1ce5dcbb61c2b471c55e686b5
+xdpyinfo            https://www.x.org/pub/individual/app/xdpyinfo-1.3.2.tar.bz2
+                    md5sum 8809037bd48599af55dad81c508b6b39
+xdriinfo            https://www.x.org/pub/individual/app/xdriinfo-1.0.6.tar.bz2
+                    md5sum 480e63cd365f03eb2515a6527d5f4ca6
+xev                 https://www.x.org/pub/individual/app/xev-1.2.4.tar.bz2
+                    md5sum e1d7dc1afd3ddb8fab16d6a76f21a258
+xgamma              https://www.x.org/pub/individual/app/xgamma-1.0.6.tar.bz2
+                    md5sum 90b4305157c2b966d5180e2ee61262be
+xhost               https://www.x.org/pub/individual/app/xhost-1.0.8.tar.bz2
+                    md5sum a48c72954ae6665e0616f6653636da8c
+xinput              https://www.x.org/pub/individual/app/xinput-1.6.3.tar.bz2
+                    md5sum ac6b7432726008b2f50eba82b0e2dbe4
+xkbcomp             https://www.x.org/pub/individual/app/xkbcomp-1.4.5.tar.bz2
+                    md5sum c45e9f7971a58b8f0faf10f6d8f298c0
+xkbevd              https://www.x.org/pub/individual/app/xkbevd-1.1.4.tar.bz2
+                    md5sum c747faf1f78f5a5962419f8bdd066501
+xkbutils            https://www.x.org/pub/individual/app/xkbutils-1.0.4.tar.bz2
+                    md5sum 502b14843f610af977dffc6cbf2102d5
+xkill               https://www.x.org/pub/individual/app/xkill-1.0.5.tar.bz2
+                    md5sum 938177e4472c346cf031c1aefd8934fc
+xlsatoms            https://www.x.org/pub/individual/app/xlsatoms-1.1.3.tar.bz2
+                    md5sum 61671fee12535347db24ec3a715032a7
+xlsclients          https://www.x.org/pub/individual/app/xlsclients-1.1.4.tar.bz2
+                    md5sum 4fa92377e0ddc137cd226a7a87b6b29a
+xmessage            https://www.x.org/pub/individual/app/xmessage-1.0.5.tar.bz2
+                    md5sum e50ffae17eeb3943079620cb78f5ce0b
 XML-Parser          https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz
+xmodmap             https://www.x.org/pub/individual/app/xmodmap-1.0.10.tar.bz2
+                    md5sum 51f1d30a525e9903280ffeea2744b1f6
+
 xorgproto           https://xorg.freedesktop.org/archive/individual/proto/xorgproto-2021.4.tar.bz2
 xorg-util-macros    https://www.x.org/pub/individual/util/util-macros-1.19.3.tar.bz2
+xpr                 https://www.x.org/pub/individual/app/xpr-1.0.5.tar.bz2
+                    md5sum eaac255076ea351fd08d76025788d9f9
+xprop               https://www.x.org/pub/individual/app/xprop-1.2.5.tar.bz2
+                    md5sum 2358e29133d183ff67d4ef8afd70b9d2
+xrandr              https://www.x.org/pub/individual/app/xrandr-1.5.1.tar.xz
+                    md5sum fe40f7a4fd39dd3a02248d3e0b1972e4
+xrdb                https://www.x.org/pub/individual/app/xrdb-1.2.1.tar.bz2
+                    md5sum 85f04a810e2fb6b41ab872b421dce1b1
+xrefresh            https://www.x.org/pub/individual/app/xrefresh-1.0.6.tar.bz2
+                    md5sum c56fa4adbeed1ee5173f464a4c4a61a6
+xset                https://www.x.org/pub/individual/app/xset-1.2.4.tar.bz2
+                    md5sum 70ea7bc7bacf1a124b1692605883f620
+xsetroot            https://www.x.org/pub/individual/app/xsetroot-1.1.2.tar.bz2
+                    md5sum 5fe769c8777a6e873ed1305e4ce2c353
 xtrans              https://www.x.org/pub/individual/lib/xtrans-1.4.0.tar.bz2
                     md5sum ce2fb8100c6647ee81451ebe388b17ad
+xvinfo              https://www.x.org/pub/individual/app/xvinfo-1.1.4.tar.bz2
+                    md5sum b13afec137b9b331814a9824ab03ec80
+xwd                 https://www.x.org/pub/individual/app/xwd-1.0.8.tar.bz2
+                    md5sum f783a209f2e3fa13253cedb65eaf9cdb
+xwininfo            https://www.x.org/pub/individual/app/xwininfo-1.1.5.tar.bz2
+                    md5sum 26d46f7ef0588d3392da3ad5802be420
+xwud                https://www.x.org/pub/individual/app/xwud-1.0.5.tar.bz2
+                    md5sum 79972093bb0766fcd0223b2bd6d11932  
 xz                  https://tukaani.org/xz/xz-5.2.5.tar.xz
 zlib                https://zlib.net/zlib-1.2.11.tar.xz
 zstd                https://github.com/facebook/zstd/releases/download/v1.5.0/zstd-1.5.0.tar.gz
-    
-    xcb-util
-https://xcb.freedesktop.org/dist/xcb-util-0.4.0.tar.bz2
-    xcb-util-image
-https://xcb.freedesktop.org/dist/xcb-util-image-0.4.0.tar.bz2
-    xcb-util-renderutil
-https://xcb.freedesktop.org/dist/xcb-util-renderutil-0.3.9.tar.bz2
-    xcb-util-wm
-https://xcb.freedesktop.org/dist/xcb-util-wm-0.4.1.tar.bz2
-    xcb-util-keysyms
-https://xcb.freedesktop.org/dist/xcb-util-keysyms-0.4.0.tar.bz2
-    xcb-util-cursor
-https://xcb.freedesktop.org/dist/xcb-util-cursor-0.1.3.tar.bz2
-    libdrm
-https://dri.freedesktop.org/libdrm/libdrm-2.4.107.tar.xz
-    MarkupSafe
-https://files.pythonhosted.org/packages/source/M/MarkupSafe/MarkupSafe-2.0.1.tar.gz
-    Mako
-https://files.pythonhosted.org/packages/source/M/Mako/Mako-1.1.5.tar.gz
-    libvdpau
-https://gitlab.freedesktop.org/vdpau/libvdpau/-/archive/1.4/libvdpau-1.4.tar.bz2
-    clang
-https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.1/clang-12.0.1.src.tar.xz
-    llvm
-https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.1/llvm-12.0.1.src.tar.xz
-https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.1/compiler-rt-12.0.1.src.tar.xz
-    wayland
-https://wayland.freedesktop.org/releases/wayland-1.19.0.tar.xz
-    wayland-protocols
-https://wayland.freedesktop.org/releases/wayland-protocols-1.21.tar.xz
-    mesa
-https://mesa.freedesktop.org/archive/mesa-21.2.1.tar.xz
-https://www.linuxfromscratch.org/patches/blfs/11.0/mesa-21.2.1-add_xdemos-1.patch
-    xbitmaps
-https://www.x.org/pub/individual/data/xbitmaps-1.1.2.tar.bz2
-    libpng
-https://downloads.sourceforge.net/libpng/libpng-1.6.37.tar.xz
-https://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-1.6.37-apng.patch.gz
 
-    Xorg Applications
-cat > app-7.md5 << "EOF"
-3b9b79fa0f9928161f4bad94273de7ae  iceauth-1.0.8.tar.bz2
-c4a3664e08e5a47c120ff9263ee2f20c  luit-1.1.1.tar.bz2
-215940de158b1a3d8b3f8b442c606e2f  mkfontscale-1.2.1.tar.bz2
-92be564d4be7d8aa7b5024057b715210  sessreg-1.1.2.tar.bz2
-93e736c98fb75856ee8227a0c49a128d  setxkbmap-1.3.2.tar.bz2
-3a93d9f0859de5d8b65a68a125d48f6a  smproxy-1.0.6.tar.bz2
-e96b56756990c56c24d2d02c2964456b  x11perf-1.6.1.tar.bz2
-e50587c1bb832aafd1a19d91a0890a0b  xauth-1.1.tar.bz2
-5b6405973db69c0443be2fba8e1a8ab7  xbacklight-1.2.3.tar.bz2
-9956d751ea3ae4538c3ebd07f70736a0  xcmsdb-1.0.5.tar.bz2
-25cc7ca1ce5dcbb61c2b471c55e686b5  xcursorgen-1.0.7.tar.bz2
-8809037bd48599af55dad81c508b6b39  xdpyinfo-1.3.2.tar.bz2
-480e63cd365f03eb2515a6527d5f4ca6  xdriinfo-1.0.6.tar.bz2
-e1d7dc1afd3ddb8fab16d6a76f21a258  xev-1.2.4.tar.bz2
-90b4305157c2b966d5180e2ee61262be  xgamma-1.0.6.tar.bz2
-a48c72954ae6665e0616f6653636da8c  xhost-1.0.8.tar.bz2
-ac6b7432726008b2f50eba82b0e2dbe4  xinput-1.6.3.tar.bz2
-c45e9f7971a58b8f0faf10f6d8f298c0  xkbcomp-1.4.5.tar.bz2
-c747faf1f78f5a5962419f8bdd066501  xkbevd-1.1.4.tar.bz2
-502b14843f610af977dffc6cbf2102d5  xkbutils-1.0.4.tar.bz2
-938177e4472c346cf031c1aefd8934fc  xkill-1.0.5.tar.bz2
-61671fee12535347db24ec3a715032a7  xlsatoms-1.1.3.tar.bz2
-4fa92377e0ddc137cd226a7a87b6b29a  xlsclients-1.1.4.tar.bz2
-e50ffae17eeb3943079620cb78f5ce0b  xmessage-1.0.5.tar.bz2
-51f1d30a525e9903280ffeea2744b1f6  xmodmap-1.0.10.tar.bz2
-eaac255076ea351fd08d76025788d9f9  xpr-1.0.5.tar.bz2
-2358e29133d183ff67d4ef8afd70b9d2  xprop-1.2.5.tar.bz2
-fe40f7a4fd39dd3a02248d3e0b1972e4  xrandr-1.5.1.tar.xz
-85f04a810e2fb6b41ab872b421dce1b1  xrdb-1.2.1.tar.bz2
-c56fa4adbeed1ee5173f464a4c4a61a6  xrefresh-1.0.6.tar.bz2
-70ea7bc7bacf1a124b1692605883f620  xset-1.2.4.tar.bz2
-5fe769c8777a6e873ed1305e4ce2c353  xsetroot-1.1.2.tar.bz2
-b13afec137b9b331814a9824ab03ec80  xvinfo-1.1.4.tar.bz2
-f783a209f2e3fa13253cedb65eaf9cdb  xwd-1.0.8.tar.bz2
-26d46f7ef0588d3392da3ad5802be420  xwininfo-1.1.5.tar.bz2
-79972093bb0766fcd0223b2bd6d11932  xwud-1.0.5.tar.bz2
-EOF
-mkdir app &&
-cd app &&
-grep -v '^#' ../app-7.md5 | awk '{print $2}' | wget -i- -c \
-    -B https://www.x.org/pub/individual/app/ &&
-md5sum -c ../app-7.md5
 
     docbook-xsl-nons
 https://github.com/docbook/xslt10-stylesheets/releases/download/release/1.79.2/docbook-xsl-nons-1.79.2.tar.bz2
