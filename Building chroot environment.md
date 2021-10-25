@@ -110,12 +110,13 @@ Run following the shell script and check outputs of script.
 
     groupadd lfs
     useradd -s /bin/bash -g lfs -m -k /dev/null lfs
-    passwd lfs
-
-    chown -v lfs $LFS/tools
-
-    su - lfs
-    
+```
+passwd lfs
+```
+```
+chown -v lfs $LFS/tools
+su - lfs
+```    
     cat > ~/.bash_profile << "EOF"
     exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
     EOF
