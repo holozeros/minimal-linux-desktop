@@ -79,10 +79,14 @@ libassuan           https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.5.5.t
 libcap              https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/libcap-2.53.tar.xz
 libcap-ng
 libcroco
+libdmx              https://www.x.org/pub/individual/lib/libdmx-1.1.4.tar.bz2
+                    md5sum d2f1f0ec68ac3932dd7f1d9aa0a7a11c
 libdrm
 libedit
 libelf
 libffi              https://github.com/libffi/libffi/releases/download/v3.4.2/libffi-3.4.2.tar.gz
+libfontenc          https://www.x.org/pub/individual/lib/libfontenc-1.1.4.tar.bz2
+                    md5sum 6447db6a689fb530c218f0f8328c3abc
 libFS               https://www.x.org/pub/individual/lib/libFS-1.0.8.tar.bz2
                     md5sum 4e1196275aa743d6ebd3d3d5ec1dff9c
 libgcrypt           https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.9.4.tar.bz2
@@ -98,7 +102,8 @@ libmpc
 libnghttp2
 libomxil-bellagio
 libp11-kit
-libpciaccess
+libpciaccess        https://www.x.org/pub/individual/lib/libpciaccess-0.16.tar.bz2
+                    md5sum b34e2cbdd6aa8f9cc3fa613fd401a6d6
 libbpipeline        https://download.savannah.gnu.org/releases/libpipeline/libpipeline-1.5.3.tar.gz
 libpsl
 libsasl
@@ -131,20 +136,44 @@ libxext             https://www.x.org/pub/individual/lib/libXext-1.3.4.tar.bz2
                     md5sum f5b48bb76ba327cd2a8dc7a383532a95
 libXfixes           https://www.x.org/pub/individual/lib/libXfixes-6.0.0.tar.bz2
                     md5sum 86f182f487f4f54684ef6b142096bb0f
+libXfont2           https://www.x.org/pub/individual/lib/libXfont2-2.0.5.tar.bz2
+                    md5sum bdf528f1d337603c7431043824408668
+libXft              https://www.x.org/pub/individual/lib/libXft-2.3.4.tar.bz2
+                    md5sum 5004d8e21cdddfe53266b7293c1dfb1b
+libXi               https://www.x.org/pub/individual/lib/libXi-1.7.10.tar.bz2
+                    md5sum 62c4af0839072024b4b1c8cbe84216c7
+libXinerama         https://www.x.org/pub/individual/lib/libXinerama-1.1.4.tar.bz2
+                    md5sum 0d5f826a197dae74da67af4a9ef35885
+libxkbfile          https://www.x.org/pub/individual/lib/libxkbfile-1.1.0.tar.bz2
+                    md5sum dd7e1e946def674e78c0efbc5c7d5b3b
 libxml2             http://xmlsoft.org/sources/libxml2-2.9.12.tar.gz
 libXmu              https://www.x.org/pub/individual/lib/libXmu-1.1.3.tar.bz2
                     md5sum ac774cff8b493f566088a255dbf91201
 libXpm              https://www.x.org/pub/individual/lib/libXpm-3.5.13.tar.bz2
                     md5sum 6f0ecf8d103d528cfc803aa475137afa
+libXrandr           https://www.x.org/pub/individual/lib/libXrandr-1.5.2.tar.bz2
+                    md5sum 18f3b20d522f45e4dadd34afb5bea048
 libXrender          https://www.x.org/pub/individual/lib/libXrender-0.9.10.tar.bz2
                     md5sum 802179a76bded0b658f4e9ec5e1830a4
+libXres             https://www.x.org/pub/individual/lib/libXres-1.2.1.tar.bz2
+                    md5sum e142ef0ed0366ae89c771c27cfc2ccd1
 libXScrnSaver       https://www.x.org/pub/individual/lib/libXScrnSaver-1.2.3.tar.bz2
                     md5sum eeea9d5af3e6c143d0ea1721d27a5e49
-libxshmfence
+libxshmfence        https://www.x.org/pub/individual/lib/libxshmfence-1.3.tar.bz2
+                    md5sum 42dda8016943dc12aff2c03a036e0937
 libxslt             http://xmlsoft.org/sources/libxslt-1.1.34.tar.gz
 libXt               https://www.x.org/pub/individual/lib/libXt-1.2.1.tar.bz2
                     md5sum b122ff9a7ec70c94dbbfd814899fffa5
-libxxf86vm
+libXtst             https://www.x.org/pub/individual/lib/libXtst-1.2.3.tar.bz2
+                    md5sum ef8c2c1d16a00bd95b9fdcef63b8a2ca
+libXxf86dga         https://www.x.org/pub/individual/lib/libXxf86dga-1.1.5.tar.bz2
+                    md5sum 0ddeafc13b33086357cfa96fae41ee8e
+libxxf86vm          https://www.x.org/pub/individual/lib/libXxf86vm-1.1.4.tar.bz2
+                    md5sum 298b8fff82df17304dfdb5fe4066fe3a
+libXv               https://www.x.org/pub/individual/lib/libXv-1.0.11.tar.bz2
+                    md5sum 210b6ef30dda2256d54763136faa37b9
+libXvMC             https://www.x.org/pub/individual/lib/libXvMC-1.0.12.tar.bz2
+                    md5sum 3569ff7f3e26864d986d6a21147eaa58
 linux               https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.13.12.tar.xz
 linux-api-headers
 linux-pam           https://github.com/linux-pam/linux-pam/releases/download/v1.5.1/Linux-PAM-1.5.1.tar.xz
@@ -220,33 +249,6 @@ xz                  https://tukaani.org/xz/xz-5.2.5.tar.xz
 zlib                https://zlib.net/zlib-1.2.11.tar.xz
 zstd                https://github.com/facebook/zstd/releases/download/v1.5.0/zstd-1.5.0.tar.gz
     
-https://www.x.org/pub/individual/lib/
-
-
-
-6447db6a689fb530c218f0f8328c3abc  libfontenc-1.1.4.tar.bz2
-bdf528f1d337603c7431043824408668  libXfont2-2.0.5.tar.bz2
-5004d8e21cdddfe53266b7293c1dfb1b  libXft-2.3.4.tar.bz2
-62c4af0839072024b4b1c8cbe84216c7  libXi-1.7.10.tar.bz2
-0d5f826a197dae74da67af4a9ef35885  libXinerama-1.1.4.tar.bz2
-18f3b20d522f45e4dadd34afb5bea048  libXrandr-1.5.2.tar.bz2
-e142ef0ed0366ae89c771c27cfc2ccd1  libXres-1.2.1.tar.bz2
-ef8c2c1d16a00bd95b9fdcef63b8a2ca  libXtst-1.2.3.tar.bz2
-210b6ef30dda2256d54763136faa37b9  libXv-1.0.11.tar.bz2
-3569ff7f3e26864d986d6a21147eaa58  libXvMC-1.0.12.tar.bz2
-0ddeafc13b33086357cfa96fae41ee8e  libXxf86dga-1.1.5.tar.bz2
-298b8fff82df17304dfdb5fe4066fe3a  libXxf86vm-1.1.4.tar.bz2
-d2f1f0ec68ac3932dd7f1d9aa0a7a11c  libdmx-1.1.4.tar.bz2
-b34e2cbdd6aa8f9cc3fa613fd401a6d6  libpciaccess-0.16.tar.bz2
-dd7e1e946def674e78c0efbc5c7d5b3b  libxkbfile-1.1.0.tar.bz2
-42dda8016943dc12aff2c03a036e0937  libxshmfence-1.3.tar.bz2
-EOF
-mkdir lib &&
-cd lib &&
-grep -v '^#' ../lib-7.md5 | awk '{print $2}' | wget -i- -c \
-    -B https://www.x.org/pub/individual/lib/ &&
-md5sum -c ../lib-7.md5
-
     xcb-util
 https://xcb.freedesktop.org/dist/xcb-util-0.4.0.tar.bz2
     xcb-util-image
