@@ -1,4 +1,5 @@
 acl                 https://download.savannah.gnu.org/releases/acl/acl-2.3.1.tar.xz
+alsa-lib            https://www.alsa-project.org/files/pub/lib/alsa-lib-1.2.5.1.tar.bz2
 archlinux-keyring
 attr                https://download.savannah.gnu.org/releases/attr/attr-2.5.1.tar.gz
 audit
@@ -8,6 +9,8 @@ Autoconf2.13        https://ftp.gnu.org/gnu/autoconf/autoconf-2.13.tar.gz
 automake            https://ftp.gnu.org/gnu/automake/automake-1.16.4.tar.xz
 bash                https://ftp.gnu.org/gnu/bash/bash-5.1.8.tar.gz
 bc                  https://github.com/gavinhoward/bc/releases/download/5.0.0/bc-5.0.0.tar.xz
+bdftopcf            https://www.x.org/pub/individual/app/bdftopcf-1.1.tar.bz2
+                    md5sum 2a455d3c02390597feb9cefb3fe97a45
 binutils            https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz
                     https://www.linuxfromscratch.org/patches/lfs/11.0/binutils-2.37-upstream_fix-1.patch
 bison               https://ftp.gnu.org/gnu/bison/bison-3.7.6.tar.xz
@@ -27,27 +30,66 @@ db
 dbus                https://dbus.freedesktop.org/releases/dbus/dbus-1.12.20.tar.gz
 dejagnu             https://ftp.gnu.org/gnu/dejagnu/dejagnu-1.6.3.tar.gz
 diffutils           https://ftp.gnu.org/gnu/diffutils/diffutils-3.8.tar.xz
+docbook-xml         https://www.docbook.org/xml/4.5/docbook-xml-4.5.zip
+docbook-xsl-nons    https://github.com/docbook/xslt10-stylesheets/releases/download/release/1.79.2/docbook-xsl-nons-1.79.2.tar.bz2
+                    https://www.linuxfromscratch.org/patches/blfs/11.0/docbook-xsl-nons-1.79.2-stack_fix-1.patch
 doxygen             https://doxygen.nl/files/doxygen-1.9.2.src.tar.gz
 e2fsprogs           https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.46.4/e2fsprogs-1.46.4.tar.gz
 elfutils            https://sourceware.org/ftp/elfutils/0.185/elfutils-0.185.tar.bz2
 elogind             https://github.com/elogind/elogind/archive/v246.10/elogind-246.10.tar.gz
+encodings           https://www.x.org/pub/individual/font/encodings-1.0.5.tar.bz2
+                    md5sum bbae4f247b88ccde0e85ed6a403da22a
 eudev               https://dev.gentoo.org/~blueness/eudev/eudev-3.2.10.tar.gz
 expat               https://prdownloads.sourceforge.net/expat/expat-2.4.1.tar.xz
 expect              https://prdownloads.sourceforge.net/expect/expect5.45.4.tar.gz
 fakeroot            http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.26.orig.tar.gz
+fdk-aac             https://downloads.sourceforge.net/opencore-amr/fdk-aac-2.0.2.tar.gz
+ffmpeg              https://ffmpeg.org/releases/ffmpeg-4.4.tar.xz
 file                https://astron.com/pub/file/file-5.40.tar.gz
 filesystem
 findutils           https://ftp.gnu.org/gnu/findutils/findutils-4.8.0.tar.xz
 flex                https://github.com/westes/flex/releases/download/v2.6.4/flex-2.6.4.tar.gz
+font-alias          https://www.x.org/pub/individual/font/font-alias-1.0.4.tar.bz2
+                    md5sum 0497de0176a0dfa5fac2b0552a4cf380
+font-adobe-100dpi   https://www.x.org/pub/individual/font/font-adobe-100dpi-1.0.3.tar.bz2
+                    md5sum 1347c3031b74c9e91dc4dfa53b12f143 
+font-adobe-75dpi    https://www.x.org/pub/individual/font/font-adobe-75dpi-1.0.3.tar.bz2
+                    md5sum 6c9f26c92393c0756f3e8d614713495b 
+font-adobe-utopia-type1 https://www.x.org/pub/individual/font/font-adobe-utopia-type1-1.0.4.tar.bz2
+                    md5sum fcf24554c348df3c689b91596d7f9971
+font-bh-ttf         https://www.x.org/pub/individual/font/font-bh-ttf-1.0.3.tar.bz2
+                    md5sum e8ca58ea0d3726b94fe9f2c17344be60
+font-bh-type1       https://www.x.org/pub/individual/font/font-bh-type1-1.0.3.tar.bz2
+                    md5sum 53ed9a42388b7ebb689bdfc374f96a22
+font-daewoo-misc    https://www.x.org/pub/individual/font/font-daewoo-misc-1.0.3.tar.bz2
+                    md5sum 0571bf77f8fab465a5454569d9989506
+font-ibm-type1      https://www.x.org/pub/individual/font/font-ibm-type1-1.0.3.tar.bz2
+                    md5sum bfb2593d2102585f45daa960f43cb3c4
+font-misc-ethiopic  https://www.x.org/pub/individual/font/font-misc-ethiopic-1.0.4.tar.bz2
+                    md5sum 4ee18ab6c1edf636b8e75b73e6037371
+font-misc-misc      https://www.x.org/pub/individual/font/font-misc-misc-1.1.2.tar.bz2
+                    md5sum c88eb44b3b903d79fb44b860a213e623 
+font-isas-misc      https://www.x.org/pub/individual/font/font-isas-misc-1.0.3.tar.bz2
+                    md5sum a2401caccbdcf5698e001784dbd43f1a
+font-jis-misc       https://www.x.org/pub/individual/ font/font-jis-misc-1.0.3.tar.bz2
+                    md5sum cb7b57d7800fd9e28ec35d85761ed278
+font-xfree86-type1  https://www.x.org/pub/individual/font/font-xfree86-type1-1.0.4.tar.bz2
+                    md5sum 3eeb3fb44690b477d510bbd8f86cf5aa                    
 fontconfig          https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.13.1.tar.bz2
+font-util           https://www.x.org/pub/individual/font/font-util-1.3.2.tar.bz2
+                    md5sum 3d6adb76fdd072db8c8fae41b40855e8
+freefont-ttf        https://mirror.jre655.com/GNU/freefont/freefont-ttf-20100919.tar.gz
 freetype            https://downloads.sourceforge.net/freetype/freetype-2.11.0.tar.xz
+fribidi             https://github.com/fribidi/fribidi/releases/download/v1.0.9/fribidi-1.0.9.tar.xz
 gawk                https://ftp.gnu.org/gnu/gawk/gawk-5.1.0.tar.xz
 gc
 gcc                 https://ftp.gnu.org/gnu/gcc/gcc-11.2.0/gcc-11.2.0.tar.xz
-gcc-libs
+gcc-libs            
 gdbm                https://ftp.gnu.org/gnu/gdbm/gdbm-1.20.tar.gz
 gettext             https://ftp.gnu.org/gnu/gettext/gettext-0.21.tar.xz
 git                 https://www.kernel.org/pub/software/scm/git/git-2.33.0.tar.xz
+glib                https://download.gnome.org/sources/glib/2.68/glib-2.68.4.tar.xz
+                    https://www.linuxfromscratch.org/patches/blfs/11.0/glib-2.68.4-skip_warnings-1.patch
 glib2
 glibc               https://ftp.gnu.org/gnu/glibc/glibc-2.34.tar.xz
                     https://www.linuxfromscratch.org/patches/lfs/11.0/glibc-2.34-fhs-1.patch
@@ -75,9 +117,11 @@ kbd                 https://www.kernel.org/pub/linux/utils/kbd/kbd-2.4.0.tar.xz
 keyutils
 kmod                https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-29.tar.xz
 krb5
+lame                https://downloads.sourceforge.net/lame/lame-3.100.tar.gz
 less                https://www.greenwoodsoftware.com/less/less-590.tar.gz
 lfs-bootscripts     https://www.linuxfromscratch.org/lfs/downloads/11.0/lfs-bootscripts-20210608.tar.xz
 libarchive          https://github.com/libarchive/libarchive/releases/download/v3.5.2/libarchive-3.5.2.tar.xz
+libass              https://github.com/libass/libass/releases/download/0.15.1/libass-0.15.1.tar.xz
 libassuan           https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.5.5.tar.bz2
 libcap              https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/libcap-2.53.tar.xz
 libcap-ng
@@ -87,6 +131,8 @@ libdmx              https://www.x.org/pub/individual/lib/libdmx-1.1.4.tar.bz2
 libdrm              https://dri.freedesktop.org/libdrm/libdrm-2.4.107.tar.xz
 libedit
 libelf
+libepoxy            https://github.com/anholt/libepoxy/releases/download/1.5.9/libepoxy-1.5.9.tar.xz
+libevdev            https://www.freedesktop.org/software/libevdev/libevdev-1.11.0.tar.xz
 libffi              https://github.com/libffi/libffi/releases/download/v3.4.2/libffi-3.4.2.tar.gz
 libfontenc          https://www.x.org/pub/individual/lib/libfontenc-1.1.4.tar.bz2
                     md5sum 6447db6a689fb530c218f0f8328c3abc
@@ -98,11 +144,13 @@ libgpg-error        https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1
 libICE              https://www.x.org/pub/individual/lib/libICE-1.0.10.tar.bz2
                     md5sum 76d77499ee7120a56566891ca2c0dbcf
 libidn2
+libinput            https://www.freedesktop.org/software/libinput/libinput-1.18.1.tar.xz
 libksba             https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.6.0.tar.bz2
 libldap
 libmicrohttpd
 libmpc
 libnghttp2
+libogg              https://downloads.xiph.org/releases/ogg/libogg-1.3.5.tar.xz
 libomxil-bellagio
 libp11-kit
 libpciaccess        https://www.x.org/pub/individual/lib/libpciaccess-0.16.tar.bz2
@@ -116,15 +164,21 @@ libseccomp
 libsecret
 libSM               https://www.x.org/pub/individual/lib/libSM-1.2.3.tar.bz2
                     md5sum 87c7fad1c1813517979184c8ccd76628
-libssh2
+libssh2             https://www.libssh2.org/download/libssh2-1.9.0.tar.gz
+                    https://www.linuxfromscratch.org/patches/blfs/11.0/libssh2-1.9.0-security_fixes-1.patch
 libtasn1            https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.17.0.tar.gz
+libtheora           https://downloads.xiph.org/releases/theora/libtheora-1.1.1.tar.xz
 libtirpc
 libtool             https://ftp.gnu.org/gnu/libtool/libtool-2.4.6.tar.xz
 libunistring        https://ftp.gnu.org/gnu/libunistring/libunistring-0.9.10.tar.xz
 libunwind
 libutil-linux
 libuv               https://dist.libuv.org/dist/v1.42.0/libuv-v1.42.0.tar.gz
+libva               https://github.com/intel/libva/releases/download/2.12.0/libva-2.12.0.tar.bz2
 libvdpau            https://gitlab.freedesktop.org/vdpau/libvdpau/-/archive/1.4/libvdpau-1.4.tar.bz2
+libvdpau-va-gl      https://github.com/i-rinat/libvdpau-va-gl/archive/v0.4.0/libvdpau-va-gl-0.4.0.tar.gz
+libvorbis           https://downloads.xiph.org/releases/vorbis/libvorbis-1.3.7.tar.xz
+libvpx              https://github.com/webmproject/libvpx/archive/v1.10.0/libvpx-1.10.0.tar.gz
 libx11              https://www.x.org/pub/individual/lib/libX11-1.7.2.tar.bz2
                     md5sum a9a24be62503d5e34df6b28204956a7b
 libxau              https://www.x.org/pub/individual/lib/libXau-1.0.9.tar.bz2
@@ -150,6 +204,7 @@ libXi               https://www.x.org/pub/individual/lib/libXi-1.7.10.tar.bz2
                     md5sum 62c4af0839072024b4b1c8cbe84216c7
 libXinerama         https://www.x.org/pub/individual/lib/libXinerama-1.1.4.tar.bz2
                     md5sum 0d5f826a197dae74da67af4a9ef35885
+libxkbcommon        https://xkbcommon.org/download/libxkbcommon-1.3.0.tar.xz
 libxkbfile          https://www.x.org/pub/individual/lib/libxkbfile-1.1.0.tar.bz2
                     md5sum dd7e1e946def674e78c0efbc5c7d5b3b
 libxml2             http://xmlsoft.org/sources/libxml2-2.9.12.tar.gz
@@ -189,6 +244,8 @@ llvm-libs
 lm_sensors
 luit                https://www.x.org/pub/individual/app/luit-1.1.1.tar.bz2
                     md5sum c4a3664e08e5a47c120ff9263ee2f20c
+twm                 https://www.x.org/pub/individual/app/twm-1.0.11.tar.xz
+lynx                https://invisible-mirror.net/archives/lynx/tarballs/lynx2.8.9rel.1.tar.bz2
 lz4
 m4                  https://ftp.gnu.org/gnu/m4/m4-1.4.19.tar.xz
 make                https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
@@ -204,6 +261,7 @@ mkfontscale         https://www.x.org/pub/individual/app/mkfontscale-1.2.1.tar.b
                     md5sum 215940de158b1a3d8b3f8b442c606e2f  
 mpc                 https://ftp.gnu.org/gnu/mpc/mpc-1.2.1.tar.gz
 mpfr                https://www.mpfr.org/mpfr-4.1.0/mpfr-4.1.0.tar.xz
+mtdev               https://bitmath.org/code/mtdev/mtdev-1.1.6.tar.bz2
 nano                https://www.nano-editor.org/dist/v5/nano-5.8.tar.xz
 ncurses             https://ftp.gnu.org/gnu/ncurses/ncurses-6.2.tar.gz
 nettle              https://ftp.gnu.org/gnu/nettle/nettle-3.7.3.tar.gz
@@ -211,13 +269,15 @@ nghttp2             https://github.com/nghttp2/nghttp2/releases/download/v1.44.0
 ninja               https://github.com/ninja-build/ninja/archive/v1.10.2/ninja-1.10.2.tar.gz
 npth                https://www.gnupg.org/ftp/gcrypt/npth/npth-1.6.tar.bz2
 openssl             https://www.openssl.org/source/openssl-1.1.1l.tar.gz
+opus                https://archive.mozilla.org/pub/opus/opus-1.3.1.tar.gz
 p11-kit             https://github.com/p11-glue/p11-kit/releases/download/0.24.0/p11-kit-0.24.0.tar.xz
 pacman              https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
 pacman-mirrorlist
 pam
 pambase
 patch               https://ftp.gnu.org/gnu/patch/patch-2.7.6.tar.xz
-pcre
+pciutils            https://www.kernel.org/pub/software/utils/pciutils/pciutils-3.7.0.tar.xz
+pcre                https://ftp.pcre.org/pub/pcre/pcre-8.45.tar.bz2
 pcre2
 perl                https://www.cpan.org/src/5.0/perl-5.34.0.tar.xz
                     https://www.linuxfromscratch.org/patches/lfs/11.0/perl-5.34.0-upstream_fixes-1.patch
@@ -225,6 +285,7 @@ perl-error
 perl-mailtools
 perl-timedate
 pinentry            https://www.gnupg.org/ftp/gcrypt/pinentry/pinentry-1.2.0.tar.bz2
+pixman              https://www.cairographics.org/releases/pixman-0.40.0.tar.gz
 pkgconf
 polkit              https://www.freedesktop.org/software/polkit/releases/polkit-0.119.tar.gz
                     https://www.linuxfromscratch.org/patches/blfs/11.0/polkit-0.119-fix_elogind_detection-1.patch
@@ -235,33 +296,42 @@ Python              https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tar.xz
                     https://www.python.org/ftp/python/doc/3.9.6/python-3.9.6-docs-html.tar.bz2
 readline            https://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz
 rsync               https://www.samba.org/ftp/rsync/src/rsync-3.2.3.tar.gz
+rustc               https://static.rust-lang.org/dist/rustc-1.52.0-src.tar.gz
+SDL2                https://www.libsdl.org/release/SDL2-2.0.16.tar.gz
+                    https://www.linuxfromscratch.org/patches/blfs/11.0/SDL2-2.0.16-opengl_include_fix-1.patch
 sed                 https://ftp.gnu.org/gnu/sed/sed-4.8.tar.xz
 sessreg             https://www.x.org/pub/individual/app/sessreg-1.1.2.tar.bz2
                     md5sum 92be564d4be7d8aa7b5024057b715210
 setxkbmap           https://www.x.org/pub/individual/app/setxkbmap-1.3.2.tar.bz2
                     md5sum 93e736c98fb75856ee8227a0c49a128d
+sgml-common         https://sourceware.org/ftp/docbook-tools/new-trials/SOURCES/sgml-common-0.6.3.tgz
+                    https://www.linuxfromscratch.org/patches/blfs/11.0/sgml-common-0.6.3-manpage-1.patch
 shadow              https://github.com/shadow-maint/shadow/releases/download/v4.9/shadow-4.9.tar.xz
 smproxy             https://www.x.org/pub/individual/app/smproxy-1.0.6.tar.bz2
                     md5sum 3a93d9f0859de5d8b65a68a125d48f6a
+sqlite
+sudo                https://www.sudo.ws/dist/sudo-1.9.7p2.tar.gz
 sysklogd            https://www.infodrom.org/projects/sysklogd/download/sysklogd-1.5.1.tar.gz
 sysvinit            https://download.savannah.gnu.org/releases/sysvinit/sysvinit-2.99.tar.xz
                     https://www.linuxfromscratch.org/patches/lfs/11.0/sysvinit-2.99-consolidated-1.patch
-sqlite
-sudo
 tar                 https://ftp.gnu.org/gnu/tar/tar-1.34.tar.xz
 tcl                 https://downloads.sourceforge.net/tcl/tcl8.6.11-src.tar.gz
                     https://downloads.sourceforge.net/tcl/tcl8.6.11-html.tar.gz
 texinfo             https://ftp.gnu.org/gnu/texinfo/texinfo-6.8.tar.xz
 tzdata              https://www.iana.org/time-zones/repository/releases/tzdata2021a.tar.gz
 udev-lfs            https://anduin.linuxfromscratch.org/LFS/udev-lfs-20171102.tar.xz
+unzip               https://downloads.sourceforge.net/infozip/unzip60.tar.gz
+                    https://www.linuxfromscratch.org/patches/blfs/11.0/unzip-6.0-consolidated_fixes-1.patch
 util-linux          https://www.kernel.org/pub/linux/utils/util-linux/v2.37/util-linux-2.37.2.tar.xz
 vim                 https://anduin.linuxfromscratch.org/LFS/vim-8.2.3337.tar.gz
 wayland             https://wayland.freedesktop.org/releases/wayland-1.19.0.tar.xz
 wayland-protocols   https://wayland.freedesktop.org/releases/wayland-protocols-1.21.tar.xz
 wget                https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
-which
+which               https://ftp.gnu.org/gnu/which/which-2.21.tar.gz
 x11perf             https://www.x.org/pub/individual/app/x11perf-1.6.1.tar.bz2
                     md5sum e96b56756990c56c24d2d02c2964456b
+x264-20210814       https://anduin.linuxfromscratch.org/BLFS/x264/x264-20210814.tar.xz
+x265-3.4            https://anduin.linuxfromscratch.org/BLFS/x265/x265_3.4.tar.gz
 xauth               https://www.x.org/pub/individual/app/xauth-1.1.tar.bz2
                     md5sum e50587c1bb832aafd1a19d91a0890a0b
 xbacklight          https://www.x.org/pub/individual/app/xbacklight-1.2.3.tar.bz2
@@ -274,24 +344,31 @@ xcb-util-image      https://xcb.freedesktop.org/dist/xcb-util-image-0.4.0.tar.bz
 xcb-util-keysyms    https://xcb.freedesktop.org/dist/xcb-util-keysyms-0.4.0.tar.bz2
 xcb-util-renderutil https://xcb.freedesktop.org/dist/xcb-util-renderutil-0.3.9.tar.bz2
 xcb-util-wm         https://xcb.freedesktop.org/dist/xcb-util-wm-0.4.1.tar.bz2
+xclock              https://www.x.org/pub/individual/app/xclock-1.0.9.tar.bz2
 xcmsdb              https://www.x.org/pub/individual/app/xcmsdb-1.0.5.tar.bz2
                     md5sum 9956d751ea3ae4538c3ebd07f70736a0
 xcursorgen          https://www.x.org/pub/individual/app/xcursorgen-1.0.7.tar.bz2
                     md5sum 25cc7ca1ce5dcbb61c2b471c55e686b5
+xcursor-themes      https://www.x.org/pub/individual/data/xcursor-themes-1.0.6.tar.bz2
 xdpyinfo            https://www.x.org/pub/individual/app/xdpyinfo-1.3.2.tar.bz2
                     md5sum 8809037bd48599af55dad81c508b6b39
 xdriinfo            https://www.x.org/pub/individual/app/xdriinfo-1.0.6.tar.bz2
                     md5sum 480e63cd365f03eb2515a6527d5f4ca6
 xev                 https://www.x.org/pub/individual/app/xev-1.2.4.tar.bz2
                     md5sum e1d7dc1afd3ddb8fab16d6a76f21a258
+xf86-input-evdev    https://www.x.org/pub/individual/driver/xf86-input-evdev-2.10.6.tar.bz2
+xf86-input-libinput https://www.x.org/pub/individual/driver/xf86-input-libinput-1.1.0.tar.bz2
+xf86-video-fbdev    https://www.x.org/pub/individual/driver/xf86-video-fbdev-0.5.0.tar.bz2
 xgamma              https://www.x.org/pub/individual/app/xgamma-1.0.6.tar.bz2
                     md5sum 90b4305157c2b966d5180e2ee61262be
 xhost               https://www.x.org/pub/individual/app/xhost-1.0.8.tar.bz2
                     md5sum a48c72954ae6665e0616f6653636da8c
+xinit               https://www.x.org/pub/individual/app/xinit-1.4.1.tar.bz2
 xinput              https://www.x.org/pub/individual/app/xinput-1.6.3.tar.bz2
                     md5sum ac6b7432726008b2f50eba82b0e2dbe4
 xkbcomp             https://www.x.org/pub/individual/app/xkbcomp-1.4.5.tar.bz2
                     md5sum c45e9f7971a58b8f0faf10f6d8f298c0
+xkeyboard-config    https://www.x.org/pub/individual/data/xkeyboard-config/xkeyboard-config-2.33.tar.bz2
 xkbevd              https://www.x.org/pub/individual/app/xkbevd-1.1.4.tar.bz2
                     md5sum c747faf1f78f5a5962419f8bdd066501
 xkbutils            https://www.x.org/pub/individual/app/xkbutils-1.0.4.tar.bz2
@@ -307,8 +384,8 @@ xmessage            https://www.x.org/pub/individual/app/xmessage-1.0.5.tar.bz2
 XML-Parser          https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz
 xmodmap             https://www.x.org/pub/individual/app/xmodmap-1.0.10.tar.bz2
                     md5sum 51f1d30a525e9903280ffeea2744b1f6
-
 xorgproto           https://xorg.freedesktop.org/archive/individual/proto/xorgproto-2021.4.tar.bz2
+xorg-server         https://www.x.org/pub/individual/xserver/xorg-server-1.20.13.tar.xz
 xorg-util-macros    https://www.x.org/pub/individual/util/util-macros-1.19.3.tar.bz2
 xpr                 https://www.x.org/pub/individual/app/xpr-1.0.5.tar.bz2
                     md5sum eaac255076ea351fd08d76025788d9f9
@@ -324,6 +401,7 @@ xset                https://www.x.org/pub/individual/app/xset-1.2.4.tar.bz2
                     md5sum 70ea7bc7bacf1a124b1692605883f620
 xsetroot            https://www.x.org/pub/individual/app/xsetroot-1.1.2.tar.bz2
                     md5sum 5fe769c8777a6e873ed1305e4ce2c353
+xterm               https://invisible-mirror.net/archives/xterm/xterm-368.tgz
 xtrans              https://www.x.org/pub/individual/lib/xtrans-1.4.0.tar.bz2
                     md5sum ce2fb8100c6647ee81451ebe388b17ad
 xvinfo              https://www.x.org/pub/individual/app/xvinfo-1.1.4.tar.bz2
@@ -335,151 +413,6 @@ xwininfo            https://www.x.org/pub/individual/app/xwininfo-1.1.5.tar.bz2
 xwud                https://www.x.org/pub/individual/app/xwud-1.0.5.tar.bz2
                     md5sum 79972093bb0766fcd0223b2bd6d11932  
 xz                  https://tukaani.org/xz/xz-5.2.5.tar.xz
+yasm                https://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz
 zlib                https://zlib.net/zlib-1.2.11.tar.xz
 zstd                https://github.com/facebook/zstd/releases/download/v1.5.0/zstd-1.5.0.tar.gz
-
-
-    docbook-xsl-nons
-https://github.com/docbook/xslt10-stylesheets/releases/download/release/1.79.2/docbook-xsl-nons-1.79.2.tar.bz2
-https://www.linuxfromscratch.org/patches/blfs/11.0/docbook-xsl-nons-1.79.2-stack_fix-1.patch
-    unzip
-https://downloads.sourceforge.net/infozip/unzip60.tar.gz
-https://www.linuxfromscratch.org/patches/blfs/11.0/unzip-6.0-consolidated_fixes-1.patch
-    sgml-common
-https://sourceware.org/ftp/docbook-tools/new-trials/SOURCES/sgml-common-0.6.3.tgz
-https://www.linuxfromscratch.org/patches/blfs/11.0/sgml-common-0.6.3-manpage-1.patch
-    docbook-xml
-https://www.docbook.org/xml/4.5/docbook-xml-4.5.zip
-    libxslt
-http://xmlsoft.org/sources/libxslt-1.1.34.tar.gz
-    which
-https://ftp.gnu.org/gnu/which/which-2.21.tar.gz
-    libssh2
-https://www.libssh2.org/download/libssh2-1.9.0.tar.gz
-https://www.linuxfromscratch.org/patches/blfs/11.0/libssh2-1.9.0-security_fixes-1.patch
-    rustc
-https://static.rust-lang.org/dist/rustc-1.52.0-src.tar.gz
-    pcre
-https://ftp.pcre.org/pub/pcre/pcre-8.45.tar.bz2
-    Glib
-https://download.gnome.org/sources/glib/2.68/glib-2.68.4.tar.xz
-https://www.linuxfromscratch.org/patches/blfs/11.0/glib-2.68.4-skip_warnings-1.patch
-    xcursor-themes
-https://www.x.org/pub/individual/data/xcursor-themes-1.0.6.tar.bz2
-    sudo
-https://www.sudo.ws/dist/sudo-1.9.7p2.tar.gz
-
-[Xorg Fonts]
-cat > font-7.md5 << "EOF"
-3d6adb76fdd072db8c8fae41b40855e8  font-util-1.3.2.tar.bz2
-bbae4f247b88ccde0e85ed6a403da22a  encodings-1.0.5.tar.bz2
-0497de0176a0dfa5fac2b0552a4cf380  font-alias-1.0.4.tar.bz2
-fcf24554c348df3c689b91596d7f9971  font-adobe-utopia-type1-1.0.4.tar.bz2
-e8ca58ea0d3726b94fe9f2c17344be60  font-bh-ttf-1.0.3.tar.bz2
-53ed9a42388b7ebb689bdfc374f96a22  font-bh-type1-1.0.3.tar.bz2
-bfb2593d2102585f45daa960f43cb3c4  font-ibm-type1-1.0.3.tar.bz2
-4ee18ab6c1edf636b8e75b73e6037371  font-misc-ethiopic-1.0.4.tar.bz2
-3eeb3fb44690b477d510bbd8f86cf5aa  font-xfree86-type1-1.0.4.tar.bz2
-EOF
-mkdir font &&
-cd font &&
-grep -v '^#' ../font-7.md5 | awk '{print $2}' | wget -i- -c \
-    -B https://www.x.org/pub/individual/font/ &&
-md5sum -c ../font-7.md5
-
-    xkeyboard-config
-https://www.x.org/pub/individual/data/xkeyboard-config/xkeyboard-config-2.33.tar.bz2
-    pixman
-https://www.cairographics.org/releases/pixman-0.40.0.tar.gz
-    libepoxy
-https://github.com/anholt/libepoxy/releases/download/1.5.9/libepoxy-1.5.9.tar.xz
-    wayland
-https://wayland.freedesktop.org/releases/wayland-1.19.0.tar.xz
-    wayland-protocols
-https://wayland.freedesktop.org/releases/wayland-protocols-1.21.tar.xz
-    xorg-server
-https://www.x.org/pub/individual/xserver/xorg-server-1.20.13.tar.xz
-
-[Xorg Drivers]
-    lynx
-https://invisible-mirror.net/archives/lynx/tarballs/lynx2.8.9rel.1.tar.bz2
-    pciutils
-https://www.kernel.org/pub/software/utils/pciutils/pciutils-3.7.0.tar.xz
-    libevdev
-https://www.freedesktop.org/software/libevdev/libevdev-1.11.0.tar.xz
-    mtdev
-https://bitmath.org/code/mtdev/mtdev-1.1.6.tar.bz2
-    xf86-input-evdev
-https://www.x.org/pub/individual/driver/xf86-input-evdev-2.10.6.tar.bz2
-    libinput
-https://www.freedesktop.org/software/libinput/libinput-1.18.1.tar.xz
-    xf86-input-libinput
-https://www.x.org/pub/individual/driver/xf86-input-libinput-1.1.0.tar.bz2
-    xf86-video-fbdev
-https://www.x.org/pub/individual/driver/xf86-video-fbdev-0.5.0.tar.bz2
-    libva
-https://github.com/intel/libva/releases/download/2.12.0/libva-2.12.0.tar.bz2
-    yasm
-https://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz
-    x265-3.4
-https://anduin.linuxfromscratch.org/BLFS/x265/x265_3.4.tar.gz
-    x264-20210814
-https://anduin.linuxfromscratch.org/BLFS/x264/x264-20210814.tar.xz
-    Opus-1.3.1
-https://archive.mozilla.org/pub/opus/opus-1.3.1.tar.gz
-    libvpx-1.10.0
-https://github.com/webmproject/libvpx/archive/v1.10.0/libvpx-1.10.0.tar.gz
-    libvorbis-1.3.7
-https://downloads.xiph.org/releases/vorbis/libvorbis-1.3.7.tar.xz
-    libogg
-https://downloads.xiph.org/releases/ogg/libogg-1.3.5.tar.xz
-    libtheora-1.1.1
-https://downloads.xiph.org/releases/theora/libtheora-1.1.1.tar.xz
-    LAME-3.100
-https://downloads.sourceforge.net/lame/lame-3.100.tar.gz
-    fdk-aac-2.0.2
-https://downloads.sourceforge.net/opencore-amr/fdk-aac-2.0.2.tar.gz
-    fribidi
-https://github.com/fribidi/fribidi/releases/download/v1.0.9/fribidi-1.0.9.tar.xz
-    libass-0.15.1
-https://github.com/libass/libass/releases/download/0.15.1/libass-0.15.1.tar.xz
-    alsa-lib
-https://www.alsa-project.org/files/pub/lib/alsa-lib-1.2.5.1.tar.bz2
-    libxkbcommon
-https://xkbcommon.org/download/libxkbcommon-1.3.0.tar.xz
-    SDL2
-https://www.libsdl.org/release/SDL2-2.0.16.tar.gz
-https://www.linuxfromscratch.org/patches/blfs/11.0/SDL2-2.0.16-opengl_include_fix-1.patch
-    ffmpeg
-https://ffmpeg.org/releases/ffmpeg-4.4.tar.xz
-    libvdpau-va-gl
-https://github.com/i-rinat/libvdpau-va-gl/archive/v0.4.0/libvdpau-va-gl-0.4.0.tar.gz
-
-[Xorg Legacy Font]
-cat > legacy.dat << "EOF"
-2a455d3c02390597feb9cefb3fe97a45 app/ bdftopcf-1.1.tar.bz2
-1347c3031b74c9e91dc4dfa53b12f143 font/ font-adobe-100dpi-1.0.3.tar.bz2
-6c9f26c92393c0756f3e8d614713495b font/ font-adobe-75dpi-1.0.3.tar.bz2
-cb7b57d7800fd9e28ec35d85761ed278 font/ font-jis-misc-1.0.3.tar.bz2
-0571bf77f8fab465a5454569d9989506 font/ font-daewoo-misc-1.0.3.tar.bz2
-a2401caccbdcf5698e001784dbd43f1a font/ font-isas-misc-1.0.3.tar.bz2
-c88eb44b3b903d79fb44b860a213e623 font/ font-misc-misc-1.1.2.tar.bz2
-EOF
-mkdir legacy &&
-cd    legacy &&
-grep -v '^#' ../legacy.dat | awk '{print $2$3}' | wget -i- -c \
-     -B https://www.x.org/pub/individual/ &&
-grep -v '^#' ../legacy.dat | awk '{print $1 " " $3}' > ../legacy.md5 &&
-md5sum -c ../legacy.md5
-
-    twm
-https://www.x.org/pub/individual/app/twm-1.0.11.tar.xz
-    freefont-ttf
-https://mirror.jre655.com/GNU/freefont/freefont-ttf-20100919.tar.gz
-    xterm
-https://invisible-mirror.net/archives/xterm/xterm-368.tgz
-    xclock
-https://www.x.org/pub/individual/app/xclock-1.0.9.tar.bz2
-    xinit
-https://www.x.org/pub/individual/app/xinit-1.4.1.tar.bz2
-    
