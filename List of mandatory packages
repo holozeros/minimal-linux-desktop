@@ -30,6 +30,7 @@ db
 dbus                https://dbus.freedesktop.org/releases/dbus/dbus-1.12.20.tar.gz
 dejagnu             https://ftp.gnu.org/gnu/dejagnu/dejagnu-1.6.3.tar.gz
 diffutils           https://ftp.gnu.org/gnu/diffutils/diffutils-3.8.tar.xz
+dkms                https://github.com/dell/dkms/archive/refs/tags/v2.8.7.tar.gz
 docbook-xml         https://www.docbook.org/xml/4.5/docbook-xml-4.5.zip
 docbook-xsl-nons    https://github.com/docbook/xslt10-stylesheets/releases/download/release/1.79.2/docbook-xsl-nons-1.79.2.tar.bz2
                     https://www.linuxfromscratch.org/patches/blfs/11.0/docbook-xsl-nons-1.79.2-stack_fix-1.patch
