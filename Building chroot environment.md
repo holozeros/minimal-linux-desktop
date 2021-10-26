@@ -963,7 +963,7 @@ chmod +x build-chroot-environment.sh
 ## Backup
 ```
 # cd $LFS/tools
-# tar -cJpf <Path>/tools11-base.tar.xz .
+# tar -cJpf <Path>/tools-base-11.tar.xz .
 # sync
 # cd $LFS/sources
 ```
@@ -976,7 +976,7 @@ As root user.
 # mount /dev/<For new creation root file system partition> $LFS
 # cd $LFS
 # rm -rf tools && mkdir tools && cd tools
-# tar -xpf <Path>/tools11-base.tar.xz
+# tar -xpf <Path>/tools-base-11.tar.xz
 ```
 
 ## Chroot
