@@ -1245,14 +1245,14 @@ rm -rf rsync-3.2.3
 END
 ```
 
-## BUILD (build-ABS.sh)
+## Build (build-ABS.sh)
 Ryzen2700x(8 core) takes about xx minuits.
 ```
 cd /sources
 chmod +x build-ABS.sh
 ./build-ABS.sh
 ```
-## settings
+## Pacman settings
 ```
 pacman-key --init
 pacman-key --populate archlinux
@@ -1277,7 +1277,7 @@ EOF
 ```
 pacman -Syu
 ```
-## for using ABS
+## For using ABS
 ABS enable use only local user (disable root user).
 ```
 groupadd lfs
@@ -1305,4 +1305,21 @@ EOF
 ```
 ```
 source ~/.bash_profile
+```
+## Backup
+Exit chroot. Then as root user on host:
+```
+su -
+cd /mnt/lfs
+tar cJpf <Path>/tools-pacman-11.tar.xz
+```
+## When starting over from here in a later step
+Exit chroot. Then as root user on host:
+```
+# su -
+# export $LFS
+# mount /dev/<partition to use as the chroot environment> $LFS
+# cd $LFS
+# rm -rf ./*
+# tar -xpf <Path>/tools-pacman-11.tar.xz
 ```
