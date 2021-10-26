@@ -37,7 +37,7 @@ ln -sv /tools/lib/libgcc_s.so{,.1} /usr/lib
 ln -sv /tools/lib/libstdc++.so{,.6} /usr/lib
 ln -sv /tools/lib /tools/usr/lib
 ln -sv /tools/include /tools/usr/include
-ln -sv /tools/include/ncursesw/ncurses.h /tools/include/
+ln -sv /tools/include/ncursesw/* /tools/include/
 sed 's/tools/usr/' /tools/lib/libstdc++.la > /usr/lib/libstdc++.la
 ```
 ```
@@ -145,11 +145,6 @@ make install
 
 cd ..
 rm -rf gmp-6.2.1
-
-# cd /usr/lib
-# ln -s /tools/lib/libgmp.la
-# ln -s /tools/lib/libgmp.so
-# cd $LFS/sources
 
 ##################
 ### mpfr-4.1.0 ###
@@ -272,11 +267,6 @@ rm -rf libcap-2.53
 ### psmisc-23.4 ###
 ###################
 
-cd /tools/include
-ln -s /tools/include/ncursesw/term.h
-ln -s /tools/include/ncursesw/curses.h
-
-cd $LFS/sources
 tar xf psmisc-23.4.tar.xz
 cd psmisc-23.4
 
@@ -319,7 +309,6 @@ rm -rf flex-2.6.4
 ### bc-5.0.0 ###
 ################
 
-cd $LFS/sources
 tar xf bc-5.0.0.tar.xz
 cd bc-5.0.0
 
@@ -503,7 +492,7 @@ cd inetutils-2.1
             --disable-servers
 make
 make check
-make DESTDIR=/tools install
+make install
 mv -v /tools/{,s}sbin/ifconfig
 
 cd ..
@@ -1183,11 +1172,6 @@ rm -rf fakeroot-1.26
 ################$$##
 ### pacman-5.0.2 ###
 ####################
-
-ln -vs /tools/lib/libacl.{so,la} /usr/lib/
-ln -vs /tools/lib/libexpat.{so,la} /usr/lib/
-ln -vs /tools/lib/libxml2.{so,la} /usr/lib/
-ln -vs /tools/lib/libnghttp2.{so,la} /usr/lib/
 
 # 6.0
 # meson build
