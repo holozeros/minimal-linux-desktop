@@ -973,7 +973,6 @@ As root user.
 # mount /dev/<For new creation root file system partition> $LFS
 # cd $LFS
 # rm -rf tools && mkdir tools && cd tools
-# chown -v lfs $LFS/tools
 # tar -xpf <Path>/tools11-base.tar.xz
 ```
 
