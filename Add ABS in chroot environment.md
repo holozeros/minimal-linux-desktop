@@ -30,7 +30,7 @@ umount -lR /mnt/lfs/*
 ## Settings the filesystem
 ```
 ln -sv /usr/bin /bin
-ln -sv /tools/bin/{bash,cat,echo,env,pwd,stty,uname} /usr/bin
+ln -sv /tools/bin/{bash,cat,echo,env,pwd,stty,uname,nproc} /usr/bin
 ln -sv /tools/bin/bash /usr/bin/sh
 ln -sv /tools/bin/perl /usr/bin
 ln -sv /tools/lib/libgcc_s.so{,.1} /usr/lib
