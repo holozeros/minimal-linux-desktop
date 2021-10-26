@@ -158,6 +158,7 @@ The following downloads refer to BeyondLinux® FromScratch (System V Edition) ve
 
     wget https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
     wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.26.orig.tar.gz
+    wget https://distfiles.dereferenced.org/pkgconf/pkgconf-1.8.0.tar.xz
     wget https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
     wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.2.29.tar.bz2
     wget https://www.gnupg.org/ftp/gcrypt/gnutls/v3.7/gnutls-3.7.2.tar.xz
@@ -191,6 +192,7 @@ Please verify md5sum arbitrarily.
 
     cat >> $LFS/sources/md5sums << "EOF" 
     f36f5e7e95a89436febe1bcca874fc33  pacman-5.0.2.tar.gz
+    823212dc241793df8ff1d097769a3473  pkgconf-1.8.0.tar.xz
     e0356f5ae5623f227a3f69b5e8848ec6  make-ca-1.7.tar.xz
     cb1c68f2597f0a064232a841050eb6f2  fakeroot_1.26.orig.tar.gz
     5db3334b528cf756b1e583db01319a24  gnupg-2.2.29.tar.bz2
