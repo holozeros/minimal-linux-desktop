@@ -1254,8 +1254,6 @@ chmod +x build-ABS.sh
 ```
 ## settings
 ```
-ln -s /tools/usr/bin/gpg-agent /usr/bin/
-
 pacman-key --init
 pacman-key --populate archlinux
 ```
