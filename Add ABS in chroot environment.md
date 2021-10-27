@@ -133,8 +133,7 @@ cd gmp-6.2.1
 
 ./configure --prefix=/tools    \
             --enable-cxx       \
-            --disable-static   \
-            --docdir=/share/doc/gmp-6.2.1
+            --disable-static
 make
 make check 2>&1 | tee gmp-check-log
 awk '/# PASS:/{total+=$3} ; END{print total}' gmp-check-log
@@ -155,8 +154,7 @@ cd mpfr-4.1.0
 
 ./configure --prefix=/tools        \
             --disable-static       \
-            --enable-thread-safe   \
-            --docdir=/share/doc/mpfr-4.1.0
+            --enable-thread-safe
 make
 make check
 make install
@@ -172,8 +170,7 @@ tar xf mpc-1.2.1.tar.gz
 cd mpc-1.2.1
 
 ./configure --prefix=/tools    \
-            --disable-static   \
-            --docdir=/share/doc/mpc-1.2.1
+            --disable-static
 make
 make check
 make install
@@ -222,8 +219,7 @@ cd attr-2.5.1
 
 ./configure --prefix=/tools   \
             --disable-static  \
-            --sysconfdir=/etc \
-            --docdir=/share/doc/attr-2.5.1
+            --sysconfdir=/tools/etc 
 make
 make check
 make install
@@ -239,8 +235,7 @@ tar xf acl-2.3.1.tar.xz
 cd acl-2.3.1
 
 ./configure --prefix=/tools       \
-            --disable-static      \
-            --docdir=/share/doc/acl-2.3.1
+            --disable-static
 make
 make install
 
@@ -331,8 +326,7 @@ sed -i '/MV.*old/d' Makefile.in
 sed -i '/{OLDSUFF}/c:' support/shlib-install
 ./configure --prefix=/tools    \
             --disable-static   \
-            --with-curses      \
-            --docdir=/share/doc/readline-8.1
+            --with-curses
 make SHLIB_LIBS="-lncursesw"
 make SHLIB_LIBS="-lncursesw" install
 ldconfig
@@ -349,8 +343,7 @@ cd nano-5.8
 
 ./configure --prefix=/tools           \
             --sysconfdir=/etc         \
-            --enable-utf8             \
-            --docdir=/share/doc/nano-5.8
+            --enable-utf8
 make
 make install
 
@@ -449,7 +442,7 @@ rm -rf gdbm-1.20
 tar xf gperf-3.1.tar.gz
 cd gperf-3.1
 
-./configure --prefix=/tools --docdir=/share/doc/gperf-3.1
+./configure --prefix=/tools
 make
 make install
 
@@ -463,9 +456,7 @@ rm -rf gperf-3.1
 tar xf expat-2.4.1.tar.xz
 cd expat-2.4.1
 
-./configure --prefix=/tools    \
-            --disable-static \
-            --docdir=/share/doc/expat-2.4.1
+./configure --prefix=/tools --disable-static
 make
 make check
 make install
@@ -498,8 +489,8 @@ mv -v /tools/{,s}sbin/ifconfig
 cd ..
 rm -rf inetutils-2.1
 
-mv /tools/etc/services /etc/
-mv /tools/etc/protocols /etc/
+ln -s /tools/etc/services /etc/
+ln -s /tools/etc/protocols /etc/
 ping -c 3 google.com
 
 ################
@@ -560,14 +551,14 @@ rm -rf libffi-3.4.2
 tar xf openssl-1.1.1l.tar.gz
 cd openssl-1.1.1l
 
-./config --prefix=/tools             \
-         --openssldir=/etc/ssl       \
-         --libdir=lib                \
-         shared                      \
+./config --prefix=/tools                   \
+         --openssldir=/tools/etc/ssl       \
+         --libdir=lib                      \
+         shared                            \
          zlib-dynamic
 make
 make test
-sed -i '/INSTALL_LIBS/s/libcrypto.a lmv /tools/etc/protocols /etc/ibssl.a//' Makefile
+sed -i '/INSTALL_LIBS/s/libcrypto.a lmv /tools/etc/protocols /tools/etc/ibssl.a//' Makefile
 make MANSUFFIX=ssl install
 mv -v /tools/share/doc/openssl /tools/share/doc/openssl-1.1.1l
 
@@ -789,7 +780,7 @@ rm -rf meson-0.59.1
 tar xf libtasn1-4.17.0.tar.gz
 cd libtasn1-4.17.0
 
-./configure --prefix=/tools --disable-static &&
+./configure --prefix=/tools --disable-static
 make
 make check
 make install
@@ -822,7 +813,7 @@ cd libxml2-2.9.12
 ./configure --prefix=/tools    \
             --disable-static   \
             --with-history     \
-            --with-python=/tools/bin/python3 &&
+            --with-python=/tools/bin/python3
 make
 make install
 
@@ -839,7 +830,7 @@ cd nghttp2-1.44.0
 ./configure --prefix=/tools   \
             --disable-static  \
             --enable-lib-only \
-            --docdir=/share/doc/nghttp2-1.44.0 &&
+            --docdir=/share/doc/nghttp2-1.44.0
 make
 make install
 cd ..
@@ -852,12 +843,12 @@ rm -rf nghttp2-1.44.0
 tar xf make-ca-1.7.tar.xz
 cd make-ca-1.7
 
-make install &&
+make DESTDIR=/rools install
 install -vdm755 /etc/ssl/local
 #/tools/sbin/make-ca -g
 
-mv -v /usr/sbin/make-ca /tools/sbin
-mv -v /usr/libexec/make-ca /tools/libexec/
+mv -v /tools/usr/sbin/make-ca /tools/sbin
+mv -v /tools/usr/libexec/make-ca /tools/libexec/
 
 cd ..
 rm -rf make-ca-1.7
@@ -898,7 +889,7 @@ ln -s /tools/bin/openssl
 ln -s /tools/bin/md5sum
 ln -s /tools/bin/trust
 cd /sources
-/tools/sbin/make-ca -g
+make-ca -g
 
 ###################
 ### Wget-1.21.1 ###
@@ -963,10 +954,8 @@ sed -i '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake &&
 
 ./bootstrap --prefix=/tools      \
             --system-libs        \
-            --mandir=/share/man  \
             --no-system-jsoncpp  \
-            --no-system-librhash \
-            --docdir=/share/doc/cmake-3.21.2 &&
+            --no-system-librhash
 make
 make install
 
@@ -1101,8 +1090,7 @@ tar xf libunistring-0.9.10.tar.xz
 cd libunistring-0.9.10
 
 ./configure --prefix=/tools  \
-            --disable-static \
-            --docdir=/share/doc/libunistring-0.9.10
+            --disable-static
 make
 make check
 make install
@@ -1118,12 +1106,11 @@ tar xf gnutls-3.7.2.tar.xz
 cd gnutls-3.7.2
 
 ./configure --prefix=/tools                  \
-            --docdir=/share/doc/gnutls-3.7.2 \
             --disable-guile \
             --disable-rpath \
             --with-default-trust-store-pkcs11="pkcs11:"
 make
-make check
+# make check
 make install
 
 cd ..
@@ -1141,8 +1128,7 @@ sed -e '/noinst_SCRIPTS = gpg-zip/c sbin_SCRIPTS += gpg-zip' \
 
 ./configure --prefix=/tools          \
             --localstatedir=/var     \
-            --sysconfdir=/etc        \
-            --docdir=/share/doc/gnupg-2.2.29 &&
+            --sysconfdir=/etc
 make
 make check
 make install
@@ -1163,8 +1149,8 @@ cd fakeroot-1.26
     --with-ipc=sysv
 make
 make install
-install -dm0755 /etc/ld.so.conf.d/
-echo '/tools/lib/libfakeroot' > /etc/ld.so.conf.d/fakeroot.conf
+install -dm0755 /tools/etc/ld.so.conf.d/
+echo '/tools/lib/libfakeroot' > /tools/etc/ld.so.conf.d/fakeroot.conf
 
 cd ..
 rm -rf fakeroot-1.26
@@ -1186,8 +1172,8 @@ cd pacman-5.0.2
 ./configure --prefix=/tools   \
             --disable-doc     \
             --disable-shared  \
-            --sysconfdir=/etc \
-            --localstatedir=/var
+            --sysconfdir=/tools/etc \
+            --localstatedir=/tools/var
 make
 make install
 
