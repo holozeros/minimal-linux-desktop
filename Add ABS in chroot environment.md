@@ -1051,6 +1051,26 @@ make install
 cd ..
 rm -rf libgcrypt-1.9.4
 
+#################
+### libxcrypt ###
+#################
+
+tar xf libxcrypt-4.4.26.tar.xz
+cd libxcrypt-4.4.26
+
+./configure \
+  --prefix=/tools \
+  --disable-static \
+  --enable-hashes=strong,glibc \
+  --enable-obsolete-api=no \
+  --disable-failure-tokens
+make
+make check
+make install  
+
+cd ..
+rm -rf libxcrypt-4.4.26
+
 ######################
 ### pinentry-1.2.0 ###
 ######################
