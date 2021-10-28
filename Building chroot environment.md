@@ -185,6 +185,7 @@ The following downloads refer to BeyondLinux® FromScratch (System V Edition) ve
     wget https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
     wget https://curl.se/download/curl-7.78.0.tar.xz
     wget https://github.com/nghttp2/nghttp2/releases/download/v1.44.0/nghttp2-1.44.0.tar.xz
+    wget https://github.com/besser82/libxcrypt/releases/download/v4.4.26/libxcrypt-4.4.26.tar.xz
 
 This system uses ABS to build custom packages and installs using pacman, 
 so it doesn't require an archlinux repository, but it also allows you to build an archlinux distribution using only pacman.
@@ -220,6 +221,7 @@ Please verify md5sum arbitrarily.
     b939ee54eabc6b9b0a8d5c03ace879c9  wget-1.21.1.tar.gz
     419c2461366cf404160a820f7a902b7e  curl-7.78.0.tar.xz
     d9702786d89ec8053a96ab4768a172e4  nghttp2-1.44.0.tar.xz
+    34954869627f62f9992808b6cff0d0a9  libxcrypt--4.4.26.tar.xz
     EOF
 
     pushd $LFS/sources
