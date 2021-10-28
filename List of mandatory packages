@@ -188,6 +188,7 @@ libXaw              https://www.x.org/pub/individual/lib/libXaw-1.0.14.tar.bz2
 libxcb              https://xorg.freedesktop.org/archive/individual/lib/libxcb-1.14.tar.xz
 libXcomposite       https://www.x.org/pub/individual/lib/libXcomposite-0.4.5.tar.bz2
                     md5sum 3fa0841ea89024719b20cd702a9b54e0
+libxcrypt           https://github.com/besser82/libxcrypt/releases/download/v4.4.26/libxcrypt-4.4.26.tar.xz
 libXcursor          https://www.x.org/pub/individual/lib/libXcursor-1.2.0.tar.bz2
                     md5sum 9b9be0e289130fb820aedf67705fc549
 libXdamage          https://www.x.org/pub/individual/lib/libXdamage-1.1.5.tar.bz2
