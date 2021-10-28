@@ -552,7 +552,7 @@ tar xf openssl-1.1.1l.tar.gz
 cd openssl-1.1.1l
 
 ./config --prefix=/tools                   \
-         --openssldir=/tools/etc/ssl       \
+         --openssldir=/etc/ssl             \
          --libdir=lib                      \
          shared                            \
          zlib-dynamic
