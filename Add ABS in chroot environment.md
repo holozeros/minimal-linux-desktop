@@ -843,7 +843,7 @@ rm -rf nghttp2-1.44.0
 tar xf make-ca-1.7.tar.xz
 cd make-ca-1.7
 
-make DESTDIR=/rools install
+make DESTDIR=/tools install
 install -vdm755 /etc/ssl/local
 #/tools/sbin/make-ca -g
 
