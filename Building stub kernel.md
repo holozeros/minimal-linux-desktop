@@ -1,5 +1,5 @@
 # Stub kernel
-Stub kernels boot with UEFI should be built in a host environment with a complete build environment. Since UEFI has different specifications depending on the motherboard, kernels built in the minimum Chroot environment may not boot well. 
+Stub kernels boot with UEFI should be built in a host environment with a complete build environment. 
 ```
 su - lfs
 
