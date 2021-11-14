@@ -3,7 +3,7 @@
  
 As root user on host
 
-    export $LFS
+    export /mnt/lfs
     mount /dev/<partition name of the chroot environment> $LFS
     mount -v --bind /dev $LFS/dev
     mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
@@ -16,7 +16,7 @@ As root user on host
     chroot "$LFS" /tools/bin/env -i \
         HOME=/root                  \
         TERM="$TERM"                \
-        PS1='\u:\w\$ '              \
+        PS1=(chroot)'\u:\w\$ '              \
         PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
         /tools/bin/bash --login +h
     umount -lR /mnt/lfs/*
