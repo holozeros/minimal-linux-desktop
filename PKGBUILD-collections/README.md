@@ -26,7 +26,7 @@ Chroot into the $LFS
         /tools/bin/bash --login +h
     umount -lR /mnt/lfs/*
 
-As local user into chroot environment
+Change to a local user(e.g lfs)
 
       su - lfs
     
