@@ -3,8 +3,8 @@
  
 As root user on host
 
-    export /mnt/lfs
-    mount /dev/<partition name of the chroot environment> $LFS
+    export LFS=/mnt/lfs
+#    mount /dev/<partition name of the chroot environment> $LFS
     mount -v --bind /dev $LFS/dev
     mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
     mount -vt proc proc $LFS/proc
