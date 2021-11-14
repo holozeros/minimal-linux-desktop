@@ -16,7 +16,7 @@ As root user on host
     chroot "$LFS" /tools/bin/env -i \
         HOME=/root                  \
         TERM="$TERM"                \
-        PS1=(chroot)'\u:\w\$ '              \
+        PS1='(chroot)\u:\w\$ '              \
         PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
         /tools/bin/bash --login +h
     umount -lR /mnt/lfs/*
