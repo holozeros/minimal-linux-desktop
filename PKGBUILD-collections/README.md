@@ -8,7 +8,7 @@ As root user on host
 
     mount /dev/<partition name of the chroot environment> $LFS
 
-Does chroot to the $LFS
+Chroot into the $LFS
 
     mount -v --bind /dev $LFS/dev
     mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
