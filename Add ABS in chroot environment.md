@@ -1247,6 +1247,150 @@ make install
 
 cd ..
 rm -rf rsync-3.2.3
+
+#################
+### e2fsprogs ###
+#################
+
+tar xf e2fsprogs-1.46.4.tar.gz
+cd e2fsprogs-1.46.4
+
+mkdir -v build
+cd       build
+
+../configure --prefix=/tools         \
+             --sysconfdir=/etc       \
+             --enable-elf-shlibs     \
+             --disable-libblkid      \
+             --disable-libuuid       \
+             --disable-uuidd         \
+             --disable-fsck
+make
+make check
+make install
+rm -fv /usr/lib/{libcom_err,libe2p,libext2fs,libss}.a
+gunzip -v /tools/share/info/libext2fs.info.gz
+install-info --dir-file=/tools/share/info/dir /tools/share/info/libext2fs.info
+
+cd ../..
+rm -rf e2fsprogs-1.46.4
+
+############
+### krb5 ###
+############
+
+tar xf krb5-1.19.2.tar.gz
+cd krb5-1.19.2
+cd src &&
+
+sed -i -e 's@\^u}@^u cols 300}@' tests/dejagnu/config/default.exp     &&
+sed -i -e '/eq 0/{N;s/12 //}'    plugins/kdb/db2/libdb2/test/run.test &&
+sed -i '/t_iprop.py/d'           tests/Makefile.in                    &&
+
+./configure --prefix=/tools          \
+            --sysconfdir=/etc        \
+            --localstatedir=/var/lib \
+            --runstatedir=/run       \
+            --with-system-et         \
+            --with-system-ss         \
+            --with-system-verto=no   \
+            --enable-dns-for-realm &&
+make
+make install
+
+cd ../..
+rm -rf krb5-1.19.2
+
+################
+### keyutils ###
+################
+
+tar xf keyutils-1.6.1.tar.bz2
+cd keyutils-1.6.1
+sed -i 's:$(LIBDIR)/$(PKGCONFIG_DIR):/tools/lib/pkgconfig:' Makefile &&
+make
+make NO_ARLIB=1 LIBDIR=/tools/lib BINDIR=/toolsr/bin SBINDIR=/tools/sbin install
+
+cd ..
+rm -rf keyutils-1.6.1
+
+###################
+### berkeley-db ###
+###################
+ 
+tar xf db-5.3.28.tar.gz
+cd db-5.3.28
+
+sed -i 's/\(__atomic_compare_exchange\)/\1_db/' src/dbinc/atomic.h
+cd build_unix                        &&
+../dist/configure --prefix=/tools    \
+                  --enable-compat185 \
+                  --enable-dbm       \
+                  --disable-static   \
+                  --enable-cxx       &&
+make
+
+make docdir=/tools/share/doc/db-5.3.28 install &&
+chown -v -R root:root                          \
+      /tools/bin/db_*                          \
+      /tools/include/db{,_185,_cxx}.h          \
+      /tools/lib/libdb*.{so,la}                \
+      /tools/share/doc/db-5.3.28
+      
+cd ../..
+rm -rf db-5.3.28
+
+##################
+### cyrus-sasl ###
+##################
+
+tar xf cyrus-sasl-2.1.27.tar.gz
+cd cyrus-sasl-2.1.27
+
+patch -Np1 -i ../cyrus-sasl-2.1.27-doc_fixes-1.patch
+./configure --prefix=/tools      \
+            --sysconfdir=/etc    \
+            --enable-auth-sasldb \
+            --with-dbpath=/var/lib/sasl/sasldb2 \
+            --with-sphinx-build=no              \
+            --with-saslauthd=/var/run/saslauthd &&
+make -j1
+make install &&
+install -v -dm755                          /tools/share/doc/cyrus-sasl-2.1.27/html &&
+install -v -m644  saslauthd/LDAP_SASLAUTHD /tools/share/doc/cyrus-sasl-2.1.27      &&
+install -v -m644  doc/legacy/*.html        /tools/share/doc/cyrus-sasl-2.1.27/html &&
+install -v -dm700 /var/lib/sasl
+
+cd ..
+rm -rf cyrus-sasl-2.1.27
+
+################
+### openldap ###
+################
+
+tar xf openldap-2.5.7.tgz
+cd openldap-2.5.7
+
+patch -Np1 -i ../openldap-2.5.7-consolidated-1.patch &&
+autoconf &&
+
+./configure --prefix=/tools   \
+            --sysconfdir=/etc \
+            --disable-static  \
+            --enable-dynamic  \
+            --enable-versioning  \
+            --disable-debug   \
+            --disable-slapd &&
+
+make depend &&
+make
+make install
+
+cd ..
+rm -rf openldap-2.5.7
+
+
+
 #############################
 END
 ```
