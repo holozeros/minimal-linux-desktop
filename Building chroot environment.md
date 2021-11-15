@@ -186,6 +186,16 @@ The following downloads refer to BeyondLinux® FromScratch (System V Edition) ve
     wget https://curl.se/download/curl-7.78.0.tar.xz
     wget https://github.com/nghttp2/nghttp2/releases/download/v1.44.0/nghttp2-1.44.0.tar.xz
     wget https://github.com/besser82/libxcrypt/releases/download/v4.4.26/libxcrypt-4.4.26.tar.xz
+    wget https://anduin.linuxfromscratch.org/BLFS/bdb/db-5.3.28.tar.gz
+    wget https://github.com/cyrusimap/cyrus-sasl/releases/download/cyrus-sasl-2.1.27/cyrus-sasl-2.1.27.tar.gz
+    wget https://www.linuxfromscratch.org/patches/blfs/11.0/cyrus-sasl-2.1.27-doc_fixes-1.patch
+    wget https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.5.7.tgz
+    wget https://www.linuxfromscratch.org/patches/blfs/11.0/openldap-2.5.7-consolidated-1.patch
+    wget https://people.redhat.com/~dhowells/keyutils/keyutils-1.6.1.tar.bz2
+    wget https://kerberos.org/dist/krb5/1.19/krb5-1.19.2.tar.gz
+    wget https://people.redhat.com/sgrubb/audit/audit-3.0.6.tar.gz
+    wget https://www.kernel.org/pub/software/scm/git/git-2.33.0.tar.xz
+    wget https://doxygen.nl/files/doxygen-1.9.2.src.tar.gz
 
 This system uses ABS to build custom packages and installs using pacman, 
 so it doesn't require an archlinux repository, but it also allows you to build an archlinux distribution using only pacman.
