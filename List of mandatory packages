@@ -24,6 +24,7 @@ clang               https://github.com/llvm/llvm-project/releases/download/llvmo
 cmake               https://cmake.org/files/v3.21/cmake-3.21.2.tar.gz
 coreutils           https://ftp.gnu.org/gnu/coreutils/coreutils-8.32.tar.xz
                     https://www.linuxfromscratch.org/patches/lfs/11.0/coreutils-8.32-i18n-1.patch
+cpio                https://ftp.gnu.org/gnu/cpio/cpio-2.13.tar.gz
 cracklib
 curl                https://curl.se/download/curl-7.78.0.tar.xz
 db
@@ -107,7 +108,8 @@ gzip                https://ftp.gnu.org/gnu/gzip/gzip-1.10.tar.xz
 iana-etc            https://github.com/Mic92/iana-etc/releases/download/20210611/iana-etc-20210611.tar.gz
 icu                 https://github.com/unicode-org/icu/releases/download/release-69-1/icu4c-69_1-src.tgz
 iceauth             https://www.x.org/pub/individual/app/iceauth-1.0.8.tar.bz2
-                    md5sum 3b9b79fa0f9928161f4bad94273de7ae  
+                    md5sum 3b9b79fa0f9928161f4bad94273de7ae
+imagemagick         https://download.imagemagick.org/ImageMagick/download/releases/ImageMagick-7.1.0-14.tar.xz
 inetutils           https://ftp.gnu.org/gnu/inetutils/inetutils-2.1.tar.xz
 intltool            https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz
 iproute2            https://www.kernel.org/pub/linux/utils/net/iproute2/iproute2-5.13.0.tar.xz
@@ -275,6 +277,7 @@ opus                https://archive.mozilla.org/pub/opus/opus-1.3.1.tar.gz
 p11-kit             https://github.com/p11-glue/p11-kit/releases/download/0.24.0/p11-kit-0.24.0.tar.xz
 pacman              https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
 pacman-mirrorlist
+pahole              https://git.kernel.org/pub/scm/devel/pahole/pahole.git/snapshot/pahole-1.22.tar.gz
 pam
 pambase
 patch               https://ftp.gnu.org/gnu/patch/patch-2.7.6.tar.xz
@@ -296,6 +299,23 @@ procps-ng           https://sourceforge.net/projects/procps-ng/files/Production/
 psmisc              https://sourceforge.net/projects/psmisc/files/psmisc/psmisc-23.4.tar.xz
 Python              https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tar.xz
                     https://www.python.org/ftp/python/doc/3.9.6/python-3.9.6-docs-html.tar.bz2
+python-babel
+python-docutils
+python-imagesize
+python-jinja
+python-pygments
+python-requests
+python-setuptools
+python-snowballstemmer
+python-sphinx-alabaster-theme
+python-sphinxcontrib-applehelp
+python-sphinxcontrib-devhelp
+python-sphinxcontrib-htmlhelp
+python-sphinxcontrib-jsmath
+python-sphinxcontrib-qthelp
+python-sphinxcontrib-serializinghtml
+python-sphinx
+python-sphinx_rtd_theme
 readline            https://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz
 rsync               https://www.samba.org/ftp/rsync/src/rsync-3.2.3.tar.gz
 rustc               https://static.rust-lang.org/dist/rustc-1.52.0-src.tar.gz
@@ -384,6 +404,7 @@ xlsclients          https://www.x.org/pub/individual/app/xlsclients-1.1.4.tar.bz
 xmessage            https://www.x.org/pub/individual/app/xmessage-1.0.5.tar.bz2
                     md5sum e50ffae17eeb3943079620cb78f5ce0b
 XML-Parser          https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz
+xmlto               https://releases.pagure.org/xmlto/xmlto-0.0.28.tar.bz2
 xmodmap             https://www.x.org/pub/individual/app/xmodmap-1.0.10.tar.bz2
                     md5sum 51f1d30a525e9903280ffeea2744b1f6
 xorgproto           https://xorg.freedesktop.org/archive/individual/proto/xorgproto-2021.4.tar.bz2
