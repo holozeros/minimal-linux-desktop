@@ -1,5 +1,3 @@
-# Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
-
 pkgbase=linux
 pkgver=5.15.2
 pkgrel=1
