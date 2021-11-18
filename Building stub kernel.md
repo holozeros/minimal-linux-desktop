@@ -5,20 +5,25 @@ su - lfs
 
 mkdir work
 cd work
-tar xf /mnt/lfs/sources/linux-5.13.12.tar.xz
-cd linux-5.13.12
+tar xf /mnt/lfs/sources/linux/5.15.2/linux-5.15.2.tar.xz
+cd linux-5.15.2
 
 make defconfig
 make menuconfig
 ```
-As example of machine
+Hardware  (e.g :
 ```
-CPU is Ryzen7
-Graphics is NVIDIA card
-Storage is SSD with M.2 connection
+Motherboad: ASROCK B450 Pro4
+CPU: Ryzen7
+GPU: ASUS GeForce GT 710 (driver "https://jp.download.nvidia.com/XFree86/Linux-x86_64/470.86/NVIDIA-Linux-x86_64-470.86.run")
+Storage type: NVME (sumson EVO-970 SSD with M.2 connection)
 Audio device: [AMD] Family 17h (Models 00h-0fh) HD Audio Controller
 ```
-Kernel config for SystemV-init ( not systemd ). Check if it is set as follows, and if not, correct it.
+```
+make menuconfig defconfig
+```
+Kernel config for SysV-init. Check if it is set as follows, and if not, correct it.
+
 ```
 General setup  --->
     [*] System V IPC
