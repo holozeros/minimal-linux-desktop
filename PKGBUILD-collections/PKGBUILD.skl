@@ -7,7 +7,7 @@ url="http://www."
 license=('')
 #backup=()
 source=()
-#install=glibc.install
+#install=
 
 #prepare() {
 #}
