@@ -39,51 +39,37 @@ Processor type and features  --->
 
    Processor family (Opteron/Athlon64/Hammer/K8)  --->
      (*) Opteron/Athlon64/Hammer/K8
-     ( ) Intel P4 / older Netburst based Xeon
-     ( ) Core 2/newer Xeon
-     ( ) Intel Atom
-     ( ) Generic-x86-64
      
    [*] Machine Check / overheating reporting 
-   [ ]   Intel MCE Features
    [*]   AMD MCE Features
    
-   [ ]   AMD Secure Memory Encryption (SME) support
+   [ ] AMD Secure Memory Encryption (SME) support
    
-   [*]   MTRR (Memory Type Range Register) support
-   [*]   MTRR cleanup support 
-   (0)     MTRR cleanup enable value (0-1) 
-   (1)     MTRR cleanup spare reg num (0-7)
+   [*] MTRR (Memory Type Range Register) support
+   [*] MTRR cleanup support 
+   (0)   MTRR cleanup enable value (0-1) 
+   (1)   MTRR cleanup spare reg num (0-7)
    
    [*] EFI runtime service support 
    [*]   EFI stub support
    [*]     EFI mixed-mode support
 
-Bus options (PCI etc.)  --->
-   [*] Mark VGA/VBE/EFI FB as generic system framebuffer
-
 Binary Emulations  --->
    [*] IA32 Emulation
-
-Firmware Drivers  --->
-    EFI (Extensible Firmware Interface) Support  --->
-        <*> EFI Variable Support via sysfs
 
 [*] Enable loadable module support --->
 
 [*] Enable the block layer --->
     Partition Types --->
       [*] Advanced partition selection
-      [*] EFI GUID Partition support
-
-  [*] Networking support --->
+        [*] EFI GUID Partition support
 
 Device Drivers --->
-    
+
     Generic Driver Options --->
       [*] Maintain a devtmpfs filesystem to mount at /dev
-      [ ]   Automount devtmpfs at /dev, after the kernel mounted the rootfs
-
+      [*]   Automount devtmpfs at /dev, after the kernel mounted the rootfs
+      
     NVME Support --->
         # for M.2 SSD
       <*> NVM Express block device 
@@ -91,15 +77,6 @@ Device Drivers --->
       [ ] NVMe hardware monitoring
       < > NVM Express over Fabrics FC host driver
       < > NVM Express over Fabrics TCP host driver           
-
-    SCSI device support  --->
-      <*> SCSI disk support
-
-    Network device support --->
-      # e.g: Case in which connect to ISP use PPP without router. 
-      <*> PPP (point-to-point protocol) support
-      <*>   PPP support for async serial ports
-      <*>   PPP support for sync tty ports
 
     Input device support --->
      <*> Generic input layer (needed for keyboard, mouse, ...) 
@@ -112,7 +89,7 @@ Device Drivers --->
       [*] IPMI top-level message handler
 
     Graphics support --->
-      < > Direct Rendering Manager (XFree86 4.1.0 and higher DRI support)
+      <*> Direct Rendering Manager (XFree86 4.1.0 and higher DRI support)
       [*] VGA Arbitration
       -*- /dev/agpgart (AGP Support) --->
       < >   nVidia Framebuffer Support
@@ -123,8 +100,7 @@ Device Drivers --->
              .
     Frame buffer Devices --->
       <*> Support for frame buffer devices --->
-          [ ] EFI-based Framebuffer Support
-          [*] Simple framebuffer support
+          [*] EFI-based Framebuffer Support
     Console display driver support --->
       <*>  Framebuffer Console Support
 
