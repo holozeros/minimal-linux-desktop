@@ -7,9 +7,6 @@ mkdir work
 cd work
 tar xf /mnt/lfs/sources/linux/5.15.2/linux-5.15.2.tar.xz
 cd linux-5.15.2
-
-make defconfig
-make menuconfig
 ```
 Hardware  (e.g :
 ```
@@ -20,7 +17,9 @@ Storage type: NVME (sumson EVO-970 SSD with M.2 connection)
 Audio device: [AMD] Family 17h (Models 00h-0fh) HD Audio Controller
 ```
 ```
-make menuconfig defconfig
+make defconfig
+make menuconfig
+
 ```
 Kernel config for SysV-init. Check if it is set as follows, and if not, correct it.
 
