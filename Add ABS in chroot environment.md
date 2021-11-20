@@ -7,7 +7,7 @@ Make sure the chroot environment partition is mounted on /mnt/lfs.
 
     lsblk
 
-If you have already build the basic chroot environment and it's partition mount to /mnt/lfs, isuue as follows:
+If you already built the basic chroot environment and it's partition mount to /mnt/lfs, isuue as follows:
 ```
 export LFS=/mnt/lfs
 mount -v --bind /dev $LFS/dev
