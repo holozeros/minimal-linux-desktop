@@ -1,5 +1,4 @@
 # Stub kernel
-Stub kernels boot with UEFI should be built in a host environment with a complete build environment. 
 ```
 su - lfs
 
