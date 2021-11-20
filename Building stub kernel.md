@@ -36,7 +36,6 @@ cd /usr/src/linux-5.15.2
 Configuring kernel settings
 ```
 make defconfig
-
 ```
 Kernel configration for SysV-init compatible.
 My Hardwares (e.g
