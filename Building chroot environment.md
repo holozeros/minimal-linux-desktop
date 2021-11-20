@@ -22,7 +22,7 @@ File system format is as follows.
 
     # mkfs.ext4 /dev/<new partition for building chroot environment>
 
-Format of ETI System Partition is fat32.
+Format of EFI System Partition is fat32.
 If it doesn't exist, create a new one.
 
     # mkfs.vfat /dev/<EFI System Partition>
