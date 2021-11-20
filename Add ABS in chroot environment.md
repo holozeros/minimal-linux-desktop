@@ -3,7 +3,7 @@ On the terminal
 
     su - 
 
-Make sure the chroot environment partition is mounted on /mnt/lfs.
+Make sure that the chroot environment partition is mounted on /mnt/lfs.
 
     lsblk
 
