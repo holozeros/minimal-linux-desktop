@@ -6,8 +6,8 @@ arch=('x86_64')
 url="http://zlib.net"
 license=('custum')
 #backup=()
-source=(${pkgname}-${pkgver}.tar.xz)
-#install=glibc.install
+source=("${pkgname}-${pkgver}".tar.xz)
+#install=
 
 #prepare() {
 #}
