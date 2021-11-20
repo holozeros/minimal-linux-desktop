@@ -4,6 +4,25 @@ On the terminal of the host
 ```
 su -
 ```
+If you have already mounted the chroot environment partition to /mnt/lfs, as follows:
+```
+export LFS=/mnt/lfs
+mount -v --bind /dev $LFS/dev
+mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
+mount -vt proc proc $LFS/proc
+mount -vt sysfs sysfs $LFS/sys
+mount -vt tmpfs tmpfs $LFS/run
+if [ -h $LFS/dev/shm ]; then
+  mkdir -pv $LFS/$(readlink $LFS/dev/shm)
+fi
+chroot "$LFS" /tools/bin/env -i \
+    HOME=/root                  \
+    TERM="$TERM"                \
+    PS1='\u:\w\$ '              \
+    PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
+    /tools/bin/bash --login +h
+umount -lR /mnt/lfs/*
+```
 ```
 mkdir -p /lib/modules/5.15.2
 chown lfs /lib/modules/5.15.2
