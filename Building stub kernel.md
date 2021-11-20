@@ -4,7 +4,7 @@ On the terminal of the host
 ```
 su -
 ```
-If you have already build the chroot environment partition and it mount to /mnt/lfs, isuue as follows:
+If you have already build the chroot environment partition and it mount to /mnt/lfs, isuue:
 ```
 export LFS=/mnt/lfs
 mount -v --bind /dev $LFS/dev
