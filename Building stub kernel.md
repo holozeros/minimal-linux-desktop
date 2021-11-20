@@ -33,7 +33,7 @@ chown -R lfs linux-5.15.2
 su - lfs
 cd /usr/src/linux-5.15.2
 ```
-## Hardwares of my build system (e.g :
+My Hardwares (e.g :
 ```
 Motherboad: ASROCK B450 Pro4
 CPU: Ryzen7
