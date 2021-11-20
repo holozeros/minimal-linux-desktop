@@ -1,6 +1,6 @@
- 
-#    This is incomplete !!!  
-# makepkg is pssible, but glibc.install for this system is yet making.
+### This is incomplete !!!  
+### makepkg is pssible, but glibc.install for this system is yet making.
+### This system is modified non multi lib, x86_64 only.
 
 pkgname=glibc
 pkgver=2.34
