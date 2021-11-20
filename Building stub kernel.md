@@ -127,9 +127,7 @@ Device Drivers --->
 
    <*> Sound card support
        <*> Advanced Linux Sound Architecture --->
-          [*] Dynamic device file minor numbers
-          (32) Max number of sound cards
-          [*] PCI sound devices  --->
+         [*] PCI sound devices  --->
             <*> Intel/SiS/nVidia/AMD/ALi AC97 Controller  
 	    
    HD-Audio  --->
