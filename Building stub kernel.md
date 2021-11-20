@@ -33,7 +33,13 @@ chown -R lfs linux-5.15.2
 su - lfs
 cd /usr/src/linux-5.15.2
 ```
-My Hardwares (e.g :
+Configuring kernel settings
+```
+make defconfig
+
+```
+Kernel configration for SysV-init compatible.
+My Hardwares (e.g
 ```
 Motherboad: ASROCK B450 Pro4
 CPU: Ryzen7
@@ -42,11 +48,8 @@ Storage type: NVME (sumson EVO-970 SSD with M.2 connection)
 Audio device: [AMD] Family 17h (Models 00h-0fh) HD Audio Controller
 ```
 ```
-make defconfig
 make menuconfig
-
 ```
-Kernel configration for SysV-init compatible.
 ```
 General setup  --->
     [*] System V IPC
