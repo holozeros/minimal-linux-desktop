@@ -1,8 +1,16 @@
 # Stub kernel
+
+On the terminal of the host
+```
+su -
+```
+```
+mkdir -p /lib/modules/5.15.2
+chown lfs /lib/modules/5.15.2
+
 ```
 su - lfs
 
-mkdir -p /lib/modules/5.15.2
 cd /lib/modules/5.15.2
 tar xf /mnt/lfs/sources/linux/5.15.2/linux-5.15.2.tar.xz
 cd linux-5.15.2
@@ -65,7 +73,7 @@ Device Drivers --->
 		 <*>     Realtek 8169/8168/8101/8125 ethernet support
 
     Graphics support --->
-    <*> /dev/agpgart (AGP Support)  --->
+      <*> /dev/agpgart (AGP Support)  --->
       -*- VGA Arbitration
       (16)  Maximum number of GPUs
       [ ] Laptop Hybrid Graphics - GPU switching support
@@ -146,6 +154,7 @@ Keep defconfig, except the above.
 ## Install
 ```
 su -
+cd /lib/modules/5.15.2
 make modules_install
 
 # mount /dev/<EFI System Partition> /boot
