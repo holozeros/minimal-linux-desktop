@@ -184,4 +184,5 @@ ls /boot
 Back to the Host environment.
 ```
 exit
+chown -R root /lib/modules/5.15.2
 ```
