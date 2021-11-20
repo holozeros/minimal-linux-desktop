@@ -24,15 +24,14 @@ chroot "$LFS" /tools/bin/env -i \
 umount -lR /mnt/lfs/*
 ```
 ```
-mkdir -p /lib/modules/5.15.2
-chown lfs /lib/modules/5.15.2
+mkdir -p /lib/modules
+cd /lib/modules
+tar xf /mnt/lfs/sources/linux/5.15.2/linux-5.15.2.tar.xz 
+mv linux-5.15.2 5.15.2
+chown -R lfs 5.15.2
 
-```
 su - lfs
-
 cd /lib/modules/5.15.2
-tar xf /mnt/lfs/sources/linux/5.15.2/linux-5.15.2.tar.xz
-cd linux-5.15.2
 ```
 Hardwares of my build system (e.g :
 ```
@@ -47,7 +46,7 @@ make defconfig
 make menuconfig
 
 ```
-Kernel config for SysV-init.
+Kernel configration for SysV-init compatible.
 ```
 General setup  --->
     [*] System V IPC
