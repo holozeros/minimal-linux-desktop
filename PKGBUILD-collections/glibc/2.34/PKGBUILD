@@ -1,6 +1,6 @@
  
 #    This is incomplete !!!  
-# makepkg is pssible, but glibc.install for LFS11 is yet making.
+# makepkg is pssible, but glibc.install for this system is yet making.
 
 pkgname=glibc
 pkgver=2.34
