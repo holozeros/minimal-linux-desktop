@@ -31,7 +31,7 @@ Mount the new partition for building chroot environment to /mnt/lfs. for example
 
     mkdir -v /mnt/lfs
     
-    # below directive is example, you shuld cheng the propery partition name 
+    # below directive is example, you shuld change the propery partition name 
     mount -v /dev/sda2 $LFS
 
 ## Checking host system requirement
