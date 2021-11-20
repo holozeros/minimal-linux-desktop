@@ -2,12 +2,12 @@
 ```
 su - lfs
 
-mkdir work
-cd work
+mkdir -p /lib/modules/5.15.2
+cd /lib/modules/5.15.2
 tar xf /mnt/lfs/sources/linux/5.15.2/linux-5.15.2.tar.xz
 cd linux-5.15.2
 ```
-Hardware  (e.g :
+Hardwares of my build system (e.g :
 ```
 Motherboad: ASROCK B450 Pro4
 CPU: Ryzen7
