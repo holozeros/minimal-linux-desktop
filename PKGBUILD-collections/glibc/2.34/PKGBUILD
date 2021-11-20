@@ -1,5 +1,6 @@
  
-    This is incomplete !!! 
+#    This is incomplete !!!  
+# makepkg is pssible, but glibc.install for LFS11 is yet making.
 
 pkgname=glibc
 pkgver=2.34
@@ -14,7 +15,6 @@ source=(${pkgname}-${pkgver}.tar.xz
 	nsswitch.conf
         locale.gen.txt
         locale-gen
-#        lib32-glibc.conf
         sdt.h sdt-config.h
 	ld.so.conf)
 
