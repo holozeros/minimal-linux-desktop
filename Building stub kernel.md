@@ -37,7 +37,7 @@ Configuring kernel settings
 ```
 make defconfig
 ```
-Kernel configration for SysV-init compatible.
+Linux-5.15.2 kernel configration for SysV-init compatible.
 My Hardwares (e.g
 ```
 Motherboad: ASROCK B450 Pro4
