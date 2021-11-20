@@ -4,7 +4,7 @@ On the terminal of the host
 ```
 su -
 ```
-If you have already build the chroot environment partition and it mount to /mnt/lfs, isuue:
+If you have already build the chroot environment and its pertition mount to /mnt/lfs, isuue:
 ```
 export LFS=/mnt/lfs
 mount -v --bind /dev $LFS/dev
@@ -24,16 +24,16 @@ chroot "$LFS" /tools/bin/env -i \
 umount -lR /mnt/lfs/*
 ```
 ```
-mkdir -p /lib/modules
-cd /lib/modules
-tar xf /mnt/lfs/sources/linux/5.15.2/linux-5.15.2.tar.xz 
-mv linux-5.15.2 5.15.2
-chown -R lfs 5.15.2
+cd /sources
+wget https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.15.2.tar.xz
+cd /usr/src
+tar xf /sources/linux-5.15.2.tar.xz
+chown -R lfs linux-5.15.2
 
 su - lfs
-cd /lib/modules/5.15.2
+cd /usr/src/linux-5.15.2
 ```
-Hardwares of my build system (e.g :
+## Hardwares of my build system (e.g :
 ```
 Motherboad: ASROCK B450 Pro4
 CPU: Ryzen7
@@ -166,11 +166,11 @@ Pseudo Filesystems --->
 Keep defconfig, except the above.
 
 ## Make
-    make -j$(nproc)
+```
+make -j$(nproc)
+```
 ## Install
 ```
-su -
-cd /lib/modules/5.15.2
 make modules_install
 
 # mount /dev/<EFI System Partition> /boot
