@@ -178,5 +178,10 @@ make modules_install
 make install
 ```
 Make sure that names of installed the file.
-
-    ls /boot
+```
+ls /boot
+```    
+Back to the Host environment.
+```
+exit
+```
