@@ -21,21 +21,12 @@ make defconfig
 make menuconfig
 
 ```
-Kernel config for SysV-init. Check if it is set as follows, and if not, correct it.
-
+Kernel config for SysV-init.
 ```
 General setup  --->
     [*] System V IPC
-    [*] Control Group support
-    [ ] Enable deprecated sysfs features to support old userspace tools
-    [*] Configure standard kernel features (expert users)  --->
-	[*] Enable eventpoll support
-	[*] Enable signalfd() system call
-	[*] Enable timerfd() system call
 
 Processor type and features  --->
-   
-   [*] Symmetric multi-processing support
 
    Processor family (Opteron/Athlon64/Hammer/K8)  --->
      (*) Opteron/Athlon64/Hammer/K8
@@ -44,19 +35,7 @@ Processor type and features  --->
    [*]   AMD MCE Features
    
    [ ] AMD Secure Memory Encryption (SME) support
-   
-   [*] MTRR (Memory Type Range Register) support
-   [*] MTRR cleanup support 
-   (0)   MTRR cleanup enable value (0-1) 
-   (1)   MTRR cleanup spare reg num (0-7)
-   
-   [*] EFI runtime service support 
-   [*]   EFI stub support
-   [*]     EFI mixed-mode support
-
-Binary Emulations  --->
-   [*] IA32 Emulation
-
+      
 [*] Enable loadable module support --->
 
 [*] Enable the block layer --->
@@ -66,12 +45,7 @@ Binary Emulations  --->
 
 Device Drivers --->
 
-    Generic Driver Options --->
-      [*] Maintain a devtmpfs filesystem to mount at /dev
-      [*]   Automount devtmpfs at /dev, after the kernel mounted the rootfs
-      
     NVME Support --->
-        # for M.2 SSD
       <*> NVM Express block device 
       [*] NVMe multipath support
       [ ] NVMe hardware monitoring
@@ -84,49 +58,67 @@ Device Drivers --->
      [*]   Miscellaneous devices  ---> 
        <*>    User level driver support
 
-# for external nvidia card
-    Character devices --->
-      [*] IPMI top-level message handler
+    [*] Network device support  --->
+      [*]   Ethernet driver support  --->
+                 [*]   Realtek devices
+		 < >     RealTek RTL-8139 C+ PCI Fast Ethernet Adapter support
+		 < >     RealTek RTL-8129/8130/8139 PCI Fast Ethernet Adapter supp
+		 <*>     Realtek 8169/8168/8101/8125 ethernet support
 
     Graphics support --->
+    <*> /dev/agpgart (AGP Support)  --->
+      -*- VGA Arbitration
+      (16)  Maximum number of GPUs
+      [ ] Laptop Hybrid Graphics - GPU switching support
       <*> Direct Rendering Manager (XFree86 4.1.0 and higher DRI support)
       [*] VGA Arbitration
       -*- /dev/agpgart (AGP Support) --->
-      < >   nVidia Framebuffer Support
-      < >   nVidia Riva support
-      < > Nouveau (nVidia) cards
-             .
-             .
-             .
-    Frame buffer Devices --->
-      <*> Support for frame buffer devices --->
-          [*] EFI-based Framebuffer Support
-    Console display driver support --->
-      <*>  Framebuffer Console Support
+      < >    .
+      < >    .
+      < > Nouveau (nVidia) cards    <--- "< >" is uncheck !!!, becouse confrict NVIDIA 470.86 driver 
+      < >    .
+      < >    .
+      < >    .
+      Frame buffer Devices --->
+        <*> Support for frame buffer devices --->
+          --- Support for frame buffer devices
+	  [ ]   Enable firmware EDID
+	  [ ]   Framebuffer foreign endianness support  ----
+	  [*]   Enable Video Mode Handling Helpers
+	  [*]   Enable Tile Blitting Support
+	     *** Frame buffer hardware drivers ***
+	  [ ]          .
+          [ ]          .
+	  [*]   VESA VGA graphics support
+          [*]   EFI-based Framebuffer Support
+	  [ ]          .
+	  [ ]          .
 
-    <*> Sound card support
-      <*> Advanced Linux Sound Architecture --->
-            
-	  [*] Dynamic device file minor numbers
+     Console display driver support --->
+       (80) Initial number of console screen columns
+       (25) Initial number of console screen rows
+       -*- Framebuffer Console support
+       -*-   Map the console to the primary display device
+
+   <*> Sound card support
+       <*> Advanced Linux Sound Architecture --->
+          [*] Dynamic device file minor numbers
           (32) Max number of sound cards
-            
-	  [*] PCI sound devices  --->
-            #Select the driver for your audio controller.e,g:
-	    <*>   Intel/SiS/nVidia/AMD/ALi AC97 Controller  
+          [*] PCI sound devices  --->
+            <*> Intel/SiS/nVidia/AMD/ALi AC97 Controller  
 	    
-    HD-Audio  --->
-      <*> HD Audio PCI
-      [*] Build hwdep interface for HD-audio driver
-	  #Select a codec or enable all and let the generic parse choose the right one:
-      <*> Build HDMI/DisplayPort HD-audio codec support 
-      [*] Enable generic HD-audio codec parser
+   HD-Audio  --->
+     <*> HD Audio PCI
+     [*] Build hwdep interface for HD-audio driver
+     <*> Build HDMI/DisplayPort HD-audio codec support 
+     [*] Enable generic HD-audio codec parser
 
-    [*] USB support  --->
-      <*>     xHCI HCD (USB 3.0) support
-      <*>     EHCI HCD (USB 2.0) support
-      <*>     OHCI HCD (USB 1.1) support
-      <*>   USB Mass Storage support
-      <*>     USB Attached SCSI
+   [*] USB support  --->
+     <*>     xHCI HCD (USB 3.0) support
+     <*>     EHCI HCD (USB 2.0) support
+     <*>     OHCI HCD (USB 1.1) support
+     <*>     USB Mass Storage support
+     <*>     USB Attached SCSI
 
 File systems --->
     [*] Inotify support for userspace
@@ -157,8 +149,7 @@ Keep defconfig, except the above.
 su -
 make modules_install
 
-  # <EFI System Partition> chenge to real device name of your EFI system partition.
-mount /dev/<EFI System Partition> /boot
+# mount /dev/<EFI System Partition> /boot
 
 make install
 ```
