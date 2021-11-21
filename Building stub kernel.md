@@ -83,15 +83,17 @@ cd /usr/src/linux/5.15.4
 pacman -U linux-5.15.4-1.pkg.tar.zst
 ```
 ## If compiling manually 
-```
-cd /sources
-wget https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.15.4.tar.xz
-cd /usr/src
-tar xf /sources/linux-5.15.4.tar.xz
-chown -R lfs linux-5.15.4
+first, chroot into /mnt/lfs which mounted the chroot environment
 
+```
+mkdir -p /usr/src
+chown lfs /usr/src
 su - lfs
-cd /usr/src/linux-5.15.4
+mkdir -p /usr/src/linux/5.15.4
+cd /usr/src/linux/5.15.4
+wget https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.15.4.tar.xz
+tar xf linux-5.15.4.tar.xz
+cd /usr/src/linux/5.15.4/linux-5.15.4
 ```
 Configuring kernel settings
 ```
@@ -237,10 +239,14 @@ make -j$(nproc)
 ```
 ## Install
 ```
+exit
+cd /usr/src/linux/5.15.4/linux-5.15.4
 make modules_install
-
-# mount /dev/<EFI System Partition> /boot
-
+```
+```
+mount /dev/<EFI System Partition> /boot
+```
+```
 make install
 ```
 Make sure that names of installed the file.
@@ -250,5 +256,4 @@ ls /boot
 Back to the Host environment.
 ```
 exit
-chown -R root /lib/modules/5.15.4
 ```
