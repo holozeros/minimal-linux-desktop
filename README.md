@@ -16,7 +16,7 @@ Follow the LFS-11.0 book until just before Chapter5 "Compiling the Cross Toolcha
 Then follow this text for Chapter5 and beyond.
 Here you need experience reading the Linux From Scratch book from start to finish and completing the LFS build. 
 
-# 1.Building chroot environment
+# I.Building chroot environment
 
 ## 1.Building basic chroot environment.
 Building a chroot environment where /tools has the required commands to run chroot.
@@ -33,7 +33,7 @@ Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry 
 bootloader does mount the minimal linux desktop to root-filsesystem.
 ##### see: [Building stub kernel](Building%20stub%20kernel.md) 
 
-# 2.Building minimal linux desktop
+# II.Building minimal linux desktop
 
 ## List of mandatory packages in build order.
 ##### see: [List of packages](List%20of%20mandatory%20packages).
