@@ -82,7 +82,7 @@ cd /usr/src/linux/5.15.4
 ```
 pacman -U linux-5.15.4-1.pkg.tar.zst
 ```
-## When compiling manually 
+## If compiling manually 
 ```
 cd /sources
 wget https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.15.4.tar.xz
