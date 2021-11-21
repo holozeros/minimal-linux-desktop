@@ -66,19 +66,19 @@ umount -lR /mnt/lfs/*
 On the chroot environment
 ```
 su - lfs
-cd /sources/PKGBUILD/$pkgname/$pkgver
-makepkg --skipchecksums --skippgpcheck
+cd /usr/src/$pkgname/$pkgver/PKGBUILD
+makepkg
 ```
 ## 3.Installing custum packages with pacman
 Install packages with pacman into / of chroot environment.
 ```
-mv /sources/PKGBUILD/$pkgname/$pkgver/$pkgname-$pkgver.pkg.tar.zst /var/cache/pacman/pkg
+mv /usr/src/$pkgname/$pkgver/$pkgname-$pkgver.pkg.tar.zst /var/cache/pacman/pkg
 cd /var/cache/pacman/pkg
 pacman -U "$pkgname-$pkgver.pkg.tar.zst"
 ```
 If quit for error which conflict existing package under the / directory(not under /tools),  issue:
 ```
-pacman -U  --force $pkgname-$pkgver.pkg.tar.zst
+pacman -U --force $pkgname-$pkgver.pkg.tar.zst
 ```
 ##### The --force directive is obsolete in later versions of Pacman 5.0. 
 		
