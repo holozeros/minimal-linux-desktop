@@ -31,11 +31,8 @@ Change to a local user(e.g lfs)
 
       su - lfs
     
-##### Making skelton of PKGBUILD (e.g
-```
-[PKGBUILD.skl](PKGBUILD.skl))
+##### Making skelton of PKGBUILD (e.g  [PKGBUILD.skl](PKGBUILD.skl))
 
-```
 
 ## Tutorial editting PKGBUILD
 Almost source tar ball name format have been looks like
