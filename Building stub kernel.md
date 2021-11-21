@@ -48,7 +48,7 @@ md5sums=('7ab1a51d6c48fc062e9e33c143dfa825')
 prepare() {
 cd "${pkgname}-${pkgver}"
 make defconfig
-cp /usr/src/linux/config-"${pkgver}" .config
+cp /usr/src/linux/5.15.4/config-"${pkgver}" .config
 make menuconfig
 }
 
@@ -72,7 +72,7 @@ rm -rf ../../src
 }
 EOF
 ```
-configure sample:   [config-5.15.4](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/linux/5.15.4/.config)
+configure sample:   [config-5.15.4](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/linux/5.15.4/.config) (copy to /usr/src/linux/5.15.4)
 
 ```
 makepkg
