@@ -3,7 +3,7 @@ pkgver="5.15.4"
 pkgrel="1"
 pkgdesc=""
 arch=('x86_64')
-url="http://www."
+url="https://www.kernel.org"
 license=('')
 #backup=()
 source=("https://www.kernel.org/pub/linux/kernel/v5.x/${pkgname}-${pkgver}".tar.xz)
@@ -19,7 +19,7 @@ make menuconfig
 
 build() {
 cd "${pkgname}-${pkgver}"
-make -j16
+make
 }
 
 package() {
