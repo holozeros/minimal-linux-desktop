@@ -1,0 +1,37 @@
+pkgname="linux"
+pkgver="5.15.4"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="http://www."
+license=('')
+#backup=()
+source=("https://www.kernel.org/pub/linux/kernel/v5.x/${pkgname}-${pkgver}".tar.xz)
+md5sums=('7ab1a51d6c48fc062e9e33c143dfa825')
+#install="${pkgname}-${pkgver}".install
+
+prepare() {
+cd "${pkgname}-${pkgver}"
+make defconfig
+cp /usr/src/linux/config-"${pkgver}" .config
+make menuconfig
+}
+
+build() {
+cd "${pkgname}-${pkgver}"
+make -j16
+}
+
+package() {
+cd "${pkgname}-${pkgver}"
+make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 modules_install
+
+cd "${pkgdir}"
+mkdir -pv boot
+cp -v "${srcdir}/${pkgname}-${pkgver}"/arch/x86/boot/bzImage boot/vmlinuz-5.15.4
+cp -v "${srcdir}/${pkgname}-${pkgver}"/.config boot/config-5.15.4
+cp -v "${srcdir}/${pkgname}-${pkgver}"/.config ../../config-5.15.4
+
+rm -v ../../"${pkgname}-${pkgver}".tar.xz
+rm -rf ../../src
+}
