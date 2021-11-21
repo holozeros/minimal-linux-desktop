@@ -260,3 +260,12 @@ Back to the Host environment.
 ```
 exit
 ```
+
+## When using Archlinux repository
+```
+pacman-key --init
+pacman-key --populate archlinux
+pacman -Syu
+pacman -S linux
+```
+However, all the dependencies are installed and you end up with just an Arch Linux distribution. 
