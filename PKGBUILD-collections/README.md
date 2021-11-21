@@ -31,47 +31,11 @@ Change to a local user(e.g lfs)
 
       su - lfs
     
-##### Making skelton of PKGBUILD (e.g [PKGBUILD.skl](PKGBUILD.skl))
- 
-    cd /sources
-    cat > PKGBUILD.skl << "EOF"
-    pkgname=""
-    pkgver=""
-    pkgrel=""
-    pkgdesc=""
-    arch=('x86_64')
-    url="http://www."
-    license=('')
-    #backup=()
-    source=()
-    #install=glibc.install
-    
-    #prepare() {
-    #}
-    
-    build() {
-    cd "${pkgname}-${pkgver}"
-    ./configure --prefix=/usr
-    make
-    }
-    
-    #check() {
-    #cd "${pkgname}-${pkgver}"
-    #make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
-    #   # 2>&1 directive mixes error output into standard out.
-    #   # tee passes standard out to the log file.  
-    #   #}
-    
-    #test() {
-    #cd "${pkgname}-${pkgver}"
-    #make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
-    #}
+##### Making skelton of PKGBUILD (e.g
+```
+[PKGBUILD.skl](PKGBUILD.skl))
 
-    package() {
-    cd "${pkgname}-${pkgver}"
-    make DESTDIR=${pkgdir} install
-    }
-    EOF
+```
 
 ## Tutorial editting PKGBUILD
 Almost source tar ball name format have been looks like
