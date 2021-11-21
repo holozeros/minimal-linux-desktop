@@ -45,12 +45,17 @@ Following values of variables refer to file name of the target source-tar-ball.
         pkgname=' '
         pkgver=' '
 
-A propary value of these variables refer to the Arch Linux's PKGBULD that corresponds to the target source-tar-ball. 
+A propary value of these variables refer to the ArchLinux's PKGBULD or LFS book that corresponds to the target source-tarball. 
 
         pkgrel=
         pkgdesc=
         license=(' ')
         url='https://.. '
+        
+        sha256sums=(' ')
+           or  
+        md5sums=(' ')
+
  
 This variable is constant here.
 
@@ -61,7 +66,6 @@ These variables shuld be comment out, add top of the line #.
         # depends=()
         # groups=()
         # validpgpkeys=
-        # sha256sums=
 
 These variable add as needed.
 
