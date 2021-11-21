@@ -35,8 +35,7 @@ bootloader does mount the minimal linux desktop to root-filsesystem.
 
 # II.Building minimal linux desktop
 
-## List of packages.
-##### see: [List of packages](List%20of%20mandatory%20packages).
+## [List of packages](List%20of%20mandatory%20packages).
 
 ## 1.Editing PKGBUILD.
 ##### see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
