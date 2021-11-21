@@ -8,7 +8,7 @@ As root user on host
 
     mount /dev/<partition name of the chroot environment> $LFS
 
-Chroot into the $LFS
+Chroot into $LFS
 
     export LFS=/mnt/lfs
     mount -v --bind /dev $LFS/dev
