@@ -128,7 +128,7 @@ Processor type and features  --->
    [ ] AMD Secure Memory Encryption (SME) support
    
    [*] Built-in kernel command line
-   (root=/dev/nvme0n1p6 ro init=/tools/bin/login) Built-in kernel command string
+   (root=/dev/nvme0n1p6 ro init=/sbin/init) Built-in kernel command string
    [ ]     Built-in command line overrides boot loader arguments 
       
 [*] Enable loadable module support --->
