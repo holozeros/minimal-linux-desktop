@@ -30,7 +30,7 @@ chown lfs /usr/src
 su - lfs
 mkdir -p /usr/src/linux/5.15.4
 cd /usr/src/linux/5.15.4
-
+```
 ```
 cat > PKGBUILD << "EOF"
 pkgname="linux"
