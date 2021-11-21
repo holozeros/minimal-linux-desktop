@@ -72,7 +72,7 @@ rm -rf ../../src
 }
 EOF
 ```
-[.config](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/linux/5.15.4/.config)
+e.g: [.config](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/linux/5.15.4/.config)
 
 ```
 makepkg
