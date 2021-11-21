@@ -25,19 +25,19 @@ umount -lR /mnt/lfs/*
 ```
 ```
 cd /sources
-wget https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.15.2.tar.xz
+wget https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.15.4.tar.xz
 cd /usr/src
-tar xf /sources/linux-5.15.2.tar.xz
-chown -R lfs linux-5.15.2
+tar xf /sources/linux-5.15.4.tar.xz
+chown -R lfs linux-5.15.4
 
 su - lfs
-cd /usr/src/linux-5.15.2
+cd /usr/src/linux-5.15.4
 ```
 Configuring kernel settings
 ```
 make defconfig
 ```
-Linux-5.15.2 kernel configration for SysV-init compatible.
+Linux-5.15.4 kernel configration for SysV-init compatible.
 My Hardwares (e.g
 ```
 Motherboad: ASROCK B450 Pro4
@@ -190,5 +190,5 @@ ls /boot
 Back to the Host environment.
 ```
 exit
-chown -R root /lib/modules/5.15.2
+chown -R root /lib/modules/5.15.4
 ```
