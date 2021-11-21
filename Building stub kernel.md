@@ -72,6 +72,7 @@ rm -rf ../../src
 }
 EOF
 ```
+```
 makepkg
 ```
 ```
