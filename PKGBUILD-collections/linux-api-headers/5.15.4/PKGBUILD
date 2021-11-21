@@ -1,0 +1,32 @@
+pkgname="linux-api-headers"
+pkgbase="linux"
+pkgver="5.15.4"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="http://www."
+license=('')
+#backup=()
+source=("https://www.kernel.org/pub/linux/kernel/v5.x/${pkgbase}-${pkgver}".tar.xz)
+md5sums=('7ab1a51d6c48fc062e9e33c143dfa825')
+#install="${pkgname}-${pkgver}".install
+
+prepare() {
+cd "${pkgbase}-${pkgver}"
+make mrproper
+}
+
+build() {
+cd "${pkgbase}-${pkgver}"
+make headers
+find usr/include -name '.*' -delete
+rm usr/include/Makefile
+}
+
+package() {
+cd "${pkgdir}"
+cp -rv "${srcdir}/${pkgbase}-${pkgver}"/usr/include .
+
+rm -v ../../"${pkgbase}-${pkgver}".tar.xz
+rm -rf ../../src
+}
