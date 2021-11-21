@@ -22,7 +22,64 @@ chroot "$LFS" /tools/bin/env -i \
     PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
     /tools/bin/bash --login +h
 umount -lR /mnt/lfs/*
+
+mkdir -p /usr/src
+chown lfs /usr/src
 ```
+```
+su - lfs
+mkdir -p /usr/src/linux/5.15.4
+cd /usr/src/linux/5.15.4
+
+```
+cat > PKGBUILD << "EOF"
+pkgname="linux"
+pkgver="5.15.4"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://www.kernel.org"
+license=('')
+#backup=()
+source=("https://www.kernel.org/pub/linux/kernel/v5.x/${pkgname}-${pkgver}".tar.xz)
+md5sums=('7ab1a51d6c48fc062e9e33c143dfa825')
+#install="${pkgname}-${pkgver}".install
+
+prepare() {
+cd "${pkgname}-${pkgver}"
+make defconfig
+cp /usr/src/linux/config-"${pkgver}" .config
+make menuconfig
+}
+
+build() {
+cd "${pkgname}-${pkgver}"
+make
+}
+
+package() {
+cd "${pkgname}-${pkgver}"
+make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 modules_install
+
+cd "${pkgdir}"
+mkdir -pv boot
+cp -v "${srcdir}/${pkgname}-${pkgver}"/arch/x86/boot/bzImage boot/vmlinuz-5.15.4
+cp -v "${srcdir}/${pkgname}-${pkgver}"/.config boot/config-5.15.4
+cp -v "${srcdir}/${pkgname}-${pkgver}"/.config ../../config-5.15.4
+
+rm -v ../../"${pkgname}-${pkgver}".tar.xz
+rm -rf ../../src
+}
+EOF
+```
+makepkg
+```
+```
+exit
+cd /usr/src/linux/5.15.4
+pacman -U linux-5.15.4-1.pkg.tar.zst
+```
+## When compiling manually 
 ```
 cd /sources
 wget https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.15.4.tar.xz
