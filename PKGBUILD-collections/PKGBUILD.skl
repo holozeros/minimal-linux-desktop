@@ -3,7 +3,7 @@ pkgver=""
 pkgrel=""
 pkgdesc=""
 arch=('x86_64')
-url="http://www."
+url="https://www."
 license=('')
 #backup=()
 source=()
@@ -26,4 +26,7 @@ make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
 package() {
     cd "${pkgname}-${pkgver}"
     make DESTDIR=${pkgdir} install
+
+rm -v ../../"${pkgname}-${pkgver}".tar.xz
+rm -rf ../../src
 }
