@@ -35,7 +35,7 @@ Making skelton of PKGBUILD (e.g  [PKGBUILD.skl](PKGBUILD.skl))
 
 
 ## Tutorial editting PKGBUILD
-Almost source tar ball name format have been looks like
+Almost source tar_ball_name_format have been looks like
 ```
 "package name"-"version".tar.xz.
 ````
