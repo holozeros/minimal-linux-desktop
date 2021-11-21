@@ -1,24 +1,32 @@
-### This is incomplete !!!  
-### makepkg is pssible, but glibc.install for this system is yet making.
-### This system is modified non multi lib, x86_64 only.
-
 pkgname=glibc
 pkgver=2.34
 pkgrel=1
 pkgdesc="GNU C Library"
 arch=('x86_64')
 url="http://www.gnu.org/software/libc"
-license=('GPL', 'LGPL')
-backup=(etc/ld.so.conf)
-source=(${pkgname}-${pkgver}.tar.xz
+license=(GPL LGPL)
+options=(!strip staticlibs)
+source=(https://ftp.gnu.org/gnu/glibc/glibc-$pkgver.tar.xz
 	glibc-2.34-fhs-1.patch
-	nsswitch.conf
+	ld.so.conf
         locale.gen.txt
         locale-gen
-        sdt.h sdt-config.h
-	ld.so.conf)
+	nsswitch.conf
+        sdt.h
+        sdt-config.h
+	glibc.install)
 
-# install=glibc.install
+md5sums=('31998b53fb39cb946e96abc310af1c89'
+	 '9a5997c3452909b1769918c759eff8a2'
+	 'SKIP'
+	 'SKIP'
+	 'SKIP'
+	 'SKIP'
+	 'SKIP'
+	 'SKIP'
+	 'SKIP')
+
+install=glibc.install
 
 prepare() {
 
@@ -27,14 +35,10 @@ prepare() {
   [[ -d glibc-$pkgver ]] && ln -s glibc-$pkgver glibc 
   cd glibc
 
-
-  # commit c3479fb7939898ec22c655c383454d6e8b982a67
-  patch -p1 -i "$srcdir"/glibc-2.34-fhs-1.patch
+  patch -Np1 -i ../../glibc-2.34-fhs-1.patch
 
   sed -e '/NOTIFY_REMOVED)/s/)/ \&\& data.attr != NULL)/' \
       -i "$srcdir"/glibc-2.34/sysdeps/unix/sysv/linux/mq_notify.c
-
-
 }
 
 build() {
@@ -80,6 +84,7 @@ build() {
 
   # build info pages manually for reprducibility
   # make info
+}
 
 #check() {
 #  cd glibc-build
@@ -91,12 +96,12 @@ build() {
 
 package_glibc() {
   pkgdesc='GNU C Library'
-  depends=('linux-api-headers>=4.10' tzdata filesystem)
-  optdepends=('gd: for memusagestat')
-  install=glibc.install
-  backup=(etc/gai.conf
-          etc/locale.gen
-          etc/nscd.conf)
+#  depends=('linux-api-headers>=4.10' tzdata filesystem)
+#  optdepends=('gd: for memusagestat')
+#  install=glibc.install
+#  backup=(etc/gai.conf
+#          etc/locale.gen
+#          etc/nscd.conf)
 
   install -dm755 "$pkgdir/etc"
   touch "$pkgdir/etc/ld.so.conf"
@@ -105,7 +110,7 @@ package_glibc() {
   rm -f "$pkgdir"/etc/ld.so.{cache,conf}
 
   # Shipped in tzdata
-  rm -f "$pkgdir"/bin/{tzselect,zdump,zic}
+#  rm -f "$pkgdir"/bin/{tzselect,zdump,zic}
 
   cd glibc
 
