@@ -76,7 +76,7 @@ EOF
 makepkg
 ```
 ```
-exit
+exit  # Change root user from localuser lfs  
 cd /usr/src/linux/5.15.4
 ```
 ```
