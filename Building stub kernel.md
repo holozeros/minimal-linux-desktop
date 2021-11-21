@@ -78,6 +78,8 @@ makepkg
 ```
 exit
 cd /usr/src/linux/5.15.4
+```
+```
 pacman -U linux-5.15.4-1.pkg.tar.zst
 ```
 ## When compiling manually 
