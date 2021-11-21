@@ -236,11 +236,11 @@ Pseudo Filesystems --->
 ```
 Keep defconfig, except the above.
 
-## Make
+Make
 ```
 make -j$(nproc)
 ```
-## Install
+Install
 ```
 exit
 cd /usr/src/linux/5.15.4/linux-5.15.4
