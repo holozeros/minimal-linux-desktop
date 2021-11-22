@@ -110,7 +110,7 @@ package_glibc() {
   rm -f "$pkgdir"/etc/ld.so.{cache,conf}
 
   # Shipped in tzdata
-#  rm -f "$pkgdir"/bin/{tzselect,zdump,zic}
+  rm -f "$pkgdir"/bin/{tzselect,zdump,zic}
 
   cd glibc
 
