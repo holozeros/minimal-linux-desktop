@@ -41,7 +41,7 @@ ethers: files
 rpc: files
 EOF
 
-mkdir -pv /var/cache/nscd
-mkdir -pv /etc/ld.so.conf.d
+# mkdir -pv /var/cache/nscd
+# mkdir -pv /etc/ld.so.conf.d
 
 }
