@@ -1,0 +1,4 @@
+
+/bin/tzselect
+
+ln -sfv /share/zoneinfo/Asia/Tokyo /etc/localtime
