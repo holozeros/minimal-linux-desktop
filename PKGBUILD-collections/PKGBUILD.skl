@@ -19,15 +19,12 @@ cd "${pkgname}-${pkgver}"
 make
 }
 
-check() {
-cd "${pkgname}-${pkgver}"
-make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
-}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
 
 package() {
     cd "${pkgname}-${pkgver}"
     make DESTDIR=${pkgdir} install
-
-rm -v ../../"${pkgname}-${pkgver}".tar.xz
-rm -rf ../../src
 }
