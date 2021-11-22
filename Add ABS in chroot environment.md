@@ -24,7 +24,11 @@ chroot "$LFS" /tools/bin/env -i \
     PS1='\u:\w\$ '              \
     PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
     /tools/bin/bash --login +h
-umount -lR /mnt/lfs/*
+umount -v /mnt/lfs/dev/pts
+umount -v /mnt/lfs/dev
+umount -v /mnt/lfs/proc
+umount -v mnt/lfs/sys
+umount -v /mnt/lfs/run
 ```
 
 ## Settings the filesystem
