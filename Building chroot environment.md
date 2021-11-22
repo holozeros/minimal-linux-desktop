@@ -1024,7 +1024,11 @@ chroot "$LFS" /tools/bin/env -i \
     PS1='\u:\w\$ '              \
     PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
     /tools/bin/bash --login +h
-umount -lR /mnt/lfs/*
+umount -v /mnt/lfs/dev/pts
+umount -v /mnt/lfs/dev
+umount -v /mnt/lfs/sys
+umount -v /mnt/lfs/proc
+umount -v /mnt/lfs/run
 ```
 ## Back to to the host environment.
 Issue:
@@ -1041,7 +1045,7 @@ When back to the host environment, to check the mount status. Issue:
 
 Look at the output of mount, make sure the following directories are not mounted.
 ```
-1./mnt/lfs/dev
+1./mnt/lfs/dev and  /mnt/lfs/dev/pts
 2./mnt/lfs/sys
 3./mnt/lfs/proc
 4./mnt/lfs/run
@@ -1050,16 +1054,3 @@ Look at the output of mount, make sure the following directories are not mounted
 If left mounted kernel's virtual file systems on these directories, the storage and hardware of the host PC will be damaged.
 If you cannot unmount these, interrupt further operations and reboot the host immediately. 
 When returning to the host, if /mnt/lfs/dev/pts, /mnt/lfs/dev, /mnt/lfs/sys, /mnt/lfs/proc, /mnt/lfs/run succeeds in unmounting, you can ignore the warning. It is important to check the dangerous elements once in this way, but after this checking, change the unmount script of the chroot script.
-
-The last line of the chroot script 
-
-	umount -lR /mnt/lfs/*
-
-If changing the above line to set of the following scripts, will eliminate extra warnings.
-```
-umount /mnt/lfs/dev/pts
-umount /mnt/lfs/dev
-umount /mnt/lfs/sys
-umount /mnt/lfs/proc
-umount /mnt/lfs/run
-```
