@@ -8,18 +8,14 @@ license=(GPL LGPL)
 options=(!strip staticlibs)
 source=(https://ftp.gnu.org/gnu/glibc/glibc-$pkgver.tar.xz
 	glibc-2.34-fhs-1.patch
-	ld.so.conf
         locale.gen.txt
         locale-gen
-	nsswitch.conf
         sdt.h
         sdt-config.h
 	glibc.install)
 
 md5sums=('31998b53fb39cb946e96abc310af1c89'
 	 '9a5997c3452909b1769918c759eff8a2'
-	 'SKIP'
-	 'SKIP'
 	 'SKIP'
 	 'SKIP'
 	 'SKIP'
