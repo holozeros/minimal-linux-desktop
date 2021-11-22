@@ -1461,11 +1461,14 @@ EOF
 source ~/.bash_profile
 ```
 ## Backup
-Exit chroot. Then as root user on host:
+Exit from chroot environment
+```
+exit
+```
 ```
 su -
 cd /mnt/lfs
-tar cJpf <Path>/tools-pacman-11.tar.xz
+tar cJpf <Where you want to store Path>/tools-pacman-11.tar.xz
 ```
 ## When starting over from here in a later step
 Exit chroot. Then as root user on host:
