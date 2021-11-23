@@ -1,7 +1,7 @@
 post_install() {
 
-rm -rfv /usr/src/bzip2/1.0.8/pkg
-rm -rfv /usr/src/bzip2/1.0.8/src
+rm -rf /usr/src/bzip2/1.0.8/pkg
+rm -rf /usr/src/bzip2/1.0.8/src
 rm -v /usr/src/bzip2/1.0.8/bzip2-1.0.8.tar.xz
 rm -v /usr/src/bzip2/1.0.8/bzip2-1.0.8-install_docs-1.patch
 mv -v /usr/src/bzip2/1.0.8/bzip2-1.0.8-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
