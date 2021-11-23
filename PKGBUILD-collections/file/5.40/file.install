@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/file/5.40/pkg
+rm -rf /usr/src/file/5.40/src
+rm -v /usr/src/file/5.40/file-5.40.tar.xz
+mv -v /usr/src/file/5.40/file-5.40-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
