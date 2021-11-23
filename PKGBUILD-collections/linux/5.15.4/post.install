@@ -1,0 +1,10 @@
+post_install() {
+
+rm -rf /usr/src/linux/5.15.4/pkg
+mv  -v /usr/src/linux/5.15.4/src/linux-5.15.4 /usr/src/linux-5.15.4
+ln -sfv /usr/src/linux-5.15.4 /lib/modules/5.15.4/source 
+rm -rf /usr/src/linux/5.15.4/src
+rm -v /usr/src/linux/5.15.4/linux-5.15.4.tar.xz
+mv -v /usr/src/linux/5.15.4/linux-5.15.4-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
