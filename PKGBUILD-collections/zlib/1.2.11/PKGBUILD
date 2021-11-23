@@ -6,9 +6,9 @@ arch=('x86_64')
 url="http://zlib.net"
 license=('custum')
 #backup=()
-source=("${pkgname}-${pkgver}".tar.xz)
+source=("https://zlib.net/${pkgname}-${pkgver}".tar.xz)
 install=post.install
-#install=
+md5sums=('85adef240c5f370b308da8c938951a68')
 
 #prepare() {
 #}
