@@ -1,0 +1,32 @@
+pkgname="bzip2"
+pkgver="1.0.8"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#backup=()
+source=("https://www.sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz"
+        "https://www.linuxfromscratch.org/patches/lfs/11.0/bzip2-1.0.8-install_docs-1.patch")
+md5sums=('67e051268d0c475ea773822f7500d0e5'
+         '6a5ac7e89b791aae556de0f745916f7f')
+install="${pkgname}.install"
+
+prepare() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+patch -Np1 -i ../../bzip2-1.0.8-install_docs-1.patch
+sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile
+sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile
+make -f Makefile-libbz2_so
+make clean
+}
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
