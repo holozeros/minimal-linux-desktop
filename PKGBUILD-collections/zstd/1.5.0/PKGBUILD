@@ -1,0 +1,25 @@
+pkgname="zstd"
+pkgver="1.5.0"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://facebook.github.io/zstd/"
+license=('')
+source=("https://github.com/facebook/zstd/releases/download/v1.5.0/zstd-1.5.0.tar.gz")
+md5sums=('a6eb7fb1f2c21fa80030a47993853e92')
+install="${pkgname}.install"
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make PREFIX=${pkgdir} install
+}
