@@ -8,7 +8,7 @@ license=('')
 #backup=()
 source=("https://www.kernel.org/pub/linux/docs/${pkgname}/${pkgname}-${pkgver}.tar.xz")
 md5sums=('3ac24e8c6fae26b801cb87ceb63c0a30')
-install="$(pkgname).install"
+install="${pkgname}.install"
 
 package() {
     cd "${pkgname}-${pkgver}"
