@@ -1,4 +1,15 @@
-
-/bin/tzselect
+post_install(){
 
 ln -sfv /share/zoneinfo/Asia/Tokyo /etc/localtime
+
+# /usr/bin/tzselect
+
+rm /usr/src/tzdata/2021e/tzcode2021e.tar.gz
+rm /usr/src/tzdata/2021e/tzcode2021e.tar.gz.asc
+rm /usr/src/tzdata/2021e/tzdata2021e.tar.gz
+rm /usr/src/tzdata/2021e/tzdata2021e.tar.gz.asc
+rm -rf /usr/src/tzdata/2021e/pkg
+rm -rf /usr/src/tzdata/2021e/src 
+mv /usr/src/tzdata/2021e/tzdata-2021e-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg/
+
+}
