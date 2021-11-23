@@ -1,0 +1,26 @@
+pkgname="file"
+pkgver="5.40"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://www.darwinsys.com/file/"
+license=('')
+source=("https://astron.com/pub/file/file-5.40.tar.gz")
+md5sums=('72540ea1cc8c6e1dee35d6100ec66589')
+install="${pkgname}.install"
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+./configure --prefix=/
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
