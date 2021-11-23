@@ -114,7 +114,7 @@ package_glibc() {
   install -m644 nscd/nscd.conf "$pkgdir/etc/nscd.conf"
   install -m644 nscd/nscd.service "$pkgdir/lib/systemd/system"
   install -m644 nscd/nscd.tmpfiles "$pkgdir/lib/tmpfiles.d/nscd.conf"
-  install -dm755 "$pkgdir/var/db/nscd"
+  install -dm755 "$pkgdir/var/cache/nscd"
 
   install -m644 posix/gai.conf "$pkgdir"/etc/gai.conf
 
