@@ -6,7 +6,9 @@ arch=('x86_64')
 url="http://www."
 license=('')
 #backup=()
-source=(man-pages-5.13.tar.xz)
+source=("https://www.kernel.org/pub/linux/docs/${pkgname}/${pkgname}-${pkgver}.tar.xz")
+md5sums=('3ac24e8c6fae26b801cb87ceb63c0a30')
+install="$(pkgname).install"
 
 package() {
     cd "${pkgname}-${pkgver}"
