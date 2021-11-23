@@ -9,7 +9,7 @@ license=('')
 #backup=()
 source=("https://www.kernel.org/pub/linux/kernel/v5.x/${pkgbase}-${pkgver}".tar.xz)
 md5sums=('7ab1a51d6c48fc062e9e33c143dfa825')
-#install="${pkgname}-${pkgver}".install
+install="${pkgname}.install"
 
 prepare() {
 cd "${pkgbase}-${pkgver}"
@@ -27,6 +27,4 @@ package() {
 cd "${pkgdir}"
 cp -rv "${srcdir}/${pkgbase}-${pkgver}"/usr/include .
 
-rm -v ../../"${pkgbase}-${pkgver}".tar.xz
-rm -rf ../../src
 }
