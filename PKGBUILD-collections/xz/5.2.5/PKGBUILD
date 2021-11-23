@@ -1,0 +1,28 @@
+pkgname="xz"
+pkgver="5.2.5"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://www.zlib.net/"
+license=('')
+source=("https://tukaani.org/xz/xz-5.2.5.tar.xz")
+md5sums=('aa1621ec7013a19abab52a8aff04fe5b')
+install="${pkgname}.install"
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+./configure --prefix=/       \
+            --disable-static \
+            --docdir=/usr/share/doc/xz-5.2.5
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
