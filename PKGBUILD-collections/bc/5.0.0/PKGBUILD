@@ -1,0 +1,26 @@
+pkgname="bc"
+pkgver="5.0.0"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://git.yzena.com/gavin/bc"
+license=('')
+source=("https://github.com/gavinhoward/bc/releases/download/5.0.0/bc-5.0.0.tar.xz")
+md5sums=('8345bb81c576ddfc8c27e0842370603c')
+install="${pkgname}.install"
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+CC=gcc ./configure --prefix=/ -G -O3
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
