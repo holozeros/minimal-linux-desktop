@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/libcap/2.53/pkg
+rm -rf /usr/src/libcap/2.53/src
+rm -v /usr/src/libcap/2.53/libcap-2.53.tar.xz
+mv -v /usr/src/libcap/2.53/libcap-2.53-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
