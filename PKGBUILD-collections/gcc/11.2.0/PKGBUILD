@@ -31,7 +31,8 @@ cd       build
              --enable-languages=c,c++ \
              --disable-multilib       \
              --disable-bootstrap      \
-             --with-system-zlib
+             --with-system-zlib       \
+             --with-headers=/include
 make
 }
 
