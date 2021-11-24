@@ -1035,8 +1035,6 @@ Issue:
 
     exit
 
-Because all directories in $LFS are unmounted for safety confirmation, output of exit display some warnnings.
-
 # This is very important !
         
 When back to the host environment, to check the mount status. Issue:
