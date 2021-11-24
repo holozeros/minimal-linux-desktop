@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/gc/8.0.4/pkg
+rm -rf /usr/src/gc/8.0.4/src
+rm -v /usr/src/gc/8.0.4/gc-8.0.4.tar.gz
+mv -v /usr/src/gc/8.0.4/gc-8.0.4-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
