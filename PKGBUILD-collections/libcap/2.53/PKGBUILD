@@ -1,0 +1,27 @@
+pkgname="libcap"
+pkgver="2.53"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://sites.google.com/site/fullycapable/"
+license=('')
+source=("https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/libcap-2.53.tar.xz")
+md5sums=('094994d4554c6689cf98ae4f717b8e19')
+install="${pkgname}.install"
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+sed -i '/install -m.*STA/d' libcap/Makefile
+make lib=lib
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make lib=lib DESTDIR=${pkgdir} install
+    chmod -v 755 ${pkgdir}/libcap/lib/lib{cap,psx}.so.2.53
+}
