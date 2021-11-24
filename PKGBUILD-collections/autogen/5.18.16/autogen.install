@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/autogen/5.18.16/pkg
+rm -rf /usr/src/autogen/5.18.16/src
+rm -v /usr/src/autogen/5.18.16/autogen-5.18.16.tar.xz
+mv -v /usr/src/autogen/5.18.16/autogen-5.18.16-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
