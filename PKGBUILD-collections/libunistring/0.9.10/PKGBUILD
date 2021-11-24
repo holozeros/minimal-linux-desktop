@@ -1,0 +1,28 @@
+pkgname="libunistring"
+pkgver="0.9.10"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url=""
+license=('')
+source=("https://ftp.gnu.org/gnu/libunistring/libunistring-0.9.10.tar.xz")
+md5sums=('db08bb384e81968957f997ec9808926e')
+install="${pkgname}.install"
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+./configure --prefix=/       \
+            --disable-static \
+            --docdir=/usr/share/doc/libunistring-0.9.10 &&
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
