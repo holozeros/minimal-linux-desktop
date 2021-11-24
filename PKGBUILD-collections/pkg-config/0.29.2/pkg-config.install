@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/pkg-config/0.29.2/pkg
+rm -rf /usr/src/pkg-config/0.29.2/src
+rm -v /usr/src/pkg-config/0.29.2/pkg-config-0.29.2.tar.xz
+mv -v /usr/src/pkg-config/0.29.2/pkg-config-0.29.2-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
