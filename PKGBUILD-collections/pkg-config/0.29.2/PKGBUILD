@@ -1,0 +1,29 @@
+pkgname="pkg-config"
+pkgver="0.29.2"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://www.freedesktop.org/wiki/Software/pkg-config"
+license=('')
+source=("https://pkg-config.freedesktop.org/releases/pkg-config-0.29.2.tar.gz")
+md5sums=('f6e931e319531b736fadc017f470e68a')
+install="${pkgname}.install"
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+./configure --prefix=/                 \
+            --with-internal-glib       \
+            --disable-host-tool        \
+            --docdir=/usr/share/doc/pkg-config-0.29.2
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
