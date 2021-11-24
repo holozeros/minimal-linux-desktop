@@ -2,7 +2,7 @@
 Building a desktop environment from source codes to learn Linux. 
 This OS will be built with reference to the Linux From Scratch 11.0 book and installed use pacman-5.0. 
 
-# I.[Building chroot environment](Building%20chroot%20environment)
+# I.[Building chroot environment](Building%20chroot%20environment.md)
 Build a chroot environment and then install the required commands to run Arh_Build_System(ABS).
 
 ## 2.booting the chroot environment.
