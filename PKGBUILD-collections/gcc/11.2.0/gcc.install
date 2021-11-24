@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/gcc/11.2.0/pkg
+rm -rf /usr/src/gcc/11.2.0/src
+rm -v /usr/src/gcc/11.2.0/gcc-11.2.0.tar.xz
+mv -v /usr/src/gcc/11.2.0/gcc-11.2.0-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
