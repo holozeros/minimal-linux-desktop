@@ -1,0 +1,31 @@
+pkgname="mpc"
+pkgver="1.2.1"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="http://www.multiprecision.org/"
+license=('')
+source=("https://ftp.gnu.org/gnu/mpc/mpc-1.2.1.tar.gz")
+md5sums=('9f16c976c25bb0f76b50be749cd7a3a8')
+install="${pkgname}.install"
+
+#prepare() {
+#}
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+./configure --prefix=/       \
+            --disable-static \
+            --docdir=/usr/share/doc/mpc-1.2.1
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
