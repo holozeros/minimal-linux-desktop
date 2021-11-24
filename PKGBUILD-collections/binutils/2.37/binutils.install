@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/binutils/2.37/pkg
+rm -rf /usr/src/binutils/2.37/src
+rm -v /usr/src/binutils/2.37/binutils-2.37.tar.xz
+mv -v /usr/src/binutils/2.37/binutils-2.37-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
