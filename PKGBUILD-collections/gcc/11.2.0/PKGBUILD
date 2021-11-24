@@ -32,7 +32,7 @@ cd       build
              --disable-multilib       \
              --disable-bootstrap      \
              --with-system-zlib       \
-             --with-headers=/include
+             --with-native-system-header-dir=/include
 make
 }
 
