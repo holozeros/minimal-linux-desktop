@@ -1,0 +1,58 @@
+pkgname="tcl"
+pkgver="8.6.11"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url=""
+license=('http://tcl.sourceforge.net/')
+source=("https://downloads.sourceforge.net/tcl/tcl8.6.11-src.tar.gz"
+        "https://downloads.sourceforge.net/tcl/tcl8.6.11-html.tar.gz")
+md5sums=('8a4c004f48984a03a7747e9ba06e4da4'
+         'e358a9140c3a171e42f18c8a7f6a36ea')
+install="${pkgname}.install"
+
+prepare() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+tar -xf ../../tcl8.6.11-html.tar.gz --strip-components=1
+}
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+SRCDIR=$(pwd)
+cd unix
+./configure --prefix=/               \
+            --mandir=/usr/share/man  \
+            $([ "$(uname -m)" = x86_64 ] && echo --enable-64bit)
+make
+
+sed -e "s|$SRCDIR/unix|/lib|" \
+    -e "s|$SRCDIR|include|"  \
+    -i tclConfig.sh
+
+sed -e "s|$SRCDIR/unix/pkgs/tdbc1.1.2|/lib/tdbc1.1.2|" \
+    -e "s|$SRCDIR/pkgs/tdbc1.1.2/generic|/include|"    \
+    -e "s|$SRCDIR/pkgs/tdbc1.1.2/library|/lib/tcl8.6|" \
+    -e "s|$SRCDIR/pkgs/tdbc1.1.2|/include|"            \
+    -i pkgs/tdbc1.1.2/tdbcConfig.sh
+
+sed -e "s|$SRCDIR/unix/pkgs/itcl4.2.1|/lib/itcl4.2.1|" \
+    -e "s|$SRCDIR/pkgs/itcl4.2.1/generic|/include|"    \
+    -e "s|$SRCDIR/pkgs/itcl4.2.1|/include|"            \
+    -i pkgs/itcl4.2.1/itclConfig.sh
+
+unset SRCDIR
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+    chmod -v u+w "${pkgdir}/lib/libtcl8.6.so"
+    make DESTDIR=${pkgdir} install-private-headers
+    ln -sfv tclsh8.6 /bin/tclsh
+    mv /usr/share/man/man3/{Thread,Tcl_Thread}.3
+}
