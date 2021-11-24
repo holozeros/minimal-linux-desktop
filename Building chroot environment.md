@@ -1,5 +1,5 @@
 ## Build preparation
-Follow to [the LFS book](https://www.linuxfromscratch.org/lfs/view/stable/) complete up to Chapter 4 of LFS.
+Follow to [the LFS book](https://www.linuxfromscratch.org/lfs/view/stable/) complete up to Chapter 4.
 In this section, I will briefly summarize up to Chapter 4 of the LFS book and supplement it a little. 
 
  The host OS should use live USB, as work mistakes can corrupt the host OS. 
