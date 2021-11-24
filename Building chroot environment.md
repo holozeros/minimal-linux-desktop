@@ -2,9 +2,9 @@
 Follow to [the LFS book](https://www.linuxfromscratch.org/lfs/view/stable/) complete up to Chapter 4.
 In this section, I will briefly summarize up to the LFS book and supplement it a little. 
 
- The host OS should use live USB, as work mistakes can corrupt the host OS. 
- Follow those instructions in this order throughout.
- If the state of the shell changes due to interruption of work, you need to revert to the previous shell environment. 
+note: The host OS should use live USB, as work mistakes can corrupt the host OS. Follow those instructions in this order throughout. If interrupt of work, you need to revert to the previous shell environment. 
+ 
+now, let's start "building chroot environment"
 
     su -
 
@@ -20,12 +20,12 @@ Therefore, the chroot environment should be built on an SSD or HDD partition wit
 If you need a new partition for building chroot environment, use cgdisk, gparted, etc. to create a GPT partition of appropriate size.
 File system format is as follows. 
 
-    # mkfs.ext4 /dev/<new partition for building chroot environment>
+    mkfs.ext4 /dev/<new partition for building chroot environment>
 
 Format of EFI System Partition is fat32.
 If it doesn't exist, create a new one.
 
-    # mkfs.vfat /dev/<EFI System Partition>
+    mkfs.vfat /dev/<EFI System Partition>
 
 Mount the new partition for building chroot environment to /mnt/lfs. for example in case /dev/sda2
 
