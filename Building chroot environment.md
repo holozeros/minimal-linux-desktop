@@ -1,6 +1,6 @@
 ## Build preparation
 Follow to [the LFS book](https://www.linuxfromscratch.org/lfs/view/stable/) complete up to Chapter 4.
-In this section, I will briefly summarize up to the LFS book and supplement it a little. 
+Here is summarize up to the LFS book and supplement it a little. 
 
 note: The host OS should use live USB, as work mistakes can corrupt the host OS. Follow those instructions in this order throughout. If interrupt of work, you need to revert to the previous shell environment. 
  
