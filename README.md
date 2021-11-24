@@ -2,7 +2,15 @@
 Building a desktop environment from source codes to learn Linux. 
 This OS will be built with reference to the Linux From Scratch 11.0 book and installed use pacman-5.0. 
 
-see: [Linux From Scratch Version 11.0](https://www.linuxfromscratch.org/lfs/view/stable/)
+# I.Building chroot environment
+
+## 1.Building basic chroot environment.
+Build a chroot environment and then install the required commands to run Arh_Build_System(ABS).
+##### see: [Building chroot environment](Building%20chroot%20environment.md)
+##### refer to: [Pacman Home Page](https://archlinux.org/pacman/)
+
+##### refer to: [Linux From Scratc 11.0](https://www.linuxfromscratch.org/lfs/view/stable/)
+[Byound Linux From Scratch v11.0-stable-sysV](https://www.linuxfromscratch.org/blfs/downloads/stable/BLFS-BOOK-11.0-nochunks.html)
 
 	I. Introduction
 	II. Preparing for the Build
@@ -16,12 +24,7 @@ Follow the LFS-11.0 book until just before Chapter5 "Compiling the Cross Toolcha
 Then follow this text for Chapter5 and beyond.
 Here you need experience reading the Linux From Scratch book from start to finish and completing the LFS build. 
 
-# I.Building chroot environment
 
-## 1.Building basic chroot environment.
-Building a chroot environment where /tools installed the required commands to run Arh_Build_System(ABS).
-##### see: [Building chroot environment](Building%20chroot%20environment.md)
-##### refer to: [Pacman Home Page](https://archlinux.org/pacman/), [Byound Linux From Scratch v11.0-stable-sysV](https://www.linuxfromscratch.org/blfs/downloads/stable/BLFS-BOOK-11.0-nochunks.html)
 
 ## 2.booting the chroot environment.
 Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file. When booted the stub kernel,
