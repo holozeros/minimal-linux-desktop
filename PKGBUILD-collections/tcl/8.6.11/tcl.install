@@ -1,0 +1,9 @@
+post_install() {
+
+rm -rf /usr/src/tcl/8.6.11/pkg
+rm -rf /usr/src/tcl/8.6.11/src
+rm -v /usr/src/tcl/8.6.11/tcl-8.6.11-src.tar.gz
+rm -v /usr/src/tcl/8.6.11/tcl-8.6.11-html.tar.gz
+mv -v /usr/src/tcl/8.6.11/tcl-8.6.11-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
