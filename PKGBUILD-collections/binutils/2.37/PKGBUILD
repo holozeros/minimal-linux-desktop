@@ -1,0 +1,43 @@
+pkgname="binutils"
+pkgver="2.37"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://www.gnu.org/software/binutils/"
+license=('')
+source=("https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz")
+md5sums=('e78d9ff2976b745a348f4c1f27c77cb1')
+install="${pkgname}.install"
+
+prepare() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+patch -Np1 -i ../../binutils-2.37-upstream_fix-1.patch
+sed -i '63d' etc/texi2pod.pl
+find -name \*.1 -delete
+}
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+mkdir -v build
+cd       build
+../configure --prefix=/          \
+             --enable-gold       \
+             --enable-ld=default \
+             --enable-plugins    \
+             --enable-shared     \
+             --disable-werror    \
+             --enable-64-bit-bfd \
+             --with-system-zlib
+make tooldir=/
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}/build"
+make -k check 2>&1 | tee ../../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} tooldir=/ install -j1
+    rm -fv /lib/lib{bfd,ctf,ctf-nobfd,opcodes}.a
+}
