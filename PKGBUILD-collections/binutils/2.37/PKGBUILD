@@ -5,8 +5,10 @@ pkgdesc=""
 arch=('x86_64')
 url="https://www.gnu.org/software/binutils/"
 license=('')
-source=("https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz")
-md5sums=('e78d9ff2976b745a348f4c1f27c77cb1')
+source=("https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.xz"
+        "https://www.linuxfromscratch.org/patches/lfs/11.0/binutils-2.37-upstream_fix-1.patch")
+md5sums=('e78d9ff2976b745a348f4c1f27c77cb1'
+         '3518fa864fe8d7ef65be4960f380b03b')
 install="${pkgname}.install"
 
 prepare() {
