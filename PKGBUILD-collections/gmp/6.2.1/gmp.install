@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/gmp/6.2.1/pkg
+rm -rf /usr/src/gmp/6.2.1/src
+rm -v /usr/src/gmp/6.2.1/gmp-6.2.1.tar.xz
+mv -v /usr/src/gmp/6.2.1/gmp-6.2.1-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
