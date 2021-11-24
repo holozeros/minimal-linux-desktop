@@ -4,5 +4,6 @@ rm -rf /usr/src/shadow/4.9/pkg
 rm -rf /usr/src/shadow/4.9/src
 rm -v /usr/src/shadow/4.9/shadow-4.9.tar.xz
 mv -v /usr/src/shadow/4.9/shadow-4.9-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+useradd -D --gid 999
 
 }
