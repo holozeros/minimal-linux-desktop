@@ -32,5 +32,5 @@ make
 package() {
     cd "${srcdir}/${pkgname}-${pkgver}"
     make DESTDIR=${pkgdir} exec_prefix=/ install
-    mkdir -p ${srcdir}/etc/default
+    mkdir -p ${pkgdir}/etc/default
 }
