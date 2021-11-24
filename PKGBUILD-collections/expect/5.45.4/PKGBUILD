@@ -1,0 +1,31 @@
+pkgname="expect"
+pkgver="5.45.4"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://core.tcl.tk/expect/"
+license=('')
+source=("https://prdownloads.sourceforge.net/expect/expect5.45.4.tar.gz")
+md5sums=('00fce8de158422f5ccd2666512329bd2')
+install="${pkgname}.install"
+
+build() {
+cd "${srcdir}/${pkgname}${pkgver}"
+./configure --prefix=/              \
+            --with-tcl=/lib         \
+            --enable-shared         \
+            --mandir=/usr/share/man \
+            --with-tclinclude=/include
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}${pkgver}"
+make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}${pkgver}"
+    make DESTDIR=${pkgdir} install
+ln -srvf expect5.45.4/libexpect5.45.4.so "${pkgdir}/lib"
+}
