@@ -2,29 +2,8 @@
 Building a desktop environment from source codes to learn Linux. 
 This OS will be built with reference to the Linux From Scratch 11.0 book and installed use pacman-5.0. 
 
-# I.Building chroot environment
-
-## 1.Building basic chroot environment.
+# I.[Building chroot environment](Building%20chroot%20environment)
 Build a chroot environment and then install the required commands to run Arh_Build_System(ABS).
-##### see: [Building chroot environment](Building%20chroot%20environment.md)
-##### refer to: [Pacman Home Page](https://archlinux.org/pacman/)
-
-##### refer to: [Linux From Scratc 11.0](https://www.linuxfromscratch.org/lfs/view/stable/)
-[Byound Linux From Scratch v11.0-stable-sysV](https://www.linuxfromscratch.org/blfs/downloads/stable/BLFS-BOOK-11.0-nochunks.html)
-
-	I. Introduction
-	II. Preparing for the Build
-	  2.Preparing the Host System
-	  3.Packages and Patches
-	  4.Final Preparations
-	III. Building the LFS Cross Toolchain and Temporary Tools
-	  5.Compiling a Cross-Toolchain
-
-Follow the LFS-11.0 book until just before Chapter5 "Compiling the Cross Toolchain". 
-Then follow this text for Chapter5 and beyond.
-Here you need experience reading the Linux From Scratch book from start to finish and completing the LFS build. 
-
-
 
 ## 2.booting the chroot environment.
 Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file. When booted the stub kernel,
