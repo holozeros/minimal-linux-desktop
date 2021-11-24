@@ -1,0 +1,37 @@
+pkgname="guile"
+pkgver="3.0.7"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url=""
+license=('')
+source=("https://ftp.gnu.org/gnu/guile/guile-3.0.7.tar.xz")
+md5sums=('eb7d26dae3a2fc85a36511a68d76f7d1')
+install="${pkgname}.install"
+
+prepare() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+sed -e 's/#ifndef __attribute_maybe_unused__//' \
+    -e '174d'                                   \
+    -i lib/libc-config.h
+}
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+./configure --prefix=/       \
+            --disable-static \
+            --docdir=/usr/share/doc/guile-3.0.7 &&
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+./check-guile 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+    mkdir -p /share/gdb/auto-load/lib &&
+mv /lib/libguile-*-gdb.scm /share/gdb/auto-load/lib
+}
