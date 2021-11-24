@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/guile/3.0.7/pkg
+rm -rf /usr/src/guile/3.0.7/src
+rm -v /usr/src/guile/3.0.7/guile-3.0.7.tar.xz
+mv -v /usr/src/guile/3.0.7/guile-3.0.7-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
