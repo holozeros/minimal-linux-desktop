@@ -4,7 +4,7 @@ In this section, I will briefly summarize up to the LFS book and supplement it a
 
  The host OS should use live USB, as work mistakes can corrupt the host OS. 
  Follow those instructions in this order throughout.
- If the state of the shell changes due to interruption of work, you need to revert to the previous environment. 
+ If the state of the shell changes due to interruption of work, you need to revert to the previous shell environment. 
 
     su -
 
