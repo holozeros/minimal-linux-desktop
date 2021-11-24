@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/mpc/1.2.1/pkg
+rm -rf /usr/src/mpc/1.2.1/src
+rm -v /usr/src/mpc/1.2.1/mpc-1.2.1.tar.gz
+mv -v /usr/src/mpc/1.2.1/mpc-1.2.1-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
