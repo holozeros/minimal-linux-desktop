@@ -19,13 +19,13 @@ Here you need experience reading the Linux From Scratch book from start to finis
 # I.Building chroot environment
 
 ## 1.Building basic chroot environment.
-Building a chroot environment where /tools has the required commands to run Arh_Build_System(ABS).
+Building a chroot environment where /tools installed the required commands to run Arh_Build_System(ABS).
 ##### see: [Building chroot environment](Building%20chroot%20environment.md)
 ##### refer to: [Pacman Home Page](https://archlinux.org/pacman/), [Byound Linux From Scratch v11.0-stable-sysV](https://www.linuxfromscratch.org/blfs/downloads/stable/BLFS-BOOK-11.0-nochunks.html)
 
-## 3.booting the chroot environment.
+## 2.booting the chroot environment.
 Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file. When booted the stub kernel,
-bootloader does mount the minimal linux desktop to root-filsesystem.
+bootloader does mount the chroot environment for root_filesystem.
 ##### see: [Building stub kernel](Building%20stub%20kernel.md) 
 
 # II.Building minimal linux desktop
@@ -78,7 +78,7 @@ pacman -U --force $pkgname-$pkgver.pkg.tar.zst
 		
 ## Prerequisites
 Host OS must pass version-check.sh of LFS-11.0 book. With a tiny mistake in build process can irreparably destroy the host system. Therefore, it is recommended to use a various Live-USB with persistence function which using Overlayfs as the host OS.
-##### Refer to: [Install_Arch_Linux_on_a_removable_medium](https://wiki.archlinux.org/title/Install_Arch_Linux_on_a_removable_medium)
+##### Refer to:e.g [Install_Arch_Linux_on_a_removable_medium](https://wiki.archlinux.org/title/Install_Arch_Linux_on_a_removable_medium)
 
 The host should have a desktop environment and a browser. If you can't find a suitable existing Live-USB distribution, Install a new OS dedicated to host of build works into an USB storage.
 
