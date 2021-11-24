@@ -1,0 +1,9 @@
+  GNU nano 5.8                    dejagnu.install                               
+post_install() {
+
+rm -rf /usr/src/dejagnu/1.6.3/pkg
+rm -rf /usr/src/dejagnu/1.6.3/src
+rm -v /usr/src/dejagnu/1.6.3/dejagnu-1.6.3.tar.gz
+mv -v /usr/src/dejagnu/1.6.3/dejagnu-1.6.3-1-x86_64.pkg.tar.gz /var/cache/pacma>
+
+}
