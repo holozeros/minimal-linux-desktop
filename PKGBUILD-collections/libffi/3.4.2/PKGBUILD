@@ -1,0 +1,29 @@
+pkgname="libffi"
+pkgver="3.4.2"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://sourceware.org/libffi/"
+license=('')
+source=("https://github.com/libffi/libffi/releases/download/v3.4.2/libffi-3.4.2.tar.gz")
+md5sums=('294b921e6cf9ab0fbaea4b639f8fdbe8')
+install="${pkgname}.install"
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+./configure --prefix=/             \
+            --disable-static       \
+            --with-gcc-arch=native \
+            --disable-exec-static-tramp
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
