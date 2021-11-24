@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/libunistring/0.9.10/pkg
+rm -rf /usr/src/libunistring/0.9.10/src
+rm -v /usr/src/libunistring/0.9.10/libunistring-0.9.10.tar.xz
+mv -v /usr/src/libunistring/0.9.10/libunistring-0.9.10-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
