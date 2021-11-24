@@ -1,0 +1,29 @@
+pkgname="gmp"
+pkgver="6.2.1"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://www.gnu.org/software/gmp/"
+license=('')
+source=("https://ftp.gnu.org/gnu/gmp/gmp-6.2.1.tar.xz")
+md5sums=('0b82665c4a92fd2ade7440c13fcaa42b')
+install="${pkgname}.install"
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+./configure --prefix=/       \
+            --enable-cxx     \
+            --disable-static \
+            --docdir=/usr/share/doc/gmp-6.2.1
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
