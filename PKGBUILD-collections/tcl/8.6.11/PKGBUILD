@@ -45,7 +45,7 @@ unset SRCDIR
 
 check() {
 cd "/usr/src/tcl/8.6.11/src/${pkgname}${pkgver}/unix"
-make test 2>&1 | tee ../../${pkgname}${pkgver}-test.log
+make test 2>&1 | tee ../../../${pkgname}${pkgver}-test.log
 }
 
 package() {
