@@ -1051,7 +1051,6 @@ Look at the output of mount, make sure the following directories are not mounted
 
 If left mounted kernel's virtual file systems on these directories, the storage and hardware of the host PC will be damaged.
 If you cannot unmount these, interrupt further operations and reboot the host immediately. 
-When returning to the host, if /mnt/lfs/dev/pts, /mnt/lfs/dev, /mnt/lfs/sys, /mnt/lfs/proc, /mnt/lfs/run succeeds in unmounting, you can ignore the warning. It is important to check the dangerous elements once in this way, but after this checking, change the unmount script of the chroot script.
 
 # Entering the chroot environment
 On the terminal
