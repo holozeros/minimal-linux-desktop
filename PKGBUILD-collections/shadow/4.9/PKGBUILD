@@ -17,7 +17,6 @@ find man -name Makefile.in -exec sed -i 's/getspnam\.3 / /' {} \;
 find man -name Makefile.in -exec sed -i 's/passwd\.5 / /'   {} \;
 sed -e 's:#ENCRYPT_METHOD DES:ENCRYPT_METHOD SHA512:' \
     -e 's:/var/spool/mail::'                          \
-#    -e '/PATH=/{s@/sbin:@@;s@/bin:@@}'                \
     -i etc/login.defs
 sed -e "224s/rounds/min_rounds/" -i libmisc/salt.c
 }
@@ -33,5 +32,4 @@ package() {
     cd "${srcdir}/${pkgname}-${pkgver}"
     make DESTDIR=${pkgdir} exec_prefix=/ install
     mkdir -p ${srcdir}/etc/default
-    useradd -D --gid 999
 }
