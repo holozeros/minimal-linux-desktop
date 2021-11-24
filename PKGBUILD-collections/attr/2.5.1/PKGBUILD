@@ -1,0 +1,29 @@
+pkgname="attr"
+pkgver="2.5.1"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://savannah.nongnu.org/projects/attr"
+license=('')
+source=("https://download.savannah.gnu.org/releases/attr/attr-2.5.1.tar.gz")
+md5sums=('ac1c5a7a084f0f83b8cace34211f64d8')
+install="${pkgname}.install"
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+./configure --prefix=/        \
+            --disable-static  \
+            --sysconfdir=/etc \
+            --docdir=/usr/share/doc/attr-2.5.1
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
