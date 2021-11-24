@@ -19,13 +19,8 @@ Here you need experience reading the Linux From Scratch book from start to finis
 # I.Building chroot environment
 
 ## 1.Building basic chroot environment.
-Building a chroot environment where /tools has the required commands to run chroot.
+Building a chroot environment where /tools has the required commands to run Arh_Build_System(ABS).
 ##### see: [Building chroot environment](Building%20chroot%20environment.md)
-
-## 2.Install arch build system in the chroot environment.
-Add Arch Build System (gcc,pacman,makepkg..) in the basic chroot system. 
-##### see: [Add ABS in chroot environment](Add%20ABS%20in%20chroot%20environment.md)
-
 ##### refer to: [Pacman Home Page](https://archlinux.org/pacman/), [Byound Linux From Scratch v11.0-stable-sysV](https://www.linuxfromscratch.org/blfs/downloads/stable/BLFS-BOOK-11.0-nochunks.html)
 
 ## 3.booting the chroot environment.
