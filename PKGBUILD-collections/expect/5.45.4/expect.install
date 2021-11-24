@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/expect/5.45.4/pkg
+rm -rf /usr/src/expect/5.45.4/src
+rm -v /usr/src/expect/5.45.4/expect5.45.4.tar.gz
+mv -v /usr/src/expect/5.45.4/expect-5.45.4-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
