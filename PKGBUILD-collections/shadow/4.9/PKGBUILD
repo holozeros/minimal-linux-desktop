@@ -1,0 +1,37 @@
+pkgname="shadow"
+pkgver="4.9"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://shadow-maint.github.io/shadow/"
+license=('')
+source=("https://github.com/shadow-maint/shadow/releases/download/v4.9/shadow-4.9.tar.xz")
+md5sums=('126924090caf72f3de7e9261fd4e10ac')
+install="${pkgname}.install"
+
+prepare() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+sed -i 's/groups$(EXEEXT) //' src/Makefile.in
+find man -name Makefile.in -exec sed -i 's/groups\.1 / /'   {} \;
+find man -name Makefile.in -exec sed -i 's/getspnam\.3 / /' {} \;
+find man -name Makefile.in -exec sed -i 's/passwd\.5 / /'   {} \;
+sed -e 's:#ENCRYPT_METHOD DES:ENCRYPT_METHOD SHA512:' \
+    -e 's:/var/spool/mail::'                          \
+#    -e '/PATH=/{s@/sbin:@@;s@/bin:@@}'                \
+    -i etc/login.defs
+sed -e "224s/rounds/min_rounds/" -i libmisc/salt.c
+}
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+./configure --sysconfdir=/etc \
+            --with-group-name-max-length=32
+make
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} exec_prefix=/ install
+    mkdir -p ${srcdir}/etc/default
+    useradd -D --gid 999
+}
