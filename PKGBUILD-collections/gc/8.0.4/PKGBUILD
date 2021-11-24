@@ -1,0 +1,29 @@
+pkgname="gcc"
+pkgver="8.0.4"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url=""
+license=('')
+source=("https://www.hboehm.info/gc/gc_source/gc-8.0.4.tar.gz")
+md5sums=('67a5093e2f9f381bd550aa891d00b54b')
+install="${pkgname}.install"
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+./configure --prefix=/         \
+            --enable-cplusplus \
+            --disable-static   \
+            --docdir=/usr/share/doc/gc-8.0.4 &&
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
