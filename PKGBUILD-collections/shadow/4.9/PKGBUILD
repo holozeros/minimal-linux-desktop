@@ -23,7 +23,8 @@ sed -e "224s/rounds/min_rounds/" -i libmisc/salt.c
 
 build() {
 cd "${srcdir}/${pkgname}-${pkgver}"
-./configure --sysconfdir=/etc \
+./configure --prefix=/        \
+            --sysconfdir=/etc \
             --with-group-name-max-length=32
 make
 }
