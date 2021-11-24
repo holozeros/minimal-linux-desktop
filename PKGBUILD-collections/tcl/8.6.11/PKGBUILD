@@ -12,12 +12,12 @@ md5sums=('8a4c004f48984a03a7747e9ba06e4da4'
 install="${pkgname}.install"
 
 prepare() {
-cd "${srcdir}/${pkgname}-${pkgver}"
+cd "${srcdir}/${pkgname}${pkgver}"
 tar -xf ../../tcl8.6.11-html.tar.gz --strip-components=1
 }
 
 build() {
-cd "${srcdir}/${pkgname}-${pkgver}"
+cd "${srcdir}/${pkgname}${pkgver}"
 SRCDIR=$(pwd)
 cd unix
 ./configure --prefix=/               \
@@ -26,7 +26,7 @@ cd unix
 make
 
 sed -e "s|$SRCDIR/unix|/lib|" \
-    -e "s|$SRCDIR|include|"  \
+    -e "s|$SRCDIR|/include|"  \
     -i tclConfig.sh
 
 sed -e "s|$SRCDIR/unix/pkgs/tdbc1.1.2|/lib/tdbc1.1.2|" \
@@ -44,15 +44,15 @@ unset SRCDIR
 }
 
 check() {
-cd "${srcdir}/${pkgname}-${pkgver}"
-make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+cd "/usr/src/tcl/8.6.11/src/${pkgname}${pkgver}/unix"
+make test 2>&1 | tee ../../${pkgname}${pkgver}-test.log
 }
 
 package() {
-    cd "${srcdir}/${pkgname}-${pkgver}"
+    cd "/usr/src/tcl/8.6.11/src/${pkgname}${pkgver}/unix"
     make DESTDIR=${pkgdir} install
     chmod -v u+w "${pkgdir}/lib/libtcl8.6.so"
     make DESTDIR=${pkgdir} install-private-headers
-    ln -sfv tclsh8.6 /bin/tclsh
-    mv /usr/share/man/man3/{Thread,Tcl_Thread}.3
+    ln -sfv tclsh8.6 "${pkgdir}/bin/tclsh"
+    mv "${pkgdir}"/usr/share/man/man3/{Thread,Tcl_Thread}.3
 }
