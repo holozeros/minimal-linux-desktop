@@ -27,5 +27,5 @@ make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
 package() {
     cd "${srcdir}/${pkgname}${pkgver}"
     make DESTDIR=${pkgdir} install
-ln -srvf expect5.45.4/libexpect5.45.4.so "${pkgdir}/lib"
+ln -svf expect5.45.4/libexpect5.45.4.so "${pkgdir}/lib"
 }
