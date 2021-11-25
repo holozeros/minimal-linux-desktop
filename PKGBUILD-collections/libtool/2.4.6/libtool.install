@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/libtool/2.4.6/pkg
+rm -rf /usr/src/libtool/2.4.6/src
+rm -v /usr/src/libtool/2.4.6/libtool-2.4.6.tar.xz
+mv -v /usr/src/libtool/2.4.6/libtool-2.4.6-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
