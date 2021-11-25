@@ -1,0 +1,30 @@
+pkgname="chrpath"
+pkgver="0.16"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://directory.fsf.org/project/chrpath/"
+license=('GPL2')
+depends=('glibc')
+source=("http://http.debian.net/debian/pool/main/c/chrpath/chrpath_$pkgver.orig.tar.gz")
+md5sums=('2bf8d1d1ee345fc8a7915576f5649982')
+
+prepare() {
+  cd "${srcdir}"/$pkgname-$pkgver
+#  rm -f config.guess
+#  aclocal
+#  libtoolize
+#  automake --add-missing
+#  autoconf
+}
+
+build() {
+  cd "${srcdir}"/$pkgname-$pkgver
+  ./configure --prefix=/
+  make
+}
+
+package() {
+  cd "${srcdir}"/$pkgname-$pkgver
+  make DESTDIR="${pkgdir}" install
+}
