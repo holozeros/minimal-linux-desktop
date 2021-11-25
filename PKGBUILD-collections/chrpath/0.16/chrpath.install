@@ -1,0 +1,8 @@
+post_install() {
+
+rm -rf /usr/src/chrpath/0.16/pkg
+rm -rf /usr/src/chrpath/0.16/src
+rm -v /usr/src/chrpath/0.16/chrpath-0.16.tar.gz
+mv -v /usr/src/chrpath/0.16/chrpath-0.16-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+
+}
