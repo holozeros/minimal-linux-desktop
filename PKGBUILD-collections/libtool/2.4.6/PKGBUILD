@@ -1,0 +1,27 @@
+pkgname="libtool"
+pkgver="2.4.6"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://www.gnu.org/software/libtool/"
+license=('')
+source=("https://ftp.gnu.org/gnu/libtool/libtool-2.4.6.tar.xz")
+md5sums=('1bfb9b923f2c1339b4d2ce1807064aa5')
+install="${pkgname}.install"
+
+build() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+./configure --prefix=/
+make
+}
+
+check() {
+cd "${srcdir}/${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+rm -fv ${srcdir}/lib/libltdl.a
+}
