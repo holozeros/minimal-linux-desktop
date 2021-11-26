@@ -696,4 +696,4 @@ done
 rm -fv /usr/lib/libbz2.a
 cd ..
 rm -rf bzip2-1.0.8
-EOF
+END
