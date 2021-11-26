@@ -1,4 +1,4 @@
-cat > build-ABS.sh << "END"
+cat > Adding-ABS.sh << "END"
 ###################
 ### zlib-1.2.11 ###
 ###################
@@ -1278,8 +1278,6 @@ make install
 
 cd ..
 rm -rf openldap-2.5.7
-
-
 
 #############################
 END
