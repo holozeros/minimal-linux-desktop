@@ -99,10 +99,9 @@ echo "rootsbindir=/usr/sbin" > configparms
       --enable-kernel=3.2                \
       --with-headers=$LFS/usr/include    \
       libc_cv_slibdir=/usr/lib
-make
+make -j1
 make DESTDIR=$LFS install
 sed '/RTLDLIST=/s@/usr@@g' -i $LFS/usr/bin/ldd
-echo 'int main(){}' > dummy.c
 $LFS_TGT-gcc dummy.c
 readelf -l a.out | grep '/ld-linux'
   # [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
@@ -399,7 +398,42 @@ make DESTDIR=$LFS install
 ln -sv gcc $LFS/usr/bin/cc
 cd ../..
 rm -rf gcc-11.2.0
+######################
+### Changing Owner ###
+######################
+su -
+export LFS=/mnt/lfs
+chown -R root:root $LFS/{usr,lib,var,etc,bin,sbin,tools}
+case $(uname -m) in
+  x86_64) chown -R root:root $LFS/lib64 ;;
+esac
+mkdir -pv $LFS/{dev,proc,sys,run}
+mknod -m 600 $LFS/dev/console c 5 1
+mknod -m 666 $LFS/dev/null c 1 3
+##############
+### Chroot ###
+##############
+mount -v --bind /dev $LFS/dev
+mount -v --bind /dev/pts $LFS/dev/pts
+mount -vt proc proc $LFS/proc
+mount -vt sysfs sysfs $LFS/sys
+mount -vt tmpfs tmpfs $LFS/run
+if [ -h $LFS/dev/shm ]; then
+  mkdir -pv $LFS/$(readlink $LFS/dev/shm)
+fi
+chroot "$LFS" /usr/bin/env -i   \
+    HOME=/root                  \
+    TERM="$TERM"                \
+    PS1='(lfs chroot) \u:\w\$ ' \
+    PATH=/usr/bin:/usr/sbin     \
+    /bin/bash --login +h
+umount -v $LFS/dev/pts
+umount -v $LFS/dev
+umount -v $LFS/sys
+umount -v $LFS/proc
+umount -v $LFS/run
 
+######################################################33
 
 #################
 ### tcl8.6.11 ###
