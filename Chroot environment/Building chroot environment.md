@@ -99,12 +99,21 @@ Run following the shell script and check outputs of script.
 ## Directory settings
 
     export LFS=/mnt/lfs
-    # mount /dev/<For new creation root file system partition> $LFS
+        # mount /dev/<For new creation root file system partition> $LFS
+    
+    mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
+    for i in bin lib sbin; do
+       ln -sv usr/$i $LFS/$i
+    done
+    case $(uname -m) in
+       x86_64) mkdir -pv $LFS/lib64 ;;
+    esac
 
     mkdir -v $LFS/tools
     mkdir -v $LFS/sources
     ln -sv $LFS/tools /
     chmod -v a+wt $LFS/sources
+
 
 ## Making local user in your host system
 
@@ -114,7 +123,11 @@ Run following the shell script and check outputs of script.
 passwd lfs
 ```
 ```
-chown -v lfs $LFS/tools
+chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
+case $(uname -m) in
+  x86_64) chown -v lfs $LFS/lib64 ;;
+esac
+chown -v lfs $LFS/sources
 su - lfs
 ```    
     cat > ~/.bash_profile << "EOF"
@@ -250,7 +263,22 @@ Please verify md5sum arbitrarily.
 
 In this section is different from the lfs-11.0 book. Here you need to install all of the chroot environment in the / tools directory. Test procedures that are possible but not required are commented out. Now start building the base for your chroot environment. We recommend that you install each package in stages, but you can also run a long script to install them all at once. If you want to install at once, create the script(build-chroot-environment.sh) build at once and execute it on the terminal. 
 
+## Creating filesystem
+```
+su -
+export LFS=/mnt/lfs
+```
+```
+mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
+for i in bin lib sbin; do
+  ln -sv usr/$i $LFS/$i
+done
+case $(uname -m) in
+  x86_64) mkdir -pv $LFS/lib64 ;;
+esac
 
+
+```
 ## BUILD (build-chroot-environment.sh)
 
 Ryzen2700x(8 core) takes about 20 minuits.
