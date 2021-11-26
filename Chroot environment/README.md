@@ -99,21 +99,15 @@ Run following the shell script and check outputs of script.
 ## Directory settings
 
     export LFS=/mnt/lfs
-        # mount /dev/<For new creation root file system partition> $LFS
+    # mount /dev/<For new creation root file system partition> $LFS
+
+    mkdir -v $LFS/home
+        # mount -v -t ext4 /dev/<yyy> $LFS/home
     
-    mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
-    for i in bin lib sbin; do
-       ln -sv usr/$i $LFS/$i
-    done
-    case $(uname -m) in
-       x86_64) mkdir -pv $LFS/lib64 ;;
-    esac
-
-    mkdir -v $LFS/tools
     mkdir -v $LFS/sources
-    ln -sv $LFS/tools /
     chmod -v a+wt $LFS/sources
-
+    mkdir -v $LFS/tools
+    ln -sv $LFS/tools /
 
 ## Making local user in your host system
 
@@ -276,8 +270,6 @@ done
 case $(uname -m) in
   x86_64) mkdir -pv $LFS/lib64 ;;
 esac
-
-
 ```
 ## BUILD (build-chroot-environment.sh)
 
