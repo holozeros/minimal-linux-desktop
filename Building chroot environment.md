@@ -141,11 +141,9 @@ su - lfs
 
     wget https://www.linuxfromscratch.org/lfs/view/stable/wget-list
     wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
-    wget --no-check-certificate https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz
-    wget --no-check-certificate https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tar.xz
-    wget --no-check-certificate https://www.python.org/ftp/python/doc/3.9.6/python-3.9.6-docs-html.tar.bz2
     wget https://www.linuxfromscratch.org/lfs/view/stable/md5sums
-
+    wget https://github.com/ninja-build/ninja/archive/v1.10.2.tar.gz
+    mv v1.10.2.tar.gz ninja-1.10.2.tar.gz
 
 If there are some tarballs that could not be downloaded automatically from the list, 
 check the download address with LFS-11.0 Book or Google search and make up for it manually. 
@@ -232,6 +230,16 @@ Please verify md5sum arbitrarily.
     419c2461366cf404160a820f7a902b7e  curl-7.78.0.tar.xz
     d9702786d89ec8053a96ab4768a172e4  nghttp2-1.44.0.tar.xz
     34954869627f62f9992808b6cff0d0a9  libxcrypt--4.4.26.tar.xz
+    b99454564d5b4479750567031d66fe24  db-5.3.28.tar.gz
+    a33820c66e0622222c5aefafa1581083  cyrus-sasl-2.1.27.tar.gz
+    1a17a2d56984e95382b604833fe9b92d  cyrus-sasl-2.1.27-doc_fixes-1.patch
+    e7847d1463ce4cdc8e3fd831d1cd267c  openldap-2.5.7.tgz
+    79aab81c90018978ef698f389917b8ca  openldap-2.5.7-consolidated-1.patch
+    919af7f33576816b423d537f8a8692e8  keyutils-1.6.1.tar.bz2
+    eb51b7724111e1a458a8c9a261d45a31  krb5-1.19.2.tar.gz
+    20750f9a7686f02b90a025303645f133  audit-3.0.6.tar.gz
+    0990ff97af1511be0d9f0d3223dd4359  git-2.33.0.tar.xz
+    84c0522bb65d17f9127896268b72ea2a  doxygen-1.9.2.src.tar.gz
     EOF
 
     pushd $LFS/sources
