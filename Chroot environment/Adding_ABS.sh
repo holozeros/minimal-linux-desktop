@@ -1,4 +1,4 @@
-cat > Adding-ABS.sh << "END"
+cat > Adding_ABS.sh << "END"
 ###################
 ### zlib-1.2.11 ###
 ###################
