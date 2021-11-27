@@ -262,7 +262,7 @@ Please verify md5sum arbitrarily.
 
 In this section is different from the lfs-11.0 book. Here you need to install all of the chroot environment in the / tools directory. Test procedures that are possible but not required are commented out. Now start building the base for your chroot environment. We recommend that you install each package in stages, but you can also run a long script to install them all at once. If you want to install at once, create the script(build-chroot-environment.sh) build at once and execute it on the terminal. 
 
-## BUILD (build-chroot-environment.sh)
+## BUILD [build-chroot-environment.sh](build_chroot_environment.sh)
 
 Ryzen2700x(8 core) takes about 20 minuits.
 ```
@@ -603,7 +603,7 @@ exec /tools/bin/bash --login +h
 ## Install ABS
 It's best to install each package step by step, but you can also run this long script to install it all at once. 
 
-## Build (build-ABS.sh)
+## Build [abs_build.sh](abs_build.sh)
 Ryzen2700x(8 core) takes about xx minuits.
 ```
 cd /sources
