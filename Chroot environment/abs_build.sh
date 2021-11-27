@@ -1013,7 +1013,7 @@ cd fakeroot-1.26
 make
 make install
 install -dm0755 /etc/ld.so.conf.d/
-echo '/tools/lib/libfakeroot' > /etc/ld.so.conf.d/fakeroot.conf
+echo '/usr/lib/libfakeroot' > /etc/ld.so.conf.d/fakeroot.conf
 cd ..
 rm -rf fakeroot-1.26
 ################$$##
