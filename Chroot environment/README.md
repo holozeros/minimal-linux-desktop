@@ -1,10 +1,5 @@
 ## Build preparation
-Follow to [the LFS book](https://www.linuxfromscratch.org/lfs/view/stable/) complete up to Chapter 4.
-Here is summarize up to the LFS book and supplement it a little. 
-
-note: The host OS should use live USB, as work mistakes can corrupt the host OS. Follow those instructions in this order throughout. If interrupt of work, you need to revert to the previous shell environment. 
- 
-now, let's start "building chroot environment"
+Now, let's start "building chroot environment"
 
     su -
 
@@ -34,7 +29,7 @@ Mount the new partition for building chroot environment to /mnt/lfs. for example
     # below directive is example, you shuld change the propery partition name 
     mount -v /dev/sda2 $LFS
 
-## Checking host system requirement
+## Checking host system requirement (see:[the LFS book](https://www.linuxfromscratch.org/lfs/view/stable/)
 
     cat > version-check.sh << "EOF"
     #!/bin/bash
