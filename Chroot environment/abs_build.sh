@@ -286,7 +286,7 @@ tar xf attr-2.5.1.tar.gz
 cd attr-2.5.1
 ./configure --prefix=/usr   \
             --disable-static  \
-            --sysconfdir=/usr/etc 
+            --sysconfdir=/etc 
 make
 make check
 make install
@@ -491,15 +491,13 @@ make install
 mv -v /usr/{,s}sbin/ifconfig
 cd ..
 rm -rf inetutils-2.1
-ln -s /usr/etc/services /etc/
-ln -s /usr/etc/protocols /etc/
 ping -c 3 google.com
 ################
 ### less-590 ###
 ################
 tar xf less-590.tar.gz
 cd less-590
-./configure --prefix=/usr --sysconfdir=/tools/etc
+./configure --prefix=/usr --sysconfdir=/etc
 make
 make install
 cd ..
@@ -545,7 +543,7 @@ cd openssl-1.1.1l
          zlib-dynamic
 make
 make test
-sed -i '/INSTALL_LIBS/s/libcrypto.a lmv /usr/etc/protocols /usr/etc/ibssl.a//' Makefile
+sed -i '/INSTALL_LIBS/s/libcrypto.a//' Makefile
 make MANSUFFIX=ssl install
 mv -v /usr/share/doc/openssl /usr/share/doc/openssl-1.1.1l
 cd ..
