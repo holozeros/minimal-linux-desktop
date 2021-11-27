@@ -3,7 +3,7 @@ Now, let's start "building chroot environment"
 
     su -
 
-Below directive is very important, because $LFS is used frequently in many directives.
+Below the directive is very important, because $LFS is used frequently in many directives.
 If $LFS is empty, there is a risk of destroying the host. 
 
     export LFS=/mnt/lfs
