@@ -4,7 +4,7 @@ On the terminal of the host
 ```
 su -
 ```
-## Glibc,Sysvinit and others requirement
+Glibc,Sysvinit and others requirement
 ``` 
 ln -sv /usr/bin/{bash,cat,dd,echo,env,install,perl,ln,pwd,rm,stty} /bin
 ```
