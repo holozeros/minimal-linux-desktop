@@ -306,9 +306,10 @@ chroot "$LFS" /usr/bin/env -i   \
 umount -v $LFS/dev{/pts,}
 umount -v $LFS/{sys,proc,run}
 
-####################
+#####################
 ### creating dir ###
-####################
+#####################
+```
 mkdir -pv /{boot,home,mnt,opt,srv}
 mkdir -pv /etc/{opt,sysconfig}
 mkdir -pv /lib/firmware
@@ -320,15 +321,21 @@ mkdir -pv /usr/{,local/}share/{misc,terminfo,zoneinfo}
 mkdir -pv /usr/{,local/}share/man/man{1..8}
 mkdir -pv /var/{cache,local,log,mail,opt,spool}
 mkdir -pv /var/lib/{color,misc,locate}
+```
+```
 ln -sfv /run /var/run
 ln -sfv /run/lock /var/lock
 install -dv -m 0750 /root
 install -dv -m 1777 /tmp /var/tmp
 ln -sv /proc/self/mounts /etc/mtab
+```
+```
 cat > /etc/hosts << EOF
 127.0.0.1  localhost $(hostname)
 ::1        localhost
 EOF
+```
+```
 cat > /etc/passwd << "EOF"
 root:x:0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/dev/null:/bin/false
@@ -337,6 +344,8 @@ messagebus:x:18:18:D-Bus Message Daemon User:/run/dbus:/bin/false
 uuidd:x:80:80:UUID Generation Daemon User:/dev/null:/bin/false
 nobody:x:99:99:Unprivileged User:/dev/null:/bin/false
 EOF
+```
+```
 cat > /etc/group << "EOF"
 root:x:0:
 bin:x:1:daemon
@@ -364,19 +373,20 @@ wheel:x:97:
 nogroup:x:99:
 users:x:999:
 EOF
+```
+```
 echo "tester:x:101:101::/home/tester:/bin/bash" >> /etc/passwd
 echo "tester:x:101:" >> /etc/group
 install -o tester -d /home/tester
+
 exec /bin/bash --login +h
+```
+```
 touch /var/log/{btmp,lastlog,faillog,wtmp}
 chgrp -v utmp /var/log/lastlog
 chmod -v 664  /var/log/lastlog
 chmod -v 600  /var/log/btmp
-
-
-
-
-
+```
 -----------------------------
 striping
 ```
