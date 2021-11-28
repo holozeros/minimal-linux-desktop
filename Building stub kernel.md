@@ -273,7 +273,7 @@ pacman -Syu
 pacman -S linux
 ```
 However, all the dependencies are installed and you end up with just an Arch Linux distribution. 
-## Boot settings
+## Booting the chroot environment as rootfs with the above custum kernel
 Glibc,Sysvinit and others requirement
 ``` 
 ln -sv /usr/bin/{bash,cat,dd,echo,env,install,perl,ln,pwd,rm,stty} /bin
