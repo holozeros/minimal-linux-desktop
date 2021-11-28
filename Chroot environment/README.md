@@ -92,7 +92,7 @@ Run following the shell script and check outputs of script.
     [ ! -e /etc/bash.bashrc ] || mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
 
 ## Directory settings
-
+```
     export LFS=/mnt/lfs
     # mount /dev/<For new creation root file system partition> $LFS
 
@@ -104,6 +104,7 @@ Run following the shell script and check outputs of script.
     mkdir -v $LFS/tools
     ln -sv $LFS/tools /
 ```
+```
 mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
 for i in bin lib sbin; do
   ln -sv usr/$i $LFS/$i
@@ -113,9 +114,10 @@ case $(uname -m) in
 esac
 ```
 ## Making local user in your host system
-
+```
     groupadd lfs
     useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+```
 ```
 passwd lfs
 ```
