@@ -30,7 +30,7 @@ cd       build
              --disable-werror    \
              --enable-64-bit-bfd \
              --with-system-zlib
-make tooldir=/
+make
 }
 
 check() {
@@ -40,6 +40,6 @@ make -k check 2>&1 | tee ../../../${pkgname}-${pkgver}-test.log
 
 package() {
     cd "${srcdir}/${pkgname}-${pkgver}/build"
-    make DESTDIR=${pkgdir} tooldir=/ install -j1
+    make DESTDIR=${pkgdir} -j1
     rm -fv /lib/lib{bfd,ctf,ctf-nobfd,opcodes}.a
 }
