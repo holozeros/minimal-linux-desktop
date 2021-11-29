@@ -9,7 +9,7 @@ options=(!strip staticlibs)
 source=(https://ftp.gnu.org/gnu/glibc/glibc-$pkgver.tar.xz
 	glibc-2.34-fhs-1.patch
         locale.gen.txt
-        locale-gen
+        locale.gen
         sdt.h
         sdt-config.h
 	glibc.install)
