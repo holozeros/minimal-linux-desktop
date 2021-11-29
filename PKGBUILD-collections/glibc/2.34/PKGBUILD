@@ -10,8 +10,8 @@ source=(https://ftp.gnu.org/gnu/glibc/glibc-$pkgver.tar.xz
 	glibc-2.34-fhs-1.patch
         locale.gen.txt
         locale.gen
-        std.h
-        std-config.h
+        sdt.h
+        sdt-config.h
 	glibc.install)
 
 md5sums=('31998b53fb39cb946e96abc310af1c89'
