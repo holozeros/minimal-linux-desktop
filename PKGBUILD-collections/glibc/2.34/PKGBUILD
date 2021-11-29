@@ -32,6 +32,18 @@ prepare() {
   cd glibc
 
   patch -Np1 -i ../../glibc-2.34-fhs-1.patch
+  
+  ln -sfv /usr/lib/gcc /lib
+  
+  case $(uname -m) in
+    i?86)    GCC_INCDIR=/lib/gcc/$(uname -m)-pc-linux-gnu/8.2.0/include
+            ln -sfv ld-linux.so.2 /lib/ld-lsb.so.3
+    ;;
+    x86_64) GCC_INCDIR=/lib/gcc/x86_64-pc-linux-gnu/8.2.0/include
+            ln -sfv ../lib/ld-linux-x86-64.so.2 /lib64
+            ln -sfv ../lib/ld-linux-x86-64.so.2 /lib64/ld-lsb-x86-64.so.3
+    ;;
+  esac
 
   sed -e '/NOTIFY_REMOVED)/s/)/ \&\& data.attr != NULL)/' \
       -i "$srcdir"/glibc-2.34/sysdeps/unix/sysv/linux/mq_notify.c
@@ -39,15 +51,15 @@ prepare() {
 
 build() {
 
-  local _configure_flags=(
-             --prefix=/                        \
-             --disable-werror                  \
-             --enable-kernel=3.2               \
-             --enable-stack-protector=strong   \
-             --with-headers=/include           \
+CC="gcc -isystem $GCC_INCDIR -isystem /include"     \
+../configure --prefix=/                             \
+             --disable-werror                       \
+             --enable-kernel=3.2                    \
+             --enable-stack-protector=strong        \
              libc_cv_slibdir=/lib
-  )
-  cd "$srcdir/glibc-build"
+unset GCC_INCDIR
+
+cd "$srcdir/glibc-build"
 
   echo "slibdir=/lib" >> configparms
   echo "rtlddir=/lib" >> configparms
@@ -82,13 +94,13 @@ build() {
   # make info
 }
 
-#check() {
-#  cd glibc-build
-  # remove fortify in preparation to run test-suite
-#  sed -i '/FORTIFY/d' configparms
-  # some failures are "expected"
-#  make check || true
-#}
+check() {
+  cd "$srcdir/glibc-build"
+      # remove fortify in preparation to run test-suite
+  sed -i '/FORTIFY/d' configparms
+      # some failures are "expected"
+  make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
 
 package_glibc() {
   pkgdesc='GNU C Library'
