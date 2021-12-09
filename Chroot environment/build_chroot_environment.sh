@@ -34,7 +34,7 @@ mv -v mpc-1.2.1 mpc
 for file in gcc/config/{linux,i386/linux{,64}}.h
 do
   cp -uv $file{,.orig}
-  sed -e 's@/lib\(64\)\?\(32\)\?/ld@/&@g' \
+  sed -e 's@/lib\(64\)\?\(32\)\?/ld@&@g' \
       -e 's@/usr@/@g' $file.orig > $file
   echo '
   
@@ -112,7 +112,7 @@ echo "rootsbindir=/sbin" > configparms
 mkdir -v build
 cd       build
 ../configure                             \
-      --prefix=/                         \
+      --prefix=                          \
       --host=$LFS_TGT                    \
       --build=$(../scripts/config.guess) \
       --enable-kernel=3.2                \
