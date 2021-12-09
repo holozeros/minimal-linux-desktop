@@ -298,8 +298,86 @@ make
 make install
 cd ..
 rm -fr check-0.15.2
+###############
+### ncurses ###
+###############
+tar xf ncurses-6.2.tar.gz 
+cd ncurses-6.2
+sed -i s/mawk// configure
+./configure --prefix=/tools \
+            --with-shared   \
+            --without-debug \
+            --without-ada   \
+            --enable-widec  \
+            --enable-overwrite
+make
+make install
+cd ..
+rm -rf ncurses-6.2
+############
+### bash ###
+############
+tar xf bash-5.1.8.tar.gz 
+cd bash-5.1.8
+./configure --prefix=/tools --without-bash-malloc
+make
+make install
+ln -sv bash /tools/bin/sh
+cd ..
+rm -rf bash-5.1.8
+#############
+### bison ###
+#############
+tar xf bison-3.7.6.tar.xz 
+cd bison-3.7.6
+./configure --prefix=/tools
+make
+make check
+make install
+cd ..
+rm -rf bison-3.7.6
+#############
+### bzip2 ###
+#############
+tar xf bzip2-1.0.8.tar.gz 
+cd bzip2-1.0.8
+make
+make PREFIX=/tools install
+cd ..
+rm -rf bzip2-1.0.8
 #################
-
+### coreutils ###
+#################
+tar xf coreutils-8.32.tar.xz 
+cd coreutils-8.32
+./configure --prefix=/tools --enable-install-program=hostname
+make
+make RUN_EXPENSIVE_TESTS=yes check
+make install
+cd ..
+rm -rf coreutils-8.32
+#################
+### diffutils ###
+#################
+tar xf diffutils-3.8.tar.xz 
+cd diffutils-3.8
+./configure --prefix=/tools
+make
+make check
+make install
+cd ..
+rm -rf diffutils-3.8
+############
+### file ###
+############
+tar xf file-5.40.tar.gz 
+cd file-5.40
+./configure --prefix=/tools
+make
+make check
+make install
+cd ..
+rm -rf file-5.40
 
 
 
