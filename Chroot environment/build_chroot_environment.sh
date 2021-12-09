@@ -41,12 +41,10 @@ do
       -e 's@/usr@/tools@g' $file.orig > $file
   echo '
   
-#undef GLIBC_DYNAMIC_LINKER64
 #undef STANDARD_STARTFILE_PREFIX_1
 #undef STANDARD_STARTFILE_PREFIX_2
-#define GLIBC_DYNAMIC_LINKER64 "/lib64/ld-linux-x86-64.so.2"
-#define STANDARD_STARTFILE_PREFIX_1 "/lib"
-#define STANDARD_STARTFILE_PREFIX_2 "/tools/lib"' >> $file
+#define STANDARD_STARTFILE_PREFIX_1 "/tools/lib/"
+#define STANDARD_STARTFILE_PREFIX_2 ""' >> $file
   touch $file.orig
 done
 
@@ -98,7 +96,7 @@ make mrproper
 make headers
 find usr/include -name '.*' -delete
 rm usr/include/Makefile
-cp -rv usr/include $LFS/
+cp -rv usr/include/* /tools/include
 cd ..
 rm -rf linux-5.13.12
 ##################
@@ -106,26 +104,26 @@ rm -rf linux-5.13.12
 ##################
 tar xf glibc-2.34.tar.xz
 cd glibc-2.34
-case $(uname -m) in
-    i?86)   ln -sfv ld-linux.so.2 $LFS/lib/ld-lsb.so.3
-    ;;
-    x86_64) ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64
-            ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64/ld-lsb-x86-64.so.3
-    ;;
-esac
+#case $(uname -m) in
+#    i?86)   ln -sfv ld-linux.so.2 $LFS/lib/ld-lsb.so.3
+#    ;;
+#    x86_64) ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64
+#            ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64/ld-lsb-x86-64.so.3
+#    ;;
+#esac
 patch -Np1 -i ../glibc-2.34-fhs-1.patch
 mkdir -v build
 cd       build
 ../configure                             \
-      --prefix=/                         \
+      --prefix=/tools                    \
       --host=$LFS_TGT                    \
       --build=$(../scripts/config.guess) \
       --enable-kernel=3.2                \
-      --with-headers=$LFS/include        \
+      --with-headers=/tools/include      \
       libc_cv_forced_unwind=yes          \
       libc_cv_c_cleanup=yes
 make
-make DESTDIR=$LFS install
+make install
 
 echo 'int main(){}' > dummy.c
 $LFS_TGT-gcc -B/mnt/lfs/lib dummy.c
@@ -140,6 +138,34 @@ rm -rf glibc-2.34
 ##############################
 tar xf gcc-11.2.0.tar.xz
 cd gcc-11.2.0
+cat > gcc11-fenv.patch << "EOF"
+  GNU nano 5.9                  ../gcc11-fenv.patch                             
+--- libstdc++-v3/include/c_compatibility/fenv.h 2021-07-28 15:55:09.292315320 +>
++++ ../fenv.h.custum    2021-12-09 16:23:23.135926080 +0900
+@@ -26,15 +26,18 @@
+  *  This is a Standard C++ Library header.
+  */
+
++#include_next <fenv.h>
++
+ #ifndef _GLIBCXX_FENV_H
+ #define _GLIBCXX_FENV_H 1
+
+ #pragma GCC system_header
+
+ #include <bits/c++config.h>
+-#if _GLIBCXX_HAVE_FENV_H
+-# include_next <fenv.h>
+-#endif
++
++//#if _GLIBCXX_HAVE_FENV_H
++//# include_next <fenv.h>
++//#endif
+
+ #if __cplusplus >= 201103L
+EOF
+patch libstdc++-v3/include/c_compatibility/fenv.h < gcc11-fenv.patch 
+
 mkdir -v build
 cd       build
 ../libstdc++-v3/configure           \
@@ -149,9 +175,9 @@ cd       build
     --disable-nls                   \
     --disable-libstdcxx-threads     \
     --disable-libstdcxx-pch         \
-    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/7.3.0
+    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/11.2.0
 make
-make DESTDIR=$LFS install
+make install
 cd ../..
 rm -rf gcc-11.2.0
 ##########
