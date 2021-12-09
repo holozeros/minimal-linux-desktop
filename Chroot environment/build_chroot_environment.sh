@@ -221,12 +221,12 @@ case $(uname -m) in
         -i.orig gcc/config/i386/t-linux64
   ;;
 esac
-tar -xf ../mpfr-3.1.5.tar.xz
-mv -v mpfr-3.1.5 mpfr
-tar -xf ../gmp-6.1.2.tar.xz
-mv -v gmp-6.1.2 gmp
-tar -xf ../mpc-1.0.3.tar.gz
-mv -v mpc-1.0.3 mpc
+tar -xf ../mpfr-4.1.0.tar.xz
+mv -v mpfr-4.1.0 mpfr
+tar -xf ../gmp-6.2.1.tar.xz
+mv -v gmp-6.2.1 gmp
+tar -xf ../mpc-1.2.1.tar.gz
+mv -v mpc-1.2.1 mpc
 mkdir -v build
 cd       build
 CC=$LFS_TGT-gcc                                    \
@@ -250,8 +250,66 @@ cc dummy.c
 readelf -l a.out | grep ': /tools'
   #[Requesting program interpreter: /tools/lib/ld-linux.so.2]
 rm -v dummy.c a.out
-cd ../...
+cd ../..
 rm -rf gcc-11.2.0
+###########
+### tcl ###
+###########
+tar xf tcl8.6.11-src.tar.gz
+cd tcl8.6.11
+cd unix
+./configure --prefix=/tools
+make
+make install
+chmod -v u+w /tools/lib/libtcl8.6.so
+make install-private-headers
+ln -sv tclsh8.6 /tools/bin/tclsh
+cd ../..
+rm -rf tcl8.6.11
+##############
+### expect ###
+##############
+tar xf expect5.45.4.tar.gz 
+cd expecp -v configure{,.orig}
+sed 's:/usr/local/bin:/bin:' configure.orig > configurect5.45.4
+./configure --prefix=/tools       \
+            --with-tcl=/tools/lib \
+            --with-tclinclude=/tools/include
+make
+make SCRIPTS="" install
+cd ..
+rm -rf expect5.45.4
+###############
+### dejagnu ###
+###############
+tar xf dejagnu-1.6.3.tar.gz 
+cd dejagnu-1.6.3
+./configure --prefix=/tools
+make install
+cd ..
+rm -rf dejagnu-1.6.3
+#############
+### check ###
+#############
+tar xf check-0.15.2.tar.gz 
+cd check-0.15.2
+PKG_CONFIG= ./configure --prefix=/tools
+make
+make install
+cd ..
+rm -fr check-0.15.2
+#################
+
+
+
+
+
+
+
+
+
+
+
 ##########
 ### m4 ###
 ##########
