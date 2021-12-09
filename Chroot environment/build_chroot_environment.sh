@@ -114,7 +114,7 @@ cd       build
       --enable-kernel=3.2                \
       libc_cv_forced_unwind=yes          \
       libc_cv_c_cleanup=yes              \
-      --with-headers=/mnt/tools/include
+      --with-headers=/tools/include
 #      libc_cv_slibdir=/tools/lib
 make
 make install
