@@ -119,7 +119,7 @@ cd       build
 make
 make install
 echo 'int main(){}' > dummy.c
-$LFS_TGT-gcc -B/mnt/lfs/lib dummy.c
+$LFS_TGT-gcc dummy.c
 readelf -l a.out | grep '/ld-linux'
   # [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
 rm -v dummy.c a.out
@@ -178,11 +178,11 @@ rm -rf gcc-11.2.0
 ##########
 tar xf m4-1.4.19.tar.xz
 cd m4-1.4.19
-./configure --prefix=/usr   \
+./configure --prefix=/tools \
             --host=$LFS_TGT \
             --build=$(build-aux/config.guess)
 make
-make DESTDIR=$LFS install
+make install
 cd ..
 rm -rf m4-1.4.19
 ###################
