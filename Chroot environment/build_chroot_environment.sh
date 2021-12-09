@@ -106,7 +106,7 @@ cd glibc-2.34
 patch -Np1 -i ../glibc-2.34-fhs-1.patch
 mkdir -v build
 cd       build
-echo "rootsbindir=/sbin" > configparms
+echo "rootsbindir=/tools/sbin" > configparms
 ../configure                             \
       --prefix=/tools                    \
       --host=$LFS_TGT                    \
