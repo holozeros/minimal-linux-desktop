@@ -84,7 +84,7 @@ make install
 #cd ..
 #cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
 #  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/install-tools/include/limits.h
-cd ..
+cd ../..
 rm -rf gcc-11.2.0
 #################################
 ### linux-api-headers-5.13.12 ###
