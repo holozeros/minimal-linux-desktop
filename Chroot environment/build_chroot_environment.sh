@@ -95,7 +95,7 @@ make mrproper
 make headers
 find usr/include -name '.*' -delete
 rm usr/include/Makefile
-cp -rv usr/include/* $/tools/include
+cp -rv usr/include/* /tools/include
 cd ..
 rm -rf linux-5.13.12
 ##################
