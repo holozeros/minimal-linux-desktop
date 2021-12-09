@@ -367,14 +367,23 @@ make check
 make install
 cd ..
 rm -rf diffutils-3.8
+
+
 ############
 ### file ###
 ############
 tar xf file-5.40.tar.gz 
 cd file-5.40
-./configure --prefix=/tools
-make
-make check
+mkdir build
+pushd build
+  ../configure --disable-bzlib      \
+               --disable-libseccomp \
+               --disable-xzlib      \
+               --disable-zlib
+  make
+popd
+./configure --prefix=/usr --host=$LFS_TGT --build=$(./config.guess)
+make FILE_COMPILE=$(pwd)/build/src/file
 make install
 cd ..
 rm -rf file-5.40
