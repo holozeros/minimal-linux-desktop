@@ -16,6 +16,9 @@ cd       build
              --disable-nls              \
              --disable-werror
 make
+case $(uname -m) in
+  x86_64) mkdir -v /tools/lib && ln -sv lib /tools/lib64 ;;
+esac
 make install -j1
 cd ../..
 rm -rf binutils-2.37
@@ -34,13 +37,13 @@ mv -v mpc-1.2.1 mpc
 for file in gcc/config/{linux,i386/linux{,64}}.h
 do
   cp -uv $file{,.orig}
-  sed -e 's@/lib\(64\)\?\(32\)\?/ld@&@g' \
-      -e 's@/usr@/@g' $file.orig > $file
+  sed -e 's@/lib\(64\)\?\(32\)\?/ld@/tools&@g' \
+      -e 's@/usr@/tools@g' $file.orig > $file
   echo '
   
 #undef STANDARD_STARTFILE_PREFIX_1
 #undef STANDARD_STARTFILE_PREFIX_2
-#define STANDARD_STARTFILE_PREFIX_1 "/mnt/lfs/lib/"
+#define STANDARD_STARTFILE_PREFIX_1 "/tools/lib/"
 #define STANDARD_STARTFILE_PREFIX_2 ""' >> $file
   touch $file.orig
 done
@@ -61,8 +64,8 @@ cd       build
     --with-sysroot=$LFS                            \
     --with-newlib                                  \
     --without-headers                              \
-    --with-local-prefix=$LFS                       \
-    --with-native-system-header-dir=$LFS/include   \
+    --with-local-prefix=/tools                     \
+    --with-native-system-header-dir=/tools/include \
     --disable-nls                                  \
     --disable-shared                               \
     --disable-multilib                             \
@@ -78,9 +81,9 @@ cd       build
     --enable-languages=c,c++
 make
 make install
-cd ..
-cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
-  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/install-tools/include/limits.h
+#cd ..
+#cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
+#  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/install-tools/include/limits.h
 cd ..
 rm -rf gcc-11.2.0
 #################################
@@ -100,35 +103,27 @@ rm -rf linux-5.13.12
 ##################
 tar xf glibc-2.34.tar.xz
 cd glibc-2.34
-case $(uname -m) in
-    i?86)   ln -sfv ld-linux.so.2 $LFS/lib/ld-lsb.so.3
-    ;;
-    x86_64) ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64
-            ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64/ld-lsb-x86-64.so.3
-    ;;
-esac
 patch -Np1 -i ../glibc-2.34-fhs-1.patch
 echo "rootsbindir=/sbin" > configparms
 mkdir -v build
 cd       build
 ../configure                             \
-      --prefix=                          \
+      --prefix=/tools                    \
       --host=$LFS_TGT                    \
       --build=$(../scripts/config.guess) \
       --enable-kernel=3.2                \
-      --with-headers=/include            \
       libc_cv_forced_unwind=yes          \
       libc_cv_c_cleanup=yes              \
-      libc_cv_slibdir=/lib
+      --with-headers=/mnt/tools/include
+#      libc_cv_slibdir=/tools/lib
 make
-make DESTDIR=$LFS install
-
+make install
 echo 'int main(){}' > dummy.c
 $LFS_TGT-gcc -B/mnt/lfs/lib dummy.c
 readelf -l a.out | grep '/ld-linux'
   # [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
 rm -v dummy.c a.out
-# $LFS/tools/libexec/gcc/$LFS_TGT/11.2.0/install-tools/mkheaders
+#$LFS/tools/libexec/gcc/$LFS_TGT/11.2.0/install-tools/mkheaders
 cd ../..
 rm -rf glibc-2.34
 ##############################
