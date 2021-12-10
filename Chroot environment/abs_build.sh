@@ -186,7 +186,7 @@ rm -rf flex-2.6.4
 ################
 tar xf bc-5.0.0.tar.xz
 cd bc-5.0.0
-CC=gcc ./configure --prefix=/usr -G -O3
+CC=gcc ./configure --prefix=/tools -G -O3
 make
 make test
 make install
@@ -199,21 +199,21 @@ tar xf readline-8.1.tar.gz
 cd readline-8.1
 sed -i '/MV.*old/d' Makefile.in
 sed -i '/{OLDSUFF}/c:' support/shlib-install
-./configure --prefix=/usr      \
+./configure --prefix=/tools    \
             --disable-static   \
             --with-curses
 make SHLIB_LIBS="-lncursesw"
 make SHLIB_LIBS="-lncursesw" install
-ldconfig
 cd ..
 rm -rf readline-8.1
+/tools/sbin/ldconfig
 ################
 ### nano-5.8 ###
 ################
 tar xf nano-5.8.tar.xz
 cd nano-5.8
-./configure --prefix=/usr             \
-            --sysconfdir=/etc         \
+./configure --prefix=/tools             \
+            --sysconfdir=/tools/etc         \
             --enable-utf8
 make
 make install
@@ -224,11 +224,11 @@ rm -rf nano-5.8
 #####################
 tar xf libtool-2.4.6.tar.xz
 cd libtool-2.4.6
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
-# make check
+make check
 make install
-rm -fv /usr/lib/libltdl.a
+rm -fv /tools/lib/libltdl.a
 cd ..
 rm -rf libtool-2.4.6
 ##################
@@ -245,21 +245,21 @@ sed -e 's:#ENCRYPT_METHOD DES:ENCRYPT_METHOD SHA512:' \
     -e '/PATH=/{s@/sbin:@@;s@/bin:@@}'                \
     -i etc/login.defs
 sed -e "224s/rounds/min_rounds/" -i libmisc/salt.c
-touch /usr/bin/passwd
+touch /tools/bin/passwd
 sed -i 's/1000/999/' etc/useradd
-./configure --prefix=/usr           \
-            --sysconfdir=/etc       \
+./configure --prefix=/tools         \
+            --sysconfdir=/tools/etc \
             --with-group-name-max-length=32
 make
 make install
-mkdir -p /etc/default
+mkdir -p /tools/etc/default
 useradd -D --gid 999
-pwconv
-grpconv
-sed -i 's/yes/no/' /etc/default/useradd
-# passwd root
+/tools/sbin/pwconv
+/tools/sbin/grpconv
+sed -i 's/yes/no/' /tools/etc/default/useradd
 cd ..
 rm -rf shadow-4.9
+passwd root
 ###############
 ### dejagnu ###
 ###############
