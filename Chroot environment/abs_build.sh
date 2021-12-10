@@ -260,24 +260,12 @@ sed -i 's/yes/no/' /tools/etc/default/useradd
 cd ..
 rm -rf shadow-4.9
 passwd root
-###############
-### dejagnu ###
-###############
-tar xf dejagnu-1.6.3.tar.gz
-cd dejagnu-1.6.3
-mkdir -v build
-cd       build
-../configure --prefix=/usr
-make install
-make check
-cd ../..
-rm -rf dejagnu-1.6.3
 #################
 ### gdbm-1.20 ###
 #################
 tar xf gdbm-1.20.tar.gz
 cd gdbm-1.20
-./configure --prefix=/usr      \
+./configure --prefix=/tools    \
             --disable-static   \
             --enable-libgdbm-compat
 make
@@ -290,7 +278,7 @@ rm -rf gdbm-1.20
 #################
 tar xf gperf-3.1.tar.gz
 cd gperf-3.1
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
 make install
 cd ..
@@ -300,7 +288,7 @@ rm -rf gperf-3.1
 ###################
 tar xf expat-2.4.1.tar.xz
 cd expat-2.4.1
-./configure --prefix=/usr --disable-static
+./configure --prefix=/tools --disable-static
 make
 make check
 make install
@@ -311,9 +299,9 @@ rm -rf expat-2.4.1
 #####################
 tar xf inetutils-2.1.tar.xz
 cd inetutils-2.1
-./configure --prefix=/usr              \
-            --bindir=/bin              \
-            --localstatedir=/var       \
+./configure --prefix=/tools            \
+            --bindir=/tools/bin        \
+            --localstatedir=/tools/var \
             --disable-logger           \
             --disable-whois            \
             --disable-rcp              \
@@ -333,7 +321,7 @@ ping -c 3 google.com
 ################
 tar xf less-590.tar.gz
 cd less-590
-./configure --prefix=/usr --sysconfdir=/etc
+./configure --prefix=/tools --sysconfdir=/tools/etc
 make
 make install
 cd ..
@@ -343,14 +331,14 @@ rm -rf less-590
 ######################
 tar xf elfutils-0.185.tar.bz2
 cd elfutils-0.185
-./configure --prefix=/usr                  \
+./configure --prefix=/tools                \
             --disable-debuginfod           \
             --enable-libdebuginfod=dummy
 make
-# make check # FAIL: run-backtrace-native.sh
+make check # FAIL: run-backtrace-native.sh
 make -C libelf install
-install -vm644 config/libelf.pc /usr/lib/pkgconfig
-rm /usr/lib/libelf.a
+install -vm644 config/libelf.pc /tools/lib/pkgconfig
+rm /tools/lib/libelf.a
 cd ..
 rm -rf elfutils-0.185
 ####################
@@ -358,7 +346,7 @@ rm -rf elfutils-0.185
 ####################
 tar xf libffi-3.4.2.tar.gz
 cd libffi-3.4.2
-./configure --prefix=/usr            \
+./configure --prefix=/tools          \
             --disable-static         \
             --with-gcc-arch=native   \
             --disable-exec-static-tramp
@@ -372,8 +360,8 @@ rm -rf libffi-3.4.2
 ######################
 tar xf openssl-1.1.1l.tar.gz
 cd openssl-1.1.1l
-./config --prefix=/usr                     \
-         --openssldir=/etc/ssl             \
+./config --prefix=/tools                   \
+         --openssldir=/tools/etc/ssl       \
          --libdir=lib                      \
          shared                            \
          zlib-dynamic
@@ -381,7 +369,7 @@ make
 make test
 sed -i '/INSTALL_LIBS/s/libcrypto.a//' Makefile
 make MANSUFFIX=ssl install
-mv -v /usr/share/doc/openssl /usr/share/doc/openssl-1.1.1l
+mv -v /tools/share/doc/openssl /tools/share/doc/openssl-1.1.1l
 cd ..
 rm -rf openssl-1.1.1l
 ###################
@@ -393,17 +381,17 @@ patch -Np1 -i ../perl-5.34.0-upstream_fixes-1.patch
 export BUILD_ZLIB=False
 export BUILD_BZIP2=0
 sh Configure -des                                           \
-             -Dprefix=/usr                                  \
-             -Dvendorprefix=/usr                            \
-             -Dprivlib=/usr/lib/perl5/5.34/core_perl        \
-             -Darchlib=/usr/lib/perl5/5.34/core_perl        \
-             -Dsitelib=/usr/lib/perl5/5.34/site_perl        \
-             -Dsitearch=/usr/lib/perl5/5.34/site_perl       \
-             -Dvendorlib=/usr/lib/perl5/5.34/vendor_perl    \
-             -Dvendorarch=/usr/lib/perl5/5.34/vendor_perl   \
-             -Dman1dir=/usr/share/man/man1                  \
-             -Dman3dir=/usr/share/man/man3                  \
-             -Dpager="/usr/bin/less -isR"                   \
+             -Dprefix=/tools                                \
+             -Dvendorprefix=/tools                          \
+             -Dprivlib=/tools/lib/perl5/5.34/core_perl      \
+             -Darchlib=/tools/lib/perl5/5.34/core_perl      \
+             -Dsitelib=/tools/lib/perl5/5.34/site_perl      \
+             -Dsitearch=/tools/lib/perl5/5.34/site_perl     \
+             -Dvendorlib=/tools/lib/perl5/5.34/vendor_perl  \
+             -Dvendorarch=/tools/lib/perl5/5.34/vendor_perl \
+             -Dman1dir=/tools/share/man/man1                \
+             -Dman3dir=/tools/share/man/man3                \
+             -Dpager="/tools/bin/less -isR"                 \
              -Duseshrplib                                   \
              -Dusethreads
 make
@@ -429,11 +417,11 @@ rm -rf XML-Parser-2.46
 tar xf intltool-0.51.0.tar.gz
 cd intltool-0.51.0
 sed -i 's:\\\${:\\\$\\{:' intltool-update.in
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
 make check
 make install
-install -v -Dm644 doc/I18N-HOWTO /usr/share/doc/intltool-0.51.0/I18N-HOWTO
+install -v -Dm644 doc/I18N-HOWTO /tools/share/doc/intltool-0.51.0/I18N-HOWTO
 cd ..
 rm -rf intltool-0.51.0
 #####################
@@ -441,7 +429,7 @@ rm -rf intltool-0.51.0
 #####################
 tar xf autoconf-2.71.tar.xz
 cd autoconf-2.71
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
 make check
 make install
