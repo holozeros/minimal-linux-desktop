@@ -81,10 +81,10 @@ cd       build
     --enable-languages=c,c++
 make
 make install
-#cd ..
-#cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
-#  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/install-tools/include/limits.h
-cd ../..
+cd ..
+cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
+  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/install-tools/include/limits.h
+cd ..
 rm -rf gcc-11.2.0
 #################################
 ### linux-api-headers-5.13.12 ###
@@ -123,7 +123,7 @@ $LFS_TGT-gcc dummy.c
 readelf -l a.out | grep '/ld-linux'
   # [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
 rm -v dummy.c a.out
-#$LFS/tools/libexec/gcc/$LFS_TGT/11.2.0/install-tools/mkheaders
+/tools/libexec/gcc/$LFS_TGT/11.2.0/install-tools/mkheaders
 cd ../..
 rm -rf glibc-2.34
 ##############################
@@ -192,7 +192,7 @@ RANLIB=$LFS_TGT-ranlib         \
 make
 make install
 make -C ld clean
-make -C ld LIB_PATH=/usr/lib:/lib
+make -C ld LIB_PATH=/tools/lib:/lib
 cp -v ld/ld-new /tools/bin
 cd ../..
 rm -rf  binutils-2.37
@@ -264,19 +264,22 @@ make install
 chmod -v u+w /tools/lib/libtcl8.6.so
 make install-private-headers
 ln -sv tclsh8.6 /tools/bin/tclsh
-cd ../..
+cd ..
 rm -rf tcl8.6.11
 ##############
 ### expect ###
 ##############
 tar xf expect5.45.4.tar.gz 
-cd expecp -v configure{,.orig}
-sed 's:/usr/local/bin:/bin:' configure.orig > configurect5.45.4
+cd expect5.45.4
+cp -v configure{,.orig}
+sed 's:/usr/local/bin:/bin:' configure.orig > configure
 ./configure --prefix=/tools       \
             --with-tcl=/tools/lib \
             --with-tclinclude=/tools/include
 make
+make test
 make SCRIPTS="" install
+make test
 cd ..
 rm -rf expect5.45.4
 ###############
@@ -288,16 +291,18 @@ cd dejagnu-1.6.3
 make install
 cd ..
 rm -rf dejagnu-1.6.3
-#############
-### check ###
-#############
-tar xf check-0.15.2.tar.gz 
-cd check-0.15.2
-PKG_CONFIG= ./configure --prefix=/tools
-make
+##########
+### m4 ###
+##########
+tar xf m4-1.4.19.tar.xz 
+cd m4-1.4.19
+sed -i 's/IO_ftrylockfile/IO_EOF_SEEN/' lib/*.c
+echo "#define _IO_IN_BACKUP 0x100" >> lib/stdio-impl.h
+./configure --prefix=/tools
+make make check
 make install
 cd ..
-rm -fr check-0.15.2
+rm -rf m4-1.4.19
 ###############
 ### ncurses ###
 ###############
@@ -312,6 +317,7 @@ sed -i s/mawk// configure
             --enable-overwrite
 make
 make install
+ln -s libncursesw.so /tools/lib/libncurses.so
 cd ..
 rm -rf ncurses-6.2
 ############
@@ -321,6 +327,7 @@ tar xf bash-5.1.8.tar.gz
 cd bash-5.1.8
 ./configure --prefix=/tools --without-bash-malloc
 make
+make test
 make install
 ln -sv bash /tools/bin/sh
 cd ..
@@ -341,8 +348,13 @@ rm -rf bison-3.7.6
 #############
 tar xf bzip2-1.0.8.tar.gz 
 cd bzip2-1.0.8
+make -f Makefile-libbz2_so
+make clean
 make
 make PREFIX=/tools install
+cp -v bzip2-shared /tools/bin/bzip2
+cp -av libbz2.so* /tools/lib
+ln -sv libbz2.so.1.0 /tools/lib/libbz2.so
 cd ..
 rm -rf bzip2-1.0.8
 #################
@@ -367,26 +379,43 @@ make check
 make install
 cd ..
 rm -rf diffutils-3.8
-
-
 ############
 ### file ###
 ############
 tar xf file-5.40.tar.gz 
 cd file-5.40
-mkdir build
-pushd build
-  ../configure --disable-bzlib      \
-               --disable-libseccomp \
-               --disable-xzlib      \
-               --disable-zlib
-  make
-popd
-./configure --prefix=/usr --host=$LFS_TGT --build=$(./config.guess)
-make FILE_COMPILE=$(pwd)/build/src/file
+./configure --prefix=/tools
+make
 make install
 cd ..
 rm -rf file-5.40
+#################
+### findutils ###
+#################
+tar xf findutils-4.8.0.tar.xz
+cd findutils-4.8.0
+./configure --prefix=/tools
+make
+make check
+make install
+cd ..
+rm -rf findutils-4.8.0
+############
+### gawk ###
+############
+tar xf gawk-5.1.0.tar.xz 
+cd gawk-5.1.0
+./configure --prefix=/tools
+make
+make check
+make install
+cd ..
+rm -rf gawk-5.1.0
+###############
+### gettext ###
+###############
+/configure --disable-shared
+make
 
 
 
@@ -395,7 +424,16 @@ rm -rf file-5.40
 
 
 
-
+#############
+### check ###
+#############
+tar xf check-0.15.2.tar.gz 
+cd check-0.15.2
+PKG_CONFIG= ./configure --prefix=/tools
+make
+make install
+cd ..
+rm -fr check-0.15.2
 
 ##########
 ### m4 ###
