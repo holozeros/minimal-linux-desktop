@@ -1,95 +1,16 @@
 cat > abs_build.sh << "END"
-#######################
-### libstdc++ pass2 ###
-#######################
-tar xf gcc-11.2.0.tar.xz
-cd gcc-11.2.0
-ln -s gthr-posix.h libgcc/gthr-default.h
-mkdir -v build
-cd       build
-../libstdc++-v3/configure            \
-    CXXFLAGS="-g -O2 -D_GNU_SOURCE"  \
-    --prefix=/usr                    \
-    --disable-multilib               \
-    --disable-nls                    \
-    --host=$(uname -m)-lfs-linux-gnu \
-    --disable-libstdcxx-pch
-make
-make install
-cd ../..
-rm -rf gcc-11.2.0
-####################
-### gettext-0.21 ###
-####################
-tar xf gettext-0.21.tar.xz
-cd gettext-0.21
-./configure --disable-shared
-make
-cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
-cd ..
-rm -rf gettext-0.21
-###################
-### bison-3.7.6 ###
-###################
-tar xf bison-3.7.6.tar.xz
-cd bison-3.7.6
-./configure --prefix=/usr \
-            --docdir=/usr/share/doc/bison-3.7.6
-make
-make install
-cd ..
-rm -rf bison-3.7.6
-###################
-### perl-5.34.0 ###
-###################
-tar xf perl-5.34.0.tar.xz
-cd perl-5.34.0
-sh Configure -des                                        \
-             -Dprefix=/usr                               \
-             -Dvendorprefix=/usr                         \
-             -Dprivlib=/usr/lib/perl5/5.34/core_perl     \
-             -Darchlib=/usr/lib/perl5/5.34/core_perl     \
-             -Dsitelib=/usr/lib/perl5/5.34/site_perl     \
-             -Dsitearch=/usr/lib/perl5/5.34/site_perl    \
-             -Dvendorlib=/usr/lib/perl5/5.34/vendor_perl \
-             -Dvendorarch=/usr/lib/perl5/5.34/vendor_perl
-make
-make install
-cd ..
-rm -rf perl-5.34.0
-####################
-### python-3.9.6 ###
-####################
-tar xf Python-3.9.6.tar.xz
-cd Python-3.9.6
-./configure --prefix=/usr   \
-            --enable-shared \
-            --without-ensurepip
-make
-make install
-cd ..
-rm -rf Python-3.9.6
-###################
-### texinfo-6.8 ###
-###################
-tar xf texinfo-6.8.tar.xz
-cd texinfo-6.8
-sed -e 's/__attribute_nonnull__/__nonnull/' \
-    -i gnulib/lib/malloc/dynarray-skeleton.c
-./configure --prefix=/usr
-make
-make install
-cd ..
-rm -rf texinfo-6.8
 #########################
 ### util-linux-2.37.2 ###
 #########################
 tar xf util-linux-2.37.2.tar.xz
 cd util-linux-2.37.2
-mkdir -pv /var/lib/hwclock
-./configure ADJTIME_PATH=/var/lib/hwclock/adjtime    \
-            --libdir=/usr/lib    \
-            --docdir=/usr/share/doc/util-linux-2.37.2 \
+mkdir -pv /tools/var/lib/hwclock
+mkdir -pv /tools/run
+./configure ADJTIME_PATH=/tools/var/lib/hwclock/adjtime    \
+            --prefix=/tools      \
+            --with-sysroot=/tools  \
+            --libdir=/tools/lib    \
+            --docdir=/tools/share/doc/util-linux-2.37.2 \
             --disable-chfn-chsh  \
             --disable-login      \
             --disable-nologin    \
@@ -99,114 +20,29 @@ mkdir -pv /var/lib/hwclock
             --disable-pylibmount \
             --disable-static     \
             --without-python     \
-            runstatedir=/run
+            --without-systemd    \
+            runstatedir=/tools/run
 make
 make install
 cd ..
 rm -rf util-linux-2.37.2
-###################
-### ncurses-6.2 ###
-###################
-tar xf ncurses-6.2.tar.gz
-cd ncurses-6.2
-./configure --prefix=/usr           \
-            --mandir=/usr/share/man \
-            --with-shared           \
-            --without-debug         \
-            --without-normal        \
-            --enable-pc-files       \
-            --enable-widec
-make
-make install
-for lib in ncurses form panel menu ; do
-    rm -vf                    /usr/lib/lib${lib}.so
-    echo "INPUT(-l${lib}w)" > /usr/lib/lib${lib}.so
-    ln -sfv ${lib}w.pc        /usr/lib/pkgconfig/${lib}.pc
-done
-rm -vf                     /usr/lib/libcursesw.so
-echo "INPUT(-lncursesw)" > /usr/lib/libcursesw.so
-ln -sfv libncurses.so      /usr/lib/libcurses.so
-rm -fv /usr/lib/libncurses++w.a
-cd ..
-rm -rf ncurses-6.2
-#################
-### tcl8.6.11 ###
-#################
-tar xf tcl8.6.11-src.tar.gz
-cd tcl8.6.11
-cd unix
-./configure --prefix=/usr
-make
-# TZ=UTC make test
-make install
-chmod -v u+w /usr/lib/libtcl8.6.so
-make install-private-headers
-ln -sv tclsh8.6 /usr/bin/tclsh
-cd ../..
-rm -rf tcl8.6.11
-####################
-### expect5.45.4 ###
-####################
-tar xf expect5.45.4.tar.gz
-cd expect5.45.4
-cp -v configure{,.orig}
-sed 's:/usr/local/bin:/bin:' configure.orig > configure
-./configure --prefix=/usr         \
-            --with-tcl=/usr/lib   \
-            --with-tclinclude=/usr/include
-make
-make SCRIPTS="" install
-ln -s /usr/lib/expect5.45.4/libexpect5.45.4.so /usr/lib/libexpect-5.45.4.so
-cd ..
-rm -rf expect5.45.4
-#####################
-### dejagnu-1.6.3 ###
-#####################
-tar xf dejagnu-1.6.3.tar.gz
-cd dejagnu-1.6.3
-mkdir -v build
-cd       build
-../configure --prefix=/usr
-make install
-cd ../..
-rm -rf dejagnu-1.6.3
 ####################
 ### check-0.15.2 ###
 ####################
 tar xf check-0.15.2.tar.gz
 cd check-0.15.2
-PKG_CONFIG= ./configure --prefix=/usr
+./configure --prefix=/tools --disable-static
 make
+make check
 make install
 cd ..
 rm -rf check-0.15.2
-###################
-### bzip2-1.0.8 ###
-###################
-tar xf bzip2-1.0.8.tar.gz
-cd bzip2-1.0.8
-patch -Np1 -i ../bzip2-1.0.8-install_docs-1.patch
-sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile
-sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile
-make -f Makefile-libbz2_so
-make clean
-make
-make PREFIX=/usr install
-cp -av libbz2.so.* /usr/lib
-ln -sv libbz2.so.1.0.8 /usr/lib/libbz2.so
-cp -v bzip2-shared /usr/bin/bzip2
-for i in /usr/bin/{bzcat,bunzip2}; do
-  ln -sfv bzip2 $i
-done
-rm -fv /usr/lib/libbz2.a
-cd ..
-rm -rf bzip2-1.0.8
 ###################
 ### zlib-1.2.11 ###
 ###################
 tar xf zlib-1.2.11.tar.xz
 cd zlib-1.2.11
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
 make check
 make install
@@ -217,7 +53,7 @@ rm -rf zlib-1.2.11
 #################
 tar xf gmp-6.2.1.tar.xz
 cd gmp-6.2.1
-./configure --prefix=/usr      \
+./configure --prefix=/tools    \
             --enable-cxx       \
             --disable-static
 make
@@ -232,7 +68,7 @@ rm -rf gmp-6.2.1
 ##################
 tar xf mpfr-4.1.0.tar.xz
 cd mpfr-4.1.0
-./configure --prefix=/usr          \
+./configure --prefix=/tools        \
             --disable-static       \
             --enable-thread-safe
 make
