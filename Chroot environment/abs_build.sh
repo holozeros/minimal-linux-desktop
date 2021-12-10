@@ -1,4 +1,52 @@
 cat > abs_build.sh << "END"
+###################
+### zlib-1.2.11 ###
+###################
+tar xf zlib-1.2.11.tar.xz
+cd zlib-1.2.11
+./configure --prefix=/tools
+make
+make check
+make install
+cd ..
+rm -rf zlib-1.2.11
+#############
+### bzip2 ###
+#############
+tar xf bzip2-1.0.8.tar.gz 
+cd bzip2-1.0.8
+patch -Np1 -i ../bzip2-1.0.8-install_docs-1.patch
+sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile
+sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile
+make -f Makefile-libbz2_so
+make clean
+mwke
+make PREFIX=/tools install
+cp -av libbz2.so.* /tppls/lib
+ln -sv libbz2.so.1.0.8 /tools/lib/libbz2.so
+cp -v bzip2-shared /tools/bin/bzip2
+for i in /tools/bin/{bzcat,bunzip2}; do
+  ln -sfv bzip2 $i
+done
+rm -fv /tools/lib/libbz2.a
+cd ..
+rm -rf bzip2-1.0.8
+##########
+### xz ###
+##########
+tar xf xz-5.2.5.tar.xz 
+cd xz-5.2.5
+./configure --prefix=/tools  \
+            --host=x86_64-pc-linux-gnu \
+            --disable-static
+make
+make check
+make install
+cd ..
+rm -rf xz-5.2.5
+
+
+
 #########################
 ### util-linux-2.37.2 ###
 #########################
@@ -37,17 +85,6 @@ make check
 make install
 cd ..
 rm -rf check-0.15.2
-###################
-### zlib-1.2.11 ###
-###################
-tar xf zlib-1.2.11.tar.xz
-cd zlib-1.2.11
-./configure --prefix=/tools
-make
-make check
-make install
-cd ..
-rm -rf zlib-1.2.11
 #################
 ### gmp-6.2.1 ###
 #################
@@ -248,18 +285,18 @@ sed -e "224s/rounds/min_rounds/" -i libmisc/salt.c
 touch /tools/bin/passwd
 sed -i 's/1000/999/' etc/useradd
 ./configure --prefix=/tools         \
-            --sysconfdir=/tools/etc \
+            --sysconfdir=/etc \
             --with-group-name-max-length=32
 make
 make install
-mkdir -p /tools/etc/default
+mkdir -p /etc/default
 /tools/sbin/useradd -D --gid 999
 /tools/sbin/pwconv
 /tools/sbin/grpconv
-sed -i 's/yes/no/' /tools/etc/default/useradd
+sed -i 's/yes/no/' /etc/default/useradd
 cd ..
 rm -rf shadow-4.9
-/tools/sbin/passwd root
+/tools/bin/passwd root
 #################
 ### gdbm-1.20 ###
 #################
@@ -377,9 +414,9 @@ rm -rf openssl-1.1.1l
 ###################
 tar xf perl-5.34.0.tar.xz
 cd perl-5.34.0
-#patch -Np1 -i ../perl-5.34.0-upstream_fixes-1.patch
-#export BUILD_ZLIB=False
-#export BUILD_BZIP2=0
+patch -Np1 -i ../perl-5.34.0-upstream_fixes-1.patch
+export BUILD_ZLIB=False
+export BUILD_BZIP2=0
 sh Configure -des                                           \
              -Dprefix=/tools                                \
              -Dvendorprefix=/tools                          \
@@ -388,13 +425,12 @@ sh Configure -des                                           \
              -Dsitelib=/tools/lib/perl5/5.34/site_perl      \
              -Dsitearch=/tools/lib/perl5/5.34/site_perl     \
              -Dvendorlib=/tools/lib/perl5/5.34/vendor_perl  \
-             -Dvendorarch=/tools/lib/perl5/5.34/vendor_perl
-             
-#             -Dman1dir=/tools/share/man/man1                \
-#             -Dman3dir=/tools/share/man/man3                \
-#             -Dpager="/tools/bin/less -isR"                 \
-#             -Duseshrplib                                   \
-#             -Dusethreads
+             -Dvendorarch=/tools/lib/perl5/5.34/vendor_perl \
+             -Dman1dir=/tools/share/man/man1                \
+             -Dman3dir=/tools/share/man/man3                \
+             -Dpager="/tools/bin/less -isR"                 \
+             -Duseshrplib                                   \
+             -Dusethreads
 make
 make test
 make install
