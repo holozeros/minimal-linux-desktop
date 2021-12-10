@@ -81,7 +81,7 @@ rm -rf mpfr-4.1.0
 #################
 tar xf mpc-1.2.1.tar.gz
 cd mpc-1.2.1
-./configure --prefix=/usr    \
+./configure --prefix=/tools    \
             --disable-static
 make
 make check
@@ -93,12 +93,12 @@ rm -rf mpc-1.2.1
 #####################
 tar xf pkgconf-1.8.0.tar.xz
 cd pkgconf-1.8.0
-./configure --prefix=/usr                   \
-     --with-system-libdir=/lib:/usr/lib     \
-     --with-system-includedir=/include:/usr/include
+./configure --prefix=/tools                 \
+     --with-system-libdir=/tools/lib        \
+     --with-system-includedir=/tools/include
 make
 make install
-ln -sr /usr/bin/pkgconf /usr/bin/pkg-config
+ln -sr /tools/bin/pkgconf /tools/bin/pkg-config
 cd ..
 rm -rf pkgconf-1.8.0
 # pkg-config is specific of LFS: https://pkg-config.freedesktop.org/releases/pkg-config-0.29.2.tar.gz
@@ -120,9 +120,9 @@ rm -rf pkgconf-1.8.0
 ##################
 tar xf attr-2.5.1.tar.gz
 cd attr-2.5.1
-./configure --prefix=/usr   \
+./configure --prefix=/tools   \
             --disable-static  \
-            --sysconfdir=/etc 
+            --sysconfdir=/tools/etc 
 make
 make check
 make install
@@ -133,7 +133,7 @@ rm -rf attr-2.5.1
 #################
 tar xf acl-2.3.1.tar.xz
 cd acl-2.3.1
-./configure --prefix=/usr       \
+./configure --prefix=/tools       \
             --disable-static
 make
 make install
@@ -145,10 +145,10 @@ rm -rf acl-2.3.1
 tar xf libcap-2.53.tar.xz
 cd libcap-2.53
 sed -i '/install -m.*STA/d' libcap/Makefile
-make prefix=/usr lib=lib
-make test
-make prefix=/usr lib=lib install
-chmod -v 755 /usr/lib/lib{cap,psx}.so.2.53
+make prefix=/tools lib=lib sysconfdir=/tools/etc SBINDIR=/tools/sbin PAM_CAP=no
+make test PAM_CAP=no
+make prefix=/tools lib=lib sysconfdir=/tools/etc SBINDIR=/tools/sbin install PAM_CAP=no
+chmod -v 755 /tools/lib/lib{cap,psx}.so.2.53
 cd ..
 rm -rf libcap-2.53
 ###################
@@ -156,7 +156,7 @@ rm -rf libcap-2.53
 ###################
 tar xf psmisc-23.4.tar.xz
 cd psmisc-23.4
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
 make install
 cd ..
@@ -166,7 +166,7 @@ rm -rf psmisc-23.4
 #########################
 tar xf iana-etc-20210611.tar.gz
 cd iana-etc-20210611
-cp services protocols /etc
+cp services protocols /tools/etc
 cd ..
 rm -rf iana-etc-20210611
 ##################
@@ -174,11 +174,11 @@ rm -rf iana-etc-20210611
 ##################
 tar xf flex-2.6.4.tar.gz
 cd flex-2.6.4
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
 make check
 make install
-ln -sv /usr/bin/flex /usr//bin/lex
+ln -sv /tools/bin/flex /tools//bin/lex
 cd ..
 rm -rf flex-2.6.4
 ################
