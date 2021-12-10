@@ -253,13 +253,13 @@ sed -i 's/1000/999/' etc/useradd
 make
 make install
 mkdir -p /tools/etc/default
-useradd -D --gid 999
+/tools/sbin/useradd -D --gid 999
 /tools/sbin/pwconv
 /tools/sbin/grpconv
 sed -i 's/yes/no/' /tools/etc/default/useradd
 cd ..
 rm -rf shadow-4.9
-passwd root
+/tools/sbin/passwd root
 #################
 ### gdbm-1.20 ###
 #################
@@ -312,7 +312,7 @@ cd inetutils-2.1
 make
 make check
 make install
-mv -v /usr/{,s}sbin/ifconfig
+mv -v /tools/{,s}bin/ifconfig
 cd ..
 rm -rf inetutils-2.1
 ping -c 3 google.com
@@ -377,9 +377,9 @@ rm -rf openssl-1.1.1l
 ###################
 tar xf perl-5.34.0.tar.xz
 cd perl-5.34.0
-patch -Np1 -i ../perl-5.34.0-upstream_fixes-1.patch
-export BUILD_ZLIB=False
-export BUILD_BZIP2=0
+#patch -Np1 -i ../perl-5.34.0-upstream_fixes-1.patch
+#export BUILD_ZLIB=False
+#export BUILD_BZIP2=0
 sh Configure -des                                           \
              -Dprefix=/tools                                \
              -Dvendorprefix=/tools                          \
@@ -388,12 +388,13 @@ sh Configure -des                                           \
              -Dsitelib=/tools/lib/perl5/5.34/site_perl      \
              -Dsitearch=/tools/lib/perl5/5.34/site_perl     \
              -Dvendorlib=/tools/lib/perl5/5.34/vendor_perl  \
-             -Dvendorarch=/tools/lib/perl5/5.34/vendor_perl \
-             -Dman1dir=/tools/share/man/man1                \
-             -Dman3dir=/tools/share/man/man3                \
-             -Dpager="/tools/bin/less -isR"                 \
-             -Duseshrplib                                   \
-             -Dusethreads
+             -Dvendorarch=/tools/lib/perl5/5.34/vendor_perl
+             
+#             -Dman1dir=/tools/share/man/man1                \
+#             -Dman3dir=/tools/share/man/man3                \
+#             -Dpager="/tools/bin/less -isR"                 \
+#             -Duseshrplib                                   \
+#             -Dusethreads
 make
 make test
 make install
@@ -1020,4 +1021,3 @@ cd ..
 rm -rf openldap-2.5.7
 #############################
 END
-#############################
