@@ -448,3 +448,86 @@ rm -rf gzip-1.10
 ############
 tar xf make-4.3.tar.gz 
 cd make-4.3
+./configure --prefix=/tools --without-guile
+make
+make check
+make install
+cd ..
+rm -rf make-4.3
+#############
+### patch ###
+#############
+tar xf patch-2.7.6.tar.xz 
+cd patch-2.7.6
+./configure --prefix=/tools
+make
+make check
+make install
+cd ..
+rm -rf patch-2.7.6
+############
+### perl ###
+############
+tar xf perl-5.34.0.tar.xz 
+cd perl-5.34.0
+sh Configure -des -Dprefix=/tools -Dlibs=-lm -Uloclibpth -Ulocincpth
+cp -v perl cpan/podlators/scripts/pod2man /tools/bin
+mkdir -pv /tools/lib/perl5/5.34.0
+cp -Rv lib/* /tools/lib/perl5/5.34.0
+cd ..
+rm -rf perl-5.34.0
+##############
+### python ###
+##############
+tar xf Python-3.9.6.tar.xz 
+cd Python-3.9.6
+sed -i '/def add_multiarch_paths/a \        return' setup.py
+./configure --prefix=/tools --without-ensurepip
+make
+make install
+cd ..
+rm -rf Python-3.9.6
+###########
+### sed ###
+###########
+tar xf sed-4.8.tar.xz 
+cd sed-4.8
+./configure --prefix=/tools
+make
+make check
+make install
+cd ..
+rm -rf sed-4.8
+###########
+### tar ###
+###########
+tar xf tar-1.34.tar.xz 
+cd tar-1.34
+./configure --prefix=/tools
+make
+make check
+make install
+cd ..
+rm -rf tar-1.34
+###############
+### texinfo ###
+###############
+tar xf texinfo-6.8.tar.xz
+cd texinfo-6.8
+./configure --prefix=/tools
+make
+make check
+make install
+cd ..
+rm -rf texinfo-6.8
+##########
+### xz ###
+##########
+tar xf xz-5.tar.xz
+cd xz-5.
+./configure --prefix=/tools
+make
+make check
+make install
+cd ..
+rm -rf xz-5.
