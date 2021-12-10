@@ -514,6 +514,8 @@ rm -rf tar-1.34
 ###############
 tar xf texinfo-6.8.tar.xz
 cd texinfo-6.8
+sed -e 's/__attribute_nonnull__/__nonnull/' \
+    -i gnulib/lib/malloc/dynarray-skeleton.c
 ./configure --prefix=/tools
 make
 make check
@@ -523,11 +525,13 @@ rm -rf texinfo-6.8
 ##########
 ### xz ###
 ##########
-tar xf xz-5.tar.xz
-cd xz-5.
+tar xf xz-5.2.5.tar.xz
+cd xz-5.2.5
 ./configure --prefix=/tools
 make
 make check
 make install
 cd ..
-rm -rf xz-5.
+rm -rf xz-5.2.5
+###############################
+EOF
