@@ -17,7 +17,7 @@ cd       build
     --disable-libstdcxx-pc
 make
 make install
-cd ..
+cd ../..
 rm -rf gcc-11.2.0
 ###############
 ### gettext ###
@@ -42,12 +42,45 @@ rm -rf bison-3.7.6
 ###################
 ### perl-5.34.0 ###
 ###################
-
-
-
-
-
-
+tar xf perl-5.34.0.tar.xz
+cd perl-5.34.0
+sh Configure -des                                          \
+             -Dprefix=/tools                               \
+             -Dvendorprefix=/tools                         \
+             -Dprivlib=/tools/lib/perl5/5.34/core_perl     \
+             -Darchlib=/tools/lib/perl5/5.34/core_perl     \
+             -Dsitelib=/tools/lib/perl5/5.34/site_perl     \
+             -Dsitearch=/tools/lib/perl5/5.34/site_perl    \
+             -Dvendorlib=/tools/lib/perl5/5.34/vendor_perl \
+             -Dvendorarch=/tools/lib/perl5/5.34/vendor_perl
+make
+make install
+cd ..
+rm -rf perl-5.34.0
+##############
+### python ###
+##############
+tar xf Python-3.9.6.tar.xz 
+cd Python-3.9.6
+./configure --prefix=/tools \
+            --enable-shared \
+            --without-ensurepip
+make
+make install
+cd ..
+rm -rf Python-3.9.6
+###############
+### texinfo ###
+###############
+tar xf texinfo-6.8.tar.xz 
+cd texinfo-6.8
+sed -e 's/__attribute_nonnull__/__nonnull/' \
+    -i gnulib/lib/malloc/dynarray-skeleton.c
+./configure --prefix=/tools --without-perl
+make
+make install
+cd ..
+rm -rf texinfo-6.8
 ###################
 ### zlib-1.2.11 ###
 ###################
@@ -93,9 +126,6 @@ make check
 make install
 cd ..
 rm -rf xz-5.2.5
-
-
-
 #########################
 ### util-linux-2.37.2 ###
 #########################
@@ -231,9 +261,9 @@ rm -rf acl-2.3.1
 tar xf libcap-2.53.tar.xz
 cd libcap-2.53
 sed -i '/install -m.*STA/d' libcap/Makefile
-make prefix=/tools lib=lib sysconfdir=/tools/etc SBINDIR=/tools/sbin PAM_CAP=no
-make test PAM_CAP=no
-make prefix=/tools lib=lib sysconfdir=/tools/etc SBINDIR=/tools/sbin install PAM_CAP=no
+make prefix=/tools lib=lib sysconfdir=/tools/etc SBINDIR=/tools/sbin
+make test
+make prefix=/tools lib=lib sysconfdir=/tools/etc SBINDIR=/tools/sbin install
 chmod -v 755 /tools/lib/lib{cap,psx}.so.2.53
 cd ..
 rm -rf libcap-2.53
@@ -292,7 +322,7 @@ make SHLIB_LIBS="-lncursesw"
 make SHLIB_LIBS="-lncursesw" install
 cd ..
 rm -rf readline-8.1
-/tools/sbin/ldconfig
+ldconfig
 ################
 ### nano-5.8 ###
 ################
@@ -458,34 +488,6 @@ make MANSUFFIX=ssl install
 mv -v /tools/share/doc/openssl /tools/share/doc/openssl-1.1.1l
 cd ..
 rm -rf openssl-1.1.1l
-###################
-### perl-5.34.0 ###
-###################
-tar xf perl-5.34.0.tar.xz
-cd perl-5.34.0
-patch -Np1 -i ../perl-5.34.0-upstream_fixes-1.patch
-export BUILD_ZLIB=False
-export BUILD_BZIP2=0
-sh Configure -des                                           \
-             -Dprefix=/tools                                \
-             -Dvendorprefix=/tools                          \
-             -Dprivlib=/tools/lib/perl5/5.34/core_perl      \
-             -Darchlib=/tools/lib/perl5/5.34/core_perl      \
-             -Dsitelib=/tools/lib/perl5/5.34/site_perl      \
-             -Dsitearch=/tools/lib/perl5/5.34/site_perl     \
-             -Dvendorlib=/tools/lib/perl5/5.34/vendor_perl  \
-             -Dvendorarch=/tools/lib/perl5/5.34/vendor_perl \
-             -Dman1dir=/tools/share/man/man1                \
-             -Dman3dir=/tools/share/man/man3                \
-             -Dpager="/tools/bin/less -isR"                 \
-             -Duseshrplib                                   \
-             -Dusethreads
-make
-make test
-make install
-unset BUILD_ZLIB BUILD_BZIP2
-cd ..
-rm -rf perl-5.34.0
 #######################
 ### XML-Parser-2.46 ###
 #######################
@@ -526,7 +528,7 @@ rm -rf autoconf-2.71
 #######################
 tar xf automake-1.16.4.tar.xz
 cd automake-1.16.4
-./configure --prefix=/usr --docdir=/usr/share/doc/automake-1.16.4
+./configure --prefix=/tools --docdir=/tools/share/doc/automake-1.16.4
 make
 make -j4 check
 make install
@@ -537,11 +539,11 @@ rm -rf automake-1.16.4
 #####################
 tar xf libtool-2.4.6.tar.xz
 cd libtool-2.4.6
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
 make check
 make install
-rm -fv /usr/lib/libltdl.a
+rm -fv /tools/lib/libltdl.a
 cd ..
 rm -rf libtool-2.4.6
 ##################
@@ -551,9 +553,9 @@ tar xf zstd-1.5.0.tar.gz
 cd zstd-1.5.0
 make
 make check
-make prefix=/usr install
-rm -v /usr/lib/libzstd.a
-ln -sr /usr/bin/zstd /usr/bin/
+make prefix=/tools install
+rm -v /tools/lib/libzstd.a
+ln -sr /tools/bin/zstd /usr/bin/
 cd ..
 rm -rf zstd-1.5.0
 ###############
@@ -561,17 +563,17 @@ rm -rf zstd-1.5.0
 ###############
 tar xf kmod-29.tar.xz
 cd kmod-29
-./configure --prefix=/usr                \
-            --sysconfdir=/etc            \
+./configure --prefix=/tools              \
+            --sysconfdir=/tools/etc      \
             --with-xz                    \
             --with-zstd                  \
             --with-zlib
 make
 make install
 for target in depmod insmod modinfo modprobe rmmod; do
-  ln -sfv ../bin/kmod /usr/sbin/$target
+  ln -sfv ../bin/kmod /tools/sbin/$target
 done
-ln -sfv kmod /usr/bin/lsmod
+ln -sfv kmod /tools/bin/lsmod
 cd ..
 rm -rf kmod-29
 ####################
@@ -579,7 +581,7 @@ rm -rf kmod-29
 ####################
 tar xf Python-3.9.6.tar.xz
 cd Python-3.9.6
-./configure --prefix=/usr          \
+./configure --prefix=/tools          \
             --enable-shared        \
             --with-system-expat    \
             --with-system-ffi      \
@@ -604,9 +606,9 @@ sed -i '/int Guess/a \
 python3 configure.py --bootstrap
 ./ninja ninja_test
 ./ninja_test --gtest_filter=-SubprocessTest.SetWithLots
-install -vm755 ninja /usr/bin/
-install -vDm644 misc/bash-completion /usr/share/bash-completion/completions/ninja
-install -vDm644 misc/zsh-completion  /usr/share/zsh/site-functions/_ninja
+install -vm755 ninja /tools/bin/
+install -vDm644 misc/bash-completion /tools/share/bash-completion/completions/ninja
+install -vDm644 misc/zsh-completion  /tools/share/zsh/site-functions/_ninja
 cd ..
 rm -rf ninja-1.10.2
 ####################
@@ -617,8 +619,8 @@ cd meson-0.59.1
 python3 setup.py build
 python3 setup.py install --root=dest
 cp -rv dest/* /
-install -vDm644 data/shell-completions/bash/meson /usr/share/bash-completion/completions/meson
-install -vDm644 data/shell-completions/zsh/_meson /usr/share/zsh/site-functions/_meson
+install -vDm644 data/shell-completions/bash/meson /tools/share/bash-completion/completions/meson
+install -vDm644 data/shell-completions/zsh/_meson /tools/share/zsh/site-functions/_meson
 cd ..
 rm -rf meson-0.59.1
 #######################
@@ -626,7 +628,7 @@ rm -rf meson-0.59.1
 #######################
 tar xf libtasn1-4.17.0.tar.gz
 cd libtasn1-4.17.0
-./configure --prefix=/usr --disable-static
+./configure --prefix=/tools --disable-static
 make
 make check
 make install
@@ -638,7 +640,7 @@ rm -rf libtasn1-4.17.0
 tar xf libuv-v1.42.0.tar.gz
 cd libuv-v1.42.0
 sh autogen.sh
-./configure --prefix=/usr --disable-static
+./configure --prefix=/tools --disable-static
 make
 make install
 cd ..
@@ -648,10 +650,10 @@ rm -rf libuv-v1.42.0
 ######################
 tar xf libxml2-2.9.12.tar.gz
 cd libxml2-2.9.12
-./configure --prefix=/usr    \
+./configure --prefix=/tools    \
             --disable-static   \
             --with-history     \
-            --with-python=/usr/bin/python3
+            --with-python=/tools/bin/python3
 make
 make install
 cd ..
@@ -661,10 +663,10 @@ rm -rf libxml2-2.9.12
 ######################
 tar xf nghttp2-1.44.0.tar.xz
 cd nghttp2-1.44.0
-./configure --prefix=/usr     \
+./configure --prefix=/tools     \
             --disable-static  \
             --enable-lib-only \
-            --docdir=/share/doc/nghttp2-1.44.0
+            --docdir=/tools/share/doc/nghttp2-1.44.0
 make
 make install
 cd ..
@@ -675,7 +677,7 @@ rm -rf nghttp2-1.44.0
 tar xf make-ca-1.7.tar.xz
 cd make-ca-1.7
 make install
-install -vdm755 /etc/ssl/local
+install -vdm755 /tools/etc/ssl/local
 #/usr/sbin/make-ca -g
 cd ..
 rm -rf make-ca-1.7
@@ -687,28 +689,28 @@ cd p11-kit-0.24.0
 sed '20,$ d' -i trust/trust-extract-compat &&
 cat >> trust/trust-extract-compat << "EOF"
 # Copy existing anchor modifications to /etc/ssl/local
-/usr/libexec/make-ca/copy-trust-modifications
+/tools/libexec/make-ca/copy-trust-modifications
 # Generate a new trust store
-/usr/sbin/make-ca -f -g
+/tools/sbin/make-ca -f -g
 EOF
 mkdir p11-build
 cd    p11-build
-meson --prefix=/usr       \
+meson --prefix=/tools       \
       --buildtype=release   \
-      -Dtrust_paths=/etc/pki/anchors
+      -Dtrust_paths=/tools/etc/pki/anchors
 ninja
 ninja test
 ninja install &&
-ln -sfv /usr/libexec/p11-kit/trust-extract-compat \
-        /usr/bin/update-ca-certificates
-ln -sfv ./pkcs11/p11-kit-trust.so /usr/lib/libnssckbi.so
+ln -sfv /tools/libexec/p11-kit/trust-extract-compat \
+        /tools/bin/update-ca-certificates
+ln -sfv ./pkcs11/p11-kit-trust.so /tools/lib/libnssckbi.so
 cd ../..
 rm -rf p11-kit-0.24.0
-cd /usr/bin
-ln -s /usr/bin/cut
-ln -s /usr/bin/openssl
-ln -s /usr/bin/md5sum
-ln -s /usr/bin/trust
+cd /tools/bin
+ln -s /tools/bin/cut
+ln -s /tools/bin/openssl
+ln -s /tools/bin/md5sum
+ln -s /tools/bin/trust
 cd /sources
 make-ca -g
 ###################
@@ -716,7 +718,7 @@ make-ca -g
 ###################
 tar xf wget-1.21.1.tar.gz
 cd wget-1.21.1
-./configure --prefix=/usr      \
+./configure --prefix=/tools      \
             --sysconfdir=/etc    \
             --with-ssl=openssl
 make
@@ -730,11 +732,11 @@ rm -rf wget-1.21.1
 tar xf curl-7.78.0.tar.xz
 cd curl-7.78.0
 grep -rl '#!.*python$' | xargs sed -i '1s/python/&3/'
-./configure --prefix=/usr                         \
+./configure --prefix=/tools                         \
             --disable-static                        \
             --with-openssl                          \
             --enable-threaded-resolver              \
-            --with-ca-path=/etc/ssl/certs &&
+            --with-ca-path=/tools/etc/ssl/certs &&
 make
 make test
 make install
@@ -745,7 +747,7 @@ rm -rf curl-7.78.0
 ########################
 tar xf libarchive-3.5.2.tar.xz
 cd libarchive-3.5.2
-./configure --prefix=/usr --disable-static &&
+./configure --prefix=/tools --disable-static &&
 make
 LC_ALL=C make check
 make install
@@ -757,7 +759,7 @@ rm -rf libarchive-3.5.2
 tar xf cmake-3.21.2.tar.gz
 cd cmake-3.21.2
 sed -i '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake &&
-./bootstrap --prefix=/usr      \
+./bootstrap --prefix=/tools      \
             --system-libs        \
             --no-system-jsoncpp  \
             --no-system-librhash
@@ -770,7 +772,7 @@ rm -rf cmake-3.21.2
 #########################
 tar xf libgpg-error-1.42.tar.bz2
 cd libgpg-error-1.42
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
 make install
 cd ..
@@ -780,7 +782,7 @@ rm -rf libgpg-error-1.42
 #######################
 tar xf libassuan-2.5.5.tar.bz2
 cd libassuan-2.5.5
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
 make check
 make install
@@ -792,7 +794,7 @@ rm -rf libassuan-2.5.5
 tar xf gpgme-1.16.0.tar.bz2
 cd gpgme-1.16.0
 sed 's/defined(__sun.*$/1/' -i src/posix-io.c
-./configure --prefix=/usr --disable-gpg-test
+./configure --prefix=/tools --disable-gpg-test
 make
 make install
 cd ..
@@ -802,7 +804,7 @@ rm -rf gpgme-1.16.0
 ################
 tar xf npth-1.6.tar.bz2
 cd npth-1.6
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
 make check
 make install
@@ -813,7 +815,7 @@ rm -rf npth-1.6
 #####################
 tar xf libksba-1.6.0.tar.bz2
 cd libksba-1.6.0
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
 make check
 make install
@@ -824,7 +826,7 @@ rm -rf libksba-1.6.0
 #######################
 tar xf libgcrypt-1.9.4.tar.bz2
 cd libgcrypt-1.9.4
-./configure --prefix=/usr
+./configure --prefix=/tools
 make
 make check
 make install
@@ -836,7 +838,7 @@ rm -rf libgcrypt-1.9.4
 tar xf libxcrypt-4.4.26.tar.xz
 cd libxcrypt-4.4.26
 ./configure \
-  --prefix=/usr \
+  --prefix=/tools \
   --disable-static \
   --enable-hashes=strong,glibc \
   --enable-obsolete-api=no \
@@ -851,7 +853,7 @@ rm -rf libxcrypt-4.4.26
 ######################
 tar xf pinentry-1.2.0.tar.bz2
 cd pinentry-1.2.0
-./configure --prefix=/usr --enable-pinentry-tty
+./configure --prefix=/tools --enable-pinentry-tty
 make
 make install
 cd ..
@@ -861,13 +863,13 @@ rm -rf pinentry-1.2.0
 ####################
 tar xf nettle-3.7.3.tar.gz
 cd nettle-3.7.3
-./configure --prefix=/usr --disable-static
+./configure --prefix=/tools --disable-static
 make
 make check
 make install
-chmod   -v   755 /usr/lib/lib{hogweed,nettle}.so
-install -v -m755 -d /usr/share/doc/nettle-3.7.3 &&
-install -v -m644 nettle.html /usr/share/doc/nettle-3.7.3
+chmod   -v   755 /tools/lib/lib{hogweed,nettle}.so
+install -v -m755 -d /tools/share/doc/nettle-3.7.3 &&
+install -v -m644 nettle.html /tools/share/doc/nettle-3.7.3
 cd ..
 rm -fr nettle-3.7.3
 ###########################
@@ -875,7 +877,7 @@ rm -fr nettle-3.7.3
 ###########################
 tar xf libunistring-0.9.10.tar.xz
 cd libunistring-0.9.10
-./configure --prefix=/usr  \
+./configure --prefix=/tools  \
             --disable-static
 make
 make check
@@ -887,7 +889,7 @@ rm -rf libunistring-0.9.10
 ####################
 tar xf gnutls-3.7.2.tar.xz
 cd gnutls-3.7.2
-./configure --prefix=/usr   \
+./configure --prefix=/tools   \
             --disable-guile \
             --disable-rpath \
             --with-default-trust-store-pkcs11="pkcs11:"
@@ -903,7 +905,7 @@ tar xf gnupg-2.2.29.tar.bz2
 cd gnupg-2.2.29
 sed -e '/noinst_SCRIPTS = gpg-zip/c sbin_SCRIPTS += gpg-zip' \
     -i tools/Makefile.in
-./configure --prefix=/usr          \
+./configure --prefix=/tools          \
             --localstatedir=/var     \
             --sysconfdir=/etc
 make
@@ -916,14 +918,14 @@ rm -rf gnupg-2.2.29
 #####################
 tar xf fakeroot_1.26.orig.tar.gz
 cd fakeroot-1.26
- ./configure --prefix=/usr \
-    --libdir=/usr/lib/libfakeroot \
+ ./configure --prefix=/tools \
+    --libdir=/tools/lib/libfakeroot \
     --disable-static \
     --with-ipc=sysv
 make
 make install
-install -dm0755 /etc/ld.so.conf.d/
-echo '/usr/lib/libfakeroot' > /etc/ld.so.conf.d/fakeroot.conf
+install -dm0755 /tools/etc/ld.so.conf.d/
+echo '/usr/lib/libfakeroot' > /tools/etc/ld.so.conf.d/fakeroot.conf
 cd ..
 rm -rf fakeroot-1.26
 ################$$##
@@ -936,11 +938,11 @@ rm -rf fakeroot-1.26
 # 5.0.2
 tar xf pacman-5.0.2.tar.gz
 cd pacman-5.0.2
-./configure --prefix=/usr   \
+./configure --prefix=/tools   \
             --disable-doc     \
             --disable-shared  \
-            --sysconfdir=/etc \
-            --localstatedir=/var
+            --sysconfdir=/tools/etc \
+            --localstatedir=/tools/var
 make
 make install
 cd ..
@@ -950,7 +952,7 @@ rm -rf pacman-5.0.2
 ##################################
 tar xf archlinux-keyring-20211028.tar.gz
 cd archlinux-keyring-20211028
-make PREFIX=/usr install
+make PREFIX=/tools install
 cd ..
 rm -rf archlinux-keyring-20211028
 #################
@@ -958,7 +960,7 @@ rm -rf archlinux-keyring-20211028
 #################
 tar xf popt-1.18.tar.gz
 cd popt-1.18
-./configure --prefix=/usr --disable-static &&
+./configure --prefix=/tools --disable-static &&
 make
 make check
 make install
@@ -972,7 +974,7 @@ cd rsync-3.2.3
 groupadd -g 48 rsyncd &&
 useradd -c "rsyncd Daemon" -m -d /home/rsync -g rsyncd \
     -s /bin/false -u 48 rsyncd
-./configure --prefix=/usr   \
+./configure --prefix=/tools   \
             --disable-lz4      \
             --disable-xxhash   \
             --without-included-zlib &&
@@ -988,8 +990,8 @@ tar xf e2fsprogs-1.46.4.tar.gz
 cd e2fsprogs-1.46.4
 mkdir -v build
 cd       build
-../configure --prefix=/usr     \
-             --sysconfdir=/etc       \
+../configure --prefix=/tools     \
+             --sysconfdir=/tools/etc       \
              --enable-elf-shlibs     \
              --disable-libblkid      \
              --disable-libuuid       \
@@ -998,9 +1000,9 @@ cd       build
 make
 make check
 make install
-rm -fv /usr/lib/{libcom_err,libe2p,libext2fs,libss}.a
-gunzip -v /usr/share/info/libext2fs.info.gz
-install-info --dir-file=/usr/share/info/dir /usr/share/info/libext2fs.info
+rm -fv /tools/lib/{libcom_err,libe2p,libext2fs,libss}.a
+gunzip -v /tools/share/info/libext2fs.info.gz
+install-info --dir-file=/tools/share/info/dir /tools/share/info/libext2fs.info
 cd ../..
 rm -rf e2fsprogs-1.46.4
 ############
@@ -1012,10 +1014,10 @@ cd src &&
 sed -i -e 's@\^u}@^u cols 300}@' tests/dejagnu/config/default.exp     &&
 sed -i -e '/eq 0/{N;s/12 //}'    plugins/kdb/db2/libdb2/test/run.test &&
 sed -i '/t_iprop.py/d'           tests/Makefile.in                    &&
-./configure --prefix=/usr          \
-            --sysconfdir=/etc        \
-            --localstatedir=/var/lib \
-            --runstatedir=/run       \
+./configure --prefix=/tpp;s          \
+            --sysconfdir=/tools/etc  \
+            --localstatedir=/tools/var/lib \
+            --runstatedir=/tools/run       \
             --with-system-et         \
             --with-system-ss         \
             --with-system-verto=no   \
@@ -1031,7 +1033,7 @@ tar xf keyutils-1.6.1.tar.bz2
 cd keyutils-1.6.1
 sed -i 's:$(LIBDIR)/$(PKGCONFIG_DIR):/tools/lib/pkgconfig:' Makefile &&
 make
-make NO_ARLIB=1 LIBDIR=/usr/lib BINDIR=/usr/bin SBINDIR=/usr/sbin install
+make NO_ARLIB=1 LIBDIR=/usr/lib BINDIR=/tools/bin SBINDIR=/tools/sbin install
 cd ..
 rm -rf keyutils-1.6.1
 ###################
@@ -1041,18 +1043,18 @@ tar xf db-5.3.28.tar.gz
 cd db-5.3.28
 sed -i 's/\(__atomic_compare_exchange\)/\1_db/' src/dbinc/atomic.h
 cd build_unix                        &&
-../dist/configure --prefix=/usr      \
+../dist/configure --prefix=/tools      \
                   --enable-compat185 \
                   --enable-dbm       \
                   --disable-static   \
                   --enable-cxx       &&
 make
-make docdir=/usr/share/doc/db-5.3.28 install &&
+make docdir=/tools/share/doc/db-5.3.28 install &&
 chown -v -R root:root                          \
-      /usr/bin/db_*                          \
-      /usr/include/db{,_185,_cxx}.h          \
-      /usr/lib/libdb*.{so,la}                \
-      /usr/share/doc/db-5.3.28
+      /tools/bin/db_*                          \
+      /tools/include/db{,_185,_cxx}.h          \
+      /tools/lib/libdb*.{so,la}                \
+      /tools/share/doc/db-5.3.28
       
 cd ../..
 rm -rf db-5.3.28
@@ -1061,28 +1063,29 @@ rm -rf db-5.3.28
 ###################
 tar xf groff-1.22.4.tar.gz
 cd groff-1.22.4
-PAGE=letter ./configure --prefix=/usr
+PAGE=letter ./configure --prefix=/tools
 make -j1
 make install
 cd ..
 rm -rf groff-1.22.4
+##################
 ### cyrus-sasl ###
 ##################
 tar xf cyrus-sasl-2.1.27.tar.gz
 cd cyrus-sasl-2.1.27
 patch -Np1 -i ../cyrus-sasl-2.1.27-doc_fixes-1.patch
-./configure --prefix=/usr      \
-            --sysconfdir=/etc    \
+./configure --prefix=/tools      \
+            --sysconfdir=/tools/etc    \
             --enable-auth-sasldb \
-            --with-dbpath=/var/lib/sasl/sasldb2 \
+            --with-dbpath=/tools/var/lib/sasl/sasldb2 \
             --with-sphinx-build=no              \
-            --with-saslauthd=/var/run/saslauthd &&
+            --with-saslauthd=/tools/var/run/saslauthd &&
 make -j1
 make install &&
-install -v -dm755                          /usr/share/doc/cyrus-sasl-2.1.27/html &&
-install -v -m644  saslauthd/LDAP_SASLAUTHD /usr/share/doc/cyrus-sasl-2.1.27      &&
-install -v -m644  doc/legacy/*.html        /usr/share/doc/cyrus-sasl-2.1.27/html &&
-install -v -dm700 /var/lib/sasl
+install -v -dm755                          /tools/share/doc/cyrus-sasl-2.1.27/html &&
+install -v -m644  saslauthd/LDAP_SASLAUTHD /tools/share/doc/cyrus-sasl-2.1.27      &&
+install -v -m644  doc/legacy/*.html        /tools/share/doc/cyrus-sasl-2.1.27/html &&
+install -v -dm700 /tools/var/lib/sasl
 cd ..
 rm -rf cyrus-sasl-2.1.27
 ################
@@ -1092,8 +1095,8 @@ tar xf openldap-2.5.7.tgz
 cd openldap-2.5.7
 patch -Np1 -i ../openldap-2.5.7-consolidated-1.patch &&
 autoconf &&
-./configure --prefix=/usr   \
-            --sysconfdir=/etc \
+./configure --prefix=/tools   \
+            --sysconfdir=/tools/etc \
             --disable-static  \
             --enable-dynamic  \
             --enable-versioning  \
