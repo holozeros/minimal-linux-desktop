@@ -1013,10 +1013,10 @@ cd src &&
 sed -i -e 's@\^u}@^u cols 300}@' tests/dejagnu/config/default.exp     &&
 sed -i -e '/eq 0/{N;s/12 //}'    plugins/kdb/db2/libdb2/test/run.test &&
 sed -i '/t_iprop.py/d'           tests/Makefile.in                    &&
-./configure --prefix=/tpp;s          \
+./configure --prefix=/tools          \
             --sysconfdir=/tools/etc  \
             --localstatedir=/tools/var/lib \
-            --runstatedir=/tools/run       \
+            --runstatedir=/run       \
             --with-system-et         \
             --with-system-ss         \
             --with-system-verto=no   \
@@ -1032,7 +1032,7 @@ tar xf keyutils-1.6.1.tar.bz2
 cd keyutils-1.6.1
 sed -i 's:$(LIBDIR)/$(PKGCONFIG_DIR):/tools/lib/pkgconfig:' Makefile &&
 make
-make NO_ARLIB=1 LIBDIR=/usr/lib BINDIR=/tools/bin SBINDIR=/tools/sbin install
+make NO_ARLIB=1 LIBDIR=/tools/lib BINDIR=/tools/bin SBINDIR=/tools/sbin install
 cd ..
 rm -rf keyutils-1.6.1
 ###################
