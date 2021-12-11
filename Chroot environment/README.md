@@ -285,9 +285,9 @@ cp /etc/{resolv.conf,hosts} $LFS/tools/etc
 ```
 ## striping
 ```
-rm -rf $LFS/usr/share/{info,man,doc}/*
-rm -rf /tools/x86_64-lfs-linux-gnu
-find /usr/{lib,libexec} -name \*.la -delete
+rm -rf /tools/share/{info,man,doc}/*
+rm -rf /tools/usr/share/{info,man,doc}/*
+find /tools/{lib,libexec} -name \*.la -delete
 rm -rf /tools
 ```
 ## backup
@@ -484,6 +484,15 @@ EOF
 ```
 ```
 source ~/.bash_profile
+```
+## striping
+```
+rm -rf /tools/share/{info,man,doc}/*
+rm -rf /tools/usr/share/{info,man,doc}/*
+rm -rf /tools/x86_64-lfs-linux-gnu
+find /tools/{lib,libexec} -name \*.la -delete
+find /usr/{lib,libexec} -name \*.la -delete
+rm -rf /tools
 ```
 ## Backup
 Exit from chroot environment
