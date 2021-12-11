@@ -13,7 +13,7 @@ bootloader does mount the chroot environment for root_filesystem.
 ## 3.Building minimal linux desktop
 
 ### Editing PKGBUILD.
-#### see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
+##### see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
 
 ### Make custum packages
 Chroot into the above chroot environment, and make package-tarballs from the PKGBUILD with makepkg command,as local user lfs.
@@ -54,11 +54,11 @@ If quit for error which conflict existing package under the / directory(not unde
 ```
 pacman -U --force $pkgname-$pkgver.pkg.tar.zst
 ```
-#### The --force directive is obsolete in later versions of Pacman 5.0. 
+##### The --force directive is obsolete in later versions of Pacman 5.0. 
 		
 ## Prerequisites
 Host OS must pass version-check.sh of LFS-11.0 book. With a tiny mistake in build process can irreparably destroy the host system. Therefore, it is recommended to use a various Live-USB with persistence function which using Overlayfs as the host OS.
-#### Refer to:e.g [Install_Arch_Linux_on_a_removable_medium](https://wiki.archlinux.org/title/Install_Arch_Linux_on_a_removable_medium)
+##### Refer to:e.g [Install_Arch_Linux_on_a_removable_medium](https://wiki.archlinux.org/title/Install_Arch_Linux_on_a_removable_medium)
 
 The host should have a desktop environment and a browser. If you can't find a suitable existing Live-USB distribution, Install a new OS dedicated to host of build works into an USB storage.
 
@@ -73,4 +73,4 @@ For the root file system partition of this OS, an USB storage is not available. 
     Graphics: nvidia card (or any Integrated GPU).
 
 When using the nouveau driver, you may not be able to use multiple displays or select the desired resolution, depending on the type of nvidia card. Thankfully, for Linux users, Nvidia has published the driver packages that combines proprietary binaries with a collection of their wrappers. There are some caveats, such as kernel compilation, to install the proprietary nvidia driver. 
-#### refer to: [stub kernel](https://github.com/holozeros/minimal-linux-desktop/blob/master/Building%20stub%20kernel.md)
+##### refer to: [stub kernel](https://github.com/holozeros/minimal-linux-desktop/blob/master/Building%20stub%20kernel.md)
