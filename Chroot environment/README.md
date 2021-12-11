@@ -355,7 +355,7 @@ chroot "$LFS" /tools/bin/env -i   \
     HOME=/root                  \
     TERM="$TERM"                \
     PS1='(lfs chroot) \u:\w\$ ' \
-    PATH=/tools/bin:/tools/sbin:/bin:/sbin \
+    PATH=/tools/bin:/tools/sbin:/bin:/sbin:/usr/bin:/usr/sbin \
     /tools/bin/bash --login +h
 umount -v $LFS/dev{/pts,}
 umount -v $LFS/{sys,proc,run}
@@ -365,12 +365,13 @@ umount -v $LFS/{sys,proc,run}
 #####################
 ```
 mkdir -pv /{boot,home,mnt,etc,lib,lib64,usr,var,bin,sbin,}
+mkdir -pv /usr{bin,lib}
 ```
 ```
 ln -sfv /run /var/run
 ln -sfv /run/lock /var/lock
 install -dv -m 0750 /root
-install -dv -m 1777 /tmp /var/tmpmkdir -v /usr/{bin,lib}
+install -dv -m 1777 /tmp /var/tmp
 ln -sv /tools/bin/{bash,cat,chmod,dd,echo,ln,mkdir,pwd,rm,stty,touch} /bin
 ln -sv /tools/bin/bash /bin/sh
 ln -sv /tools/bin/{env,install,perl,printf}         /usr/bin
