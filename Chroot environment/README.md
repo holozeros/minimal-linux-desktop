@@ -295,7 +295,6 @@ rm -rf /tools
 exit
 umount $LFS/dev{/pts,}
 umount $LFS/{sys,proc,run}
-rm /tools
 export LFS=/mnt/lfs
 cd $LFS 
 tar -cJpf $HOME/lfs11-tools.tar.xz .
