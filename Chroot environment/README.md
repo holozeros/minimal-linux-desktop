@@ -484,7 +484,7 @@ set +h
 umask 022
 LC_ALL=POSIX
 MAKEFLAGS="-j$(nproc)"
-LFS_TGT=$(uname -m)-lfs-linux-gnu
+LFS_TGT=$(uname -m)-pc-linux-gnu
 PATH=/tools/bin:/tools/sbin:/bin:/sbin:/usr/bin:/usr/sbin
 export LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
