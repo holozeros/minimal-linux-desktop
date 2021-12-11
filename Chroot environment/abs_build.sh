@@ -676,9 +676,8 @@ rm -rf nghttp2-1.44.0
 ###################
 tar xf make-ca-1.7.tar.xz
 cd make-ca-1.7
-make install
+make DESTDIR=/tools install
 install -vdm755 /tools/etc/ssl/local
-#/usr/sbin/make-ca -g
 cd ..
 rm -rf make-ca-1.7
 ######################
@@ -1032,7 +1031,15 @@ tar xf keyutils-1.6.1.tar.bz2
 cd keyutils-1.6.1
 sed -i 's:$(LIBDIR)/$(PKGCONFIG_DIR):/tools/lib/pkgconfig:' Makefile &&
 make
-make NO_ARLIB=1 LIBDIR=/tools/lib BINDIR=/tools/bin SBINDIR=/tools/sbin install
+make NO_ARLIB=1                      \
+     LIBDIR=/tools/lib               \
+     BINDIR=/tools/bin               \
+     SBINDIR=/tools/sbin             \
+     INCLUDEDIR=/tools/include       \
+     SYSCONFDIR=/tools/etc           \
+     SHAREDIR=/tools/share/keyutils  \
+     MANDIR=/tools/share/man         \
+     install
 cd ..
 rm -rf keyutils-1.6.1
 ###################
