@@ -278,17 +278,71 @@ chmod +x build-chroot-environment.sh
 ######################
 su -
 export LFS=/mnt/lfs
-chown -R root:root $LFS/{usr,lib,var,etc,bin,sbin,tools}
-case $(uname -m) in
-  x86_64) chown -R root:root $LFS/lib64 ;;
-esac
+chown -R root:root $LFS/{tools}
 mkdir -pv $LFS/{dev,proc,sys,run}
 mknod -m 600 $LFS/dev/console c 5 1
 mknod -m 666 $LFS/dev/null c 1 3
+cp /etc/{resolv.conf,hosts} $LFS/tools/etc
+-----------------------------
+striping
+```
+rm -rf /usr/share/{info,man,doc}/*
+find /usr/{lib,libexec} -name \*.la -delete
+rm -rf /tools
+```
 
-##############
+backup
+```
+exit
+umount $LFS/dev{/pts,}
+umount $LFS/{sys,proc,run}
+rm /tools
+export LFS=/mnt/lfs
+cd $LFS 
+tar -cJpf $HOME/lfs11-tools.tar.xz .
+```
+
+restore
+```
+su -
+export LFS=/mnt/lfs
+cd $LFS 
+rm -rf ./* 
+tar -xpf $HOME/lfs11-tools.tar.xz
+```
+When starting over from here in a later step
+
+As root user.
+```
+# export $LFS
+# mount /dev/<For new creation root file system partition> $LFS
+# cd $LFS
+# rm -rf tools && mkdir tools && cd tools
+# tar -xpf <Path>/tools-chroot.tar.xz
+```
+## Back to to the host environment from chroot environment.
+Issue:
+
+    exit
+        
+When back to the host environment, to check the mount status. Issue:
+
+    mount
+
+Look at the output of mount, make sure the following directories are not mounted.
+```
+1./mnt/lfs/dev and  /mnt/lfs/dev/pts
+2./mnt/lfs/sys
+3./mnt/lfs/proc
+4./mnt/lfs/run
+```
+If left mounted kernel's virtual file systems on these directories, the storage and hardware of the host PC will be damaged.
+If you cannot unmount these, interrupt further operations and reboot the host immediately. 
+
+###############
 ### Chroot ###
-##############
+###############
+```
 mount -v --bind /dev $LFS/dev
 mount -v --bind /dev/pts $LFS/dev/pts
 mount -vt proc proc $LFS/proc
@@ -297,55 +351,41 @@ mount -vt tmpfs tmpfs $LFS/run
 if [ -h $LFS/dev/shm ]; then
   mkdir -pv $LFS/$(readlink $LFS/dev/shm)
 fi
-chroot "$LFS" /usr/bin/env -i   \
+chroot "$LFS" /tools/bin/env -i   \
     HOME=/root                  \
     TERM="$TERM"                \
     PS1='(lfs chroot) \u:\w\$ ' \
-    PATH=/usr/bin:/usr/sbin     \
-    /bin/bash --login +h
+    PATH=/tools/bin:/tools/sbin:/bin:/sbin \
+    /tools/bin/bash --login +h
 umount -v $LFS/dev{/pts,}
 umount -v $LFS/{sys,proc,run}
-
+```
 #####################
 ### creating dir ###
 #####################
 ```
-mkdir -pv /{boot,home,mnt,opt,srv}
-mkdir -pv /etc/{opt,sysconfig}
-mkdir -pv /lib/firmware
-mkdir -pv /media/{floppy,cdrom}
-mkdir -pv /usr/{,local/}{include,src}
-mkdir -pv /usr/local/{bin,lib,sbin}
-mkdir -pv /usr/{,local/}share/{color,dict,doc,info,locale,man}
-mkdir -pv /usr/{,local/}share/{misc,terminfo,zoneinfo}
-mkdir -pv /usr/{,local/}share/man/man{1..8}
-mkdir -pv /var/{cache,local,log,mail,opt,spool}
-mkdir -pv /var/lib/{color,misc,locate}
+mkdir -pv /{boot,home,mnt,etc,lib,lib64,usr,var,bin,sbin,}
 ```
 ```
 ln -sfv /run /var/run
 ln -sfv /run/lock /var/lock
 install -dv -m 0750 /root
-install -dv -m 1777 /tmp /var/tmp
+install -dv -m 1777 /tmp /var/tmpmkdir -v /usr/{bin,lib}
+ln -sv /tools/bin/{bash,cat,chmod,dd,echo,ln,mkdir,pwd,rm,stty,touch} /bin
+ln -sv /tools/bin/bash /bin/sh
+ln -sv /tools/bin/{env,install,perl,printf}         /usr/bin
+ln -sv /tools/lib/libgcc_s.so{,.1}                  /usr/lib
+ln -sv /tools/lib/libstdc++.{a,so{,.6}}             /usr/lib
 ln -sv /proc/self/mounts /etc/mtab
-```
-```
-cat > /etc/hosts << EOF
-127.0.0.1  localhost $(hostname)
-::1        localhost
-EOF
 ```
 ```
 cat > /etc/passwd << "EOF"
 root:x:0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/dev/null:/bin/false
 daemon:x:6:6:Daemon User:/dev/null:/bin/false
-messagebus:x:18:18:D-Bus Message Daemon User:/run/dbus:/bin/false
-uuidd:x:80:80:UUID Generation Daemon User:/dev/null:/bin/false
+messagebus:x:18:18:D-Bus Message Daemon User:/var/run/dbus:/bin/false
 nobody:x:99:99:Unprivileged User:/dev/null:/bin/false
 EOF
-```
-```
 cat > /etc/group << "EOF"
 root:x:0:
 bin:x:1:daemon
@@ -368,7 +408,6 @@ messagebus:x:18:
 input:x:24:
 mail:x:34:
 kvm:x:61:
-uuidd:x:80:
 wheel:x:97:
 nogroup:x:99:
 users:x:999:
@@ -387,232 +426,8 @@ chgrp -v utmp /var/log/lastlog
 chmod -v 664  /var/log/lastlog
 chmod -v 600  /var/log/btmp
 ```
------------------------------
-striping
-```
-rm -rf /usr/share/{info,man,doc}/*
-find /usr/{lib,libexec} -name \*.la -delete
-rm -rf /tools
-```
 
-backup
-```
-exit
-umount $LFS/dev{/pts,}
-umount $LFS/{sys,proc,run}
-rm /tools
-export LFS=/mnt/lfs
-cd $LFS 
-tar -cJpf $HOME/lfs11-pacman5.tar.xz .
-```
-
-restore
-```
-su -
-export LFS=/mnt/lfs
-cd $LFS 
-rm -rf ./* 
-tar -xpf $HOME/lfs11-pacman5.tar.xz
-```
-
-
-
-Strip
-```
-    rm -rf /tools/{,share}/{info,man,doc}
-```
-Backup
-```
-# cd $LFS/tools
-# tar -cJpf <Path>/tools-base-11.tar.xz .
-# sync
-# cd $LFS/sources
-```
-
-When starting over from here in a later step
-
-As root user.
-```
-# export $LFS
-# mount /dev/<For new creation root file system partition> $LFS
-# cd $LFS
-# rm -rf tools && mkdir tools && cd tools
-# tar -xpf <Path>/tools-base-11.tar.xz
-```
-
-## Chroot
-
-changeing to root user from lfs
-```
-exit
-```
-
-```
-export LFS=/mnt/lfs
-```
-```
-chown -R root:root $LFS/tools
-mkdir -pv $LFS/{dev,proc,sys,run,root,tmp,usr/{bin,lib},etc}
-mkdir -v $LFS/tools/usr
-mknod -m 600 $LFS/dev/console c 5 1
-mknod -m 666 $LFS/dev/null c 1 3 
-cp /etc/resolv.conf /mnt/lfs/etc
-
-export LFS=/mnt/lfs
-mount -v --bind /dev $LFS/dev
-mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
-mount -vt proc proc $LFS/proc
-mount -vt sysfs sysfs $LFS/sys
-mount -vt tmpfs tmpfs $LFS/run
-if [ -h $LFS/dev/shm ]; then
-  mkdir -pv $LFS/$(readlink $LFS/dev/shm)
-fi
-chroot "$LFS" /tools/bin/env -i \
-    HOME=/root                  \
-    TERM="$TERM"                \
-    PS1='\u:\w\$ '              \
-    PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
-    /tools/bin/bash --login +h
-umount -v /mnt/lfs/dev/pts
-umount -v /mnt/lfs/dev
-umount -v /mnt/lfs/sys
-umount -v /mnt/lfs/proc
-umount -v /mnt/lfs/run
-```
-## Back to to the host environment.
-Issue:
-
-    exit
-
-# This is very important !
-        
-When back to the host environment, to check the mount status. Issue:
-
-    mount
-
-Look at the output of mount, make sure the following directories are not mounted.
-```
-1./mnt/lfs/dev and  /mnt/lfs/dev/pts
-2./mnt/lfs/sys
-3./mnt/lfs/proc
-4./mnt/lfs/run
-```
-
-If left mounted kernel's virtual file systems on these directories, the storage and hardware of the host PC will be damaged.
-If you cannot unmount these, interrupt further operations and reboot the host immediately. 
-
-# Entering the chroot environment
-On the terminal
-
-    su - 
-
-Make sure that the chroot environment partition is mounted on /mnt/lfs.
-
-    lsblk
-
-If you already built the basic chroot environment and then it's mount to /mnt/lfs, isuue:
-```
-export LFS=/mnt/lfs
-mount -v --bind /dev $LFS/dev
-mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
-mount -vt proc proc $LFS/proc
-mount -vt sysfs sysfs $LFS/sys
-mount -vt tmpfs tmpfs $LFS/run
-if [ -h $LFS/dev/shm ]; then
-  mkdir -pv $LFS/$(readlink $LFS/dev/shm)
-fi
-chroot "$LFS" /tools/bin/env -i \
-    HOME=/root                  \
-    TERM="$TERM"                \
-    PS1='\u:\w\$ '              \
-    PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
-    /tools/bin/bash --login +h
-umount -v /mnt/lfs/dev/pts
-umount -v /mnt/lfs/dev
-umount -v /mnt/lfs/proc
-umount -v mnt/lfs/sys
-umount -v /mnt/lfs/run
-```
-
-## Settings the filesystem
-```
-ln -srv /usr/bin /bin
-ln -sv /tools/bin/{bash,cat,echo,env,pwd,stty,uname,nproc} /usr/bin
-ln -sv /tools/bin/bash /usr/bin/sh
-ln -sv /tools/bin/perl /usr/bin
-ln -sv /tools/lib/libgcc_s.so{,.1} /usr/lib
-ln -sv /tools/lib/libstdc++.so{,.6} /usr/lib
-ln -sv /tools/lib /tools/usr/lib
-ln -sv /tools/include /tools/usr/include
-ln -sv /tools/include/ncursesw/* /tools/include/
-sed 's/tools/usr/' /tools/lib/libstdc++.la > /usr/lib/libstdc++.la
-```
-```
-ln -sv /proc/self/mounts /etc/mtab
-```
-## Settings the root user environment
-```
-cat > ~/.bash_profile << "EOF"
-exec /tools/bin/env -i HOME=$HOME TERM=$TERM PS1='(chroot)\u:\w\$ ' /tools/bin/bash
-EOF
-```
-```
-cat > ~/.bashrc << "EOF"
-set +h
-umask 022
-LC_ALL=POSIX
-MAKEFLAGS="-j$(nproc)"
-LFS_TGT=$(uname -m)-lfs-linux-gnu
-PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin
-export LC_ALL LFS_TGT PATH MAKEFLAGS
-EOF
-```
-```
-source ~/.bash_profile
-```
-```
-cat > /etc/passwd << "EOF"
-root:x:0:0:root:/root:/bin/bash
-bin:x:1:1:bin:/dev/null:/bin/false
-daemon:x:6:6:Daemon User:/dev/null:/bin/false
-messagebus:x:18:18:D-Bus Message Daemon User:/var/run/dbus:/bin/false
-nobody:x:99:99:Unprivileged User:/dev/null:/bin/false
-EOF
-```
-```
-cat > /etc/group << "EOF"
-root:x:0:
-bin:x:1:daemon
-sys:x:2:
-kmem:x:3:
-tape:x:4:
-tty:x:5:
-daemon:x:6:
-floppy:x:7:
-disk:x:8:
-lp:x:9:
-dialout:x:10:
-audio:x:11:
-video:x:12:
-utmp:x:13:
-usb:x:14:
-cdrom:x:15:
-adm:x:16:
-messagebus:x:18:
-input:x:24:
-mail:x:34:
-kvm:x:61:
-uuidd:x:80:
-wheel:x:97:
-nogroup:x:99:
-users:x:999:
-EOF
-```
-```
-exec /tools/bin/bash --login +h
-```
-
-## Install ABS
+# Install ABS
 It's best to install each package step by step, but you can also run this long script to install it all at once. 
 
 ## Build [abs_build.sh](abs_build.sh)
@@ -684,15 +499,15 @@ exit
 ```
 su -
 cd /mnt/lfs
-tar cJpf <Where you want to store Path>/tools-pacman-11.tar.xz
+tar cJpf <Where you want to store Path>/tools-pacman5.tar.xz
 ```
 ## When starting over from here in a later step
-Exit chroot. Then as root user on host:
+Exit chroot. Then issue as root user on host:
 ```
 # su -
 # export $LFS
 # mount /dev/<partition to use as the chroot environment> $LFS
 # cd $LFS
 # rm -rf ./*
-# tar -xpf <Path>/tools-pacman-11.tar.xz
+# tar -xpf <Path>/tools-pacman5.tar.xz
 ```
