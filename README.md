@@ -2,7 +2,7 @@
 Building a desktop environment from source codes to learn Linux. 
 This OS will be built with reference to the Linux From Scratch 11.0 book and installed use pacman-5.0. 
 
-## I.[Building chroot environment](Building%20chroot%20environment.md)
+## 1.[Building chroot environment](Building%20chroot%20environment.md)
 Build a chroot environment and then install the required commands to run Arh_Build_System(ABS).
 
 ## 2.booting the chroot environment.
@@ -10,7 +10,7 @@ Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry 
 bootloader does mount the chroot environment for root_filesystem.
 ##### see: [Building stub kernel](Building%20stub%20kernel.md) 
 
-# II.Building minimal linux desktop
+# Building minimal linux desktop
 
 ## 1.Editing PKGBUILD.
 ##### see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
@@ -74,5 +74,3 @@ For the root file system partition of this OS, an USB storage is not available. 
 
 When using the nouveau driver, you may not be able to use multiple displays or select the desired resolution, depending on the type of nvidia card. Thankfully, for Linux users, Nvidia has published the driver packages that combines proprietary binaries with a collection of their wrappers. There are some caveats, such as kernel compilation, to install the proprietary nvidia driver. 
 ##### refer to: [stub kernel](https://github.com/holozeros/minimal-linux-desktop/blob/master/Building%20stub%20kernel.md)
-
-
