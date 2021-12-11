@@ -29,7 +29,7 @@ Mount the new partition for building chroot environment to /mnt/lfs. for example
     # below directive is example, you shuld change the propery partition name 
     mount -v /dev/sda2 $LFS
 
-## Checking host system requirement (see:[the LFS book](https://www.linuxfromscratch.org/lfs/view/stable/)
+## Checking host system requirement (see:[Linux From Scratch book](https://www.linuxfromscratch.org/lfs/view/stable/)
 
     cat > version-check.sh << "EOF"
     #!/bin/bash
