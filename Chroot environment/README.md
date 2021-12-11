@@ -273,9 +273,8 @@ chmod +x build-chroot-environment.sh
 ./build-chroot-environment.sh
 ```
 
-######################
-### Changing Owner ###
-######################
+## Changing Owner
+```
 su -
 export LFS=/mnt/lfs
 chown -R root:root $LFS/{tools}
@@ -283,16 +282,15 @@ mkdir -pv $LFS/{dev,proc,sys,run}
 mknod -m 600 $LFS/dev/console c 5 1
 mknod -m 666 $LFS/dev/null c 1 3
 cp /etc/{resolv.conf,hosts} $LFS/tools/etc
------------------------------
-striping
+```
+## striping
 ```
 rm -rf $LFS/usr/share/{info,man,doc}/*
 rm -rf /tools/x86_64-lfs-linux-gnu
 find /usr/{lib,libexec} -name \*.la -delete
 rm -rf /tools
 ```
-
-backup
+## backup
 ```
 exit
 umount $LFS/dev{/pts,}
@@ -302,8 +300,7 @@ export LFS=/mnt/lfs
 cd $LFS 
 tar -cJpf $HOME/lfs11-tools.tar.xz .
 ```
-
-restore
+## restore
 ```
 su -
 export LFS=/mnt/lfs
@@ -311,8 +308,7 @@ cd $LFS
 rm -rf ./* 
 tar -xpf $HOME/lfs11-tools.tar.xz
 ```
-When starting over from here in a later step
-
+## Starting over from here at a later step
 As root user.
 ```
 # export $LFS
@@ -321,10 +317,7 @@ As root user.
 # rm -rf tools && mkdir tools && cd tools
 # tar -xpf <Path>/tools-chroot.tar.xz
 ```
-
-###############
-### Chroot ###
-###############
+## Chroot
 ```
 mount -v --bind /dev $LFS/dev
 mount -v --bind /dev/pts $LFS/dev/pts
@@ -343,9 +336,7 @@ chroot "$LFS" /tools/bin/env -i   \
 umount -v $LFS/dev{/pts,}
 umount -v $LFS/{sys,proc,run}
 ```
-#####################
-### creating dir ###
-#####################
+## creating dir
 ```
 mkdir -pv /{boot,home,mnt,etc,lib,lib64,usr,var,bin,sbin,}
 mkdir -pv /usr{bin,lib}
