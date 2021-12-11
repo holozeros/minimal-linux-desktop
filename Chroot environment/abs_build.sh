@@ -905,8 +905,8 @@ cd gnupg-2.2.29
 sed -e '/noinst_SCRIPTS = gpg-zip/c sbin_SCRIPTS += gpg-zip' \
     -i tools/Makefile.in
 ./configure --prefix=/tools          \
-            --localstatedir=/var     \
-            --sysconfdir=/etc
+            --localstatedir=/tools/var     \
+            --sysconfdir=/tools/etc
 make
 make check
 make install
