@@ -286,7 +286,8 @@ cp /etc/{resolv.conf,hosts} $LFS/tools/etc
 -----------------------------
 striping
 ```
-rm -rf /usr/share/{info,man,doc}/*
+rm -rf $LFS/usr/share/{info,man,doc}/*
+rm -rf /tools/x86_64-lfs-linux-gnu
 find /usr/{lib,libexec} -name \*.la -delete
 rm -rf /tools
 ```
@@ -320,24 +321,6 @@ As root user.
 # rm -rf tools && mkdir tools && cd tools
 # tar -xpf <Path>/tools-chroot.tar.xz
 ```
-## Back to to the host environment from chroot environment.
-Issue:
-
-    exit
-        
-When back to the host environment, to check the mount status. Issue:
-
-    mount
-
-Look at the output of mount, make sure the following directories are not mounted.
-```
-1./mnt/lfs/dev and  /mnt/lfs/dev/pts
-2./mnt/lfs/sys
-3./mnt/lfs/proc
-4./mnt/lfs/run
-```
-If left mounted kernel's virtual file systems on these directories, the storage and hardware of the host PC will be damaged.
-If you cannot unmount these, interrupt further operations and reboot the host immediately. 
 
 ###############
 ### Chroot ###
@@ -427,6 +410,25 @@ chgrp -v utmp /var/log/lastlog
 chmod -v 664  /var/log/lastlog
 chmod -v 600  /var/log/btmp
 ```
+## Back to to the host environment from chroot environment.
+Issue:
+
+    exit
+        
+When back to the host environment, to check the mount status. Issue:
+
+    mount
+
+Look at the output of mount, make sure the following directories are not mounted.
+```
+1./mnt/lfs/dev and  /mnt/lfs/dev/pts
+2./mnt/lfs/sys
+3./mnt/lfs/proc
+4./mnt/lfs/run
+```
+If left mounted kernel's virtual file systems on these directories, the storage and hardware of the host PC will be damaged.
+If you cannot unmount these, interrupt further operations and reboot the host immediately. 
+
 
 # Install ABS
 It's best to install each package step by step, but you can also run this long script to install it all at once. 
