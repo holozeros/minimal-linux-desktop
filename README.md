@@ -10,7 +10,7 @@ Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry 
 bootloader does mount the chroot environment for root_filesystem.
 ##### see: [Building stub kernel](Building%20stub%20kernel.md) 
 
-#W 3.Building minimal linux desktop
+## 3.Building minimal linux desktop
 
 ### Editing PKGBUILD.
 #### see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
