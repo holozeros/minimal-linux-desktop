@@ -372,7 +372,7 @@ ln -sfv /run /var/run
 ln -sfv /run/lock /var/lock
 install -dv -m 0750 /root
 install -dv -m 1777 /tmp /var/tmp
-ln -sv /tools/bin/{bash,cat,chmod,dd,echo,ln,mkdir,pwd,rm,stty,touch} /bin
+ln -sv /tools/bin/{bash,cat,chmod,dd,echo,ln,mkdir,pwd,rm,stty,touch,nproc,uname} /bin
 ln -sv /tools/bin/bash /bin/sh
 ln -sv /tools/bin/{env,install,perl,printf}         /usr/bin
 ln -sv /tools/lib/libgcc_s.so{,.1}                  /usr/lib
@@ -474,12 +474,12 @@ passwd lfs
 su - lfs
 ```
 ```
-cat > ~/.bash_profile << "EOF"
+/tools/bin/cat > ~/.bash_profile << "EOF"
 exec /tools/bin/env -i HOME=$HOME TERM=$TERM PS1='(chroot)\u:\w\$ ' /tools/bin/bash
 EOF
 ```
 ```
-cat > ~/.bashrc << "EOF"
+/tools/bin/cat > ~/.bashrc << "EOF"
 set +h
 umask 022
 LC_ALL=POSIX
