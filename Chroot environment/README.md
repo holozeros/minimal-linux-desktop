@@ -500,7 +500,7 @@ exit
 ```
 su -
 cd /mnt/lfs
-tar cJpf <Where you want to store Path>/tools-pacman5.tar.xz
+tar cJpf <Where you want to store Path>/tools-pacman5.tar.xz .
 ```
 ## When starting over from here in a later step
 Exit chroot. Then issue as root user on host:
