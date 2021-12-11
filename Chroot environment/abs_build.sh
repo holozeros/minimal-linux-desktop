@@ -581,7 +581,7 @@ rm -rf kmod-29
 ####################
 tar xf Python-3.9.6.tar.xz
 cd Python-3.9.6
-./configure --prefix=/tools          \
+./configure --prefix=/tools        \
             --enable-shared        \
             --with-system-expat    \
             --with-system-ffi      \
@@ -706,12 +706,11 @@ ln -sfv /tools/libexec/p11-kit/trust-extract-compat \
 ln -sfv ./pkcs11/p11-kit-trust.so /tools/lib/libnssckbi.so
 cd ../..
 rm -rf p11-kit-0.24.0
-cd /tools/bin
-ln -s /tools/bin/cut
-ln -s /tools/bin/openssl
-ln -s /tools/bin/md5sum
-ln -s /tools/bin/trust
-cd /sources
+cd /usr/bin
+ln -s /tools/bin/openssl .
+ln -s /tools/bin/cut .
+ln -s /tools/bin/md5sum .
+ln -s /tools/bin/trust .
 make-ca -g
 ###################
 ### Wget-1.21.1 ###
