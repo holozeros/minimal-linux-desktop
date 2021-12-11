@@ -1,4 +1,53 @@
 cat > abs_build.sh << "END"
+#######################
+### libstdc++ pass2 ###
+#######################
+tar xf gcc-11.2.0.tar.xz
+cd gcc-11.2.0
+cp ../fenv.h libstdc++-v3/include/c_compatibility/fenv.h
+ln -s gthr-posix.h libgcc/gthr-default.h
+mkdir -v build
+cd       build
+../libstdc++-v3/configure            \
+    CXXFLAGS="-g -O2 -D_GNU_SOURCE"  \
+    --prefix=/tools                  \
+    --disable-multilib               \
+    --disable-nls                    \
+    --host=$(uname -m)-pc-linux-gnu  \
+    --disable-libstdcxx-pc
+make
+make install
+cd ..
+rm -rf gcc-11.2.0
+###############
+### gettext ###
+###############
+tar xf gettext-0.21.tar.xz 
+cd gettext-0.21
+./configure --disable-shared
+make
+cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /tools/bin
+cd ..
+rm -rf gettext-0.21
+#############
+### bisom ###
+#############
+tar xf bison-3.7.6.tar.xz 
+cd bison-3.7.6
+./configure --prefix=/tools
+make
+make install
+cd ..
+rm -rf bison-3.7.6
+###################
+### perl-5.34.0 ###
+###################
+
+
+
+
+
+
 ###################
 ### zlib-1.2.11 ###
 ###################
