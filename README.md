@@ -48,7 +48,7 @@ Install packages with pacman into / of chroot environment.
 ```
 Install in the following order to satisfy the dependencies 
 ```
-Linux-5.5.3 API Headers
+Linux-api-headers
 Glibc-2.31
 Zlib
 Bzip2
