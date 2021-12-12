@@ -47,7 +47,7 @@ makepkg
 Install packages with pacman into / of chroot environment. Install in the following order to satisfy the dependencies 
 ```
 Linux-api-headers
-Glibc-2.31
+Glibc
 Zlib
 Bzip2
 Xz
