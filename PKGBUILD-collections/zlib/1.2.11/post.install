@@ -1,7 +1,7 @@
 post_install() {
 
-rm -rfv /usr/src/zlib/1.2.11/pkg
-rm -rfv /usr/src/zlib/1.2.11/src
+rm -rf /usr/src/zlib/1.2.11/pkg
+rm -rf /usr/src/zlib/1.2.11/src
 rm -v /usr/src/zlib/1.2.11/zlib-1.2.11.tar.xz
 mv -v /usr/src/zlib/1.2.11/zlib-1.2.11-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
 
