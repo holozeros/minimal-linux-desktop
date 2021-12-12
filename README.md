@@ -46,6 +46,77 @@ makepkg
 ### Installing custum packages with pacman
 Install packages with pacman into / of chroot environment.
 ```
+Install in the following order to satisfy the dependencies 
+```
+Linux-5.5.3 API Headers
+Glibc-2.31
+Zlib
+Bzip2
+Xz
+File
+Readline
+M4
+Bc
+Binutils
+GMP
+MPFR
+MPC
+Attr
+Acl
+Shadow
+GCC
+Pkg-config
+Ncurses
+Libcap
+Sed
+Psmisc
+Iana-Etc
+Bison
+Flex
+Grep
+Bash
+Libtool
+GDBM
+Gperf
+Expat
+Inetutils
+Perl
+XML::Parser
+Intltool
+Autoconf
+Automake
+Kmod
+Gettext
+Libelf (from Elfutils)
+Libffi
+OpenSSL
+Python
+Ninja
+Meson
+Coreutils
+Check
+Diffutils
+Gawk
+Findutils
+Groff
+Less
+Gzip
+Zstd
+IPRoute2
+Kbd
+Libpipeline
+Make
+Patch
+Tar
+Texinfo
+nano
+Procps-ng
+Util-linux
+E2fsprogs
+Sysklogd
+Sysvinit
+Eudev
+```
 mv /usr/src/$pkgname/$pkgver/$pkgname-$pkgver.pkg.tar.zst /var/cache/pacman/pkg
 cd /var/cache/pacman/pkg
 pacman -U "$pkgname-$pkgver.pkg.tar.zst"
