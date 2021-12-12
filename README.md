@@ -44,7 +44,7 @@ cd /usr/src/$pkgname/$pkgver/PKGBUILD
 makepkg
 ```
 ### Installing custum packages with pacman
-Install packages with pacman into / of chroot environment. Install in the following order to satisfy the dependencies 
+Install in the following order to satisfy the dependencies 
 ```
 Linux-api-headers
 Glibc
@@ -114,6 +114,8 @@ E2fsprogs
 Sysklogd
 Sysvinit
 Eudev
+```
+Install packages with pacman into / of chroot environment. 
 ```
 mv /usr/src/$pkgname/$pkgver/$pkgname-$pkgver.pkg.tar.zst /var/cache/pacman/pkg
 cd /var/cache/pacman/pkg
