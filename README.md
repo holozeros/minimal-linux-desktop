@@ -44,9 +44,7 @@ cd /usr/src/$pkgname/$pkgver/PKGBUILD
 makepkg
 ```
 ### Installing custum packages with pacman
-Install packages with pacman into / of chroot environment.
-```
-Install in the following order to satisfy the dependencies 
+Install packages with pacman into / of chroot environment. Install in the following order to satisfy the dependencies 
 ```
 Linux-api-headers
 Glibc-2.31
