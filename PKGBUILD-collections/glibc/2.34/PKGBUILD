@@ -9,26 +9,14 @@ options=(!strip staticlibs)
 source=(https://ftp.gnu.org/gnu/glibc/glibc-$pkgver.tar.xz
 	glibc-2.34-fhs-1.patch
         glibc.install)
-
-#        locale.gen.txt
-#        locale-gen
-#        sdt.h
-#        sdt-config.h
-#   	glibc.install)
-
+	
 md5sums=('31998b53fb39cb946e96abc310af1c89'
 	 'SKIP'
 	 'SKIP')
 
-#	 'SKIP'
-#	 'SKIP'
-#	 'SKIP'
-#	 'SKIP')
-
 install=glibc.install
 
 prepare() {
-
 cd /usr/src/glibc/2.34/src/glibc-2.34
 sed -e '/NOTIFY_REMOVED)/s/)/ \&\& data.attr != NULL)/' \
     -i sysdeps/unix/sysv/linux/mq_notify.c
@@ -38,9 +26,7 @@ patch -Np1 -i /usr/src/glibc/2.34/glibc-2.34-fhs-1.patch
 }
 
 build() {
-
 cd "${srcdir}/${pkgname}-${pkgver}"
-
 mkdir glibc-build
 cd glibc-build
 CC="gcc -ffile-prefix-map=/tools=/usr" \
