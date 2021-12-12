@@ -9,13 +9,13 @@ options=(!strip staticlibs)
 source=(https://ftp.gnu.org/gnu/glibc/glibc-$pkgver.tar.xz
 	glibc-2.34-fhs-1.patch
         locale.gen.txt
-        locale.gen
+        locale-gen
         sdt.h
         sdt-config.h
 	glibc.install)
 
 md5sums=('31998b53fb39cb946e96abc310af1c89'
-	 '9a5997c3452909b1769918c759eff8a2'
+	 'SKIP'
 	 'SKIP'
 	 'SKIP'
 	 'SKIP'
@@ -51,10 +51,12 @@ prepare() {
 
 build() {
 
+cd $srcdir/glibc-build
 CC="gcc -isystem $GCC_INCDIR -isystem /include"
-LDFLAGS="-L/lib -Wl,--rpath=/lib -Wl,--dynamic-linker=/lib/ld-linux-x86-64.so.2"
+LDFLAGS="-L/tools/lib -Wl,--rpath=/toolas/lib -Wl,--dynamic-linker=/tools/lib/ld-linux-x86-64.so.2"
 
-../configure --prefix=/                             \
+$srcdir/glibc/configure                             \
+             --prefix=/                             \
              --disable-werror                       \
              --enable-kernel=3.2                    \
              --enable-stack-protector=strong        \
@@ -76,9 +78,13 @@ make
   LDFLAGS=${LDFLAGS/,-z,now/}
 
   "$srcdir/glibc/configure" \
+      --prefix=/ \
+      libc_cv_slibdir=/lib \
       --libdir=/lib \
       --libexecdir=/lib \
-      ${_configure_flags[@]}
+      --disable-sanity-checks \
+      --disable-werror \
+     ${_configure_flags[@]}
 
   # build libraries with fortify disabled
   echo "build-programs=no" >> configparms
@@ -95,13 +101,13 @@ make
   # make info
 }
 
-check() {
-  cd "$srcdir/glibc-build"
+#check() {
+#  cd "$srcdir/glibc-build"
       # remove fortify in preparation to run test-suite
-  sed -i '/FORTIFY/d' configparms
+#  sed -i '/FORTIFY/d' configparms
       # some failures are "expected"
-  make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
-}
+#  make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
 
 package_glibc() {
   pkgdesc='GNU C Library'
