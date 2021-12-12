@@ -3,6 +3,7 @@ post_install() {
 ln -sfv /lib/ld-linux-x86-64.so.2 /lib64
 ln -sfv /lib/ld-linux-x86-64.so.2 /lib64/ld-lsb-x86-64.so.3
 
+cd /share/i18n/locales
     /bin/localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8
     /bin/localedef -i de_DE -f ISO-8859-1 de_DE
     /bin/localedef -i de_DE@euro -f ISO-8859-15 de_DE@euro
@@ -54,8 +55,8 @@ EOF
 mkdir -pv /var/cache/nscd
 mkdir -pv /etc/ld.so.conf.d
 
-rm -rfv /usr/src/glibc/2.34/pkg
-rm -rfv /usr/src/glibc/2.34/src
+rm -rf /usr/src/glibc/2.34/pkg
+rm -rf /usr/src/glibc/2.34/src
 rm -v /usr/src/glibc/2.34/glibc-2.34.tar.xz
 mv -v /usr/src/glibc/2.34/glibc-2.34-1-x86_64.pkg.tar.gz  /var/cache/pacman/pkg
 
