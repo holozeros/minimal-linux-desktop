@@ -4,6 +4,7 @@ cat > abs_build.sh << "END"
 #######################
 tar xf gcc-11.2.0.tar.xz
 cd gcc-11.2.0
+cp ../fenv.h libstdc++-v3/include/c_compatibility/fenv.h
 ln -s gthr-posix.h libgcc/gthr-default.h
 mkdir -v build
 cd       build
