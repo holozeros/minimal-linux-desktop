@@ -19,12 +19,12 @@ ln -sv /tools/bin/ld /tools/$(uname -m)-pc-linux-gnu/bin/ld
 ```
 ```
 gcc -dumpspecs | sed -e 's@/tools@@g'                   \
-    -e '/\*startfile_prefix_spec:/{n;s@.*@/usr/lib/ @}' \
-    -e '/\*cpp:/{n;s@$@ -isystem /usr/include@}' >      \
+    -e '/\*startfile_prefix_spec:/{n;s@.*@/lib/ @}' \
+    -e '/\*cpp:/{n;s@$@ -isystem /include@}' >      \
     `dirname $(gcc --print-libgcc-file-name)`/specs
 
 ```
-### Test the toolchin
+Test the toolchin
 ```
 echo 'int main(){}' > dummy.c
 cc dummy.c -v -Wl,--verbose &> dummy.log
@@ -58,7 +58,7 @@ grep found dummy.log
 
 rm -v dummy.c a.out dummy.log
 ```
-### Make and install custum packages
+### Make and install the essential custum packages for bootable system
 Order to the following for satisfy the dependencies.
 ```
 Linux-api-headers
@@ -152,7 +152,10 @@ If quit for error which conflict existing package under the / directory(not unde
 pacman -U --force $pkgname-$pkgver.pkg.tar.zst
 ```
 ##### The --force directive is obsolete in later versions of Pacman 5.0. 
-		
+## Adding desktop environment
+```
+```
+
 ## Prerequisites
 Host OS must pass version-check.sh of LFS-11.0 book. With a tiny mistake in build process can irreparably destroy the host system. Therefore, it is recommended to use a various Live-USB with persistence function which using Overlayfs as the host OS.
 ##### Refer to:e.g [Install_Arch_Linux_on_a_removable_medium](https://wiki.archlinux.org/title/Install_Arch_Linux_on_a_removable_medium)
