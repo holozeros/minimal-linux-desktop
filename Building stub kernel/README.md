@@ -264,6 +264,8 @@ cat > /boot/loader/entry/mld.conf
 title Minimum linux desktop
 linux /vmlinuz-linux
 initrd /amd-ucode.img
+
+ln -s /tools/bin/bash /sbin/init
 ```
 ```
 reboot
