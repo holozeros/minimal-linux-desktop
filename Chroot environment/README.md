@@ -318,22 +318,27 @@ As root user.
 ```
 ## Chroot
 ```
-mount -v --bind /dev $LFS/dev
-mount -v --bind /dev/pts $LFS/dev/pts
+cat > chroot-1.sh << "EOF"
+export LFS=/mnt/lfs
+mount -v --bind/dev $LFS/dev
+mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
 mount -vt proc proc $LFS/proc
 mount -vt sysfs sysfs $LFS/sys
 mount -vt tmpfs tmpfs $LFS/run
 if [ -h $LFS/dev/shm ]; then
   mkdir -pv $LFS/$(readlink $LFS/dev/shm)
 fi
-chroot "$LFS" /tools/bin/env -i   \
+chroot "$LFS" /tools/bin/env -i \
     HOME=/root                  \
     TERM="$TERM"                \
-    PS1='(lfs chroot) \u:\w\$ ' \
-    PATH=/tools/bin:/tools/sbin:/bin:/sbin:/usr/bin:/usr/sbin \
+    PS1='\u:\w\$ '              \
+    PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
     /tools/bin/bash --login +h
 umount -v $LFS/dev{/pts,}
 umount -v $LFS/{sys,proc,run}
+EOF
+
+./chroot-1.sh
 ```
 ## creating dir
 ```
@@ -352,6 +357,7 @@ ln -sv /tools/lib/libgcc_s.so{,.1}                  /usr/lib
 ln -sv /tools/lib/libstdc++.{a,so{,.6}}             /usr/lib
 ln -sv /proc/self/mounts /etc/mtab
 ```
+## User setting
 ```
 cat > /etc/passwd << "EOF"
 root:x:0:0:root:/root:/bin/bash
@@ -387,6 +393,7 @@ nogroup:x:99:
 users:x:999:
 EOF
 ```
+
 ```
 echo "tester:x:101:101::/home/tester:/bin/bash" >> /etc/passwd
 echo "tester:x:101:" >> /etc/group
