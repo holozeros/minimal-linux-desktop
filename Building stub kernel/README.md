@@ -281,30 +281,5 @@ pacman -S linux
 However, all the dependencies are installed and you end up with just an Arch Linux distribution. 
 ## Booting the chroot environment as rootfs with the above custum kernel
 Glibc,Sysvinit and others requirement
-``` 
-ln -sv /usr/bin/{bash,cat,dd,echo,env,install,perl,ln,pwd,rm,stty} /bin
-```
-```
-ln -sv /usr/lib/libgcc_s.so{,.1} /lib
-ln -sv /usr/lib/libstdc++.{a,so{,.6}} /lib
-for lib in blkid lzma mount uuid
-do
-    ln -sv /usr/lib/lib$lib.so* /lib
-done
-install -vdm755 /lib/pkgconfig
-for pc in blkid mount uuid
-do
-    sed 's@usr@@g' /usr/lib/pkgconfig/${pc}.pc \
-        > /lib/pkgconfig/${pc}.pc
-done
-```
-```
-ln -svf /usr/include/blkid    /include
-ln -svf /usr/include/libmount /include
-ln -svf /usr/include/uuid     /include
-```
-```
-ln -sv /usr/bin/bash /bin/sh
-ln -sv /proc/self/mounts /etc/mtab
-ln -sv /usr/sbin/agetty /sbin
-```
+
+       work  in  progress
