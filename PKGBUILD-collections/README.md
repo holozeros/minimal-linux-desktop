@@ -72,7 +72,7 @@ These variable add as needed.
         provides=(' ')
         options=(' ')
 
-##### case in making [PKGBUILD of zlib-1.2.11.tar.xz](zlib-1.2.11)
+##### case in making [PKGBUILD](zlib/1.2.11/PKGBUILD) of zlib-1.2.11.tar.xz
 
     mkdir -p /sources/zlib/1.2.11
     cd /sources/zlib/1.2.11
