@@ -23,4 +23,6 @@ make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
 package() {
     cd "${srcdir}/${pkgname}-${pkgver}"
     make DESTDIR=${pkgdir} install
+    mv "${pkgdir}/usr/share/locale" "${pkgdir}/share"
+    rm -rf "${pkgdir}/usr"
 }
