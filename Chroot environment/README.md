@@ -5,7 +5,7 @@ su -
 ```
 The folloing directive is very important. When working as the root user, incorrect commands will destroy the your computer. For example, if you forget to set the $LFS environment variable, executing "rm -rf $LFS/bin" will execute "rm -rf /bin" because $LFS is empty, the Host operting system will be completely corrupted.
 In this works, $LFS is used frequently in many directives.
-If you resume work or "su - user" (change user), $LFS may be empty. Always check the contents of $LFS with echo $LFS while working, and issue the following if it is empty. 
+If you resume work or "su - user" (change user), $LFS may be empty. Always check the contents of $LFS with the "echo $LFS" directive while working, and issue the following if it is empty. 
 ```
 export LFS=/mnt/lfs
 ```
