@@ -241,14 +241,15 @@ find /tools/{lib,libexec} -name \*.la -delete
 rm -rf /tools
 ```
 ## Backup
-In the chroot environmennt as lfs.
+In the chroot environmennt as root.
 ```
-exit  # It will be change to root user from lfs.
+exit  # It will be change into host environment from chroot environmennt.
+su -
 umount $LFS/dev{/pts,}
 umount $LFS/{sys,proc,run}
 export LFS=/mnt/lfs
 cd $LFS 
-tar -cJpf $HOME/lfs11-tools.tar.xz .
+tar -cJpf /PATH/to/lfs11-tools.tar.xz .
 ```
 ## Restore ( when starting over from here at a later step )
 On the host.
@@ -258,7 +259,7 @@ export LFS=/mnt/lfs
 mount /dev/<the chroot environment partition> $LFS
 cd $LFS 
 rm -rf ./* 
-tar -xpf PATH/to/lfs11-tools.tar.xz
+tar -xpf /PATH/to/lfs11-tools.tar.xz
 cd $LFS/sources
 ```
 ## Chroot
@@ -463,9 +464,9 @@ On the host._
 ```
 su -
 cd /mnt/lfs
-tar cJpf <Where you want to store Path>/tools-pacman5.tar.xz .
+tar cJpf /Path/to/tools-pacman5.tar.xz .
 ```
-## Restor ( when starting over from here in a later step )
+## Restor (when starting over from here in a later step)
 On the host
 ```
 # su -
@@ -473,5 +474,5 @@ On the host
 # mount /dev/<partition to use as the chroot environment> $LFS
 # cd $LFS
 # rm -rf ./*
-# tar -xpf <Path>/tools-pacman5.tar.xz
+# tar -xpf /Path/to/tools-pacman5.tar.xz
 ```
