@@ -217,7 +217,7 @@ chmod +x build-chroot-environment.sh
 ./build-chroot-environment.sh
 ```
 
-## Changing Owner
+## Changing owner
 ```
 su -
 export LFS=/mnt/lfs
@@ -227,14 +227,14 @@ mknod -m 600 $LFS/dev/console c 5 1
 mknod -m 666 $LFS/dev/null c 1 3
 cp /etc/{resolv.conf,hosts} $LFS/tools/etc
 ```
-## striping
+## Striping
 ```
 rm -rf /tools/share/{info,man,doc}/*
 rm -rf /tools/usr/share/{info,man,doc}/*
 find /tools/{lib,libexec} -name \*.la -delete
 rm -rf /tools
 ```
-## backup
+## Backup
 ```
 exit
 umount $LFS/dev{/pts,}
@@ -277,7 +277,7 @@ EOF
 
 ./chroot-1.sh
 ```
-## creating dir
+## Creating dir
 ```
 mkdir -pv /{boot,home,mnt,etc,lib,lib64,usr,var,bin,sbin,}
 mkdir -pv /usr{bin,lib}
@@ -294,7 +294,7 @@ ln -sv /tools/lib/libgcc_s.so{,.1}                  /usr/lib
 ln -sv /tools/lib/libstdc++.{a,so{,.6}}             /usr/lib
 ln -sv /proc/self/mounts /etc/mtab
 ```
-## User setting
+## User settings
 ```
 cat > /etc/passwd << "EOF"
 root:x:0:0:root:/root:/bin/bash
@@ -330,7 +330,6 @@ nogroup:x:99:
 users:x:999:
 EOF
 ```
-
 ```
 echo "tester:x:101:101::/home/tester:/bin/bash" >> /etc/passwd
 echo "tester:x:101:" >> /etc/group
@@ -400,7 +399,7 @@ EOF
 ```
 pacman -Syu
 ```
-## For using ABS
+## ABS settings
 ABS enable use only local user (disable root user).
 On the chroot environment as root
 ```
@@ -430,7 +429,7 @@ EOF
 ```
 source ~/.bash_profile
 ```
-## striping
+## Striping
 On the host ( After exit the chroot environment )._
 ```
 su -
