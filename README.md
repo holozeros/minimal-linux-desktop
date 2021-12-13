@@ -73,6 +73,7 @@ Glibc
 Zlib
 Bzip2
 Xz
+zstd
 File
 Readline
 M4
@@ -121,7 +122,6 @@ Findutils
 Groff
 Less
 Gzip
-Zstd
 IPRoute2
 Kbd
 Libpipeline
