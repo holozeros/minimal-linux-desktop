@@ -38,7 +38,7 @@ su - lfs
 mkdir -p /usr/src/linux/5.15.4
 cd /usr/src/linux/5.15.4
 ```
-configure sample:   [config-5.15.4](https://github.com/holozeros/minimal-linux-desktop/blob/master/PKGBUILD-collections/linux/5.15.4/.config) (copy to /usr/src/linux/5.15.4)
+configure sample:   [.config](config-5.15.4) (copy to /usr/src/linux/5.15.4)
 
 ```
 cat > PKGBUILD << "EOF"
