@@ -57,7 +57,7 @@ md5sums=('7ab1a51d6c48fc062e9e33c143dfa825')
 prepare() {
 cd "${pkgname}-${pkgver}"
 make defconfig
-cp /usr/src/linux/5.15.4/config-"${pkgver}" .config
+cp /usr/src/linux/5.15.4/.config .
 make menuconfig
 }
 
