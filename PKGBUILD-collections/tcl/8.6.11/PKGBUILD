@@ -20,8 +20,8 @@ build() {
 cd "${srcdir}/${pkgname}${pkgver}"
 SRCDIR=$(pwd)
 cd unix
-./configure --prefix=/               \
-            --mandir=/usr/share/man  \
+./configure --prefix=/           \
+            --mandir=/share/man  \
             $([ "$(uname -m)" = x86_64 ] && echo --enable-64bit)
 make
 
@@ -54,5 +54,5 @@ package() {
     chmod -v u+w "${pkgdir}/lib/libtcl8.6.so"
     make DESTDIR=${pkgdir} install-private-headers
     ln -sfv tclsh8.6 "${pkgdir}/bin/tclsh"
-    mv "${pkgdir}"/usr/share/man/man3/{Thread,Tcl_Thread}.3
+    mv "${pkgdir}"/share/man/man3/{Thread,Tcl_Thread}.3
 }
