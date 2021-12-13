@@ -29,7 +29,7 @@ mkdir -v /mnt/lfs
 # You shuld change "sda2" to proper partition name.
 mount -v /dev/sda2 $LFS
 ```
-## Checking host system requirement (see:[Linux From Scratch book](https://www.linuxfromscratch.org/lfs/view/stable/)
+## Checking host system requirement  see:[Linux From Scratch book](https://www.linuxfromscratch.org/lfs/view/stable/)
 Run following the shell script [version-check.sh](version-check.sh) and check outputs of script.
 ```
 bash version-check.sh
