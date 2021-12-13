@@ -2,7 +2,7 @@ post_install() {
 
 rm -rf /usr/src/zstd/1.5.0/pkg
 rm -rf /usr/src/zstd/1.5.0/src
-rm -v /usr/src/zstd/1.5.0/zstd-1.5.0.tar.xz
+rm -v /usr/src/zstd/1.5.0/zstd-1.5.0.tar.gz
 mv -v /usr/src/zstd/1.5.0/zstd-1.5.0-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
 
 rm -v /lib/libzstd.a
