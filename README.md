@@ -131,7 +131,7 @@ Sysvinit
 Eudev
 ```
 ### Editing PKGBUILD
-...
+```
 su -             # On the Host
 ./chroot-1.sh    # Enter the chroot environment
 ```
