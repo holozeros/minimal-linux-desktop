@@ -32,18 +32,18 @@ readelf -l a.out | grep ': /lib'
 
 	# [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
 
-grep -o '/usr/lib.*crt[1in].*succeeded' dummy.log
+grep -o '/lib.*crt[1in].*succeeded' dummy.log
 
 	# /lib/../lib/crt1.o succeeded
 	# /lib/../lib/crti.o succeeded
 	# /lib/../lib/crtn.o succeeded
 
-grep -B1 '^ /usr/include' dummy.log
+grep -B1 '^ /include' dummy.log
 
 	#include <...> search starts here:
 	# /include
 
-grep 'SEARCH.*/usr/lib' dummy.log |sed 's|; |\n|g'
+grep 'SEARCH.*/lib' dummy.log |sed 's|; |\n|g'
 
 	# SEARCH_DIR("/lib")
 	# SEARCH_DIR("/usr/lib")
