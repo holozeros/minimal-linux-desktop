@@ -5,6 +5,15 @@ This OS will be built with reference to the Linux From Scratch 11.0 book and ins
 ## 1.[Building chroot environment](Building%20chroot%20environment.md)
 Build a chroot environment and then install the required commands to run Arh_Build_System(ABS).
 
+## 2.Chroot in the chroot environment
+```
+su -
+./chroot-1.sh
+```
+```
+su - lfs
+```
+
 ## 2.booting the chroot environment.
 Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file. When booted the stub kernel,
 bootloader does mount the chroot environment for root_filesystem.
@@ -15,36 +24,62 @@ bootloader does mount the chroot environment for root_filesystem.
 ### Editing PKGBUILD.
 ##### see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
 
-### Make custum packages
-Chroot into the above chroot environment, and make package-tarballs from the PKGBUILD with makepkg command,as local user lfs.
-On the host
-```
-su -
-export LFS=/mnt/lfs
-mount -v --bind /dev $LFS/dev
-mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
-mount -vt proc proc $LFS/proc
-mount -vt sysfs sysfs $LFS/sys
-mount -vt tmpfs tmpfs $LFS/run
-if [ -h $LFS/dev/shm ]; then
-  mkdir -pv $LFS/$(readlink $LFS/dev/shm)
-fi
-chroot "$LFS" /tools/bin/env -i \
-    HOME=/root                  \
-    TERM="$TERM"                \
-    PS1='\u:\w\$ '              \
-    PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
-    /tools/bin/bash --login +h
-umount -lR /mnt/lfs/*
-```
-On the chroot environment
-```
-su - lfs
+### Adjusting the toolchain
+...
 cd /usr/src/$pkgname/$pkgver/PKGBUILD
 makepkg
 ```
-### Installing custum packages with pacman
-Install in the following order to satisfy the dependencies 
+### Adjusting toolchain
+```
+mv -v /tools/bin/{ld,ld-old}
+mv -v /tools/$(uname -m)-pc-linux-gnu/bin/{ld,ld-old}
+mv -v /tools/bin/{ld-new,ld}
+ln -sv /tools/bin/ld /tools/$(uname -m)-pc-linux-gnu/bin/ld
+```
+```
+gcc -dumpspecs | sed -e 's@/tools@@g'                   \
+    -e '/\*startfile_prefix_spec:/{n;s@.*@/usr/lib/ @}' \
+    -e '/\*cpp:/{n;s@$@ -isystem /usr/include@}' >      \
+    `dirname $(gcc --print-libgcc-file-name)`/specs
+
+```
+### Test the toolchin
+```
+echo 'int main(){}' > dummy.c
+cc dummy.c -v -Wl,--verbose &> dummy.log
+readelf -l a.out | grep ': /lib'
+
+	# [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
+
+grep -o '/usr/lib.*crt[1in].*succeeded' dummy.log
+
+	# /usr/lib/../lib/crt1.o succeeded
+	# /usr/lib/../lib/crti.o succeeded
+	# /usr/lib/../lib/crtn.o succeeded
+
+grep -B1 '^ /usr/include' dummy.log
+
+	#include <...> search starts here:
+	# /usr/include
+
+grep 'SEARCH.*/usr/lib' dummy.log |sed 's|; |\n|g'
+
+	# SEARCH_DIR("/usr/lib")
+	# SEARCH_DIR("/lib")
+
+grep "/lib.*/libc.so.6 " dummy.log
+
+	# attempt to open /lib/libc.so.6 succeeded
+
+grep found dummy.log
+
+	# found ld-linux-x86-64.so.2 at /lib/ld-linux-x86-64.so.2
+
+rm -v dummy.c a.out dummy.log
+```
+### Make custum packages
+Installing custum packages with pacman
+Install in the following order to satisfy the dependencies.
 ```
 Linux-api-headers
 Glibc
