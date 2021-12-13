@@ -11,6 +11,13 @@ the stub kernel mount the chroot environment as root_filesystem.
 
 ## 3.Building minimal linux desktop
 ### Adjusting toolchain
+On the Host
+```
+su -   
+mount /dev/"My chroot_environment_partition" /mnt/lfs
+export LFS=/mnt/lfs
+./chroot-1.sh
+```
 ```
 mv -v /tools/bin/{ld,ld-old}
 mv -v /tools/$(uname -m)-pc-linux-gnu/bin/{ld,ld-old}
