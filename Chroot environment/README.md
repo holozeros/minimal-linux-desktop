@@ -383,29 +383,30 @@ It's best to install each package step by step, but you can also run this long s
 
 ## Build [abs_build.sh](abs_build.sh)
 Ryzen2700x(8 core) takes about xx minuits.
-On the chroot environment as root
+In the chroot environment as root.
 ```
 cd /sources
 chmod +x build-ABS.sh
 ./build-ABS.sh
 ```
 ## Pacman settings
+In the chroot environment as root.
 ```
 pacman-key --init
 pacman-key --populate archlinux
 ```
 ```
-cat >> /etc/pacman.conf << "EOF"
+cat >> /tools/etc/pacman.conf << "EOF"
 [core]
-Include = /etc/pacman.d/mirrorlist
+Include = /tools/etc/pacman.d/mirrorlist
 [extra]
-Include = /etc/pacman.d/mirrorlist
+Include = /tools/etc/pacman.d/mirrorlist
 [community]
-Include = /etc/pacman.d/mirrorlist
+Include = /tools/etc/pacman.d/mirrorlist
 EOF
 ```
 ```
-cat > /etc/pacman.d/mirrorlist << "EOF"
+cat > /tools/etc/pacman.d/mirrorlist << "EOF"
 # This is an example when your location is Japan
 # Server = ftp://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
 Server = http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
@@ -437,7 +438,7 @@ umask 022
 LC_ALL=POSIX
 MAKEFLAGS="-j$(nproc)"
 LFS_TGT=$(uname -m)-pc-linux-gnu
-PATH=/tools/bin:/tools/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin
 export LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
 ```
@@ -456,8 +457,7 @@ rm -rf /tools/share/{info,man,doc}/*
 rm -rf /tools/usr/share/{info,man,doc}/*
 rm -rf /tools/x86_64-lfs-linux-gnu
 find /tools/{lib,libexec} -name \*.la -delete
-find /usr/{lib,libexec} -name \*.la -delete
-rm -rf /tools
+find /tools/usr/{lib,libexec} -name \*.la -delete
 ```
 ## Backup
 On the host._
