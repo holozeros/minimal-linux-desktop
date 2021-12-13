@@ -214,7 +214,7 @@ In this section is different from the lfs-11.0 book. Here you need to install al
 
 ## BUILD [build-chroot-environment.sh](build_chroot_environment.sh)
 
-Ryzen2700x(8 core) takes about 20 minuits.
+Ryzen2700x(8 core) takes about 20 minuits. On the host as lfs user. 
 ```
 cd $LFS/sources
 chmod +x build-chroot-environment.sh
@@ -222,6 +222,7 @@ chmod +x build-chroot-environment.sh
 ```
 
 ## Changing owner
+On the host.
 ```
 su -
 export LFS=/mnt/lfs
@@ -232,6 +233,7 @@ mknod -m 666 $LFS/dev/null c 1 3
 cp /etc/{resolv.conf,hosts} $LFS/tools/etc
 ```
 ## Striping
+On the host as root.
 ```
 rm -rf /tools/share/{info,man,doc}/*
 rm -rf /tools/usr/share/{info,man,doc}/*
@@ -239,8 +241,9 @@ find /tools/{lib,libexec} -name \*.la -delete
 rm -rf /tools
 ```
 ## Backup
+In the chroot environmennt as lfs.
 ```
-exit
+exit  # It will be change to root user from lfs.
 umount $LFS/dev{/pts,}
 umount $LFS/{sys,proc,run}
 export LFS=/mnt/lfs
@@ -248,6 +251,7 @@ cd $LFS
 tar -cJpf $HOME/lfs11-tools.tar.xz .
 ```
 ## Restore ( when starting over from here at a later step )
+On the host.
 ```
 su -
 export LFS=/mnt/lfs
@@ -258,7 +262,12 @@ tar -xpf PATH/to/lfs11-tools.tar.xz
 cd $LFS/sources
 ```
 ## Chroot
+On the host.
 ```
+su -
+```
+```
+export LFS=/mnt/lfs
 cat > chroot-1.sh << "EOF"
 export LFS=/mnt/lfs
 mount -v --bind/dev $LFS/dev
@@ -282,6 +291,7 @@ EOF
 ./chroot-1.sh
 ```
 ## Creating dir
+In the chroot environment as root.
 ```
 mkdir -pv /{boot,home,mnt,etc,lib,lib64,usr,var,bin,sbin,}
 mkdir -pv /usr{bin,lib}
@@ -297,8 +307,14 @@ ln -sv /tools/bin/{env,install,perl,printf}         /usr/bin
 ln -sv /tools/lib/libgcc_s.so{,.1}                  /usr/lib
 ln -sv /tools/lib/libstdc++.{a,so{,.6}}             /usr/lib
 ln -sv /proc/self/mounts /etc/mtab
+
+touch /var/log/{btmp,lastlog,faillog,wtmp}
+chgrp -v utmp /var/log/lastlog
+chmod -v 664  /var/log/lastlog
+chmod -v 600  /var/log/btmp
 ```
 ## User settings
+In the chroot environment as root.
 ```
 cat > /etc/passwd << "EOF"
 root:x:0:0:root:/root:/bin/bash
@@ -340,12 +356,6 @@ echo "tester:x:101:" >> /etc/group
 install -o tester -d /home/tester
 
 exec /bin/bash --login +h
-```
-```
-touch /var/log/{btmp,lastlog,faillog,wtmp}
-chgrp -v utmp /var/log/lastlog
-chmod -v 664  /var/log/lastlog
-chmod -v 600  /var/log/btmp
 ```
 ## Back to to the host environment from chroot environment.
 Issue:
@@ -434,7 +444,7 @@ EOF
 source ~/.bash_profile
 ```
 ## Striping
-On the host ( After exit the chroot environment )._
+On the host (After complete building the chroot environment)._
 ```
 su -
 strip --strip-debug /tools/lib/*
@@ -449,7 +459,7 @@ find /usr/{lib,libexec} -name \*.la -delete
 rm -rf /tools
 ```
 ## Backup
-On the host ( After exit the chroot environment )._
+On the host._
 ```
 su -
 cd /mnt/lfs
