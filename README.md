@@ -132,22 +132,45 @@ Eudev
 ```
 gpu_driver and xfce4 see:[]()
 
-### Editing PKGBUILD
-```
-su -             # On the Host
-./chroot-1.sh    # Enter the chroot environment
-```
-### Editing a custum PKGBUILD see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
-### After editing the custom PKGBUILD compile and make with ABS.
-```
-cd /usr/src/$pkgname/$pkgver/PKGBUILD
-makepkg
-```
+
 Prepare and settings the packge manager
 ```
 user add -m lfs
 passwd lfs
 su - lfs
+ln -s /tools/bin/curl /bin/curl
+```
+```
+nano /tools/etc/makepkg.conf
+# Comment out (delete "#" of top of the line) and modify like the followings.
+	#########################################################################
+	# SOURCE ACQUISITION
+	#########################################################################
+	#
+	#-- The download utilities that makepkg should use to acquire sources
+	#  Format: 'protocol::agent'
+	DLAGENTS=('ftp::/bin/curl -gqfC - --ftp-pasv --retry 3 --retry-delay 3 -o %o %u -k'
+        	'http::/bin/curl -gqb "" -fLC - --retry 3 --retry-delay 3 -o %o %u -k'
+          	'https::/bin/curl -gqb "" -fLC - --retry 3 --retry-delay 3 -o %o %u -k'
+          	'rsync::/bin/rsync --no-motd -z %u %o'
+          	'scp::/bin/scp -C %u %o')
+
+	#########################################################################
+	# ARCHITECTURE, COMPILE FLAGS
+	#########################################################################
+	#
+	CARCH="x86_64"
+	CHOST="x86_64-pc-linux-gnu"
+
+	#-- Compiler and Linker Flags
+	CPPFLAGS="-D_FORTIFY_SOURCE=2"
+	CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fexceptions \
+        	-Wp,-D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security \
+        	-fstack-clash-protection -fcf-protection"
+	CXXFLAGS="$CFLAGS -Wp,-D_GLIBCXX_ASSERTIONS"
+	LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
+```
+```
 nano /tools/etc/pacman.conf
 # Comment out(delete "#" of top of the line ) the part of the followings and modify like the followings the path corectly for own environment.
       
@@ -158,10 +181,21 @@ nano /tools/etc/pacman.conf
 		GPGDir      = /tools/etc/pacman.d/gnupg/
 		HookDir     = /tools/etc/pacman.d/hooks/
 ```
-Install packages with pacman.
+## Editing PKGBUILD
 ```
-pkgname=<name>
-pkgver=<naumer>
+su -             # On the Host
+./chroot-1.sh    # Enter the chroot environment
+```
+### Editing a custum PKGBUILD see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
+### After editing the custom PKGBUILD compile and make with ABS.
+```
+cd /usr/src/$pkgname/$pkgver/PKGBUILD
+makepkg
+```
+## Install packages with pacman
+```
+pkgname="name"
+pkgver="naumer"
 cd /usr/src/$pkgname/$pkgver
 pacman -U "$pkgname-$pkgver-1.pkg.tar.gz"
 ```
