@@ -252,7 +252,7 @@ make modules_install
 mount /dev/<EFI System Partition> /boot
 make install
 ls /boot
-	# Make shure that names of installed the file.
+	# Make sure that names of installed the file.
 
 exit	# Back to the Host environment.
 ~~~
