@@ -58,9 +58,8 @@ grep found dummy.log
 
 rm -v dummy.c a.out dummy.log
 ```
-### Make custum packages
-Installing custum packages with pacman
-Install in the following order to satisfy the dependencies.
+### Make and install custum packages
+Order to the following for satisfy the dependencies.
 ```
 Linux-api-headers
 Glibc
