@@ -2,24 +2,14 @@
 Building a desktop environment from source codes to learn Linux. 
 This OS will be built with reference to the Linux From Scratch 11.0 book and installed use pacman-5.0. 
 
-## 1.[Building chroot environment](Building%20chroot%20environment.md)
-Build a chroot environment and then install the required commands to run Arh_Build_System(ABS).
+## 1.Making chroot environment see: [Building chroot environment](Building%20chroot%20environment.md)
+Make a chroot environment and then install the required commands to run Arch_Build_System(ABS).
 
-## 2.booting the chroot environment.
+## 2.booting the chroot environment see: [Building stub kernel](Building%20stub%20kernel.md) 
 Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file. When booted the stub kernel,
 bootloader does mount the chroot environment for root_filesystem.
-##### see: [Building stub kernel](Building%20stub%20kernel.md) 
 
 ## 3.Building minimal linux desktop
-
-### Editing PKGBUILD.
-##### see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
-
-### Adjusting the toolchain
-...
-cd /usr/src/$pkgname/$pkgver/PKGBUILD
-makepkg
-```
 ### Adjusting toolchain
 ```
 mv -v /tools/bin/{ld,ld-old}
@@ -141,7 +131,18 @@ Sysklogd
 Sysvinit
 Eudev
 ```
-Install packages with pacman into / of chroot environment. 
+### Editing PKGBUILD
+...
+su -             # On the Host
+./chroot-1.sh    # Enter the chroot environment
+```
+### Editing a custum PKGBUILD see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
+After editing the custom PKGBUILD compile and make with ABS.
+```
+cd /usr/src/$pkgname/$pkgver/PKGBUILD
+makepkg
+```
+Install packages with pacman 
 ```
 mv /usr/src/$pkgname/$pkgver/$pkgname-$pkgver.pkg.tar.zst /var/cache/pacman/pkg
 cd /var/cache/pacman/pkg
