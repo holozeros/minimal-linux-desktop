@@ -138,7 +138,7 @@ su -             # On the Host
 ./chroot-1.sh    # Enter the chroot environment
 ```
 ### Editing a custum PKGBUILD see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
-After editing the custom PKGBUILD compile and make with ABS.
+### After editing the custom PKGBUILD compile and make with ABS.
 ```
 cd /usr/src/$pkgname/$pkgver/PKGBUILD
 makepkg
@@ -170,9 +170,6 @@ If quit for error which conflict existing package under the / directory(not unde
 pacman -U --force $pkgname-$pkgver.pkg.tar.zst
 ```
 ##### The --force directive is obsolete in later versions of Pacman 5.0. 
-## Adding desktop environment
-```
-```
 
 ## Prerequisites
 Host OS must pass version-check.sh of LFS-11.0 book. With a tiny mistake in build process can irreparably destroy the host system. Therefore, it is recommended to use a various Live-USB with persistence function which using Overlayfs as the host OS.
