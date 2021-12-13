@@ -5,15 +5,6 @@ This OS will be built with reference to the Linux From Scratch 11.0 book and ins
 ## 1.[Building chroot environment](Building%20chroot%20environment.md)
 Build a chroot environment and then install the required commands to run Arh_Build_System(ABS).
 
-## 2.Chroot in the chroot environment
-```
-su -
-./chroot-1.sh
-```
-```
-su - lfs
-```
-
 ## 2.booting the chroot environment.
 Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file. When booted the stub kernel,
 bootloader does mount the chroot environment for root_filesystem.
