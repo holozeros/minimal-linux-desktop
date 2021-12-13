@@ -243,7 +243,7 @@ export LFS=/mnt/lfs
 cd $LFS 
 tar -cJpf $HOME/lfs11-tools.tar.xz .
 ```
-## restore ( when starting over from here at a later step )
+## Restore ( when starting over from here at a later step )
 ```
 su -
 export LFS=/mnt/lfs
