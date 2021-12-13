@@ -243,22 +243,15 @@ export LFS=/mnt/lfs
 cd $LFS 
 tar -cJpf $HOME/lfs11-tools.tar.xz .
 ```
-## restore
+## restore ( when starting over from here at a later step )
 ```
 su -
 export LFS=/mnt/lfs
+mount /dev/<the chroot environment partition> $LFS
 cd $LFS 
 rm -rf ./* 
-tar -xpf $HOME/lfs11-tools.tar.xz
-```
-## Starting over from here at a later step
-As root user.
-```
-# export $LFS
-# mount /dev/<For new creation root file system partition> $LFS
-# cd $LFS
-# rm -rf tools && mkdir tools && cd tools
-# tar -xpf <Path>/tools-chroot.tar.xz
+tar -xpf PATH/to/lfs11-tools.tar.xz
+cd $LFS/sources
 ```
 ## Chroot
 ```
@@ -376,6 +369,7 @@ It's best to install each package step by step, but you can also run this long s
 
 ## Build [abs_build.sh](abs_build.sh)
 Ryzen2700x(8 core) takes about xx minuits.
+On the chroot environment as root
 ```
 cd /sources
 chmod +x build-ABS.sh
@@ -408,6 +402,7 @@ pacman -Syu
 ```
 ## For using ABS
 ABS enable use only local user (disable root user).
+On the chroot environment as root
 ```
 groupadd lfs
 useradd -s /tools/bin/bash -g lfs -m -k /dev/null lfs
@@ -436,8 +431,9 @@ EOF
 source ~/.bash_profile
 ```
 ## striping
-On the host as root ( After exit the chroot environment )._
+On the host ( After exit the chroot environment )._
 ```
+su -
 strip --strip-debug /tools/lib/*
 /usr/bin/strip --strip-unneeded /tools/{,s}bin/*
 ```
@@ -450,17 +446,14 @@ find /usr/{lib,libexec} -name \*.la -delete
 rm -rf /tools
 ```
 ## Backup
-Exit from chroot environment
-```
-exit
-```
+On the host ( After exit the chroot environment )._
 ```
 su -
 cd /mnt/lfs
 tar cJpf <Where you want to store Path>/tools-pacman5.tar.xz .
 ```
-## When starting over from here in a later step
-Exit chroot. Then issue as root user on host:
+## Restor ( when starting over from here in a later step )
+On the host
 ```
 # su -
 # export $LFS
