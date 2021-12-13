@@ -3,7 +3,13 @@ Now, let's start "building chroot environment"
 ```
 su -
 ```
-Below the directive is very important, because $LFS is used frequently in many directives.
+Below the directive is very important.
+When working as the root user,  incorrect commands will destroy the system.
+For example, if you forget to set the $ LFS environment variable, 
+executing "rm -rf $LFS/bin" will execute "rm -rf /bin" because $ LFS is empty, 
+the system will be completely corrupted. 
+
+$LFS is used frequently in many directives.
 If $LFS is empty, there is a risk of destroying the host. 
 ```
 export LFS=/mnt/lfs
@@ -93,11 +99,7 @@ bash version-check.sh
 ## Directory settings
 ```
 export LFS=/mnt/lfs
-# mount /dev/<For new creation root file system partition> $LFS
-
 mkdir -v $LFS/home
-# mount -v -t ext4 /dev/<yyy> $LFS/home
-    
 mkdir -v $LFS/sources
 chmod -v a+wt $LFS/sources
 mkdir -v $LFS/tools
