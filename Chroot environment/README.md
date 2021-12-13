@@ -11,7 +11,7 @@ export LFS=/mnt/lfs
 ```
 That physical storage shuld be SATA or M.2 connected, not USB storage.
 This chroot environment will eventually become the root partition of a bootable linux OS.
-Partition of the USB will not be perhaps recognized by a stub kernel at boot time without initramfs, but initramfs is can not support yet.
+Partition of the USB strage will not be perhaps recognized by a stub kernel at boot time without initramfs, but initramfs is can not support yet.
 Therefore, the chroot environment should be built on an SSD or HDD partition with a SATA or M.2 connection. 
 If you need a new partition for building chroot environment, use cgdisk, gparted, etc. to create a GPT partition of appropriate size.
 File system format is as follows. 
