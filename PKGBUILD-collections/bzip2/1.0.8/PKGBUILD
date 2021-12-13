@@ -31,7 +31,7 @@ package() {
     make PREFIX="${pkgdir}" install
     cp -av libbz2.so.* "${pkgdir}/lib"
     ln -sv libbz2.so.1.0.8 "${pkgdir}/lib/libbz2.so"
-    cp -v bzip2-shared /usr/bin/bzip2
+    cp -v bzip2-shared "${pkgdir}/bin/bzip2"
     for i in "${pkgdir}/bin/{bzcat,bunzip2}"; do
       ln -sfv bzip2 $i
     done
