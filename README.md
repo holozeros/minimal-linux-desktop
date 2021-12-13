@@ -195,7 +195,7 @@ On the chroot environmment
 ```
 su - lfs
 ```
-Editing a custum PKGBUILD see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
+Editing a custum PKGBUILD see: [PKGBUILD-collections](PKGBUILD-collections/README.md)
 After editing the custom PKGBUILD and making the packages with ABS.
 ```
 cd /usr/src/$pkgname/$pkgver/PKGBUILD
@@ -232,4 +232,4 @@ For the root file system partition of this OS, an USB storage is not available. 
     Graphics: nvidia card (or any Integrated GPU).
 
 When using the nouveau driver, you may not be able to use multiple displays or select the desired resolution, depending on the type of nvidia card. Thankfully, for Linux users, Nvidia has published the driver packages that combines proprietary binaries with a collection of their wrappers. There are some caveats, such as kernel compilation, to install the proprietary nvidia driver. 
-##### refer to: [stub kernel](https://github.com/holozeros/minimal-linux-desktop/blob/master/Building%20stub%20kernel.md)
+##### refer to: [Building stub kernel](Building stub kernel)
