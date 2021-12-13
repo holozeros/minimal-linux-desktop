@@ -5,7 +5,7 @@ su -
 ```
 Below the directive is very important.
 When working as the root user,  incorrect commands will destroy the system.
-For example, if you forget to set the $ LFS environment variable, 
+For example, if you forget to set the $LFS environment variable, 
 executing "rm -rf $LFS/bin" will execute "rm -rf /bin" because $ LFS is empty, 
 the system will be completely corrupted. 
 
