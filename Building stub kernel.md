@@ -15,12 +15,12 @@ mount -vt tmpfs tmpfs $LFS/run
 if [ -h $LFS/dev/shm ]; then
   mkdir -pv $LFS/$(readlink $LFS/dev/shm)
 fi
-chroot "$LFS" /tools/bin/env -i \
+chroot "$LFS" /bin/env -i \
     HOME=/root                  \
     TERM="$TERM"                \
     PS1='\u:\w\$ '              \
-    PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
-    /tools/bin/bash --login +h
+    PATH=/bin:/sbin:/usr/bin:/usr/sbin:/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
+    /bin/bash --login +h
 umount -v /mnt/lfs/dev/pts
 umount -v /mnt/lfs/dev
 umount -v /mnt/lfs/proc
@@ -28,6 +28,8 @@ umount -v mnt/lfs/sys
 umount -v /mnt/lfs/run
 
 mkdir -p /usr/src
+useradd -m lfs
+passwd lfs
 chown lfs /usr/src
 ```
 ```
@@ -90,8 +92,7 @@ cd /usr/src/linux/5.15.4
 pacman -U linux-5.15.4-1.pkg.tar.zst
 ```
 ## If compiling manually 
-first, chroot into /mnt/lfs which mounted the chroot environment
-
+Same the abobe, chroot into /mnt/lfs which mounted the chroot environment, as root.
 ```
 mkdir -p /usr/src
 chown lfs /usr/src
@@ -111,8 +112,8 @@ My Hardwares (e.g
 ```
 Motherboad: ASROCK B450 Pro4
 CPU: Ryzen7
-GPU: ASUS GeForce GT 710 (driver "https://jp.download.nvidia.com/XFree86/Linux-x86_64/470.86/NVIDIA-Linux-x86_64-470.86.run")
-Storage type: NVME (sumson EVO-970 SSD with M.2 connection)
+GPU: ASUS GeForce GT 710 (driver is nouveau or proprietery driver is "https://jp.download.nvidia.com/XFree86/Linux-x86_64/470.86/NVIDIA-Linux-x86_64-470.86.run")
+Storage name: /dev/nvme0n1p6, type: NVME (sumson EVO-970 SSD with M.2 connection)
 Audio device: [AMD] Family 17h (Models 00h-0fh) HD Audio Controller
 ```
 ```
@@ -133,7 +134,7 @@ Processor type and features  --->
    [ ] AMD Secure Memory Encryption (SME) support
    
    [*] Built-in kernel command line
-   (root=/dev/nvme0n1p6 ro init=/sbin/init) Built-in kernel command string
+   (root=/dev/nvme0n1p6 ro init=/bin/bash) Built-in kernel command string
    [ ]     Built-in command line overrides boot loader arguments 
       
 [*] Enable loadable module support --->
@@ -238,33 +239,34 @@ Pseudo Filesystems --->
     [*] sysfs file system support
 
 ```
-Keep defconfig, except the above.
-
-Make
+Keep defconfig, except the above. then
 ```
 make -j$(nproc)
-```
-Install
-```
-exit
+
+exit	# It is change to root from lfs in the chroot environment.
+
 cd /usr/src/linux/5.15.4/linux-5.15.4
 make modules_install
-```
-```
 mount /dev/<EFI System Partition> /boot
-```
-```
 make install
-```
-Make sure that names of installed the file.
-```
 ls /boot
-```    
-Back to the Host environment.
-```
-exit
-```
+	# Make shure that names of installed the file.
 
+exit	# Back to the Host environment.
+~~~
+## Install the bootloader 
+For example, If the host OS is archlinux, innstall systemd-boot.
+~~~
+bootctl --install --esp-path=/boot
+cat > /boot/loader/entry/mld.conf
+title Minimum linux desktop
+linux /vmlinuz-linux
+initrd /amd-ucode.img
+```
+```
+reboot
+	#  At booting, slsect the "Minimum linux desktop" 
+```
 ## When using Archlinux repository
 ```
 pacman-key --init
