@@ -265,7 +265,7 @@ title Minimum linux desktop
 linux /vmlinuz-linux
 initrd /amd-ucode.img
 
-ln -s /tools/bin/bash /sbin/init
+ln -s /tools/bin/login /sbin/init
 ```
 ```
 reboot
