@@ -107,6 +107,8 @@ If failed auto download anyone (e.g. ninja), retry download with an another link
 ```
 wget https://github.com/ninja-build/ninja/archive/v1.10.2.tar.gz
 mv v1.10.2.tar.gz ninja-1.10.2.tar.gz
+md5sum ninja-1.10.2.tar.gz
+ # md5sum: 639f75bc2e3b19ab893eaf2c810d4eb4
 ```
 ## Additional sources for arch build system
 ```
