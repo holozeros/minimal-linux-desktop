@@ -22,11 +22,10 @@ If it doesn't exist, create a new one.
 ```
 mkfs.vfat /dev/<EFI System Partition>
 ```
-Mount the new partition for building chroot environment to /mnt/lfs. for example in case /dev/sda2
+Mount the new partition for building chroot environment to /mnt/lfs. for example in case /dev/sda2.
 ```
 mkdir -v /mnt/lfs
-    
-    # below directive is example, you shuld change the propery partition name 
+# You shuld change "sda2" to proper partition name.
 mount -v /dev/sda2 $LFS
 ```
 ## Checking host system requirement (see:[Linux From Scratch book](https://www.linuxfromscratch.org/lfs/view/stable/)
