@@ -203,6 +203,7 @@ makepkg
 ```
 ## Install packages with pacman
 ```
+su -
 pkgname="name"
 pkgver="naumer"
 cd /usr/src/$pkgname/$pkgver
