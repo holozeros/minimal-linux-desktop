@@ -7,7 +7,7 @@ Make a chroot environment and then install the required commands to run Arch_Bui
 
 ## 2.booting the chroot environment see: [Building stub kernel](Building%20stub%20kernel.md) 
 Building UEFI stub kernel and install systemd-boot. Then edit boot loader entry file. When booted the stub kernel,
-bootloader does mount the chroot environment for root_filesystem.
+the stub kernel mount the chroot environment as root_filesystem.
 
 ## 3.Building minimal linux desktop
 ### Adjusting toolchain
