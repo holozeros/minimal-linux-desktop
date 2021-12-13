@@ -24,7 +24,7 @@ gcc -dumpspecs | sed -e 's@/tools@@g'                   \
     `dirname $(gcc --print-libgcc-file-name)`/specs
 
 ```
-Test the toolchin
+Test the toolchin.
 ```
 echo 'int main(){}' > dummy.c
 cc dummy.c -v -Wl,--verbose &> dummy.log
@@ -130,6 +130,8 @@ Sysklogd
 Sysvinit
 Eudev
 ```
+gpu_driver and xfce4 see:[]()
+
 ### Editing PKGBUILD
 ```
 su -             # On the Host
@@ -141,11 +143,27 @@ After editing the custom PKGBUILD compile and make with ABS.
 cd /usr/src/$pkgname/$pkgver/PKGBUILD
 makepkg
 ```
-Install packages with pacman 
+Prepare and settings the packge manager
 ```
-mv /usr/src/$pkgname/$pkgver/$pkgname-$pkgver.pkg.tar.zst /var/cache/pacman/pkg
-cd /var/cache/pacman/pkg
-pacman -U "$pkgname-$pkgver.pkg.tar.zst"
+user add -m lfs
+passwd lfs
+su - lfs
+nano /tools/etc/pacman.conf
+# Comment out(delete "#" of top of the line ) the part of the followings and modify like the followings the path corectly for own environment.
+      
+		RootDir     = /
+		DBPath      = /var/lib/pacman/
+		CacheDir    = /var/cache/pacman/pkg/
+		LogFile     = /var/log/pacman.log
+		GPGDir      = /tools/etc/pacman.d/gnupg/
+		HookDir     = /tools/etc/pacman.d/hooks/
+```
+Install packages with pacman.
+```
+pkgname=<name>
+pkgver=<naumer>
+cd /usr/src/$pkgname/$pkgver
+pacman -U "$pkgname-$pkgver-1.pkg.tar.gz"
 ```
 If quit for error which conflict existing package under the / directory(not under /tools),  issue:
 ```
