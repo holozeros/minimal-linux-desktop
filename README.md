@@ -131,14 +131,16 @@ Sysvinit
 Eudev
 ```
 gpu_driver and xfce4 see:[]()
-
-
-Prepare and settings the packge manager
+### Prepare and settings the packge manager
+On the Host
 ```
+su -   
+mount /dev/"chroot_environment_partition" /mnt/lfs
+export LFS=/mnt/lfs
+./chroot-1.sh
+ln -s /tools/bin/curl /bin/curl
 user add -m lfs
 passwd lfs
-su - lfs
-ln -s /tools/bin/curl /bin/curl
 ```
 ```
 nano /tools/etc/makepkg.conf
@@ -182,12 +184,12 @@ nano /tools/etc/pacman.conf
 		HookDir     = /tools/etc/pacman.d/hooks/
 ```
 ## Editing PKGBUILD
+On the chroot environmment
 ```
-su -             # On the Host
-./chroot-1.sh    # Enter the chroot environment
+su - lfs
 ```
 ### Editing a custum PKGBUILD see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
-### After editing the custom PKGBUILD compile and make with ABS.
+### After editing the custom PKGBUILD and making the packages with ABS.
 ```
 cd /usr/src/$pkgname/$pkgver/PKGBUILD
 makepkg
@@ -199,7 +201,7 @@ pkgver="naumer"
 cd /usr/src/$pkgname/$pkgver
 pacman -U "$pkgname-$pkgver-1.pkg.tar.gz"
 ```
-If quit for error which conflict existing package under the / directory(not under /tools),  issue:
+If quit for error which conflict existing package under the / directory.  issue:
 ```
 pacman -U --force $pkgname-$pkgver.pkg.tar.zst
 ```
