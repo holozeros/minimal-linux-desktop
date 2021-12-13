@@ -31,7 +31,7 @@ gcc -dumpspecs | sed -e 's@/tools@@g'                   \
     `dirname $(gcc --print-libgcc-file-name)`/specs
 
 ```
-Test the toolchin.
+Test the toolchain.
 ```
 echo 'int main(){}' > dummy.c
 cc dummy.c -v -Wl,--verbose &> dummy.log
