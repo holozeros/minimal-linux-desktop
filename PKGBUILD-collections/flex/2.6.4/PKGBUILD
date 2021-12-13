@@ -15,7 +15,7 @@ install="${pkgname}.install"
 build() {
 cd "${srcdir}/${pkgname}-${pkgver}"
 ./configure --prefix=/                         \
-            --docdir=/usr/share/doc/flex-2.6.4 \
+            --docdir=/share/doc/flex-2.6.4 \
             --disable-static
 make
 }
