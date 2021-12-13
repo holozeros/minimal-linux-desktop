@@ -34,19 +34,19 @@ readelf -l a.out | grep ': /lib'
 
 grep -o '/usr/lib.*crt[1in].*succeeded' dummy.log
 
-	# /usr/lib/../lib/crt1.o succeeded
-	# /usr/lib/../lib/crti.o succeeded
-	# /usr/lib/../lib/crtn.o succeeded
+	# /lib/../lib/crt1.o succeeded
+	# /lib/../lib/crti.o succeeded
+	# /lib/../lib/crtn.o succeeded
 
 grep -B1 '^ /usr/include' dummy.log
 
 	#include <...> search starts here:
-	# /usr/include
+	# /include
 
 grep 'SEARCH.*/usr/lib' dummy.log |sed 's|; |\n|g'
 
-	# SEARCH_DIR("/usr/lib")
 	# SEARCH_DIR("/lib")
+	# SEARCH_DIR("/usr/lib")
 
 grep "/lib.*/libc.so.6 " dummy.log
 
