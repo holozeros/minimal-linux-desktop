@@ -96,6 +96,7 @@ pacman -U linux-5.15.4-1.pkg.tar.zst
 Same the abobe, chroot into /mnt/lfs which mounted the chroot environment, as root.
 ```
 mkdir -p /usr/src
+useradd -m lfs
 chown lfs /usr/src
 su - lfs
 mkdir -p /usr/src/linux/5.15.4
