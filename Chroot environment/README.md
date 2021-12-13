@@ -1,37 +1,37 @@
 ## Build preparation
 Now, let's start "building chroot environment"
-
-    su -
-
+```
+su -
+```
 Below the directive is very important, because $LFS is used frequently in many directives.
 If $LFS is empty, there is a risk of destroying the host. 
-
-    export LFS=/mnt/lfs
-
+```
+export LFS=/mnt/lfs
+```
 That physical storage shuld be SATA or M.2 connected, not USB storage.
 This chroot environment will eventually become the root partition of a bootable linux OS.
 Partition of the USB will not be perhaps recognized by a stub kernel at boot time without initramfs, but initramfs is can not support yet.
 Therefore, the chroot environment should be built on an SSD or HDD partition with a SATA or M.2 connection. 
 If you need a new partition for building chroot environment, use cgdisk, gparted, etc. to create a GPT partition of appropriate size.
 File system format is as follows. 
-
-    mkfs.ext4 /dev/<new partition for building chroot environment>
-
+```
+mkfs.ext4 /dev/<new partition for building chroot environment>
+```
 Format of EFI System Partition is fat32.
 If it doesn't exist, create a new one.
-
-    mkfs.vfat /dev/<EFI System Partition>
-
+```
+mkfs.vfat /dev/<EFI System Partition>
+```
 Mount the new partition for building chroot environment to /mnt/lfs. for example in case /dev/sda2
-
-    mkdir -v /mnt/lfs
+```
+mkdir -v /mnt/lfs
     
     # below directive is example, you shuld change the propery partition name 
-    mount -v /dev/sda2 $LFS
-
+mount -v /dev/sda2 $LFS
+```
 ## Checking host system requirement (see:[Linux From Scratch book](https://www.linuxfromscratch.org/lfs/view/stable/)
-
-    cat > version-check.sh << "EOF"
+```
+cat > version-check.sh << "EOF"
     #!/bin/bash
     # Simple script to list version numbers of critical development tools.
     export LC_ALL=C
@@ -81,28 +81,28 @@ Mount the new partition for building chroot environment to /mnt/lfs. for example
       then echo "g++ compilation OK";
       else echo "g++ compilation failed"; fi
     rm -f dummy.c dummy
-    EOF
-
+EOF
+```
 Run following the shell script and check outputs of script.
-
-    bash version-check.sh
-
+```
+bash version-check.sh
+```
 ## Bash setting
-
-    [ ! -e /etc/bash.bashrc ] || mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
-
+```
+[ ! -e /etc/bash.bashrc ] || mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
+```
 ## Directory settings
 ```
-    export LFS=/mnt/lfs
-    # mount /dev/<For new creation root file system partition> $LFS
+export LFS=/mnt/lfs
+# mount /dev/<For new creation root file system partition> $LFS
 
-    mkdir -v $LFS/home
-        # mount -v -t ext4 /dev/<yyy> $LFS/home
+mkdir -v $LFS/home
+# mount -v -t ext4 /dev/<yyy> $LFS/home
     
-    mkdir -v $LFS/sources
-    chmod -v a+wt $LFS/sources
-    mkdir -v $LFS/tools
-    ln -sv $LFS/tools /
+mkdir -v $LFS/sources
+chmod -v a+wt $LFS/sources
+mkdir -v $LFS/tools
+ln -sv $LFS/tools /
 ```
 ```
 mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
@@ -115,8 +115,8 @@ esac
 ```
 ## Making local user in your host system
 ```
-    groupadd lfs
-    useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+groupadd lfs
+useradd -s /bin/bash -g lfs -m -k /dev/null lfs
 ```
 ```
 passwd lfs
@@ -130,90 +130,90 @@ chown -v lfs $LFS/sources
 ```
 ```
 su - lfs
-```    
-    cat > ~/.bash_profile << "EOF"
-    exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
-    EOF
+```
+```
+cat > ~/.bash_profile << "EOF"
+exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
+EOF
     
-    cat > ~/.bashrc << "EOF"
-    set +h
-    umask 022
-    LFS=/mnt/lfs
-    LC_ALL=POSIX
-    MAKEFLAGS="-j$(nproc)"
-    LFS_TGT=$(uname -m)-lfs-linux-gnu
-    PATH=/tools/bin:/bin:/usr/bin
-    export LFS LC_ALL LFS_TGT PATH MAKEFLAGS
-    EOF
+cat > ~/.bashrc << "EOF"
+  set +h
+  umask 022
+  LFS=/mnt/lfs
+  LC_ALL=POSIX
+  MAKEFLAGS="-j$(nproc)"
+  LFS_TGT=$(uname -m)-lfs-linux-gnu
+  PATH=/tools/bin:/bin:/usr/bin
+  export LFS LC_ALL LFS_TGT PATH MAKEFLAGS
+EOF
     
-    source ~/.bash_profile
-
+source ~/.bash_profile
+```
 ## Downloading sources
+```
+export LFS=/mnt/lfs
+cd $LFS/sources
 
-    export LFS=/mnt/lfs
-    cd $LFS/sources
-
-    wget https://www.linuxfromscratch.org/lfs/view/stable/wget-list
-    wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
-    wget https://www.linuxfromscratch.org/lfs/view/stable/md5sums
-    wget https://github.com/ninja-build/ninja/archive/v1.10.2.tar.gz
-    mv v1.10.2.tar.gz ninja-1.10.2.tar.gz
-
+wget https://www.linuxfromscratch.org/lfs/view/stable/wget-list
+wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
+wget https://www.linuxfromscratch.org/lfs/view/stable/md5sums
+wget https://github.com/ninja-build/ninja/archive/v1.10.2.tar.gz
+mv v1.10.2.tar.gz ninja-1.10.2.tar.gz
+```
 If there are some tarballs that could not be downloaded automatically from the list, 
 check the download address with LFS-11.0 Book or Google search and make up for it manually. 
 
 ## Additional sources for arch build system
-
-    cd $LFS/sources
-
+```
+cd $LFS/sources
+```
 The following downloads refer to BeyondLinux® FromScratch (System V Edition) version 11.0, Archlinux's PKGBUILD,..etc.
-
-    wget https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
-    wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.26.orig.tar.gz
-    wget https://distfiles.dereferenced.org/pkgconf/pkgconf-1.8.0.tar.xz
-    wget https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
-    wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.2.29.tar.bz2
-    wget https://www.gnupg.org/ftp/gcrypt/gnutls/v3.7/gnutls-3.7.2.tar.xz
-    wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.16.0.tar.bz2
-    wget https://ftp.gnu.org/gnu/nettle/nettle-3.7.3.tar.gz
-    wget https://github.com/p11-glue/p11-kit/releases/download/0.24.0/p11-kit-0.24.0.tar.xz
-    wget https://www.nano-editor.org/dist/v5/nano-5.8.tar.xz
-    wget https://github.com/libarchive/libarchive/releases/download/v3.5.2/libarchive-3.5.2.tar.xz
-    wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.5.5.tar.bz2
-    wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.9.4.tar.bz2
-    wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.42.tar.bz2
-    wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.6.0.tar.bz2
-    wget https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.17.0.tar.gz
-    wget https://ftp.gnu.org/gnu/libunistring/libunistring-0.9.10.tar.xz
-    wget https://dist.libuv.org/dist/v1.42.0/libuv-v1.42.0.tar.gz
-    wget http://xmlsoft.org/sources/libxml2-2.9.12.tar.gz
-    wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.6.tar.bz2
-    wget http://ftp.rpm.org/popt/releases/popt-1.x/popt-1.18.tar.gz
-    wget https://downloads.sourceforge.net/freetype/freetype-2.11.0.tar.xz
-    wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.13.1.tar.bz2
-    wget https://www.gnupg.org/ftp/gcrypt/pinentry/pinentry-1.2.0.tar.bz2
-    wget https://cmake.org/files/v3.21/cmake-3.21.2.tar.gz
-    wget https://www.samba.org/ftp/rsync/src/rsync-3.2.3.tar.gz
-    wget https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
-    wget https://curl.se/download/curl-7.78.0.tar.xz
-    wget https://github.com/nghttp2/nghttp2/releases/download/v1.44.0/nghttp2-1.44.0.tar.xz
-    wget https://github.com/besser82/libxcrypt/releases/download/v4.4.26/libxcrypt-4.4.26.tar.xz
-    wget https://anduin.linuxfromscratch.org/BLFS/bdb/db-5.3.28.tar.gz
-    wget https://github.com/cyrusimap/cyrus-sasl/releases/download/cyrus-sasl-2.1.27/cyrus-sasl-2.1.27.tar.gz
-    wget https://www.linuxfromscratch.org/patches/blfs/11.0/cyrus-sasl-2.1.27-doc_fixes-1.patch
-    wget https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.5.7.tgz
-    wget https://www.linuxfromscratch.org/patches/blfs/11.0/openldap-2.5.7-consolidated-1.patch
-    wget https://people.redhat.com/~dhowells/keyutils/keyutils-1.6.1.tar.bz2
-    wget https://kerberos.org/dist/krb5/1.19/krb5-1.19.2.tar.gz
-    wget https://people.redhat.com/sgrubb/audit/audit-3.0.6.tar.gz
-    wget https://www.kernel.org/pub/software/scm/git/git-2.33.0.tar.xz
-    wget https://doxygen.nl/files/doxygen-1.9.2.src.tar.gz
-
-This system uses ABS to build custom packages and installs using pacman, 
-so it doesn't require an archlinux repository, but it also allows you to build an archlinux distribution using only pacman.
+```
+wget https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
+wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.26.orig.tar.gz
+wget https://distfiles.dereferenced.org/pkgconf/pkgconf-1.8.0.tar.xz
+wget https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
+wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.2.29.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/gnutls/v3.7/gnutls-3.7.2.tar.xz
+wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.16.0.tar.bz2
+wget https://ftp.gnu.org/gnu/nettle/nettle-3.7.3.tar.gz
+wget https://github.com/p11-glue/p11-kit/releases/download/0.24.0/p11-kit-0.24.0.tar.xz
+wget https://www.nano-editor.org/dist/v5/nano-5.8.tar.xz
+wget https://github.com/libarchive/libarchive/releases/download/v3.5.2/libarchive-3.5.2.tar.xz
+wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.5.5.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.9.4.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.42.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.6.0.tar.bz2
+wget https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.17.0.tar.gz
+wget https://ftp.gnu.org/gnu/libunistring/libunistring-0.9.10.tar.xz
+wget https://dist.libuv.org/dist/v1.42.0/libuv-v1.42.0.tar.gz
+wget http://xmlsoft.org/sources/libxml2-2.9.12.tar.gz
+wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.6.tar.bz2
+wget http://ftp.rpm.org/popt/releases/popt-1.x/popt-1.18.tar.gz
+wget https://downloads.sourceforge.net/freetype/freetype-2.11.0.tar.xz
+wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.13.1.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/pinentry/pinentry-1.2.0.tar.bz2
+wget https://cmake.org/files/v3.21/cmake-3.21.2.tar.gz
+wget https://www.samba.org/ftp/rsync/src/rsync-3.2.3.tar.gz
+wget https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz
+wget https://curl.se/download/curl-7.78.0.tar.xz
+wget https://github.com/nghttp2/nghttp2/releases/download/v1.44.0/nghttp2-1.44.0.tar.xz
+wget https://github.com/besser82/libxcrypt/releases/download/v4.4.26/libxcrypt-4.4.26.tar.xz
+wget https://anduin.linuxfromscratch.org/BLFS/bdb/db-5.3.28.tar.gz
+wget https://github.com/cyrusimap/cyrus-sasl/releases/download/cyrus-sasl-2.1.27/cyrus-sasl-2.1.27.tar.gz
+wget https://www.linuxfromscratch.org/patches/blfs/11.0/cyrus-sasl-2.1.27-doc_fixes-1.patch
+wget https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.5.7.tgz
+wget https://www.linuxfromscratch.org/patches/blfs/11.0/openldap-2.5.7-consolidated-1.patch
+wget https://people.redhat.com/~dhowells/keyutils/keyutils-1.6.1.tar.bz2
+wget https://kerberos.org/dist/krb5/1.19/krb5-1.19.2.tar.gz
+wget https://people.redhat.com/sgrubb/audit/audit-3.0.6.tar.gz
+wget https://www.kernel.org/pub/software/scm/git/git-2.33.0.tar.xz
+wget https://doxygen.nl/files/doxygen-1.9.2.src.tar.gz
+```
+This linux desktop system(except the chroot environment) uses ABS to build all packages and installs using "pacman -U" option, so it doesn't require an archlinux repository, but it also allows you to build an archlinux distribution using only pacman.
 Please verify md5sum arbitrarily. 
-
-    cat >> $LFS/sources/md5sums << "EOF" 
+```
+cat >> $LFS/sources/md5sums << "EOF" 
     f36f5e7e95a89436febe1bcca874fc33  pacman-5.0.2.tar.gz
     823212dc241793df8ff1d097769a3473  pkgconf-1.8.0.tar.xz
     e0356f5ae5623f227a3f69b5e8848ec6  make-ca-1.7.tar.xz
@@ -254,12 +254,13 @@ Please verify md5sum arbitrarily.
     20750f9a7686f02b90a025303645f133  audit-3.0.6.tar.gz
     0990ff97af1511be0d9f0d3223dd4359  git-2.33.0.tar.xz
     84c0522bb65d17f9127896268b72ea2a  doxygen-1.9.2.src.tar.gz
-    EOF
-
-    pushd $LFS/sources
-      md5sum -c md5sums
-    popd
-
+EOF
+``
+```
+pushd $LFS/sources
+   md5sum -c md5sums
+popd
+```
 # Building chroot environment
 
 In this section is different from the lfs-11.0 book. Here you need to install all of the chroot environment in the / tools directory. Test procedures that are possible but not required are commented out. Now start building the base for your chroot environment. We recommend that you install each package in stages, but you can also run a long script to install them all at once. If you want to install at once, create the script(build-chroot-environment.sh) build at once and execute it on the terminal. 
