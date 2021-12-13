@@ -195,8 +195,8 @@ On the chroot environmment
 ```
 su - lfs
 ```
-### Editing a custum PKGBUILD see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
-### After editing the custom PKGBUILD and making the packages with ABS.
+Editing a custum PKGBUILD see: [PKGBUILD-collections/README.md](PKGBUILD-collections/README.md)
+After editing the custom PKGBUILD and making the packages with ABS.
 ```
 cd /usr/src/$pkgname/$pkgver/PKGBUILD
 makepkg
