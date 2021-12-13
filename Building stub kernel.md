@@ -26,13 +26,14 @@ umount -v /mnt/lfs/dev
 umount -v /mnt/lfs/proc
 umount -v mnt/lfs/sys
 umount -v /mnt/lfs/run
-
+```
+```
 mkdir -p /usr/src
 useradd -m lfs
 passwd lfs
+```
+```
 chown lfs /usr/src
-```
-```
 su - lfs
 mkdir -p /usr/src/linux/5.15.4
 cd /usr/src/linux/5.15.4
