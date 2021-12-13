@@ -436,6 +436,11 @@ EOF
 source ~/.bash_profile
 ```
 ## striping
+On the host as root ( After exit the chroot environment )._
+```
+strip --strip-debug /tools/lib/*
+/usr/bin/strip --strip-unneeded /tools/{,s}bin/*
+```
 ```
 rm -rf /tools/share/{info,man,doc}/*
 rm -rf /tools/usr/share/{info,man,doc}/*
