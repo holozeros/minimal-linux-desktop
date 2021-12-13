@@ -100,13 +100,13 @@ cd $LFS/sources
 wget https://www.linuxfromscratch.org/lfs/view/stable/wget-list
 wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
 wget https://www.linuxfromscratch.org/lfs/view/stable/md5sums
-mv v1.10.2.tar.gz ninja-1.10.2.tar.gz
 ```
 If there are some tarballs that could not be downloaded automatically from the list, 
 check the download address with LFS-11.0 Book or Google search and make up for it manually. 
 If failed auto download ninja, retry download with an another link (find out for yourself):
 ```
 wget https://github.com/ninja-build/ninja/archive/v1.10.2.tar.gz
+mv v1.10.2.tar.gz ninja-1.10.2.tar.gz
 ```
 ## Additional sources for arch build system
 ```
