@@ -297,6 +297,8 @@ In the chroot environment as root.
 mkdir -pv /{boot,home,mnt,etc,lib,lib64,usr,var,bin,sbin,}
 mkdir -pv /usr{bin,lib}
 ```
+## Temporary toolchain settings
+The following links will be overridden by the main system installation. 
 ```
 ln -sfv /run /var/run
 ln -sfv /run/lock /var/lock
@@ -307,6 +309,9 @@ ln -sfv /tools/bin/bash /bin/sh
 ln -sfv /tools/bin/{cut,env,install,perl,printf,pwd,touch} /usr/bin
 ln -sfv /tools/lib/libgcc_s.so{,.1}                    /usr/lib
 ln -sfv /tools/lib/libstdc++.{a,so{,.6}}               /usr/lib
+ln -sfv /tools/lib/ld-linux-x86-64.so.2 /lib
+ln -sfv /tools/lib/ld-linux-x86-64.so.2 /lib64
+ln -sfv /tools/lib/ld-linux-x86-64.so.2 /lib64/lib64/ld-lsb-x86-64.so.3
 ln -sv /proc/self/mounts /etc/mtab
 
 touch /var/log/{btmp,lastlog,faillog,wtmp}
