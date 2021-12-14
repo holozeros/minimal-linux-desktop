@@ -296,6 +296,7 @@ In the chroot environment as root.
 ```
 mkdir -pv /{boot,home,mnt,etc,lib,lib64,usr,var,bin,sbin,}
 mkdir -pv /usr{bin,lib}
+mkdir -v /lib/locale
 ```
 ## Temporary toolchain settings
 The following links will be overridden by the main system installation. 
