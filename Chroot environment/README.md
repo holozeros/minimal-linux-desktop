@@ -302,9 +302,9 @@ ln -sfv /run /var/run
 ln -sfv /run/lock /var/lock
 install -dv -m 0750 /root
 install -dv -m 1777 /tmp /var/tmp
-ln -sfv /tools/bin/{bash,cat,chmod,dd,echo,ln,mkdir,pwd,rm,stty,nproc,uname} /bin
+ln -sfv /tools/bin/{bash,cat,chmod,curl,dd,echo,ln,mkdir,pwd,rm,stty,nproc,uname} /bin
 ln -sfv /tools/bin/bash /bin/sh
-ln -sfv /tools/bin/{cut,env,install,perl,printf,touch} /usr/bin
+ln -sfv /tools/bin/{cut,env,install,perl,printf,pwd,touch} /usr/bin
 ln -sfv /tools/lib/libgcc_s.so{,.1}                    /usr/lib
 ln -sfv /tools/lib/libstdc++.{a,so{,.6}}               /usr/lib
 ln -sv /proc/self/mounts /etc/mtab
