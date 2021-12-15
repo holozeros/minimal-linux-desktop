@@ -463,11 +463,11 @@ nano /tools/etc/makepkg.conf
   #-- The download utilities that makepkg should use to acquire sources
   #  Format: 'protocol::agent'
   DLAGENTS=('file::/bin/curl -k -qgC - -o %o %u'
-          'ftp::/bin/curl -k -qgfC - --ftp-pasv --retry 3 --retry-delay 3 -o %o>
-          'http::/bin/curl -k -qgb "" -fLC - --retry 3 --retry-delay 3 -o %o %u'
-          'https::/bin/curl -k -qgb "" -fLC - --retry 3 --retry-delay 3 -o %o %>
-          'rsync::/bin/rsync --no-motd -zz %u %o'
-          'scp::/bin/scp -C %u %o')
+          'ftp::/tools/bin/curl -k -qgfC - --ftp-pasv --retry 3 --retry-delay 3 -o %o>
+          'http::/tools/bin/curl -k -qgb "" -fLC - --retry 3 --retry-delay 3 -o %o %u'
+          'https::/tools/bin/curl -k -qgb "" -fLC - --retry 3 --retry-delay 3 -o %o %>
+          'rsync::/tools/bin/rsync --no-motd -zz %u %o'
+          'scp::/tools/bin/scp -C %u %o')
                      .
                      .
                      .
