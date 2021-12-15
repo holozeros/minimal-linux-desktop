@@ -3,6 +3,6 @@ post_install() {
 rm -rf /usr/src/m4/1.4.19/pkg
 rm -rf /usr/src/m4/1.4.19/src
 rm -v /usr/src/m4/1.4.19/m4-1.4.19.tar.xz
-mv -v /usr/src/m4/1.4.19/m4-1.4.19-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+mv -v /usr/src/m4/1.4.19/m4-1.4.19-1-x86_64.pkg.tar.zst /var/cache/pacman/pkg
 
 }
