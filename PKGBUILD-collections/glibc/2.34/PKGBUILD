@@ -28,9 +28,6 @@ cd "${srcdir}/${pkgname}-${pkgver}"
 mkdir glibc-build
 cd glibc-build
 
-export CPPFLAGS=${CPPFLAGS/-D_FORTIFY_SOURCE=2/}
-export CFLAGS=${CFLAGS/-fno-plt/}
-
 CC="gcc -ffile-prefix-map=/tools=/usr" \
 ../configure --prefix=/                           \
              --disable-werror                     \
@@ -45,6 +42,8 @@ CC="gcc -ffile-prefix-map=/tools=/usr" \
   echo "rootsbindir=/bin" >> configparms
 
   # remove fortify for building libraries
+  CPPFLAGS=${CPPFLAGS/-D_FORTIFY_SOURCE=2/}
+  CFLAGS=${CFLAGS/-fno-plt/}
   CXXFLAGS=${CXXFLAGS/-fno-plt/}
   LDFLAGS=${LDFLAGS/,-z,now/}
 
