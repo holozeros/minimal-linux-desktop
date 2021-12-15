@@ -3,7 +3,7 @@ post_install() {
 rm -rf /usr/src/flex/2.6.4/pkg
 rm -rf /usr/src/flex/2.6.4/src
 rm -v /usr/src/flex/2.6.4/flex-2.6.4.tar.gz
-mv -v /usr/src/flex/2.6.4/flex-2.6.4-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+mv -v /usr/src/flex/2.6.4/flex-2.6.4-1-x86_64.pkg.tar.zst /var/cache/pacman/pkg
 ln -s flex /bin/lex
 
 }
