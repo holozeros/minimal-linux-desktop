@@ -43,6 +43,6 @@ make -k check 2>&1 | tee ../../../${pkgname}-${pkgver}-test.log
 
 package() {
     cd "${srcdir}/${pkgname}-${pkgver}/build"
-    make DESTDIR=${pkgdir} -j1
+    make DESTDIR=${pkgdir} -j1 install
     rm -fv /lib/lib{bfd,ctf,ctf-nobfd,opcodes}.a
 }
