@@ -508,15 +508,6 @@ nano /tools/etc/pacman.conf
   GPGDir      = /tools/etc/pacman.d/gnupg/
   HookDir     = /tools/etc/pacman.d/hooks/
   HoldPkg     = pacman glibc
-                  .
-                  .
-                  .
-  [core]
-  Include = /tools/etc/pacman.d/mirrorlist
-  [extra]
-  Include = /tools/etc/pacman.d/mirrorlist
-  [community]
-  Include = /tools/etc/pacman.d/mirrorlist
 ```
 ## Striping
 On the host (After complete building the chroot environment)._
