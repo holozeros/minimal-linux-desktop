@@ -206,7 +206,7 @@ popd
 ```
 # Building chroot environment
 
-In this section is different from the lfs-11.0 book. Here you need to install all of the chroot environment in the /tools directory. Test procedures that are possible but not required are commented out. Now start building the base for your chroot environment. We recommend that you install each package in stages, but you can also run a long script to install them all at once.
+In this section is different from the lfs-11.0 book. Here you need to install all of the chroot environment in the /tools directory. Test procedures that are possible but not required are commented out.We recommend that you install each package in stages, but you can also run a long script to install them all at once.
 
 ## BUILD [build-chroot-environment.sh](build_chroot_environment.sh)
 
