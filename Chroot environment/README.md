@@ -19,7 +19,7 @@ If it doesn't exist, create a new one.
 mkfs.vfat /dev/<EFI System Partition>
 ```
 Mount the new partition for building chroot environment to /mnt/lfs. for example in case /dev/sda2. Chroot environment will eventually become the root partition of a bootable linux OS.
-##### A partition of USB storage will not be perhaps recognized by a stub kernel at boot time without initramfs, but available initramfs can't install yet. It's physical storage shuld be connected SATA or M.2, unuse USB storage.
+A partition of USB storage will not be perhaps recognized by a stub kernel at boot time without initramfs, but available initramfs can't install yet. It's physical storage shuld be connected SATA or M.2, unuse USB storage.
 ```
 mkdir -v /mnt/lfs
 # You shuld change "sda2" to proper partition name.
