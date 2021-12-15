@@ -9,7 +9,7 @@ If you resume work or "su - user" (change user), $LFS may be empty. Always check
 ```
 export LFS=/mnt/lfs
 ```
-That physical storage shuld be SATA or M.2 connected, not USB storage.
+That physical storage shuld be SATA or M.2 connected, disable USB storage.
 This chroot environment will eventually become the root partition of a bootable linux OS.
 Partition of the USB strage will not be perhaps recognized by a stub kernel at boot time without initramfs, but initramfs is can not support yet.
 Therefore, the chroot environment should be built on an SSD or HDD partition with a SATA or M.2 connection. 
