@@ -49,8 +49,8 @@ CC="gcc -ffile-prefix-map=/tools=/usr" \
   LDFLAGS=${LDFLAGS/,-z,now/}
 
 make
-unset CPPFLAGS=${CPPFLAGS/-D_FORTIFY_SOURCE=2/}
-unset CFLAGS=${CFLAGS/-fno-plt/}
+unset CPPFLAGS
+unset CFLAGS
 
 }
 
