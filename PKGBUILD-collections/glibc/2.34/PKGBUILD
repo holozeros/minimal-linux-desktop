@@ -28,8 +28,8 @@ cd "${srcdir}/${pkgname}-${pkgver}"
 mkdir glibc-build
 cd glibc-build
 
-export CPPFLAGS=${CPPFLAGS/-D_FORTIFY_SOURCE=2/}
-export CFLAGS=${CFLAGS/-fno-plt/}
+export CPPFLAGS=
+export CFLAGS=
 
 CC="gcc -ffile-prefix-map=/tools=/usr" \
 ../configure --prefix=/                           \
@@ -38,20 +38,7 @@ CC="gcc -ffile-prefix-map=/tools=/usr" \
              --enable-stack-protector=strong      \
              --with-headers=/include              \
              libc_cv_slibdir=/lib
-
-  echo "slibdir=/lib" >> configparms
-  echo "rtlddir=/lib" >> configparms
-  echo "sbindir=/bin" >> configparms
-  echo "rootsbindir=/bin" >> configparms
-
-  # remove fortify for building libraries
-  CXXFLAGS=${CXXFLAGS/-fno-plt/}
-  LDFLAGS=${LDFLAGS/,-z,now/}
-
 make
-unset CPPFLAGS
-unset CFLAGS
-
 }
 
 package() {
