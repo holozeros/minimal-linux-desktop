@@ -451,6 +451,73 @@ EOF
 ```
 source ~/.bash_profile
 ```
+Modify makepkg.conf and pacman.conf
+```
+nano /tools/etc/makepkg.conf
+```
+```
+  #########################################################################
+  # SOURCE ACQUISITION
+  #########################################################################
+  #
+  #-- The download utilities that makepkg should use to acquire sources
+  #  Format: 'protocol::agent'
+  DLAGENTS=('file::/bin/curl -k -qgC - -o %o %u'
+          'ftp::/bin/curl -k -qgfC - --ftp-pasv --retry 3 --retry-delay 3 -o %o>
+          'http::/bin/curl -k -qgb "" -fLC - --retry 3 --retry-delay 3 -o %o %u'
+          'https::/bin/curl -k -qgb "" -fLC - --retry 3 --retry-delay 3 -o %o %>
+          'rsync::/bin/rsync --no-motd -zz %u %o'
+          'scp::/bin/scp -C %u %o')
+                     .
+                     .
+                     .
+
+  #########################################################################
+  # ARCHITECTURE, COMPILE FLAGS
+  #########################################################################
+  #
+  CARCH="x86_64"
+  CHOST="x86_64-pc-linux-gnu"
+  
+  #-- Compiler and Linker Flags
+  CPPFLAGS="-D_FORTIFY_SOURCE=2"
+  CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt"
+  CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt"
+  LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
+  #-- Make Flags: change this for DistCC/SMP systems
+  MAKEFLAGS="-j${nproc}"
+  #-- Debugging flags
+  #DEBUG_CFLAGS="-g -fvar-tracking-assignments"
+  #DEBUG_CXXFLAGS="-g -fvar-tracking-assignments"
+                    .
+                    .
+                    .
+
+```
+```
+nano /tools/etc/pacman.conf
+```
+```
+  [options]
+  # The following paths are commented out with their default values listed.
+  # If you wish to use different paths, uncomment and update the paths.
+  RootDir     = /
+  DBPath      = /var/lib/pacman/
+  CacheDir    = /var/cache/pacman/pkg/
+  LogFile     = /var/log/pacman.log
+  GPGDir      = /tools/etc/pacman.d/gnupg/
+  HookDir     = /tools/etc/pacman.d/hooks/
+  HoldPkg     = pacman glibc
+                  .
+                  .
+                  .
+  [core]
+  Include = /tools/etc/pacman.d/mirrorlist
+  [extra]
+  Include = /tools/etc/pacman.d/mirrorlist
+  [community]
+  Include = /tools/etc/pacman.d/mirrorlist
+```
 ## Striping
 On the host (After complete building the chroot environment)._
 ```
