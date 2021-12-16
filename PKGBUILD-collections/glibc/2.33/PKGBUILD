@@ -7,7 +7,6 @@ url="http://www.gnu.org/software/libc"
 license=(GPL LGPL)
 options=(!strip staticlibs)
 source=(https://ftp.gnu.org/gnu/glibc/glibc-$pkgver.tar.xz
-	glibc-2.34-fhs-1.patch
         glibc.install
         sdt-config.h
         sdt.h
@@ -19,7 +18,6 @@ source=(https://ftp.gnu.org/gnu/glibc/glibc-$pkgver.tar.xz
 md5sums=('SKIP'
 	 'SKIP'
 	 'SKIP'
-         'SKIP'
          'SKIP'
          'SKIP'
          'SKIP'
