@@ -31,7 +31,6 @@ prepare() {
 cd glibc
 sed -e '/NOTIFY_REMOVED)/s/)/ \&\& data.attr != NULL)/' \
     -i sysdeps/unix/sysv/linux/mq_notify.c
-patch -Np1 -i "$srcdir"/glibc-2.34-fhs-1.patch
 patch -p1 -i "$srcdir"/bz27343.patch
 patch -p1 -i "$srcdir"/0001-nptl_db-Support-different-libpthread-ld.so-load-orde.patch
 patch -p1 -i "$srcdir"/0002-nptl-Check-for-compatible-GDB-in-nptl-tst-pthread-gd.patch
