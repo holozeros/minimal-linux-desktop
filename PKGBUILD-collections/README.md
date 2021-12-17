@@ -75,8 +75,8 @@ These variable add as needed.
 
 ##### case in making [PKGBUILD](zlib/1.2.11/PKGBUILD) of zlib-1.2.11.tar.xz
 
-    mkdir -p /sources/zlib/1.2.11
-    cd /sources/zlib/1.2.11
+    mkdir -p /usr/src/zlib/1.2.11
+    cd /usr/src/zlib/1.2.11
     cp ../../PKGBUILD.skl . && mv PKGBUILD.skl PKGBUILD
     nano PKGBUILD
 
