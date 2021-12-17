@@ -3,6 +3,8 @@
    (https://creativecommons.org/publicdomain/zero/1.0/)
 */
 
+#define __STDC_VERSION__   0
+
 #ifndef _SYS_SDT_H
 #define _SYS_SDT_H    1
 
