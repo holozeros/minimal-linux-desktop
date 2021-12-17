@@ -27,7 +27,6 @@ cd glibc
 sed -e '/NOTIFY_REMOVED)/s/)/ \&\& data.attr != NULL)/' \
     -i sysdeps/unix/sysv/linux/mq_notify.c
 patch -Np1 -i /usr/src/glibc/2.34/glibc-2.34-fhs-1.patch
-echo "#define __STDC_VERSION__ 0" >> ${srcdir}/sdt.h
 cp ${srcdir}/{sdt.h,sdt-config.h} include/sys/
 }
 
