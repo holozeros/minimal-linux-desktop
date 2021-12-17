@@ -751,12 +751,7 @@ ln -sfv /tools/libexec/p11-kit/trust-extract-compat \
 ln -sfv ./pkcs11/p11-kit-trust.so /tools/lib/libnssckbi.so
 cd ../..
 rm -rf p11-kit-0.24.0
-cd /usr/bin
-ln -s /tools/bin/openssl .
-ln -s /tools/bin/cut .
-ln -s /tools/bin/md5sum .
-ln -s /tools/bin/trust .
-make-ca -g
+/tools/usr/sbin/make-ca -g
 ###################
 ### Wget-1.21.1 ###
 ###################
