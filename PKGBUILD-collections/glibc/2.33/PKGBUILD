@@ -24,8 +24,6 @@ md5sums=('SKIP'
          'SKIP'
 	 'SKIP')
 
-install=glibc.install
-
 prepare() {
 [[ -d glibc-$pkgver ]] && ln -s glibc-$pkgver glibc 
 cd glibc
@@ -36,15 +34,15 @@ patch -p1 -i "$srcdir"/0001-nptl_db-Support-different-libpthread-ld.so-load-orde
 patch -p1 -i "$srcdir"/0002-nptl-Check-for-compatible-GDB-in-nptl-tst-pthread-gd.patch
 patch -p1 -i "$srcdir"/0003-nptl-Do-not-build-nptl-tst-pthread-gdb-attach-as-PIE.patch
 
-cp ${srcdir}/{sdt.h,sdt-config.h} ${srcdir}/glibc-2.33/include/sys/
+cp ${srcdir}/{sdt.h,sdt-config.h} include/sys/
 
 }
 
 build() {
 mkdir build
 
-unset CPPFLAGS
-unset CFLAGS
+#unset CPPFLAGS
+#unset CFLAGS
   local _configure_flags=(
       --prefix=/
       --with-headers=/include
@@ -73,8 +71,6 @@ unset CFLAGS
 
   # remove fortify for building libraries
   CPPFLAGS=${CPPFLAGS/-D_FORTIFY_SOURCE=2/}
-
-  #
   CFLAGS=${CFLAGS/-fno-plt/}
   CXXFLAGS=${CXXFLAGS/-fno-plt/}
   LDFLAGS=${LDFLAGS/,-z,now/}
@@ -94,37 +90,44 @@ unset CFLAGS
   echo "CC += -D_FORTIFY_SOURCE=2" >> configparms
   echo "CXX += -D_FORTIFY_SOURCE=2" >> configparms
   make
-
-
-
-#export CPPFLAGS=
-#export CFLAGS=
-
-#CC="gcc -ffile-prefix-map=/tools=/" \
-#../configure --prefix=/                           \
-#             --disable-werror                     \
-#             --enable-kernel=3.2                  \
-#             --enable-stack-protector=strong      \
-#             --with-headers=/include              \
-#             libc_cv_slibdir=/lib
-
-#  echo "slibdir=/lib" >> configparms
-#  echo "rtlddir=/lib" >> configparms
-#  echo "sbindir=/bin" >> configparms
-#  echo "rootsbindir=/bin" >> configparms
-
-  # remove fortify for building libraries
-#  CPPFLAGS=${CPPFLAGS/-D_FORTIFY_SOURCE=2/}
-#  CFLAGS=${CFLAGS/-fno-plt/}
-#  CXXFLAGS=${CXXFLAGS/-fno-plt/}
-#  LDFLAGS=${LDFLAGS/,-z,now/}
-
-#make
-#unset CPPFLAGS=${CPPFLAGS/-D_FORTIFY_SOURCE=2/}
-#unset CFLAGS=${CFLAGS/-fno-plt/}
 }
 
 package() {
-  cd build
-  make DESTDIR=${pkgdir} install
+  pkgdesc='GNU C Library'
+  install=glibc.install
+  install -dm755 "$pkgdir/etc"
+  touch "$pkgdir/etc/ld.so.conf"
+  make -C build install_root="$pkgdir" install
+  rm -f "$pkgdir"/etc/ld.so.{cache,conf}
+  cd glibc
+  install -dm755 "$pkgdir"/lib/locale
+  install -m644 nscd/nscd.conf "$pkgdir/etc/nscd.conf"
+  install -dm755 "$pkgdir/var/db/nscd"
+  install -m644 posix/gai.conf "$pkgdir"/etc/gai.conf
+  install -m755 "$srcdir/locale-gen" "$pkgdir/bin"
+  # Create /etc/locale.gen
+  install -m644 "$srcdir/locale.gen.txt" "$pkgdir/etc/locale.gen"
+  sed -e '1,3d' -e 's|/| |g' -e 's|\\| |g' -e 's|^|#|g' \
+    "$srcdir/glibc/localedata/SUPPORTED" >> "$pkgdir/etc/locale.gen"
+
+  if check_option 'debug' n; then
+    find "$pkgdir"/bin -type f -executable -exec strip $STRIP_BINARIES {} + 2> /dev/null || true
+    find "$pkgdir"/lib -name '*.a' -type f -exec strip $STRIP_STATIC {} + 2> /dev/null || true
+
+    # Do not strip these for gdb and valgrind functionality, but strip the rest
+    find "$pkgdir"/lib \
+      -not -name 'ld-*.so' \
+      -not -name 'libc-*.so' \
+      -not -name 'libpthread-*.so' \
+      -not -name 'libthread_db-*.so' \
+      -name '*-*.so' -type f -exec strip $STRIP_SHARED {} + 2> /dev/null || true
+  fi
+
+  # Provide tracing probes to libstdc++ for exceptions, possibly for other
+  # libraries too. Useful for gdb's catch command.
+  install -Dm644 "$srcdir/sdt.h" "$pkgdir/include/sys/sdt.h"
+  install -Dm644 "$srcdir/sdt-config.h" "$pkgdir/include/sys/sdt-config.h"
+
+  # Provided by libxcrypt; keep the old shared library for backwards compatibility
+  rm -f "$pkgdir"/include/crypt.h "$pkgdir"/lib/libcrypt.{a,so}
 }
