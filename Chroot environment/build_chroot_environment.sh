@@ -265,7 +265,7 @@ make install
 chmod -v u+w /tools/lib/libtcl8.6.so
 make install-private-headers
 ln -sv tclsh8.6 /tools/bin/tclsh
-cd ..
+cd ../..
 rm -rf tcl8.6.11
 ##############
 ### expect ###
