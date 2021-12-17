@@ -215,7 +215,7 @@ On the host.
 ```
 su -
 export LFS=/mnt/lfs
-chown -R root:root $LFS/{tools}
+chown -R root:root $LFS/tools
 mkdir -pv $LFS/{dev,proc,sys,run}
 mknod -m 600 $LFS/dev/console c 5 1
 mknod -m 666 $LFS/dev/null c 1 3
@@ -283,8 +283,7 @@ EOF
 ## Creating dir
 In the chroot environment as root.
 ```
-mkdir -pv /{boot,home,mnt,etc,lib,lib64,usr,var,bin,sbin,}
-mkdir -pv /usr{bin,lib}
+mkdir -pv /{boot,sbin}
 mkdir -v /lib/locale
 ```
 ## Temporary toolchain settings
@@ -304,6 +303,7 @@ ln -sfv /tools/lib/ld-linux-x86-64.so.2     /lib64/lib64/ld-lsb-x86-64.so.3
 ln -sfv /tools/lib/libncursesw.so.6         /lib
 ln -sv /proc/self/mounts /etc/mtab
 
+mkdir -v /var/log
 touch /var/log/{btmp,lastlog,faillog,wtmp}
 chgrp -v utmp /var/log/lastlog
 chmod -v 664  /var/log/lastlog
