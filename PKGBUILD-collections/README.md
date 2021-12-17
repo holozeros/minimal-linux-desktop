@@ -19,10 +19,11 @@ Chroot into $LFS
     if [ -h $LFS/dev/shm ]; then
         mkdir -pv $LFS/$(readlink $LFS/dev/shm)
     fi
-    chroot "$LFS" /bin/env -i \
+    chroot "$LFS" /bin/env -i       \
         HOME=/root                  \
         TERM="$TERM"                \
-        PS1='(chroot)\u:\w\$ '              \
+        PS1='(chroot)\u:\w\$ '      \
+        MAKEFLAGS="-j10"
         PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin:/usr/bin:/usr/sbin \
         /bin/bash --login +h
     umount -lR /mnt/lfs/*
