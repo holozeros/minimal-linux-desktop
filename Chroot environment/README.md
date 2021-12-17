@@ -44,7 +44,7 @@ mkdir -v $LFS/tools
 ln -sv $LFS/tools /
 ```
 ```
-mkdir -pv $LFS/{etc,var,lib,bin} $LFS/usr/src
+mkdir -pv $LFS/{etc,var,lib,bin} $LFS/usr/{bin,src}
 case $(uname -m) in
   x86_64) mkdir -pv $LFS/lib64 ;;
 esac
@@ -301,6 +301,7 @@ ln -sfv /tools/lib/ld-linux-x86-64.so.2     /lib
 ln -sfv /tools/lib/ld-linux-x86-64.so.2     /lib64
 ln -sfv /tools/lib/ld-linux-x86-64.so.2     /lib64/lib64/ld-lsb-x86-64.so.3
 ln -sfv /tools/lib/libncursesw.so.6         /lib
+ln -sfv /tools/bin/env                      /usr/bin
 ln -sv /proc/self/mounts /etc/mtab
 
 mkdir -v /var/log
