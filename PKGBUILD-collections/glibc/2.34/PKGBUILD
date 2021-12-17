@@ -17,31 +17,69 @@ md5sums=('31998b53fb39cb946e96abc310af1c89'
 install=glibc.install
 
 prepare() {
-cd /usr/src/glibc/2.34/src/glibc-2.34
+mkdir -p build
+[[ -d glibc-$pkgver ]] && ln -s glibc-$pkgver glibc 
+cd glibc
 sed -e '/NOTIFY_REMOVED)/s/)/ \&\& data.attr != NULL)/' \
     -i sysdeps/unix/sysv/linux/mq_notify.c
 patch -Np1 -i /usr/src/glibc/2.34/glibc-2.34-fhs-1.patch
+echo "#define __STDC_VERSION__ 0" >> /usr/src/glibc/2.34/sdt.h
+cp /usr/src/glibc/2.34/{sdt.h,sdt-config.h} include/sys/
 }
 
 build() {
-cd "${srcdir}/${pkgname}-${pkgver}"
-mkdir glibc-build
-cd glibc-build
+unset CPPFLAGS
+unset CFLAGS
+  local _configure_flags=(
+      --prefix=/
+      --with-headers=/include
+      --enable-add-ons
+      --enable-bind-now
+      --enable-cet
+      --enable-kernel=4.4
+      --enable-lock-elision
+      --enable-multi-arch
+      --enable-stack-protector=strong
+      --enable-stackguard-randomization
+      --enable-systemtap
+      --enable-static-pie
+      --disable-profile
+      --disable-werror
+  )
 
-export CPPFLAGS=
-export CFLAGS=
 
-CC="gcc -ffile-prefix-map=/tools=/usr" \
-../configure --prefix=/                           \
-             --disable-werror                     \
-             --enable-kernel=3.2                  \
-             --enable-stack-protector=strong      \
-             --with-headers=/include              \
-             libc_cv_slibdir=/lib
-make
+
+  cd "$srcdir/build"
+
+  echo "slibdir=/lib" >> configparms
+  echo "rtlddir=/lib" >> configparms
+  echo "sbindir=/bin" >> configparms
+  echo "rootsbindir=/sbin" >> configparms
+
+  # remove fortify for building libraries
+  CPPFLAGS=${CPPFLAGS/-D_FORTIFY_SOURCE=2/}
+  CFLAGS=${CFLAGS/-fno-plt/}
+  CXXFLAGS=${CXXFLAGS/-fno-plt/}
+  LDFLAGS=${LDFLAGS/,-z,now/}
+
+  "$srcdir/glibc/configure" \
+      --libdir=/lib \
+      --libexecdir=/lib \
+      ${_configure_flags[@]}
+
+  # build libraries with fortify disabled
+  echo "build-programs=no" >> configparms
+  make
+
+  # re-enable fortify for programs
+  sed -i "/build-programs=/s#no#yes#" configparms
+
+  echo "CC += -D_FORTIFY_SOURCE=2" >> configparms
+  echo "CXX += -D_FORTIFY_SOURCE=2" >> configparms
+  make
 }
 
 package() {
-  cd "${srcdir}/${pkgname}-${pkgver}/glibc-build"
+  cd "${srcdir}/build"
   make DESTDIR=${pkgdir} install
 }
