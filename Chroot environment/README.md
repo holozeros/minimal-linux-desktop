@@ -145,6 +145,7 @@ wget https://kerberos.org/dist/krb5/1.19/krb5-1.19.2.tar.gz
 wget https://people.redhat.com/sgrubb/audit/audit-3.0.6.tar.gz
 wget https://www.kernel.org/pub/software/scm/git/git-2.33.0.tar.xz
 wget https://doxygen.nl/files/doxygen-1.9.2.src.tar.gz
+wget --no-check-certificate https://sources.archlinux.org/other/archlinux-keyring/archlinux-keyring-20211028.tar.gz
 ```
 This linux desktop system(except the chroot environment) uses ABS to build all packages and installs using "pacman -U" option, so it doesn't require an archlinux repository, but it also allows you to build an archlinux distribution using only pacman.
 Please verify md5sum arbitrarily. 
@@ -190,6 +191,7 @@ cat >> $LFS/sources/md5sums << "EOF"
     20750f9a7686f02b90a025303645f133  audit-3.0.6.tar.gz
     0990ff97af1511be0d9f0d3223dd4359  git-2.33.0.tar.xz
     84c0522bb65d17f9127896268b72ea2a  doxygen-1.9.2.src.tar.gz
+    1b1ec243a3e7d568e15e08c490181fe1  archlinux-keyring-20211028.tar.gz
 EOF
 ```
 ```
