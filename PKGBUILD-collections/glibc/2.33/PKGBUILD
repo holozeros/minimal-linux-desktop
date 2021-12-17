@@ -13,9 +13,13 @@ source=(https://ftp.gnu.org/gnu/glibc/glibc-$pkgver.tar.xz
         bz27343.patch
         0001-nptl_db-Support-different-libpthread-ld.so-load-orde.patch
         0002-nptl-Check-for-compatible-GDB-in-nptl-tst-pthread-gd.patch
-        0003-nptl-Do-not-build-nptl-tst-pthread-gdb-attach-as-PIE.patch)
+        0003-nptl-Do-not-build-nptl-tst-pthread-gdb-attach-as-PIE.patch
+	locale-gen
+	locale.gen.txt)
 	
 md5sums=('SKIP'
+	 'SKIP'
+	 'SKIP'
 	 'SKIP'
 	 'SKIP'
          'SKIP'
