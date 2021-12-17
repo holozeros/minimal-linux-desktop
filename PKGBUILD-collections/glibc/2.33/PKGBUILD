@@ -59,10 +59,10 @@ mkdir build
       --enable-stack-protector=strong
       --enable-stackguard-randomization
       --enable-systemtap
-      --enable-static-pie
       --disable-profile
       --disable-werror
   )
+#      --enable-static-pie
 
 
 
