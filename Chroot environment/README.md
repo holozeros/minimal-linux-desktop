@@ -301,7 +301,7 @@ ln -sfv /tools/lib/ld-linux-x86-64.so.2     /lib
 ln -sfv /tools/lib/ld-linux-x86-64.so.2     /lib64
 ln -sfv /tools/lib/ld-linux-x86-64.so.2     /lib64/lib64/ld-lsb-x86-64.so.3
 ln -sfv /tools/lib/libncursesw.so.6         /lib
-ln -sfv /tools/bin/{cut,env,md5sum,perl,openssl,trust} /usr/bin
+ln -sfv /tools/bin/{certutil,cut,env,md5sum,perl,openssl,trust} /usr/bin
 ln -sv /proc/self/mounts /etc/mtab
 
 mkdir -v /var/log
