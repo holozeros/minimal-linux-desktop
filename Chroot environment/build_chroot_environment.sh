@@ -237,6 +237,7 @@ RANLIB=$LFS_TGT-ranlib                             \
     --prefix=/tools                                \
     --with-local-prefix=/tools                     \
     --with-native-system-header-dir=/tools/include \
+    --enable-default-pie                           \
     --enable-languages=c,c++                       \
     --disable-libstdcxx-pch                        \
     --disable-multilib                             \
