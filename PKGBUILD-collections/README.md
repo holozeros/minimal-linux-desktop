@@ -23,7 +23,7 @@ Chroot into $LFS
         HOME=/root                  \
         TERM="$TERM"                \
         PS1='(chroot)\u:\w\$ '      \
-        MAKEFLAGS="-j10"
+        MAKEFLAGS="-j10"            \
         PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin:/usr/bin:/usr/sbin \
         /bin/bash --login +h
     umount -lR /mnt/lfs/*
