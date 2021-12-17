@@ -410,39 +410,6 @@ cat > /tools/etc/pacman.d/mirrorlist << "EOF"
 Server = http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
 EOF
 ```
-```
-pacman -Syu
-```
-## ABS settings
-ABS enable use only local user (disable root user).
-In the chroot environment as root.
-```
-groupadd lfs
-useradd -s /tools/bin/bash -g lfs -m -k /dev/null lfs
-passwd lfs
-```
-```
-su - lfs
-```
-```
-/tools/bin/cat > ~/.bash_profile << "EOF"
-exec /tools/bin/env -i HOME=$HOME TERM=$TERM PS1='(chroot)\u:\w\$ ' /tools/bin/bash
-EOF
-```
-```
-/tools/bin/cat > ~/.bashrc << "EOF"
-set +h
-umask 022
-LC_ALL=POSIX
-MAKEFLAGS="-j$(nproc)"
-LFS_TGT=$(uname -m)-pc-linux-gnu
-PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin
-export LC_ALL LFS_TGT PATH MAKEFLAGS
-EOF
-```
-```
-source ~/.bash_profile
-```
 Modify makepkg.conf and pacman.conf
 ```
 nano /tools/etc/makepkg.conf
@@ -500,6 +467,39 @@ nano /tools/etc/pacman.conf
   GPGDir      = /tools/etc/pacman.d/gnupg/
   HookDir     = /tools/etc/pacman.d/hooks/
   HoldPkg     = pacman glibc
+```
+```
+pacman -Syu
+```
+## ABS settings
+ABS enable use only local user (disable root user).
+In the chroot environment as root.
+```
+groupadd lfs
+useradd -s /tools/bin/bash -g lfs -m -k /dev/null lfs
+passwd lfs
+```
+```
+su - lfs
+```
+```
+/tools/bin/cat > ~/.bash_profile << "EOF"
+exec /tools/bin/env -i HOME=$HOME TERM=$TERM PS1='(chroot)\u:\w\$ ' /tools/bin/bash
+EOF
+```
+```
+/tools/bin/cat > ~/.bashrc << "EOF"
+set +h
+umask 022
+LC_ALL=POSIX
+MAKEFLAGS="-j$(nproc)"
+LFS_TGT=$(uname -m)-pc-linux-gnu
+PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin
+export LC_ALL LFS_TGT PATH MAKEFLAGS
+EOF
+```
+```
+source ~/.bash_profile
 ```
 ## Striping
 On the host (After complete building the chroot environment)._
