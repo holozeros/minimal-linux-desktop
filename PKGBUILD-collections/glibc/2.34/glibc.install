@@ -68,7 +68,7 @@ gcc -dumpspecs | sed -e 's@/tools@@g'               \
 rm -rf /usr/src/glibc/2.34/pkg
 rm -rf /usr/src/glibc/2.34/src
 rm -v /usr/src/glibc/2.34/glibc-2.34.tar.xz
-mv -v /usr/src/glibc/2.34/glibc-2.34-1-x86_64.pkg.tar.zst  /var/cache/pacman/pkg
+mv -v /usr/src/glibc/2.34/glibc-2.34-1-x86_64.pkg.tar.gz  /var/cache/pacman/pkg
 
 echo 'int main(){}' > dummy.c
 cc dummy.c -v -Wl,--verbose &> dummy.log
