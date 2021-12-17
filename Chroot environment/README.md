@@ -44,10 +44,7 @@ mkdir -v $LFS/tools
 ln -sv $LFS/tools /
 ```
 ```
-mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
-for i in bin lib sbin; do
-  ln -sv usr/$i $LFS/$i
-done
+mkdir -pv $LFS/{etc,var,lib,bin} $LFS/usr/src
 case $(uname -m) in
   x86_64) mkdir -pv $LFS/lib64 ;;
 esac
@@ -61,11 +58,7 @@ useradd -s /bin/bash -g lfs -m -k /dev/null lfs
 passwd lfs
 ```
 ```
-chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
-case $(uname -m) in
-  x86_64) chown -v lfs $LFS/lib64 ;;
-esac
-chown -v lfs $LFS/sources
+chown -v lfs $LFS/*
 ```
 ```
 su - lfs
@@ -186,7 +179,7 @@ cat >> $LFS/sources/md5sums << "EOF"
     b939ee54eabc6b9b0a8d5c03ace879c9  wget-1.21.1.tar.gz
     419c2461366cf404160a820f7a902b7e  curl-7.78.0.tar.xz
     d9702786d89ec8053a96ab4768a172e4  nghttp2-1.44.0.tar.xz
-    34954869627f62f9992808b6cff0d0a9  libxcrypt--4.4.26.tar.xz
+    34954869627f62f9992808b6cff0d0a9  libxcrypt-4.4.26.tar.xz
     b99454564d5b4479750567031d66fe24  db-5.3.28.tar.gz
     a33820c66e0622222c5aefafa1581083  cyrus-sasl-2.1.27.tar.gz
     1a17a2d56984e95382b604833fe9b92d  cyrus-sasl-2.1.27-doc_fixes-1.patch
