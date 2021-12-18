@@ -3,6 +3,6 @@ post_install() {
 rm -rf /usr/src/bc/5.0.0/pkg
 rm -rf /usr/src/bc/5.0.0/src
 rm -v /usr/src/bc/5.0.0/bc-5.0.0.tar.xz
-mv -v /usr/src/bc/5.0.0/bc-5.0.0-1-x86_64.pkg.tar.zst /var/cache/pacman/pkg
+mv -v /usr/src/bc/5.0.0/bc-5.0.0-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
 
 }
