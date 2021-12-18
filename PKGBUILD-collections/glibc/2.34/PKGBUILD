@@ -8,13 +8,9 @@ license=(GPL LGPL)
 options=(!strip staticlibs)
 source=(https://ftp.gnu.org/gnu/glibc/glibc-$pkgver.tar.xz
 	glibc-2.34-fhs-1.patch
-        glibc.install
-	sdt.h
-	sdt-config.h)
+        glibc.install)
 	
 md5sums=('31998b53fb39cb946e96abc310af1c89'
-	 'SKIP'
-	 'SKIP'
 	 'SKIP'
 	 'SKIP')
 
