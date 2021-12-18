@@ -1,3 +1,11 @@
+   ##########################################
+   ### This souce Build with Arch Linux ! ###
+   ##########################################
+# Should not built with the chroot environment because not enough dependency.
+#
+#       makepkg --skippgpcheck
+#
+
 pkgbase=glibc
 pkgname=(glibc)
 pkgver=2.33
