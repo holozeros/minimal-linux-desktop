@@ -1,4 +1,3 @@
-# Maintainer:  Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
 pkgbase=glibc
 pkgname=(glibc)
 pkgver=2.33
