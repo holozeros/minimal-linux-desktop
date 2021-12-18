@@ -1,55 +1,66 @@
-pkgname=glibc
+# Maintainer:  Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
+# Contributor: Allan McRae <allan@archlinux.org>
+
+# toolchain build order: linux-api-headers->glibc->binutils->gcc->binutils->glibc
+# NOTE: valgrind requires rebuilt with each major glibc version
+
+pkgbase=glibc
+pkgname=(glibc)
 pkgver=2.33
-pkgrel=1
-pkgdesc="GNU C Library"
-arch=('x86_64')
-url="http://www.gnu.org/software/libc"
+pkgrel=5
+arch=(x86_64)
+url='https://www.gnu.org/software/libc'
 license=(GPL LGPL)
+#makedepends=(git gd python)
+#optdepends=('perl: for mtrace')
 options=(!strip staticlibs)
-source=(https://ftp.gnu.org/gnu/glibc/glibc-$pkgver.tar.xz
-        glibc.install
-        sdt-config.h
-        sdt.h
+#_commit=3de512be7ea6053255afed6154db9ee31d4e557a
+#source=(git+https://sourceware.org/git/glibc.git#commit=$_commit
+source=(https://ftp.gnu.org/gnu/glibc/glibc-$pkgver.tar.xz{,.sig}
+        locale.gen.txt
+        locale-gen
+        sdt.h sdt-config.h
         bz27343.patch
         0001-nptl_db-Support-different-libpthread-ld.so-load-orde.patch
         0002-nptl-Check-for-compatible-GDB-in-nptl-tst-pthread-gd.patch
-        0003-nptl-Do-not-build-nptl-tst-pthread-gdb-attach-as-PIE.patch
-	locale-gen
-	locale.gen.txt)
-	
+        0003-nptl-Do-not-build-nptl-tst-pthread-gdb-attach-as-PIE.patch)
+#validpgpkeys=(7273542B39962DF7B299931416792B4EA25340F8 # Carlos O'Donell
+#              BC7C7372637EC10C57D7AA6579C43DFBF1CF2187) # Siddhesh Poyarekar
 md5sums=('SKIP'
-	 'SKIP'
-	 'SKIP'
-	 'SKIP'
-	 'SKIP'
          'SKIP'
          'SKIP'
          'SKIP'
          'SKIP'
-	 'SKIP')
+         'SKIP'
+         'SKIP'
+         'SKIP'
+         'SKIP'
+         'SKIP')
 
 prepare() {
-[[ -d glibc-$pkgver ]] && ln -s glibc-$pkgver glibc 
-cd glibc
-sed -e '/NOTIFY_REMOVED)/s/)/ \&\& data.attr != NULL)/' \
-    -i sysdeps/unix/sysv/linux/mq_notify.c
-patch -p1 -i "$srcdir"/bz27343.patch
-patch -p1 -i "$srcdir"/0001-nptl_db-Support-different-libpthread-ld.so-load-orde.patch
-patch -p1 -i "$srcdir"/0002-nptl-Check-for-compatible-GDB-in-nptl-tst-pthread-gd.patch
-patch -p1 -i "$srcdir"/0003-nptl-Do-not-build-nptl-tst-pthread-gdb-attach-as-PIE.patch
+  mkdir -p glibc-build lib32-glibc-build
 
-cp ${srcdir}/{sdt.h,sdt-config.h} include/sys/
+  [[ -d glibc-$pkgver ]] && ln -s glibc-$pkgver glibc 
+  cd glibc
 
+  # commit c3479fb7939898ec22c655c383454d6e8b982a67
+  patch -p1 -i "$srcdir"/bz27343.patch
+
+  # nptl_db: Support different libpthread/ld.so load orders (bug 27744)
+  patch -p1 -i "$srcdir"/0001-nptl_db-Support-different-libpthread-ld.so-load-orde.patch
+
+  # nptl: Check for compatible GDB in nptl/tst-pthread-gdb-attach
+  patch -p1 -i "$srcdir"/0002-nptl-Check-for-compatible-GDB-in-nptl-tst-pthread-gd.patch
+
+  # nptl: Do not build nptl/tst-pthread-gdb-attach as PIE
+  patch -p1 -i "$srcdir"/0003-nptl-Do-not-build-nptl-tst-pthread-gdb-attach-as-PIE.patch
 }
 
 build() {
-mkdir build
-
-#unset CPPFLAGS
-#unset CFLAGS
   local _configure_flags=(
       --prefix=/
       --with-headers=/include
+      --with-bugurl=https://bugs.archlinux.org/
       --enable-add-ons
       --enable-bind-now
       --enable-cet
@@ -58,23 +69,23 @@ mkdir build
       --enable-multi-arch
       --enable-stack-protector=strong
       --enable-stackguard-randomization
+      --enable-static-pie
       --enable-systemtap
       --disable-profile
       --disable-werror
   )
-#      --enable-static-pie
 
-
-
-  cd "$srcdir/build"
+  cd "$srcdir/glibc-build"
 
   echo "slibdir=/lib" >> configparms
   echo "rtlddir=/lib" >> configparms
   echo "sbindir=/bin" >> configparms
-  echo "rootsbindir=/sbin" >> configparms
+  echo "rootsbindir=/bin" >> configparms
 
   # remove fortify for building libraries
   CPPFLAGS=${CPPFLAGS/-D_FORTIFY_SOURCE=2/}
+
+  #
   CFLAGS=${CFLAGS/-fno-plt/}
   CXXFLAGS=${CXXFLAGS/-fno-plt/}
   LDFLAGS=${LDFLAGS/,-z,now/}
@@ -96,19 +107,45 @@ mkdir build
   make
 }
 
-package() {
+check() {
+  cd glibc-build
+
+  # remove fortify in preparation to run test-suite
+  sed -i '/FORTIFY/d' configparms
+
+  # some failures are "expected"
+  make check || true
+}
+
+package_glibc() {
   pkgdesc='GNU C Library'
+#  depends=('linux-api-headers>=4.10' tzdata filesystem)
+#  optdepends=('gd: for memusagestat')
   install=glibc.install
+#  backup=(etc/gai.conf
+#          etc/locale.gen
+#          etc/nscd.conf)
+
   install -dm755 "$pkgdir/etc"
   touch "$pkgdir/etc/ld.so.conf"
-  make -C build install_root="$pkgdir" install
+
+  make -C glibc-build install_root="$pkgdir" install
   rm -f "$pkgdir"/etc/ld.so.{cache,conf}
+
+  # Shipped in tzdata
+  rm -f "$pkgdir"/bin/{tzselect,zdump,zic}
+
   cd glibc
-  install -dm755 "$pkgdir"/lib/locale
+
+  install -dm755 "$pkgdir"/lib/{locale,tmpfiles.d}
   install -m644 nscd/nscd.conf "$pkgdir/etc/nscd.conf"
+  install -m644 nscd/nscd.tmpfiles "$pkgdir/lib/tmpfiles.d/nscd.conf"
   install -dm755 "$pkgdir/var/db/nscd"
+
   install -m644 posix/gai.conf "$pkgdir"/etc/gai.conf
+
   install -m755 "$srcdir/locale-gen" "$pkgdir/bin"
+
   # Create /etc/locale.gen
   install -m644 "$srcdir/locale.gen.txt" "$pkgdir/etc/locale.gen"
   sed -e '1,3d' -e 's|/| |g' -e 's|\\| |g' -e 's|^|#|g' \
