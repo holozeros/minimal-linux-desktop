@@ -2,6 +2,7 @@ post_install() {
 
 ln -sfv /lib/ld-linux-x86-64.so.2 /lib64
 ln -sfv /lib/ld-linux-x86-64.so.2 /lib64/ld-lsb-x86-64.so.3
+ln -sv /tools/bin/bash /usr/bin
 
 cd /share/i18n/locales
     /bin/localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8
