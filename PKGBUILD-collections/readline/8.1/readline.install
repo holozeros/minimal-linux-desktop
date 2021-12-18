@@ -3,6 +3,6 @@ post_install() {
 rm -rf /usr/src/readline/8.1/pkg
 rm -rf /usr/src/readline/8.1/src
 rm -v /usr/src/readline/8.1/readline-8.1.tar.gz
-mv -v /usr/src/readline/8.1/readline-8.1-1-x86_64.pkg.tar.zst /var/cache/pacman/pkg
+mv -v /usr/src/readline/8.1/readline-8.1-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
 
 }
