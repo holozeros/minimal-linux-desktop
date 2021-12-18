@@ -3,6 +3,6 @@ post_install() {
 rm -rf /usr/src/xz/5.2.5/pkg
 rm -rf /usr/src/xz/5.2.5/src
 rm -v /usr/src/xz/5.2.5/xz-5.2.5.tar.xz
-mv -v /usr/src/xz/5.2.5/xz-5.2.5-1-x86_64.pkg.tar.zst /var/cache/pacman/pkg
+mv -v /usr/src/xz/5.2.5/xz-5.2.5-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
 
 }
