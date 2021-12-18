@@ -172,10 +172,10 @@ nano /tools/etc/makepkg.conf
 	CHOST="x86_64-pc-linux-gnu"
 
 	#-- Compiler and Linker Flags
-	CPPFLAGS="-D_FORTIFY_SOURCE=2"
+	CPPFLAGS="-D_FORTIFY_SOURCE=2 -fpic"
 	CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fexceptions \
         	-Wp,-D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security \
-        	-fstack-clash-protection -fcf-protection"
+        	-fstack-clash-protection -fcf-protection -fpic"
 	CXXFLAGS="$CFLAGS -Wp,-D_GLIBCXX_ASSERTIONS"
 	LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
 ```
