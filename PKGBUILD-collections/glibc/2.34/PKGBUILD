@@ -29,7 +29,7 @@ build() {
 unset CPPFLAGS
 unset CFLAGS
   local _configure_flags=(
-      --prefix=/
+      --prefix=
       --with-headers=/include
       --enable-kernel=4.4
       --enable-stack-protector=strong
