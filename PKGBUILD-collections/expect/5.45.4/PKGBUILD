@@ -11,10 +11,12 @@ install="${pkgname}.install"
 
 build() {
 cd "${srcdir}/${pkgname}${pkgver}"
+unset CFLAGS
+unset CPPFLAGS
 ./configure --prefix=/              \
             --with-tcl=/lib         \
             --enable-shared         \
-            --mandir=/usr/share/man \
+            --mandir=/share/man \
             --with-tclinclude=/include
 make
 }
