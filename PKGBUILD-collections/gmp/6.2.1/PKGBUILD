@@ -14,7 +14,7 @@ cd "${srcdir}/${pkgname}-${pkgver}"
 ./configure --prefix=/       \
             --enable-cxx     \
             --disable-static \
-            --docdir=/usr/share/doc/gmp-6.2.1
+            --docdir=/share/doc/gmp-6.2.1
 make
 }
 
