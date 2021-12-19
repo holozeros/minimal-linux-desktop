@@ -17,7 +17,7 @@ cd "${srcdir}/${pkgname}-${pkgver}"
 ./configure --prefix=/           \
             --disable-static     \
             --enable-thread-safe \
-            --docdir=/usr/share/doc/mpfr-4.1.0
+            --docdir=/share/doc/mpfr-4.1.0
 make
 }
 
