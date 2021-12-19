@@ -24,14 +24,14 @@ makeinfo --plaintext       -o doc/dejagnu.txt  ../doc/dejagnu.texi
 }
 
 package() {
-    cd "${srcdir}/${pkgname}-${pkgver}"
+    cd "${srcdir}/${pkgname}-${pkgver}/build"
     
     make DESTDIR=${pkgdir} install
-    install -v -dm755  ${pkgdir}/usr/share/doc/dejagnu-1.6.3
-    install -v -m644   doc/dejagnu.{html,txt} ${pkgdir}/usr/share/doc/dejagnu-1.6.3
+    install -v -dm755  ${pkgdir}/share/doc/dejagnu-1.6.3
+    install -v -m644   doc/dejagnu.{html,txt} ${pkgdir}/share/doc/dejagnu-1.6.3
 }
 
 check() {
-cd "${srcdir}/build/${pkgname}-${pkgver}"
-make check 2>&1 | tee ../../../${pkgname}-${pkgver}-test.log
+cd "${srcdir}/${pkgname}-${pkgver}/build"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
 }
