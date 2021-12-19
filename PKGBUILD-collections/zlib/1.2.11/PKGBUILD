@@ -15,6 +15,7 @@ md5sums=('85adef240c5f370b308da8c938951a68')
 
 build() {
 cd "${srcdir}/${pkgname}-${pkgver}"
+CFLAGS="$CFLAGS -fPIC"
 ./configure --prefix=/
 make
 }
