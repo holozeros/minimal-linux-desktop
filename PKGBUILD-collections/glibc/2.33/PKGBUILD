@@ -1,3 +1,9 @@
+
+      #   Do not build this PKGBUILD ! in the chroot environment.
+
+# Can be compiled on Arch Linux, but shuold not install to the Minimal Linux Desktop(MLD).
+# This is just a reference for creating the glibc's PKGBUID for MLD.
+
 pkgbase=glibc
 pkgname=(glibc)
 pkgver=2.33
