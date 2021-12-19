@@ -33,7 +33,6 @@ unset CFLAGS
       --prefix=/
       --with-headers=/include
       --enable-kernel=4.4
-      --enable-multi-arch
       --enable-stack-protector=strong
       --enable-stackguard-randomization
       --disable-profile
