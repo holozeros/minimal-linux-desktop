@@ -23,8 +23,8 @@ cd "${srcdir}/${pkgname}-${pkgver}"
 mkdir -v build
 cd       build
 
-export CPPFLAGS=
-export CFLAGS=
+unset CPPFLAGS
+unset CFLAGS
 ../configure --prefix=/          \
              --enable-gold       \
              --enable-ld=default \
