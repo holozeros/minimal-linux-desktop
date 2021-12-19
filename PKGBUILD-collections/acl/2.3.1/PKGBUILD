@@ -1,4 +1,4 @@
-pkgname="attr"
+pkgname="acl"
 pkgver="2.3.1"
 pkgrel="1"
 pkgdesc=""
