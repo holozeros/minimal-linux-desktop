@@ -16,7 +16,7 @@ build() {
 cd "${srcdir}/${pkgname}-${pkgver}"
 ./configure --prefix=/       \
             --disable-static \
-            --docdir=/usr/share/doc/mpc-1.2.1
+            --docdir=/share/doc/mpc-1.2.1
 make
 }
 
