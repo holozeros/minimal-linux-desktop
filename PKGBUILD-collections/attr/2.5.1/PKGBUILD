@@ -14,7 +14,7 @@ cd "${srcdir}/${pkgname}-${pkgver}"
 ./configure --prefix=/        \
             --disable-static  \
             --sysconfdir=/etc \
-            --docdir=/usr/share/doc/attr-2.5.1
+            --docdir=/share/doc/attr-2.5.1
 make
 }
 
