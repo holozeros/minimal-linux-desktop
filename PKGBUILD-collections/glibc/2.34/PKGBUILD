@@ -28,18 +28,19 @@ patch -Np1 -i ${srcdir}/glibc-2.34-fhs-1.patch
 build() {
 unset CPPFLAGS
 unset CFLAGS
-  local _configure_flags=(
-      --prefix=
-      --with-headers=/include
-      --enable-kernel=4.4
-      --enable-stack-protector=strong
-      --enable-stackguard-randomization
-      --disable-profile
-      --disable-werror
-      libc_cv_slibdir=/lib
-  )
+#  local _configure_flags=(
 
-#  cd "$srcdir/build"
+cd "$srcdir/build"
+$srcdir/glibc/configure --prefix=        \
+      --with-headers=/include            \
+      --enable-kernel=4.4                \
+      --enable-stack-protector=strong    \
+      --enable-stackguard-randomization  \
+      --disable-profile                  \
+      --disable-werror                   \
+      libc_cv_slibdir=/lib
+#  )
+
 #  echo "slibdir=/lib" >> configparms
 #  echo "rtlddir=/lib" >> configparms
 #  echo "sbindir=/bin" >> configparms
