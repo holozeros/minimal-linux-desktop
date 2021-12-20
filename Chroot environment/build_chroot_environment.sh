@@ -66,6 +66,7 @@ cd       build
     --without-headers                              \
     --with-local-prefix=/tools                     \
     --with-native-system-header-dir=/tools/include \
+    --enable-initfini-array                        \
     --disable-nls                                  \
     --disable-shared                               \
     --disable-multilib                             \
@@ -73,7 +74,6 @@ cd       build
     --disable-threads                              \
     --disable-libatomic                            \
     --disable-libgomp                              \
-    --disable-libmpx                               \
     --disable-libquadmath                          \
     --disable-libssp                               \
     --disable-libvtv                               \
