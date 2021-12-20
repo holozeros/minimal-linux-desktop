@@ -262,7 +262,7 @@ su -
 export LFS=/mnt/lfs
 cat > chroot-1.sh << "EOF"
 export LFS=/mnt/lfs
-mount -v --bind/dev $LFS/dev
+mount -v --bind /dev $LFS/dev
 mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
 mount -vt proc proc $LFS/proc
 mount -vt sysfs sysfs $LFS/sys
