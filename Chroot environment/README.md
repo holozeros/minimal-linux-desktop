@@ -469,6 +469,8 @@ nano /tools/etc/pacman.conf
   HoldPkg     = pacman glibc
 ```
 ```
+mkdir -p /var/lib/pacman
+mkdir -p /var/cache/pacman/pkg
 pacman -Syu
 ```
 ## ABS settings
