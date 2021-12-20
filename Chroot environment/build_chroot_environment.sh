@@ -131,34 +131,6 @@ rm -rf glibc-2.34
 ##############################
 tar xf gcc-11.2.0.tar.xz
 cd gcc-11.2.0
-cat > gcc11-fenv.patch << "EOF"
-  GNU nano 5.9                  ../gcc11-fenv.patch                             
---- libstdc++-v3/include/c_compatibility/fenv.h 2021-07-28 15:55:09.292315320 +>
-+++ ../fenv.h.custum    2021-12-09 16:23:23.135926080 +0900
-@@ -26,15 +26,18 @@
-  *  This is a Standard C++ Library header.
-  */
-
-+#include_next <fenv.h>
-+
- #ifndef _GLIBCXX_FENV_H
- #define _GLIBCXX_FENV_H 1
-
- #pragma GCC system_header
-
- #include <bits/c++config.h>
--#if _GLIBCXX_HAVE_FENV_H
--# include_next <fenv.h>
--#endif
-+
-+//#if _GLIBCXX_HAVE_FENV_H
-+//# include_next <fenv.h>
-+//#endif
-
- #if __cplusplus >= 201103L
-EOF
-patch libstdc++-v3/include/c_compatibility/fenv.h < gcc11-fenv.patch 
-
 mkdir -v build
 cd       build
 ../libstdc++-v3/configure           \
