@@ -166,7 +166,6 @@ cd       build
     --prefix=/tools                 \
     --disable-multilib              \
     --disable-nls                   \
-    --disable-libstdcxx-threads     \
     --disable-libstdcxx-pch         \
     --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/11.2.0
 make
