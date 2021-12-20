@@ -305,12 +305,6 @@ ln -sfv /tools/lib/ld-linux-x86-64.so.2     /lib64/ld-lsb-x86-64.so.3
 ln -sfv /tools/lib/libncursesw.so.6         /lib
 ln -sfv /tools/bin/{certutil,cut,env,md5sum,perl,openssl,trust} /usr/bin
 ln -sv /proc/self/mounts /etc/mtab
-
-mkdir -v /var/log
-touch /var/log/{btmp,lastlog,faillog,wtmp}
-chgrp -v utmp /var/log/lastlog
-chmod -v 664  /var/log/lastlog
-chmod -v 600  /var/log/btmp
 ```
 ## User settings
 In the chroot environment as root.
@@ -348,13 +342,19 @@ wheel:x:97:
 nogroup:x:99:
 users:x:999:
 EOF
+
+exec /bin/bash --login +h
 ```
 ```
 echo "tester:x:101:101::/home/tester:/bin/bash" >> /etc/passwd
 echo "tester:x:101:" >> /etc/group
 install -o tester -d /home/tester
 
-exec /bin/bash --login +h
+mkdir -v /var/log
+touch /var/log/{btmp,lastlog,faillog,wtmp}
+chgrp -v utmp /var/log/lastlog
+chmod -v 664  /var/log/lastlog
+chmod -v 600  /var/log/btmp
 ```
 ## Back to to the host environment from chroot environment.
 Issue:
