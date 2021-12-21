@@ -1,0 +1,46 @@
+pkgname="ncurses"
+pkgver="6.2"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#backup=()
+source=("https://ftp.gnu.org/gnu/ncurses/ncurses-6.2.tar.gz")
+md5sums=('e812da327b1c2214ac1aed440ea3ae8d')
+install="${pkgname}.install"
+
+#prepare() {
+#}
+
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/          \
+        --mandir=/share/man 	\
+        --with-shared		\
+        --without-debug         \
+        --without-normal        \
+        --enable-pc-files       \
+        --enable-widec
+make
+}
+
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+
+package() {
+    cd "${pkgname}-${pkgver}"
+   make DESTDIR=${pkgdir} install
+for lib in ncurses form panel menu ; do
+    rm -vf                    "${pkgdir}/lib/lib${lib}.so"
+    echo "INPUT(-l${lib}w)" > "${pkgdir}/lib/lib${lib}.so"
+    cp -rv "${pkgdir}/tools/lib/pkgconfig" "${pkgdir}/lib/"
+done
+rm -vf                     "${pkgdir}/lib/libcursesw.so"
+echo "INPUT(-lncursesw)" > "${pkgdir}/lib/libcursesw.so"
+ln -sfv libncurses.so      "${pkgdir}/lib/libcurses.so"
+rm -fv "${pkgdir}/lib/libncurses++w.a"
+rm -rf "${pkgdir}/tools"
+}
