@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/sed/4.8/pkg
+rm -rf /usr/src/sed/4.8/src
+rm -v /usr/src/sed/4.8/sed-4.8.tar.xz
+mv -v /usr/src/sed/4.8/sed-4.8-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
