@@ -14,7 +14,7 @@ cd "${srcdir}/${pkgname}-${pkgver}"
 ./configure --prefix=/                 \
             --with-internal-glib       \
             --disable-host-tool        \
-            --docdir=/usr/share/doc/pkg-config-0.29.2
+            --docdir=/share/doc/pkg-config-0.29.2
 make
 }
 
