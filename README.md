@@ -70,6 +70,11 @@ Order to the following for satisfy the dependencies.
 ```
 Linux-api-headers
 Glibc
+tzdata
+	locale.gen
+		en_US.UTF-8 UTF-8
+	locale-gen
+
 Zlib
 Bzip2
 Xz
@@ -86,6 +91,7 @@ Attr
 Acl
 Shadow
 GCC
+	LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 makepkg
 Pkg-config
 Ncurses
 Libcap
