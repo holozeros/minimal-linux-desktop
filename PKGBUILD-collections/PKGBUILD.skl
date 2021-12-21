@@ -1,21 +1,20 @@
 pkgname=""
-pkgver=""
-pkgrel=""
+pkgver=''
+source=("")
+md5sums=('')
+install=
+pkgrel='1'
 pkgdesc=""
 arch=('x86_64')
 url="https://www."
 license=('')
-#backup=()
-source=("")
-md5sums=('')
-#install=
 
 #prepare() {
 #}
 
 build() {
 cd "${pkgname}-${pkgver}"
-./configure --prefix=/usr
+./configure --prefix=/
 make
 }
 
