@@ -1,0 +1,29 @@
+pkgname="psmisc"
+pkgver='23.4'
+source=("https://sourceforge.net/projects/psmisc/files/psmisc/psmisc-23.4.tar.xz")
+md5sums=('8114cd4489b95308efe2509c3a406bbf')
+install=psmisc.install
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+
+#prepare() {
+#}
+
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/
+make
+}
+
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
