@@ -12,16 +12,16 @@ install="${pkgname}.install"
 build() {
 cd "${srcdir}/${pkgname}-${pkgver}"
 sed -i '/install -m.*STA/d' libcap/Makefile
-make lib=lib
+make lib=lib prefix=/
 }
 
-check() {
-cd "${srcdir}/${pkgname}-${pkgver}"
-make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
-}
+#check() {
+#cd "${srcdir}/${pkgname}-${pkgver}"
+#make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
 
 package() {
     cd "${srcdir}/${pkgname}-${pkgver}"
-    make lib=lib DESTDIR=${pkgdir} install
+    make lib=lib prefix=/ DESTDIR=${pkgdir} install
     chmod -v 755 ${pkgdir}/lib/lib{cap,psx}.so.2.53
 }
