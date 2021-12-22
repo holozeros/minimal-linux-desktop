@@ -26,13 +26,13 @@ prepare() {
 }
 
 build() {
-  make LFLAGS=${LDFLAGS}
+  make USRDIR=/ LFLAGS=${LDFLAGS}
 }
 
 package() {
   cd "${srcdir}"
   # install tzcode stuff
-  make DESTDIR="${pkgdir}" install
+  make USRDIR=/ DESTDIR="${pkgdir}" install
 
   # install tzdata stuff
   ./zic -b fat -d "${pkgdir}"/share/zoneinfo ${_timezones[@]}
