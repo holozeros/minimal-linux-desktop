@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/gettext/0.21/pkg
+rm -rf /usr/src/gettext/0.21/src
+rm -v /usr/src/gettext/0.21/gettext-0.21.tar.xz
+mv -v /usr/src/gettext/0.21/gettext-0.21-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
