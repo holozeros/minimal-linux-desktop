@@ -1,0 +1,29 @@
+pkgname="grep"
+pkgver='3.7'
+source=("https://ftp.gnu.org/gnu/grep/grep-3.7.tar.xz")
+md5sums=('7c9cca97fa18670a21e72638c3e1dabf')
+install=grep.install
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+
+#prepare() {
+#}
+
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/
+make
+}
+
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
