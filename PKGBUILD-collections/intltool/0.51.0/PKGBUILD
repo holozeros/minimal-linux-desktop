@@ -1,0 +1,31 @@
+pkgname="intltool"
+pkgver='0.51.0'
+source=("https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz")
+md5sums=('12e517cac2b57a0121cda351570f1e63')
+install=intltool.install
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+
+prepare() {
+cd "${pkgname}-${pkgver}"
+sed -i 's:\\\${:\\\$\\{:' intltool-update.in
+}
+
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/
+make
+}
+
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
