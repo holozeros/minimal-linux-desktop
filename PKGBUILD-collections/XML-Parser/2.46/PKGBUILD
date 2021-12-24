@@ -1,0 +1,29 @@
+pkgname="XML-Parser"
+pkgver='2.46'
+source=("https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz")
+md5sums=('80bb18a8e6240fcf7ec2f7b57601c170')
+install=XML-Parser.install
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+
+#prepare() {
+#}
+
+build() {
+cd "${pkgname}-${pkgver}"
+/bin/perl Makefile.PL
+make
+}
+
+check() {
+cd "${pkgname}-${pkgver}"
+make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
