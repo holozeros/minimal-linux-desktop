@@ -107,6 +107,7 @@ GDBM
 Gperf
 Expat
 Inetutils
+db
 Perl
 XML::Parser
 Intltool
