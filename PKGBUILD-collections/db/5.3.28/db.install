@@ -1,0 +1,11 @@
+post_install() {
+rm -rf /usr/src/db/5.3.28/pkg
+rm -rf /usr/src/db/5.3.28/src
+rm -v /usr/src/db/5.3.28/db-5.3.28.tar.gz
+rm -rf /docs
+mv -v /usr/src/db/5.3.28/db-5.3.28-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+      chown -v -R root:root               \
+      ${pkgdir}/bin/db_*                  \
+      ${pkgdir}/include/db{,_185,_cxx}.h  \
+      ${pkgdir}/lib/libdb*.{so,la}
+}
