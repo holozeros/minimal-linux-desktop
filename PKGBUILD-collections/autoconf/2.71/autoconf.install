@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/autoconf/2.71/pkg
+rm -rf /usr/src/autoconf/2.71/src
+rm -v /usr/src/autoconf/2.71/autoconf-2.71.tar.xz
+mv -v /usr/src/autoconf/2.71/autoconf-2.71-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
