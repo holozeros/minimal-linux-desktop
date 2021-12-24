@@ -1,0 +1,35 @@
+pkgname="db"
+pkgver='5.3.28'
+source=("https://anduin.linuxfromscratch.org/BLFS/bdb/db-5.3.28.tar.gz")
+md5sums=('b99454564d5b4479750567031d66fe24')
+install=db.install
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+
+prepare() {
+cd "${pkgname}-${pkgver}"
+sed -i 's/\(__atomic_compare_exchange\)/\1_db/' src/dbinc/atomic.h
+}
+
+build() {
+cd "${pkgname}-${pkgver}/build_unix"
+../dist/configure --prefix=/   \
+            --enable-compat185 \
+            --enable-dbm       \
+            --disable-static   \
+            --enable-cxx 
+make
+}
+
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+
+package() {
+    cd "${pkgname}-${pkgver}/build_unix"
+    make DESTDIR=${pkgdir} install
+}
