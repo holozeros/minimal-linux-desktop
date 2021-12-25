@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/elfutils/0.185/pkg
+rm -rf /usr/src/elfutils/0.185/src
+rm -v /usr/src/elfutils/0.185/elfutils-0.185.tar.bz2
+mv -v /usr/src/elfutils/0.185/elfutils-0.185-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
