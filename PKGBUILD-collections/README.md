@@ -18,14 +18,14 @@ Chroot into $LFS
     if [ -h $LFS/dev/shm ]; then
         mkdir -pv $LFS/$(readlink $LFS/dev/shm)
     fi
-    chroot "$LFS" /tools/bin/env -i       \
+    chroot "$LFS" /bin/env -i       \
         HOME=/root                  \
         TERM="$TERM"                \
         PS1='(chroot)\u:\w\$ '      \
         MAKEFLAGS="-j10"            \
-        PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
-        /tools/bin/bash --login +h
-    umount -lR /mnt/lfs/*
+        PATH=/bin:/sbin:/usr/bin:/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
+        /bin/bash --login +h
+    umount -lR /lfs/*
 
 Change to a local user(e.g lfs)
 
