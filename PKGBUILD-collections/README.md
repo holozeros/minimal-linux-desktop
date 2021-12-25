@@ -1,6 +1,5 @@
 # Making PKGBUILD
- Must already done the [building chroot environment](../Building%20chroot%20environment.md) and then mounted its partition to /mnt/lfs.
- 
+Must have already built the chroot environment and then mounting its partition on / mnt / lfs. 
 As root user on host
 
     su -
