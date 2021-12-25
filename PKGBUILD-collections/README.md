@@ -41,12 +41,12 @@ Almost tarball_name_format have been looks like
 "package name"-"version".tar.xz.
 ````
 If host is desktop environment, you are able to refer to editor, browser and then needed text do copy&paste to nano on the terminal. When you are modified on Nano, refer to LFS-11.0 book or the instruction of the packages of building chroot environent and archlinux's original PKGBUILD..and other infomations on web.
-Following values of variables refer to file name of the target source-tar-ball. 
+The following variables refer to file name of the target source_tar_ball. 
 
         pkgname=' '
         pkgver=' '
 
-A propary value of these variables refer to the ArchLinux's PKGBULD or LFS book that corresponds to the target source-tarball. 
+Refer to the Arch Linux PKGBULD or LFS workbook description for the target source-tarball to determine the following variables: 
 
         pkgrel=
         pkgdesc=
@@ -58,7 +58,7 @@ A propary value of these variables refer to the ArchLinux's PKGBULD or LFS book 
         md5sums=(' ')
 
  
-This variable is constant here.
+This variable is almost constant here.
 
         arch=('x86_64')
 
