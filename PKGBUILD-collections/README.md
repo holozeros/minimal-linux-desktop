@@ -40,7 +40,7 @@ Almost tarball_name_format have been looks like
 ```
 "package name"-"version".tar.xz.
 ````
-If the host OS is a desktop environment, you can copy and paste the required text to the nano of the terminal while browsing the WEB with a browser. The following variables refer to file name of the target source_tar_ball. 
+If the host OS is a desktop environment, you can copy and paste any required texts to an editor while browsing the WEB with a browser. The following variables refer to file name of the target source_tar_ball. 
 
         pkgname=' '
         pkgver=' '
