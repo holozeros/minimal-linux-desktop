@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/openssl/1.1.1l/pkg
+rm -rf /usr/src/openssl/1.1.1l/src
+rm -v /usr/src/openssl/1.1.1l/openssl-1.1.1l.tar.gz
+mv -v /usr/src/openssl/1.1.1l/openssl-1.1.1l-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
