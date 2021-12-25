@@ -1,0 +1,31 @@
+pkgname="coreutils"
+pkgver='8.32'
+source=("https://ftp.gnu.org/gnu/coreutils/coreutils-8.32.tar.xz")
+md5sums=('022042695b7d5bcf1a93559a9735e668')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+prepare() {
+cd "${pkgname}-${pkgver}"
+patch -Np1 -i ../../coreutils-8.32-i18n-1.patch
+}
+build() {
+cd "${pkgname}-${pkgver}"
+/bin/autoreconf -fiv
+FORCE_UNSAFE_CONFIGURE=1 ./configure \
+            --prefix=/               \
+            --enable-no-install-program=kill,uptime
+make
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+    mv -v ${pkgdir}/bin/chroot ${pkgdir}/sbin/chroot
+}
