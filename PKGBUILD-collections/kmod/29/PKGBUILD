@@ -1,0 +1,35 @@
+pkgname="kmod"
+pkgver='29'
+source=("https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-29.tar.xz")
+md5sums=('e81e63acd80697d001c8d85c1acb38a0')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/             \
+            --sysconfdir=/etc      \
+            --with-xz              \
+            --with-zstd            \
+            --with-zlib
+make
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+mkdir -p ${pkgdir}/usr/{bin,sbin}
+for target in depmod insmod modinfo modprobe rmmod; do
+  ln -sfv ..${pkgdir}/bin/kmod ${pkgdir}/usr/sbin/$target
+done
+
+ln -sfv kmod ${pkgdir}/usr/bin/lsmod
+}
