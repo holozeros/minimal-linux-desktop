@@ -40,8 +40,7 @@ Almost tarball_name_format have been looks like
 ```
 "package name"-"version".tar.xz.
 ````
-If host is desktop environment, you are able to refer to editor, browser and then needed text do copy&paste to nano on the terminal. When you are modified on Nano, refer to LFS-11.0 book or the instruction of the packages of building chroot environent and archlinux's original PKGBUILD..and other infomations on web.
-The following variables refer to file name of the target source_tar_ball. 
+If the host OS is a desktop environment, you can copy and paste the required text to the nano of the terminal while browsing the WEB with a browser. The following variables refer to file name of the target source_tar_ball. 
 
         pkgname=' '
         pkgver=' '
