@@ -1,0 +1,29 @@
+pkgname="elfutils"
+pkgver='0.185'
+source=("https://sourceware.org/ftp/elfutils/0.185/elfutils-0.185.tar.bz2")
+md5sums=('2b6e94c2eebc1f2194173e31bca9396e')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/                   \
+            --disable-debuginfod         \
+            --enable-libdebuginfod=dummy
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+    install -vm644 config/libelf.pc ${pkgdir}/lib/pkgconfig
+    rm ${pkgdir}/lib/libelf.a
+}
