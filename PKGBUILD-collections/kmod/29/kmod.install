@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/kmod/29/pkg
+rm -rf /usr/src/kmod/29/src
+rm -v /usr/src/kmod/29/kmod-29.tar.xz
+mv -v /usr/src/kmod/29/kmod-29-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
