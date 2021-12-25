@@ -1,0 +1,31 @@
+pkgname="openssl"
+pkgver="1.1.1l"
+source=("https://www.openssl.org/source/openssl-1.1.1l.tar.gz")
+md5sums=('ac0d4387f3ba0ad741b0580dd45f6ff3')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./config --prefix=/            \
+         --openssldir=/etc/ssl \
+         --libdir=lib          \
+         shared                \
+         zlib-dynamic
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make test 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
+    make MANSUFFIX=ssl DESTDIR=${pkgdir} install
+    mv -v ${pkgdir}/share/doc/openssl ${pkgdir}/share/doc/openssl-1.1.1l
+}
