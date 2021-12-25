@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/automake/1.16.4/pkg
+rm -rf /usr/src/automake/1.16.4/src
+rm -v /usr/src/automake/1.16.4/automake-1.16.4.tar.xz
+mv -v /usr/src/automake/1.16.4/automake-1.16.4-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg"
+}
