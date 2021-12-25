@@ -1,6 +1,6 @@
 # Making PKGBUILD
 Must have already built the chroot environment and then mounting its partition on / mnt / lfs. 
-As root user on host
+As root on host:
 
     su -
     export LFS=/mnt/lfs
@@ -18,13 +18,13 @@ Chroot into $LFS
     if [ -h $LFS/dev/shm ]; then
         mkdir -pv $LFS/$(readlink $LFS/dev/shm)
     fi
-    chroot "$LFS" /bin/env -i       \
+    chroot "$LFS" /tools/bin/env -i       \
         HOME=/root                  \
         TERM="$TERM"                \
         PS1='(chroot)\u:\w\$ '      \
         MAKEFLAGS="-j10"            \
-        PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin:/usr/bin:/usr/sbin \
-        /bin/bash --login +h
+        PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin \
+        /tools/bin/bash --login +h
     umount -lR /mnt/lfs/*
 
 Change to a local user(e.g lfs)
