@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/coreutils/8.32/pkg
+rm -rf /usr/src/coreutils/8.32/src
+rm -v /usr/src/coreutils/8.32/coreutils-8.32.tar.xz
+mv -v /usr/src/coreutils/8.32/coreutils-8.32-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
