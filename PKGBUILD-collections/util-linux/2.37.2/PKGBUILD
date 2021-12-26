@@ -12,8 +12,9 @@ license=('')
 #}
 build() {
 cd "${pkgname}-${pkgver}"
-./configure ADJTIME_PATH=/var/lib/hwclock/adjtime   \
-            --libdir=/lib    \
+./configure --prefix=/           \
+            ADJTIME_PATH=/var/lib/hwclock/adjtime   \
+            --libdir=/lib        \
             --disable-chfn-chsh  \
             --disable-login      \
             --disable-nologin    \
