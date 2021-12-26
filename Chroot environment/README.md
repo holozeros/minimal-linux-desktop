@@ -287,6 +287,8 @@ In the chroot environment as root.
 ```
 mkdir -pv /{boot,sbin}
 mkdir -v /lib/locale
+mkdir -pv /lib/udev/rules.d
+mkdir -pv /etc/udev/rules.d
 ```
 ## Temporary toolchain settings
 The following links will be overridden by the main system installation. 
