@@ -1,0 +1,28 @@
+pkgname="iproute2"
+pkgver='5.13.0'
+source=("https://www.kernel.org/pub/linux/utils/net/iproute2/iproute2-5.13.0.tar.xz")
+md5sums=('15fc3786303a173a14e180afe4cd2ecd')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+prepare() {
+cd "${pkgname}-${pkgver}"
+sed -i /ARPD/d Makefile
+rm -fv man/man8/arpd.8
+}
+build() {
+cd "${pkgname}-${pkgver}"
+sed -i 's/.m_ipt.o//' tc/Makefile
+make
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make SBINDIR=/usr/sbin DESTDIR=${pkgdir} install
+}
