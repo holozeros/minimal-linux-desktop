@@ -1,0 +1,7 @@
+post_install() {
+rm -rf /usr/src/udev-lfs/20171102/pkg
+rm -rf /usr/src/udev-lfs/20171102/src
+rm -v /usr/src/udev-lfs/20171102/udev-lfs-20171102.tar.xz
+mv -v /usr/src/udev-lfs/20171102/udev-lfs-20171102-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+/usr/sbin/udevadm hwdb --update
+}
