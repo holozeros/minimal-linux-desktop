@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/e2fsprogs/1.46.4/pkg
+rm -rf /usr/src/e2fsprogs/1.46.4/src
+rm -v /usr/src/e2fsprogs/1.46.4/e2fsprogs-1.46.4.tar.gz
+mv -v /usr/src/e2fsprogs/1.46.4/e2fsprogs-1.46.4-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
