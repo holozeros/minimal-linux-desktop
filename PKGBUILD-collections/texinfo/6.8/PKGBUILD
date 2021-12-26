@@ -1,0 +1,28 @@
+pkgname="texinfo"
+pkgver='6.8'
+source=("https://ftp.gnu.org/gnu/texinfo/texinfo-6.8.tar.xz")
+md5sums=('a91b404e30561a5df803e6eb3a53be71')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/
+sed -e 's/__attribute_nonnull__/__nonnull/' \
+    -i gnulib/lib/malloc/dynarray-skeleton.c
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+    make TEXMF=/share/texmf DESTDIR=${pkgdir} install-tex
+}
