@@ -137,6 +137,8 @@ Patch
 Tar
 Texinfo
 nano
+eudev
+udev-lfs
 Procps-ng
 Util-linux
 E2fsprogs
