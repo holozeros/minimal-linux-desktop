@@ -1,0 +1,29 @@
+pkgname="eudev"
+pkgver='3.2.10'
+source=("https://dev.gentoo.org/~blueness/eudev/eudev-3.2.10.tar.gz")
+md5sums=('60b135a189523f333cea5f71a3345c8d')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/usr           \
+            --bindir=/usr/sbin      \
+            --sysconfdir=/etc       \
+            --enable-manpages       \
+            --disable-static
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
