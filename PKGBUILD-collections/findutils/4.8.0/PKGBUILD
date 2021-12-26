@@ -1,0 +1,25 @@
+pkgname="findutils"
+pkgver='4.8.0'
+source=("https://ftp.gnu.org/gnu/findutils/findutils-4.8.0.tar.xz")
+md5sums=('eeefe2e6380931a77dfa6d9350b43186')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/  --localstatedir=/var/lib/locate
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
