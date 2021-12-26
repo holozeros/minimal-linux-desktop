@@ -1,0 +1,25 @@
+pkgname="make"
+pkgver='4.3'
+source=("https://ftp.gnu.org/gnu/make/make-4.3.tar.gz")
+md5sums=('fc7a67ea86ace13195b0bce683fd4469')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
