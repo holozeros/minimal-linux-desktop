@@ -1,0 +1,29 @@
+pkgname="kbd"
+pkgver='2.4.0'
+source=("https://www.kernel.org/pub/linux/utils/kbd/kbd-2.4.0.tar.xz")
+md5sums=('3cac5be0096fcf7b32dcbd3c53831380')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+prepare() {
+cd "${pkgname}-${pkgver}"
+patch -Np1 -i ../../kbd-2.4.0-backspace-1.patch
+sed -i '/RESIZECONS_PROGS=/s/yes/no/' configure
+sed -i 's/resizecons.8 //' docs/man/man8/Makefile.in
+}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/  --disable-vlock
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
