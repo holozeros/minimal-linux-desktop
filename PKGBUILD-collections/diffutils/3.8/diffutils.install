@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/diffutils/3.8/pkg
+rm -rf /usr/src/diffutils/3.8/src
+rm -v /usr/src/diffutils/3.8/diffutils-3.8.tar.xz
+mv -v /usr/src/diffutils/3.8/diffutils-3.8-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
