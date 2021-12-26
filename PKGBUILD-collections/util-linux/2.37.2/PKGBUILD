@@ -1,0 +1,38 @@
+pkgname="util-linux"
+pkgver='2.37.2'
+source=("https://www.kernel.org/pub/linux/utils/util-linux/v2.37/util-linux-2.37.2.tar.xz")
+md5sums=('d659bf7cd417d93dc609872f6334b019')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure ADJTIME_PATH=/var/lib/hwclock/adjtime   \
+            --libdir=/lib    \
+            --disable-chfn-chsh  \
+            --disable-login      \
+            --disable-nologin    \
+            --disable-su         \
+            --disable-setpriv    \
+            --disable-runuser    \
+            --disable-pylibmount \
+            --disable-static     \
+            --without-python     \
+            --without-systemd    \
+            --without-systemdsystemunitdir \
+            runstatedir=/run
+make
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make -k check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
