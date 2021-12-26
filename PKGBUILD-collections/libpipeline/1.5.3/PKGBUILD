@@ -1,0 +1,25 @@
+pkgname="libpipeline"
+pkgver='1.5.3'
+source=("https://download.savannah.gnu.org/releases/libpipeline/libpipeline-1.5.3.tar.gz")
+md5sums=('dad443d0911cf9f0f1bd90a334bc9004')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
