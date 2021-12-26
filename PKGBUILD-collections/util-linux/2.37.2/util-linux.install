@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/util-linux/2.37.2/pkg
+rm -rf /usr/src/util-linux/2.37.2/src
+rm -v /usr/src/util-linux/2.37.2/util-linux-2.37.2.tar.xz
+mv -v /usr/src/util-linux/2.37.2/util-linux-2.37.2-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
