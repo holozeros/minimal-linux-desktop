@@ -1,0 +1,34 @@
+pkgname="e2fsprogs"
+pkgver='1.46.4'
+source=("https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.46.4/e2fsprogs-1.46.4.tar.gz")
+md5sums=('128f5b0f0746b28d1e3ca7e263c57094')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+mkdir -v build
+cd       build
+../configure --prefix=/              \
+             --sysconfdir=/etc       \
+             --enable-elf-shlibs     \
+             --disable-libblkid      \
+             --disable-libuuid       \
+             --disable-uuidd         \
+             --disable-fsck
+make
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}/build"
+    make DESTDIR=${pkgdir} install
+    rm -fv ${pkgdir}/lib/{libcom_err,libe2p,libext2fs,libss}.a
+}
