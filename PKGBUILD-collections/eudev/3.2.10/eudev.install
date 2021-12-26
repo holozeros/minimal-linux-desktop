@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/eudev/3.2.10/pkg
+rm -rf /usr/src/eudev/3.2.10/src
+rm -v /usr/src/eudev/3.2.10/eudev-3.2.10.tar.gz
+mv -v /usr/src/eudev/3.2.10/eudev-3.2.10-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
