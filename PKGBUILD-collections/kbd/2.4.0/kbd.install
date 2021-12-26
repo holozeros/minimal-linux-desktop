@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/kbd/2.4.0/pkg
+rm -rf /usr/src/kbd/2.4.0/src
+rm -v /usr/src/kbd/2.4.0/kbd-2.4.0.tar.xz
+mv -v /usr/src/kbd/2.4.0/kbd-2.4.0-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
