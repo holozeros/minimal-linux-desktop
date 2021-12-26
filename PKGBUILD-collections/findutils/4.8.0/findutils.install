@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/findutils/4.8.0/pkg
+rm -rf /usr/src/findutils/4.8.0/src
+rm -v /usr/src/findutils/4.8.0/findutils-4.8.0.tar.xz
+mv -v /usr/src/findutils/4.8.0/findutils-4.8.0-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
