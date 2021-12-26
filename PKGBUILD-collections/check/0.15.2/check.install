@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/check/0.15.2/pkg
+rm -rf /usr/src/check/0.15.2/src
+rm -v /usr/src/check/0.15.2/check-0.15.2.tar.gz
+mv -v /usr/src/check/0.15.2/check-0.15.2-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
