@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/tar/1.34/pkg
+rm -rf /usr/src/tar/1.34/src
+rm -v /usr/src/tar/1.34/tar-1.34.tar.xz
+mv -v /usr/src/tar/1.34/tar-1.34-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
