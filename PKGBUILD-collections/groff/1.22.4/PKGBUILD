@@ -1,0 +1,25 @@
+pkgname="groff"
+pkgver='1.22.4'
+source=("https://ftp.gnu.org/gnu/groff/groff-1.22.4.tar.gz")
+md5sums=('08fb04335e2f5e73f23ea4c3adbf0c5f')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+PAGE=letter ./configure --prefix=/
+make -j1
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
