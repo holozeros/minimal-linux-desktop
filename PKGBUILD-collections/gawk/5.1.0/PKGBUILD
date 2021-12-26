@@ -1,0 +1,27 @@
+pkgname="gawk"
+pkgver='5.1.0'
+source=("https://ftp.gnu.org/gnu/gawk/gawk-5.1.0.tar.xz")
+md5sums=('8470c34eeecc41c1aa0c5d89e630df50')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+prepare() {
+cd "${pkgname}-${pkgver}"
+sed -i 's/extras//' Makefile.in
+}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
