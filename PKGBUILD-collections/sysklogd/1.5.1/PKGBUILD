@@ -1,0 +1,30 @@
+pkgname="sysklogd"
+pkgver='1.5.1'
+source=("https://www.infodrom.org/projects/sysklogd/download/sysklogd-1.5.1.tar.gz")
+md5sums=('c70599ab0d037fde724f7210c2c8d7f8')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+prepare() {
+cd "${pkgname}-${pkgver}"
+sed -i '/Error loading kernel symbols/{n;n;d}' ksym_mod.c
+sed -i 's/union wait/int/' syslogd.c
+}
+build() {
+cd "${pkgname}-${pkgver}"
+make
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}"
+    mkdir ${pkgdir}/{sbin,lib,share}
+    mkdir ${pkgdir}/share/man
+    mkdir ${pkgdir}/share/man/{man5,man8}
+    make BINDIR=${pkgdir}/sbin MANDIR=${pkgdir}/share/man LIBDIR=${pkgdir}/lib install
+}
