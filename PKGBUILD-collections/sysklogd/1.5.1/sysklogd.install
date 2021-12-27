@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/sysklogd/1.5.1/pkg
+rm -rf /usr/src/sysklogd/1.5.1/src
+rm -v /usr/src/sysklogd/1.5.1/sysklogd-1.5.1.tar.gz
+mv -v /usr/src/sysklogd/1.5.1/sysklogd-1.5.1-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
