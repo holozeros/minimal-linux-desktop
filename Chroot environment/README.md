@@ -385,8 +385,8 @@ Ryzen2700x(8 core) takes about xx minuits.
 In the chroot environment as root.
 ```
 cd /sources
-chmod +x build-ABS.sh
-./build-ABS.sh
+chmod +x abs-build.sh
+./abs-build.sh
 ```
 ## Pacman settings
 In the chroot environment as root.
