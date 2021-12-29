@@ -229,7 +229,6 @@ On the host as root.
 rm -rf /tools/share/{info,man,doc}/*
 rm -rf /tools/usr/share/{info,man,doc}/*
 find /tools/{lib,libexec} -name \*.la -delete
-rm -rf /tools
 ```
 ## Backup
 In the chroot environmennt as root.
