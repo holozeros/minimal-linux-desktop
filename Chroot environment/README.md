@@ -278,7 +278,7 @@ chroot "$LFS" /tools/bin/env -i \
 umount -v $LFS/dev{/pts,}
 umount -v $LFS/{sys,proc,run}
 EOF
-
+chmod +x chroot-1.sh
 ./chroot-1.sh
 ```
 ## Creating dir
