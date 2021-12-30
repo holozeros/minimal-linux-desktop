@@ -89,16 +89,13 @@ MPFR
 MPC
 Attr
 Acl
-Shadow
-GCC
-	LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 makepkg
+Gettext
 Pkg-config
 Ncurses
 Libcap
 Sed
 Psmisc
-Iana-Etc
-Bison
+ison
 Flex
 Grep
 Bash
@@ -106,21 +103,12 @@ Libtool
 GDBM
 Gperf
 Expat
-Inetutils
-db
-Perl
-XML::Parser
+BInetutils
 Intltool
 Autoconf
 Automake
-Kmod
-Gettext
 Libelf (from Elfutils)
 Libffi
-OpenSSL
-Python
-Ninja
-Meson
 Coreutils
 Check
 Diffutils
@@ -129,10 +117,6 @@ Findutils
 Groff
 Less
 Gzip
-IPRoute2
-Kbd
-Libpipeline
-Make
 Patch
 Tar
 Texinfo
@@ -144,7 +128,24 @@ Util-linux
 E2fsprogs
 Sysklogd
 Sysvinit
-Eudev
+
+Shadow
+GCC
+	LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 makepkg
+Iana-Etc
+db
+Perl
+XML::Parser
+Kmod
+
+OpenSSL
+Python
+Ninja
+Meson
+IPRoute2
+Kbd
+Libpipeline
+Make
 ```
 gpu_driver and xfce4 see:[]()
 ### Prepare and settings the packge manager
