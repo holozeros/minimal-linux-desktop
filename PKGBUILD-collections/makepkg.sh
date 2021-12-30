@@ -36,7 +36,7 @@ post_install() {
 rm -rf /usr/src/${pkgname}/${pkgver}/pkg
 rm -rf /usr/src/${pkgname}/${pkgver}/src
 rm -v /usr/src/${pkgname}/${pkgver}/${pkgname}-${pkgver}.tar.z
-mv -v /usr/src/${pkgname}/${pkgver}/${pkgname}-${pkgver}-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg"
+mv -v /usr/src/${pkgname}/${pkgver}/${pkgname}-${pkgver}-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
 }
 EOF
 sed -e "s/\${pkgname}/$pkgname/g" -i "${pkgname}.install"
