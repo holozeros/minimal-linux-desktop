@@ -389,9 +389,6 @@ chmod +x abs-build.sh
 ./abs-build.sh
 ```
 ```
-./chroot-1.sh
-```
-```
 /tools/bin/cat > ~/.bash_profile << "EOF"
 exec /tools/bin/env -i HOME=$HOME TERM=$TERM PS1='(chroot)\u:\w\$ ' /tools/bin/bash
 EOF
