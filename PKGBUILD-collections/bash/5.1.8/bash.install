@@ -1,0 +1,7 @@
+post_install() {
+rm -rf /usr/src/bash/5.1.8/pkg
+rm -rf /usr/src/bash/5.1.8/src
+rm -v /usr/src/bash/5.1.8/bash-5.1.8.tar.gz
+mv -v /usr/src/bash/5.1.8/bash-5.1.8-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+exec /bin/bash --login +h
+}
