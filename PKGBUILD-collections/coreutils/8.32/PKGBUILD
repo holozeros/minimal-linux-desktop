@@ -27,5 +27,6 @@ make
 package() {
     cd "${pkgname}-${pkgver}"
     make DESTDIR=${pkgdir} install
+    mkdir ${pkgdir}/sbin
     mv -v ${pkgdir}/bin/chroot ${pkgdir}/sbin/chroot
 }
