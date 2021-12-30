@@ -388,6 +388,28 @@ cd /sources
 chmod +x abs-build.sh
 ./abs-build.sh
 ```
+```
+./chroot-1.sh
+```
+```
+/tools/bin/cat > ~/.bash_profile << "EOF"
+exec /tools/bin/env -i HOME=$HOME TERM=$TERM PS1='(chroot)\u:\w\$ ' /tools/bin/bash
+EOF
+```
+```
+/tools/bin/cat > ~/.bashrc << "EOF"
+set +h
+umask 022
+LC_ALL=POSIX
+MAKEFLAGS="-j$(nproc)"
+LFS_TGT=$(uname -m)-pc-linux-gnu
+PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin
+export LC_ALL LFS_TGT PATH MAKEFLAGS
+EOF
+```
+```
+source ~/.bash_profile
+```
 ## Pacman settings
 In the chroot environment as root.
 ```
@@ -509,10 +531,11 @@ On the host (After complete building the chroot environment)._
 ```
 su -
 strip --strip-debug /tools/lib/*
-/usr/bin/strip --strip-unneeded /tools/{,s}bin/*
+strip --strip-unneeded /tools/{,s}bin/*
 ```
 ```
 rm -rf /tools/share/{info,man,doc}/*
+rm -rf /tools/{man,doc}
 rm -rf /tools/usr/share/{info,man,doc}/*
 rm -rf /tools/x86_64-lfs-linux-gnu
 find /tools/{lib,libexec} -name \*.la -delete
