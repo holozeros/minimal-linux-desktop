@@ -1,0 +1,28 @@
+pkgname="bash"
+pkgver='5.1.8'
+source=("https://ftp.gnu.org/gnu/bash/bash-5.1.8.tar.gz")
+md5sums=('23eee6195b47318b9fd878e590ccb38c')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/                     \
+            --docdir=/share/doc/bash-5.1.8 \
+            --without-bash-malloc          \
+            --with-installed-readline
+make
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
