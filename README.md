@@ -99,11 +99,12 @@ Bison
 Flex
 Grep
 Bash
+Shadow
 Libtool
 GDBM
 Gperf
 Expat
-BInetutils
+Inetutils
 Intltool
 Autoconf
 Automake
@@ -129,7 +130,7 @@ E2fsprogs
 Sysklogd
 Sysvinit
 
-Shadow
+
 libunistring
 GCC
 	LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 makepkg
