@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/libxml2/2.9.12/pkg
+rm -rf /usr/src/libxml2/2.9.12/src
+rm -v /usr/src/libxml2/2.9.12/libxml2-2.9.12.tar.gz
+mv -v /usr/src/libxml2/2.9.12/libxml2-2.9.12-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
