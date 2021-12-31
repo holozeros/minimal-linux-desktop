@@ -3,4 +3,5 @@ rm -rf /usr/src/ncurses/6.2/pkg
 rm -rf /usr/src/ncurses/6.2/src
 rm -v /usr/src/ncurses/6.2/ncurses-6.2.tar.gz
 mv -v /usr/src/ncurses/6.2/ncurses-6.2-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+cd /include && ln -s /include/ncurses/* .
 }
