@@ -1,9 +1,0 @@
-post_install() {
-
-rm -rf /usr/src/iana-etc/20211025/pkg
-rm -rf /usr/src/iana-etc/20211025/src
-rm /usr/src/iana-etc/20211025/service-names-port-numbers-20211025.xml
-rm /usr/src/iana-etc/20211025/protocol-numbers-20210718.xml
-mv /usr/src/iana-etc/20211025/iana-etc-20211025-1-any.pkg.tar.gz /var/cache/pacman/pkg
-
-}
