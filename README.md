@@ -200,7 +200,12 @@ Gzip
 Patch
 Tar
 Texinfo
+IPRoute2
+Kbd
+Libpipeline
+Make
 nano
+Kmod
 eudev
 udev-lfs
 Procps-ng
@@ -213,21 +218,17 @@ Sysvinit
 libunistring
 libxml2
 GCC
-	LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 makepkg
+	LC_ALL=en_US.UTF-8 makepkg
 Iana-Etc
 db
 Perl
 XML::Parser
-Kmod
 
 OpenSSL
 Python
 Ninja
 Meson
-IPRoute2
-Kbd
-Libpipeline
-Make
+
 ```
 gpu_driver and xfce4 see:[]()
 ### Prepare and settings the packge manager
