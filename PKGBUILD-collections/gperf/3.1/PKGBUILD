@@ -1,0 +1,25 @@
+pkgname="gperf"
+pkgver='3.1'
+source=("https://ftp.gnu.org/gnu/gperf/gperf-3.1.tar.gz")
+md5sums=('9e251c0a618ad0824b51117d5d9db87e')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/  --docdir=/share/doc/gperf-3.1
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make -j1 check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
