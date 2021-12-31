@@ -26,6 +26,8 @@ build() {
 cd "${srcdir}/${pkgname}-${pkgver}"
 mkdir -v build
 cd       build
+unset CFLAGS
+unset CPPFLAGS
 ../configure --prefix=/               \
              LD=ld                    \
              --enable-languages=c,c++ \
