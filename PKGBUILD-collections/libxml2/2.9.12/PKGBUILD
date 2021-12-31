@@ -1,0 +1,28 @@
+pkgname="libxml2"
+pkgver='2.9.12'
+source=("http://xmlsoft.org/sources/libxml2-2.9.12.tar.gz")
+md5sums=('f433a39be087a9f0b197eb2307ad9f75')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/       \
+            --disable-static \
+            --with-history   \
+            --with-python=/bin/python3 &&
+make
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
