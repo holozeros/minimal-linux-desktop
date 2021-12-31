@@ -74,7 +74,7 @@ tzdata
 	locale.gen
 		en_US.UTF-8 UTF-8
 	locale-gen
-
+	localedef -f UTF-8 -i en_US en_US
 Zlib
 Bzip2
 Xz
