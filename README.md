@@ -66,7 +66,6 @@ grep found dummy.log
 rm -v dummy.c a.out dummy.log
 ```
 ### Make and install the essential custum packages for bootable system
-Order to the following for satisfy the dependencies.
 ```
 Linux-api-headers
 Glibc
@@ -112,8 +111,10 @@ done < $LOCALEGEN
 echo "Generation complete."
 EOF
 ```
-        locale-gen
-	localedef -f UTF-8 -i en_US en_US
+```
+locale-gen
+localedef -f UTF-8 -i en_US en_US
+```
 ```
 cat > /tools/etc/locale-gen << "EOF"
 #!/bin/sh
@@ -152,8 +153,10 @@ done < $LOCALEGEN
 echo "Generation complete."
 EOF
 ```
-        /tools/etc/locale-gen
-	/tools/bin/localedef -f UTF-8 -i en_US en_US
+```
+/tools/etc/locale-gen
+/tools/bin/localedef -f UTF-8 -i en_US en_US
+```
 ```
 Zlib
 Bzip2
