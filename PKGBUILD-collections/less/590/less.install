@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/less/590/pkg
+rm -rf /usr/src/less/590/src
+rm -v /usr/src/less/590/less-590.tar.gz
+mv -v /usr/src/less/590/less-590-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
