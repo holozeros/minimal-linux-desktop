@@ -74,6 +74,7 @@ tzdata
 	nano locale.gen
         en_US.UTF-8 UTF-8
 ```
+```
 cat > /etc/locale.gen << "EOF"
 #!/bin/sh
 set -e
@@ -153,7 +154,7 @@ EOF
 ```
         /tools/etc/locale-gen
 	/tools/bin/localedef -f UTF-8 -i en_US en_US
-
+```
 Zlib
 Bzip2
 Xz
