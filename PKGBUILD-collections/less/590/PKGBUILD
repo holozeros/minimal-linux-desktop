@@ -1,0 +1,25 @@
+pkgname="less"
+pkgver='590'
+source=("https://www.greenwoodsoftware.com/less/less-590.tar.gz")
+md5sums=('f029087448357812fba450091a1172ab')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/  --sysconfdir=/etc
+make
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
