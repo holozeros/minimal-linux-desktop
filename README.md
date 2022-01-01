@@ -75,7 +75,7 @@ tzdata
         en_US.UTF-8 UTF-8
 ```
 ```
-cat > /etc/locale.gen << "EOF"
+cat > /etc/locale-gen << "EOF"
 #!/bin/sh
 set -e
 LOCALEGEN=/etc/locale.gen
@@ -115,7 +115,7 @@ EOF
         locale-gen
 	localedef -f UTF-8 -i en_US en_US
 ```
-cat > /tools/etc/locale.gen << "EOF"
+cat > /tools/etc/locale-gen << "EOF"
 #!/bin/sh
 set -e
 LOCALEGEN=/tools/etc/locale.gen
@@ -126,7 +126,7 @@ fi
 [ -f $LOCALEGEN -a -s $LOCALEGEN ] || exit 0;
 # Remove all old locale dir and locale-archive before generating new
 # locale data.
-rm -rf /lib/locale/* || true
+rm -rf /tools/lib/locale/* || true
 umask 022
 is_entry_ok() {
   if [ -n "$locale" -a -n "$charset" ] ; then
