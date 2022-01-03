@@ -23,8 +23,11 @@ make
 #}
 package() {
     cd "${pkgname}-${pkgver}"
-    mkdir ${pkgdir}/{sbin,lib,share}
-    mkdir ${pkgdir}/share/man
-    mkdir ${pkgdir}/share/man/{man5,man8}
-    make BINDIR=${pkgdir}/sbin MANDIR=${pkgdir}/share/man LIBDIR=${pkgdir}/lib /bin/install
+    mkdir ${pkgdir}/sbin
+    mkdir -p ${pkgdir}/include/sysklogd
+    mkdir ${pkgdir}/share
+    mkdir -p ${pkgdir}/share/man/man5
+    mkdir ${pkgdir}/share/man/man8
+    make BINDIR="${pkgdir}/sbin" MANDIR="${pkgdir}/share/man" INCLUDEDIR="${pkgdir}/include" PREFIX="${pkgdir}" install
+    cp *.h ${pkgdir}/include/sysklogd
 }
