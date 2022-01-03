@@ -26,5 +26,5 @@ package() {
     mkdir ${pkgdir}/{sbin,lib,share}
     mkdir ${pkgdir}/share/man
     mkdir ${pkgdir}/share/man/{man5,man8}
-    make BINDIR=${pkgdir}/sbin MANDIR=${pkgdir}/share/man LIBDIR=${pkgdir}/lib install
+    make BINDIR=${pkgdir}/sbin MANDIR=${pkgdir}/share/man LIBDIR=${pkgdir}/lib /bin/install
 }
