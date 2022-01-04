@@ -312,6 +312,65 @@ pacman -U --force $pkgname-$pkgver.pkg.tar.zst
 ```
 ##### The --force directive is obsolete in later versions of Pacman 5.0. 
 
+# Syripping
+In chroot environment
+```save_lib="$(cd /lib; ls ld-linux*)
+             libc.so.6
+             libthread_db.so.1
+             libquadmath.so.0.0.0 
+             libstdc++.so.6.0.29
+             libitm.so.1.0.0 
+             libatomic.so.1.2.0" 
+
+cd /lib
+
+for LIB in $save_lib; do
+    objcopy --only-keep-debug $LIB $LIB.dbg
+    cp $LIB /tmp/$LIB
+    strip --strip-unneeded /tmp/$LIB
+    objcopy --add-gnu-debuglink=$LIB.dbg /tmp/$LIB
+    install -vm755 /tmp/$LIB /lib
+    rm /tmp/$LIB
+done
+
+online_bin="bash find strip"
+online_lib="libbfd-2.37.so
+            libhistory.so.8.1
+            libncursesw.so.6.2
+            libm.so.6
+            libreadline.so.8.1
+            libz.so.1.2.11
+            $(cd /lib; find libnss*.so* -type f)"
+
+for BIN in $online_bin; do
+    cp /bin/$BIN /tmp/$BIN
+    strip --strip-unneeded /tmp/$BIN
+    install -vm755 /tmp/$BIN /bin
+    rm /tmp/$BIN
+done
+
+for LIB in $online_lib; do
+    cp /lib/$LIB /tmp/$LIB
+    strip --strip-unneeded /tmp/$LIB
+    install -vm755 /tmp/$LIB /lib
+    rm /tmp/$LIB
+done
+
+for i in $(find /lib -type f -name \*.so* ! -name \*dbg) \
+         $(find /lib -type f -name \*.a)                 \
+         $(find /{bin,sbin,libexec} -type f); do
+    case "$online_bin $online_lib $save_lib" in
+        *$(basename $i)* ) 
+            ;;
+        * ) strip --strip-unneeded $i 
+            ;;
+    esac
+done
+
+unset BIN LIB save_lib online_bin online_lib
+
+```
+
 ## Prerequisites
 Host OS must pass version-check.sh of LFS-11.0 book. With a tiny mistake in build process can irreparably destroy the host system. Therefore, it is recommended to use a various Live-USB with persistence function which using Overlayfs as the host OS.
 ##### Refer to:e.g [Install_Arch_Linux_on_a_removable_medium](https://wiki.archlinux.org/title/Install_Arch_Linux_on_a_removable_medium)
