@@ -15,7 +15,8 @@ cd "${pkgname}-${pkgver}"
 #./autogen.sh
 ./configure --prefix=/ --with-rootprefix=/ \
 #            --libdir=/lib           \ 
-#            --bindir=/bin           \
+#            --sbindir=/bin          \
+#            --bindir=/sbin          \
 #            --sysconfdir=/etc       \
 #            --enable-manpages       \
 #            --disable-static
