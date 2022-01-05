@@ -12,11 +12,13 @@ license=('')
 #}
 build() {
 cd "${pkgname}-${pkgver}"
-./configure --prefix=/usr           \
-            --bindir=/usr/sbin      \
-            --sysconfdir=/etc       \
-            --enable-manpages       \
-            --disable-static
+#./autogen.sh
+./configure --prefix=/ --with-rootprefix=/ \
+#            --libdir=/lib           \ 
+#            --bindir=/bin           \
+#            --sysconfdir=/etc       \
+#            --enable-manpages       \
+#            --disable-static
 make
 }
 check() {
