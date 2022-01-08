@@ -1,0 +1,26 @@
+pkgname="make-ca"
+pkgver='1.7'
+source=("https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz")
+md5sums=('e0356f5ae5623f227a3f69b5e8848ec6')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+#build() {
+#cd "${pkgname}-${pkgver}"
+#./configure --prefix=/
+#make
+#}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make SBINDIR=/sbin MANDIR=/share/man LIBEXECDIR=/libexec  DESTDIR=${pkgdir} install
+    install -vdm755 ${pkgdir}/etc/ssl/local
+}
