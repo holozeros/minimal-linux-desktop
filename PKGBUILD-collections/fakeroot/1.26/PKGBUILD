@@ -1,0 +1,30 @@
+pkgname="fakeroot"
+pkgver='1.26'
+source=("http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.26.orig.tar.gz")
+md5sums=('cb1c68f2597f0a064232a841050eb6f2')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+ ./configure --prefix=/       \
+    --libdir=/lib/libfakeroot \
+    --disable-static          \
+    --with-ipc=sysv
+make
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+install -dm0755 ${pkgdir}/etc/ld.so.conf.d/
+echo '/lib/libfakeroot' > ${pkgdir}/etc/ld.so.conf.d/fakeroot.conf
+}
