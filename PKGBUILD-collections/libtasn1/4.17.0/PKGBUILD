@@ -1,0 +1,25 @@
+pkgname="libtasn1"
+pkgver='4.17.0'
+source=("https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.17.0.tar.gz")
+md5sums=('c46f6eb3bd1287031ae5d36465094402')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/  --disable-static
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
