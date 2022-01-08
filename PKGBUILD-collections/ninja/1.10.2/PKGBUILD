@@ -1,0 +1,38 @@
+pkgname="ninja"
+pkgver='1.10.2'
+source=("https://github.com/ninja-build/ninja/archive/v1.10.2/ninja-1.10.2.tar.gz")
+md5sums=('639f75bc2e3b19ab893eaf2c810d4eb4')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+prepare() {
+cd "${pkgname}-${pkgver}"
+export NINJAJOBS=16
+sed -i '/int Guess/a \
+  int   j = 0;\
+  char* jobs = getenv( "NINJAJOBS" );\
+  if ( jobs != NULL ) j = atoi( jobs );\
+  if ( j > 0 ) return j;\
+' src/ninja.cc
+}
+build() {
+cd "${pkgname}-${pkgver}"
+python3 configure.py --bootstrap
+}
+check() {
+cd "${pkgname}-${pkgver}"
+./ninja ninja_test
+./ninja_test --gtest_filter=-SubprocessTest.SetWithLots
+}
+package() {
+cd "${pkgname}-${pkgver}"
+mkdir "${pkgdir}/bin"
+mkdir -p "${pkgdir}/share/bash-completion/completions/ninja"
+mkdir -p "${pkgdir}/share/zsh/site-functions/_ninja"
+install -vm755 ninja "${pkgdir}/bin"
+install -vDm644 misc/bash-completion "${pkgdir}/share/bash-completion/completions/ninja"
+install -vDm644 misc/zsh-completion  "${pkgdir}/share/zsh/site-functions/_ninja"
+}
