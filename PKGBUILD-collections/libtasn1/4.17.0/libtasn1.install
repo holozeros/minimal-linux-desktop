@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/libtasn1/4.17.0/pkg
+rm -rf /usr/src/libtasn1/4.17.0/src
+rm -v /usr/src/libtasn1/4.17.0/libtasn1-4.17.0.tar.gz
+mv -v /usr/src/libtasn1/4.17.0/libtasn1-4.17.0-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
