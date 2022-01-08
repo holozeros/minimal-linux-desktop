@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/procps-ng/3.3.17/pkg
+rm -rf /usr/src/procps-ng/3.3.17/src
+rm -v /usr/src/procps-ng/3.3.17/procps-ng-3.3.17.tar.xz
+mv -v /usr/src/procps-ng/3.3.17/procps-ng-3.3.17-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
