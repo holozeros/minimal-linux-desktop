@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/perl/5.34.0/pkg
+rm -rf /usr/src/perl/5.34.0/src
+rm -v /usr/src/perl/5.34.0/perl-5.34.0.tar.xz
+mv -v /usr/src/perl/5.34.0/perl-5.34.0-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
