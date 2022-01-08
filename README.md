@@ -223,6 +223,7 @@ libunistring
 libxml2
 GCC
 	LC_ALL=en_US.UTF-8 makepkg
+
 Iana-Etc
 db
 Perl
@@ -233,6 +234,9 @@ Python
 Ninja
 Meson
 
+libtasn1
+make-ca
+p11-kit
 ```
 gpu_driver and xfce4 see:[]()
 ### Prepare and settings the packge manager
