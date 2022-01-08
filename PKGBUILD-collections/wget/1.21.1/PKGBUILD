@@ -1,0 +1,27 @@
+pkgname="wget"
+pkgver='1.21.1'
+source=("https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz")
+md5sums=('b939ee54eabc6b9b0a8d5c03ace879c9')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/         \
+            --sysconfdir=/etc
+\            --with-ssl=openssl
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
