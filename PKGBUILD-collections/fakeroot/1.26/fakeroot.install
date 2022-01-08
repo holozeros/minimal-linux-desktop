@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/fakeroot/1.26/pkg
+rm -rf /usr/src/fakeroot/1.26/src
+rm -v /usr/src/fakeroot/1.26/fakeroot_1.26.orig.tar.gz
+mv -v /usr/src/fakeroot/1.26/fakeroot-1.26-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
