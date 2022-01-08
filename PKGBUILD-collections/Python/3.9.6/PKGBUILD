@@ -12,6 +12,8 @@ license=('')
 #}
 build() {
 cd "${pkgname}-${pkgver}"
+unset CFLAGS
+unset CPPFLAGS
 ./configure --prefix=/           \
             --enable-shared      \
             --with-system-expat  \
@@ -26,5 +28,5 @@ make
 #}
 package() {
     cd "${pkgname}-${pkgver}"
-    make DESTDIR=${pkgdir} install
+    make prefix=${pkgdir} install
 }
