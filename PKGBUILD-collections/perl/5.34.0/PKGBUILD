@@ -1,0 +1,43 @@
+pkgname="perl"
+pkgver='5.34.0'
+source=("https://www.cpan.org/src/5.0/perl-5.34.0.tar.xz")
+md5sums=('df7ecb0653440b26dc951ad9dbfab517')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+prepare() {
+cd "${pkgname}-${pkgver}"
+patch -Np1 -i ../../perl-5.34.0-upstream_fixes-1.patch
+}
+build() {
+cd "${pkgname}-${pkgver}"
+export BUILD_ZLIB=False
+export BUILD_BZIP2=0
+sh Configure -des                                         \
+             -Dprefix=/                                   \
+             -Dvendorprefix=/                             \
+             -Dprivlib=/lib/perl5/5.34/core_perl          \
+             -Darchlib=/lib/perl5/5.34/core_perl          \
+             -Dsitelib=/lib/perl5/5.34/site_perl          \
+             -Dsitearch=/lib/perl5/5.34/site_perl         \
+             -Dvendorlib=/lib/perl5/5.34/vendor_perl      \
+             -Dvendorarch=/lib/perl5/5.34/vendor_perl     \
+             -Dman1dir=/share/man/man1                    \
+             -Dman3dir=/share/man/man3                    \
+             -Dpager="/bin/less -isR"                     \
+             -Duseshrplib                                 \
+             -Dusethreads
+make
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+    unset BUILD_ZLIB BUILD_BZIP2
+}
