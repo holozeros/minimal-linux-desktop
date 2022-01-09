@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/gnutls/3.7.2/pkg
+rm -rf /usr/src/gnutls/3.7.2/src
+rm -v /usr/src/gnutls/3.7.2/gnutls-3.7.2.tar.xz
+mv -v /usr/src/gnutls/3.7.2/gnutls-3.7.2-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
