@@ -26,10 +26,10 @@ make
 package() {
     cd "${pkgname}-${pkgver}"
     make DESTDIR=${pkgdir} install
-mkdir -p ${pkgdir}/usr/{bin,sbin}
+mkdir -p ${pkgdir}/{bin,sbin}
 for target in depmod insmod modinfo modprobe rmmod; do
-  ln -sfv ..${pkgdir}/bin/kmod ${pkgdir}/usr/sbin/$target
+  ln -sfv /bin/kmod ${pkgdir}/sbin/$target
 done
 
-ln -sfv kmod ${pkgdir}/usr/bin/lsmod
+ln -sfv /bin/kmod ${pkgdir}/bin/lsmod
 }
