@@ -173,7 +173,7 @@ MPC
 Attr
 Acl
 Gettext
-Pkg-config
+Pkgconf
 Ncurses
 Libcap
 Sed
@@ -237,6 +237,10 @@ Meson
 libtasn1
 make-ca
 p11-kit
+nettle
+gnutls
+wget
+curl
 ```
 gpu_driver and xfce4 see:[]()
 ### Prepare and settings the packge manager
