@@ -1,0 +1,26 @@
+pkgname="nettle"
+pkgver='3.7.3'
+source=("https://ftp.gnu.org/gnu/nettle/nettle-3.7.3.tar.gz")
+md5sums=('a60273d0fab9c808646fcf5e9edc2e8f')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/ --disable-static
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+    chmod   -v   755 "${pkgdir}"/lib/lib{hogweed,nettle}.so
+}
