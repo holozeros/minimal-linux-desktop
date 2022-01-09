@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/bash-completion/2.11/pkg
+rm -rf /usr/src/bash-completion/2.11/src
+rm -v /usr/src/bash-completion/2.11/bash-completion-2.11.tar.xz
+mv -v /usr/src/bash-completion/2.11/bash-completion-2.11-2-any.pkg.tar.gz /var/cache/pacman/pkg
+}
