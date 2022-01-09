@@ -1,0 +1,40 @@
+pkgname="p11-kit"
+pkgver='0.24.0'
+source=("https://github.com/p11-glue/p11-kit/releases/download/0.24.0/p11-kit-0.24.0.tar.xz")
+md5sums=('8ccf11c4a2e2e505b8e516d8549e64a5')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+prepare() {
+cd "${pkgname}-${pkgver}"
+sed '20,$ d' -i trust/trust-extract-compat 
+cat >> trust/trust-extract-compat << "EOF"
+# Copy existing anchor modifications to /etc/ssl/local
+/sbin/make-ca/copy-trust-modifications
+
+# Generate a new trust store
+/sbin/make-ca -f -g
+EOF
+}
+build() {
+cd "${pkgname}-${pkgver}"
+mkdir p11-build &&
+cd    p11-build &&
+meson --prefix=/          \
+      --buildtype=release \
+      -Dtrust_paths=/etc/pki/anchors &&
+meson compile
+}
+check() {
+cd "${pkgname}-${pkgver}/p11-build"
+meson test 2>&1 | tee ../../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}/p11-build"
+meson install --destdir "${pkgdir}"
+ln -sfv ${pkgdir}/libexec/p11-kit/trust-extract-compat \
+        ${pkgdir}/bin/update-ca-certificates
+}
