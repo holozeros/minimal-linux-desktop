@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/nettle/3.7.3/pkg
+rm -rf /usr/src/nettle/3.7.3/src
+rm -v /usr/src/nettle/3.7.3/nettle-3.7.3.tar.gz
+mv -v /usr/src/nettle/3.7.3/nettle-3.7.3-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
