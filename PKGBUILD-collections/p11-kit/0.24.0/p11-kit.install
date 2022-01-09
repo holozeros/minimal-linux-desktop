@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/p11-kit/0.24.0/pkg
+rm -rf /usr/src/p11-kit/0.24.0/src
+rm -v /usr/src/p11-kit/0.24.0/p11-kit-0.24.0.tar.xz
+mv -v /usr/src/p11-kit/0.24.0/p11-kit-0.24.0-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
