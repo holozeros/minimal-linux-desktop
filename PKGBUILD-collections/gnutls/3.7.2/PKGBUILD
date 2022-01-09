@@ -1,7 +1,7 @@
-pkgname="nettle"
-pkgver='3.7.3'
-source=("https://ftp.gnu.org/gnu/nettle/nettle-3.7.3.tar.gz")
-md5sums=('a60273d0fab9c808646fcf5e9edc2e8f')
+pkgname="gnutls"
+pkgver='3.7.2'
+source=("https://www.gnupg.org/ftp/gcrypt/gnutls/v3.7/gnutls-3.7.2.tar.xz")
+md5sums=('95c32a1af583ecfcb280648874c0fbd9')
 install="${pkgname}.install"
 pkgrel='1'
 pkgdesc=""
@@ -12,7 +12,11 @@ license=('')
 #}
 build() {
 cd "${pkgname}-${pkgver}"
-./configure --prefix=/ --disable-static
+./configure --prefix=/      \
+            --docdir=/share/doc/gnutls-3.7.2 \
+            --disable-guile \
+            --disable-rpath \
+            --with-default-trust-store-pkcs11="pkcs11:" 
 make
 }
 check() {
@@ -22,5 +26,4 @@ make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
 package() {
     cd "${pkgname}-${pkgver}"
     make DESTDIR=${pkgdir} install
-    chmod   -v   755 "${pkgdir}"/lib/lib{hogweed,nettle}.so
 }
