@@ -66,8 +66,47 @@ grep found dummy.log
 rm -v dummy.c a.out dummy.log
 ```
 ### Make and install the essential custum packages for bootable system
+as root in the host
 ```
-Linux-api-headers
+cd ~
+./chroot-1.sh
+```
+as root in the chroot environment
+```
+cd /lib
+ln -s /tools/lib/Scrt1.o .
+ln -s /tools/lib/crti.o .
+ln -s /tools/lib/crtn.o .
+```
+```
+cd /usr/src
+nano makepkg.sh
+```
+copy and paste makepkg.sh from [PKGBUILD-collectionas/makepkg.sh]{PKGBUILD-collectionas%20makepkg.sh}
+```
+chmod +x makepkg.sh
+```
+```
+nano makepkg.sh
+        # modify of the pkgname variable and the pkgver variable
+	## pkgname=linux-api-headers
+	## pkgver=5.15.4
+./makepkg.sh
+cd Linux-api-headers/5.15.4
+nano PKGBUILD
+copy and paste makepkg.sh from [PKGBUILD-collectionas/makepkg.sh]{PKGBUILD-collectionas%20inux-api-headers%205.15.4%20PKGBUILD}
+nano linux-api-headers.install
+copy and paste makepkg.sh from [PKGBUILD-collectionas/linux-api-headers/5.15.4]{PKGBUILD-collectionas%20linux-api-headers%205.15.4%20linux-api-headers.install}
+```
+makepkg
+exit
+```
+as root in the chroot environment
+```
+cd /usr/src/Linux-api-headers/5.15.4
+pacman -U --force Linux-api-headers-5.15.4-1-x86-64.pkg.tar.gz
+```
+```
 Glibc
 tzdata
 	nano locale.gen
