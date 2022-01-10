@@ -503,6 +503,7 @@ groupadd lfs
 useradd -s /tools/bin/bash -g lfs -m -k /dev/null lfs
 passwd lfs
 ```
+```
 su - lfs
 ```
 ```
