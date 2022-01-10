@@ -94,11 +94,11 @@ nano makepkg.sh
 ./makepkg.sh
 cd Linux-api-headers/5.15.4
 ```
-copy and paste makepkg.sh from [PKGBUILD-collections/makepkg.sh](PKGBUILD-collections/linux-api-headers/5.15.4/PKGBUILD)
+copy and paste PKGBUILD from [PKGBUILD-collections](PKGBUILD-collections/linux-api-headers/5.15.4/PKGBUILD)
 ```
 nano PKGBUILD
 ```
-copy and paste makepkg.sh from [PKGBUILD-collections/linux-api-headers/5.15.4](PKGBUILD-collections/linux-api-headers/5.15.4/linux-api-headers.install)
+copy and paste makepkg.sh from [PKGBUILD-collections](PKGBUILD-collections/linux-api-headers/5.15.4/linux-api-headers.install)
 ```
 nano linux-api-headers.install
 ```
