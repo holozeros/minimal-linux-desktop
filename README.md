@@ -202,7 +202,7 @@ EOF
 /tools/etc/locale-gen
 /tools/bin/localedef -f UTF-8 -i en_US en_US
 ```
-
+```
 [Zlib]
 Bzip2
 Xz
@@ -286,7 +286,7 @@ nettle
 gnutls
 wget
 curl
-
+```
 gpu_driver and xfce4 see:[]()
 
 
