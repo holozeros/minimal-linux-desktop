@@ -98,7 +98,7 @@ copy and paste PKGBUILD from [PKGBUILD-collections](PKGBUILD-collections/linux-a
 ```
 nano PKGBUILD
 ```
-copy and paste makepkg.sh from [PKGBUILD-collections](PKGBUILD-collections/linux-api-headers/5.15.4/linux-api-headers.install)
+copy and paste linux-api-headers.install from [PKGBUILD-collections](PKGBUILD-collections/linux-api-headers/5.15.4/linux-api-headers.install)
 ```
 nano linux-api-headers.install
 ```
