@@ -93,10 +93,15 @@ nano makepkg.sh
 	## pkgver=5.15.4
 ./makepkg.sh
 cd Linux-api-headers/5.15.4
-nano PKGBUILD
+```
 copy and paste makepkg.sh from [PKGBUILD-collectionas/makepkg.sh]{PKGBUILD-collectionas%20inux-api-headers%205.15.4%20PKGBUILD}
-nano linux-api-headers.install
+```
+nano PKGBUILD
+```
 copy and paste makepkg.sh from [PKGBUILD-collectionas/linux-api-headers/5.15.4]{PKGBUILD-collectionas%20linux-api-headers%205.15.4%20linux-api-headers.install}
+```
+nano linux-api-headers.install
+```
 ```
 makepkg
 exit
