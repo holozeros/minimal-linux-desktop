@@ -499,8 +499,6 @@ pacman -Syu
 ABS enable use only local user (disable root user).
 In the chroot environment as root.
 ```
-
-```
 groupadd lfs
 useradd -s /tools/bin/bash -g lfs -m -k /dev/null lfs
 passwd lfs
