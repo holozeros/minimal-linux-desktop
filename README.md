@@ -71,6 +71,7 @@ as root in the host
 cd ~
 ./chroot-1.sh
 ```
+[linux-api-headers]
 as root in the chroot environment
 ```
 cd /lib
@@ -111,13 +112,13 @@ as root in the chroot environment
 cd /usr/src/Linux-api-headers/5.15.4
 pacman -U --force Linux-api-headers-5.15.4-1-x86-64.pkg.tar.gz
 ```
+
+[glibc]
 ```
 Glibc
 tzdata
 	nano locale.gen
         en_US.UTF-8 UTF-8
-```
-```
 cat > /etc/locale-gen << "EOF"
 #!/bin/sh
 set -e
@@ -201,8 +202,8 @@ EOF
 /tools/etc/locale-gen
 /tools/bin/localedef -f UTF-8 -i en_US en_US
 ```
-```
-Zlib
+
+[Zlib]
 Bzip2
 Xz
 zstd
@@ -285,8 +286,10 @@ nettle
 gnutls
 wget
 curl
-```
+
 gpu_driver and xfce4 see:[]()
+
+
 ### Prepare and settings the packge manager
 On the Host
 ```
