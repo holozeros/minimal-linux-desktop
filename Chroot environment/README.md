@@ -284,7 +284,7 @@ chmod +x chroot-1.sh
 ## Creating dir
 In the chroot environment as root.
 ```
-mkdir -pv /{bin,boot,sbin,usr,var}
+mkdir -pv /{bin,boot,lib,lib64,sbin,usr,var}
 mkdir -v /lib/locale
 mkdir -pv /lib/udev/rules.d
 mkdir -pv /etc/udev/rules.d
