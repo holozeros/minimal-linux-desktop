@@ -410,6 +410,8 @@ source ~/.bash_profile
 ## Pacman settings
 In the chroot environment as root.
 ```
+mkdir -p /var/lib/pacman
+mkdir -p /var/cache/pacman/pkg
 pacman-key --init
 pacman-key --populate archlinux
 ```
