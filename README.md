@@ -82,7 +82,7 @@ ln -s /tools/lib/crtn.o .
 cd /usr/src
 nano makepkg.sh
 ```
-copy and paste makepkg.sh from [PKGBUILD-collectionas/makepkg.sh]{PKGBUILD-collectionas%20makepkg.sh}
+copy and paste makepkg.sh from [PKGBUILD-collectionas/makepkg.sh]{PKGBUILD-collections/makepkg.sh}
 ```
 chmod +x makepkg.sh
 ```
@@ -94,11 +94,11 @@ nano makepkg.sh
 ./makepkg.sh
 cd Linux-api-headers/5.15.4
 ```
-copy and paste makepkg.sh from [PKGBUILD-collectionas/makepkg.sh]{PKGBUILD-collectionas%20inux-api-headers%205.15.4%20PKGBUILD}
+copy and paste makepkg.sh from [PKGBUILD-collectionas/makepkg.sh]{PKGBUILD-collectionas/linux-api-headers/5.15.4/PKGBUILD}
 ```
 nano PKGBUILD
 ```
-copy and paste makepkg.sh from [PKGBUILD-collectionas/linux-api-headers/5.15.4]{PKGBUILD-collectionas%20linux-api-headers%205.15.4%20linux-api-headers.install}
+copy and paste makepkg.sh from [PKGBUILD-collectionas/linux-api-headers/5.15.4]{PKGBUILD-collectionas/linux-api-headers/5.15.4/linux-api-headers.install}
 ```
 nano linux-api-headers.install
 ```
