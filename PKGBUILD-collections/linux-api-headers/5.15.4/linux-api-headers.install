@@ -1,8 +1,6 @@
 post_install() {
-
 rm -rf /usr/src/linux-api-headers/5.15.4/pkg
 rm -rf /usr/src/linux-api-headers/5.15.4/src
 rm -v /usr/src/linux-api-headers/5.15.4/linux-5.15.4.tar.xz
 mv -v /usr/src/linux-api-headers/5.15.4/linux-api-headers-5.15.4-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
-
 }
