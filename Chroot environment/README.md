@@ -218,7 +218,7 @@ On the host.
 su -
 export LFS=/mnt/lfs
 chown -R root:root $LFS/tools
-mkdir -pv $LFS/{dev,proc,sys,run}
+mkdir -pv $LFS/{dev,proc,sys,run,etc}
 mknod -m 600 $LFS/dev/console c 5 1
 mknod -m 666 $LFS/dev/null c 1 3
 cp /etc/{resolv.conf,hosts} $LFS/etc
