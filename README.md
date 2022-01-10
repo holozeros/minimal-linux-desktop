@@ -320,9 +320,10 @@ pacman -U --force $pkgname-$pkgver.pkg.tar.zst
 ```
 ##### The --force directive is obsolete in later versions of Pacman 5.0. 
 
-# Syripping
+## Stripping
 In chroot environment
-```save_lib="$(cd /lib; ls ld-linux*)
+```
+save_lib="$(cd /lib; ls ld-linux*)
              libc.so.6
              libthread_db.so.1
              libquadmath.so.0.0.0 
