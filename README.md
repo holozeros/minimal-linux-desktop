@@ -232,6 +232,7 @@ Libtool
 GDBM
 Gperf
 Expat
+iana-etc
 Inetutils
 Intltool
 Autoconf
@@ -256,20 +257,19 @@ Make
 nano
 Kmod
 eudev
-udev-lfs
 Procps-ng
 Util-linux
 E2fsprogs
 Sysklogd
 Sysvinit
-
+lfs-bootscripts
+	ln -sfv /bin/bash /bin/sh
 
 libunistring
 libxml2
 GCC
 	LC_ALL=en_US.UTF-8 makepkg
 
-Iana-Etc
 db
 Perl
 XML::Parser
