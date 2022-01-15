@@ -268,7 +268,7 @@ lfs-bootscripts
 libunistring
 libxml2
 GCC
-	LC_ALL=en_US.UTF-8 makepkg
+	LC_ALL=en_US.utf8 makepkg
 
 db
 Perl
