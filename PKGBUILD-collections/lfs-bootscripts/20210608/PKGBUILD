@@ -1,0 +1,14 @@
+pkgname="lfs-bootscripts"
+pkgver='20210608'
+source=("https://www.linuxfromscratch.org/lfs/downloads/11.0/lfs-bootscripts-20210608.tar.xz")
+md5sums=('6efd60044ad31a603a2c31c68919a988')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
