@@ -274,6 +274,8 @@ db
 Perl
 XML::Parser
 
+	cd /usr/bin
+	ln -s /bin/env .
 OpenSSL
 Python
 Ninja
