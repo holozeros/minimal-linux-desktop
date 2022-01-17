@@ -282,6 +282,9 @@ Ninja
 Meson
 
 libtasn1
+	su -
+	cd /usr/bin
+	ln -s /usr/bin/perl .
 make-ca
 p11-kit
 nettle
