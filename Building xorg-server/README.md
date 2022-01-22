@@ -1,6 +1,6 @@
 
 [xorg-server]
-
+```
 argon2-20190702-4
 audit-3.0.6-5
 brotli-1.0.9-7
@@ -100,3 +100,4 @@ xorg-setxkbmap-1.3.2-2
 xorg-xkbcomp-1.4.5-1
 xorgproto-2021.5-1
 xorg-server-21.1.3-1
+```
