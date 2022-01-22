@@ -1,0 +1,32 @@
+pkgname="sudo"
+pkgver='1.9.7p2'
+source=("https://www.sudo.ws/dist/sudo-1.9.7p2.tar.gz")
+md5sums=('d6f8217bfd16649236e100c49e0a7cc4')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+./configure --prefix=/             \
+            --libexecdir=/lib      \
+            --with-secure-path     \
+            --with-all-insults     \
+            --with-env-editor      \
+            --docdir=/share/doc/sudo-1.9.7p2 \
+            --with-passprompt="[sudo] password for %p: " 
+make
+}
+check() {
+cd "${pkgname}-${pkgver}"
+make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+    ln -sfv libsudo_util.so.0.0.0 ${pkgdir}/lib/sudo/libsudo_util.so.0
+}
