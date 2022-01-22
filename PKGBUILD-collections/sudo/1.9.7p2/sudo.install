@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/sudo/1.9.7p2/pkg
+rm -rf /usr/src/sudo/1.9.7p2/src
+rm -v /usr/src/sudo/1.9.7p2/sudo-1.9.7p2.tar.gz
+mv -v /usr/src/sudo/1.9.7p2/sudo-1.9.7p2-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
