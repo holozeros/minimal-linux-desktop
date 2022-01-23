@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/keyutils/1.6.1/pkg
+rm -rf /usr/src/keyutils/1.6.1/src
+rm -v /usr/src/keyutils/1.6.1/keyutils-1.6.1.tar.bz2
+mv -v /usr/src/keyutils/1.6.1/keyutils-1.6.1-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
