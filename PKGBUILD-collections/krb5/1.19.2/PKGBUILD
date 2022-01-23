@@ -1,0 +1,35 @@
+pkgname="krb5"
+pkgver='1.19.2'
+source=("https://kerberos.org/dist/krb5/1.19/krb5-1.19.2.tar.gz")
+md5sums=('eb51b7724111e1a458a8c9a261d45a31')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}/src"
+sed -i -e 's@\^u}@^u cols 300}@' tests/dejagnu/config/default.exp
+sed -i -e '/eq 0/{N;s/12 //}'    plugins/kdb/db2/libdb2/test/run.test
+sed -i '/t_iprop.py/d'           tests/Makefile.in
+./configure --prefix=/               \
+            --sysconfdir=/etc        \
+            --localstatedir=/var/lib \
+            --runstatedir=/run       \
+            --with-system-et         \
+            --with-system-ss         \
+            --with-system-verto=no   \
+            --enable-dns-for-realm
+make
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}/src"
+    make DESTDIR=${pkgdir} install
+}
