@@ -1,0 +1,33 @@
+pkgname="keyutils"
+pkgver='1.6.1'
+source=("https://people.redhat.com/~dhowells/keyutils/keyutils-1.6.1.tar.bz2")
+md5sums=('919af7f33576816b423d537f8a8692e8')
+install="${pkgname}.install"
+pkgrel='1'
+pkgdesc=""
+arch=('x86_64')
+url="https://www."
+license=('')
+#prepare() {
+#}
+build() {
+cd "${pkgname}-${pkgver}"
+sed -i 's:$(LIBDIR)/$(PKGCONFIG_DIR):/lib/pkgconfig:' Makefile &&
+make
+}
+#check() {
+#cd "${pkgname}-${pkgver}"
+#make check 2>&1 | tee ../../${pkgname}-${pkgver}-test.log
+#}
+package() {
+    cd "${pkgname}-${pkgver}"
+    make NO_ARLIB=1                \
+         LIBDIR=/lib               \
+         BINDIR=/bin               \
+         SBINDIR=/sbin             \
+         INCLUDEDIR=/include       \
+         SYSCONFDIR=/etc           \
+         SHAREDIR=/share/keyutils  \
+         MANDIR=/share/man         \
+    DESTDIR=${pkgdir} install
+}
