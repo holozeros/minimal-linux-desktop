@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/krb5/1.19.2/pkg
+rm -rf /usr/src/krb5/1.19.2/src
+rm -v /usr/src/krb5/1.19.2/krb5-1.19.2.tar.gz
+mv -v /usr/src/krb5/1.19.2/krb5-1.19.2-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
