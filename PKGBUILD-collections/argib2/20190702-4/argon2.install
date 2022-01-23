@@ -1,0 +1,6 @@
+post_install() {
+rm -rf /usr/src/argon2/20190702-4/pkg
+rm -rf /usr/src/argon2/20190702-4/src
+rm -v /usr/src/argon2/20190702-4/argon2-20190702.tar.gz
+mv -v /usr/src/argon2/20190702-4/argon2-20190702-4-x86_64.pkg.tar.gz /var/cache/pacman/pkg
+}
