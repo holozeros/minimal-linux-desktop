@@ -122,12 +122,12 @@ wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.45.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.6.0.tar.bz2
 wget https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.18.0.tar.gz
 wget https://ftp.gnu.org/gnu/libunistring/libunistring-1.0.tar.xz
-wget https://dist.libuv.org/dist/v1.44.0/libuv-v1.44.2.tar.gz
-wget http://xmlsoft.org/sources/libxml2-2.10.0.tar.gz
+wget https://dist.libuv.org/dist/v1.44.2/libuv-v1.44.2.tar.gz
+wget https://download.gnome.org/sources/libxml2/2.10/libxml2-2.10.0.tar.xz
 wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.6.tar.bz2
 wget http://ftp.rpm.org/popt/releases/popt-1.x/popt-1.18.tar.gz
 wget https://downloads.sourceforge.net/freetype/freetype-2.12.1.tar.xz
-wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.14.0.tar.bz2
+wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.14.0.tar.xz
 wget https://www.gnupg.org/ftp/gcrypt/pinentry/pinentry-1.2.1.tar.bz2
 wget https://cmake.org/files/v3.24/cmake-3.24.1.tar.gz
 wget https://www.samba.org/ftp/rsync/src/rsync-3.2.5.tar.gz
@@ -142,9 +142,9 @@ wget https://www.linuxfromscratch.org/patches/blfs/11.2/openldap-2.6.3-consolida
 wget https://people.redhat.com/~dhowells/keyutils/keyutils-1.6.1.tar.bz2
 wget https://kerberos.org/dist/krb5/1.20/krb5-1.20.tar.gz
 wget https://people.redhat.com/sgrubb/audit/audit-3.0.8.tar.gz
-wget https://people.redhat.com/sgrubb/audit/audit-3.0.8-config_paths.patch
+wget https://github.com/archlinux/svntogit-packages/raw/packages/audit/trunk/audit-3.0.8-config_paths.patch
 wget https://www.kernel.org/pub/software/scm/git/git-2.37.2.tar.xz
-wget https://doxygen.nl/files/doxygen-1.9.4.src.tar.gz
+wget https://doxygen.nl/files/doxygen-1.9.5.linux.src.tar.gz
 wget https://gitlab.archlinux.org/archlinux/archlinux-keyring/-/archive/master/archlinux-keyring-master.tar.gz
 
 ```
