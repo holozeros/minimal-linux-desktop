@@ -107,8 +107,8 @@ The following downloads refer to BeyondLinux® FromScratch (System V Edition) ve
 ```
 wget https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
 wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.30.1.orig.tar.gz
-wget https://distfiles.dereferenced.org/pkgconf/pkgconf-1.8.0.tar.xz
-wget https://github.com/djlucas/make-ca/releases/download/v1.7/make-ca-1.7.tar.xz
+wget https://distfiles.dereferenced.org/pkgconf/pkgconf-1.9.3.tar.xz
+wget https://github.com/lfs-book/make-ca/releases/download/v1.10/make-ca-1.10.tar.xz
 wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.2.29.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/gnutls/v3.7/gnutls-3.7.2.tar.xz
 wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.16.0.tar.bz2
