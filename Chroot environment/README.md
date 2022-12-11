@@ -129,7 +129,7 @@ wget http://ftp.rpm.org/popt/releases/popt-1.x/popt-1.18.tar.gz
 wget https://downloads.sourceforge.net/freetype/freetype-2.12.1.tar.xz
 wget https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.14.0.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/pinentry/pinentry-1.2.1.tar.bz2
-wget https://cmake.org/files/v3.21/cmake-3.24.1.tar.gz
+wget https://cmake.org/files/v3.24/cmake-3.24.1.tar.gz
 wget https://www.samba.org/ftp/rsync/src/rsync-3.2.5.tar.gz
 wget https://ftp.gnu.org/gnu/wget/wget-1.21.3.tar.gz
 wget https://curl.se/download/curl-7.84.0.tar.xz
