@@ -145,55 +145,14 @@ wget https://people.redhat.com/sgrubb/audit/audit-3.0.8.tar.gz
 wget https://people.redhat.com/sgrubb/audit/audit-3.0.8-config_paths.patch
 wget https://www.kernel.org/pub/software/scm/git/git-2.37.2.tar.xz
 wget https://doxygen.nl/files/doxygen-1.9.4.src.tar.gz
-wget --no-check-certificate https://sources.archlinux.org/other/archlinux-keyring/archlinux-keyring-20221123-1.tar.gz
-
+wget https://gitlab.archlinux.org/archlinux/archlinux-keyring/-/archive/master/archlinux-keyring-master.tar.gz
 
 ```
 This linux desktop system(except the chroot environment) uses ABS to build all packages and installs using "pacman -U" option, so it doesn't require an archlinux repository, but it also allows you to build an archlinux distribution using only pacman.
 Please verify md5sum arbitrarily. 
 ```
 cat >> $LFS/sources/md5sums << "EOF" 
-    f36f5e7e95a89436febe1bcca874fc33  pacman-5.0.2.tar.gz
-    823212dc241793df8ff1d097769a3473  pkgconf-1.8.0.tar.xz
-    e0356f5ae5623f227a3f69b5e8848ec6  make-ca-1.7.tar.xz
-    cb1c68f2597f0a064232a841050eb6f2  fakeroot_1.26.orig.tar.gz
-    5db3334b528cf756b1e583db01319a24  gnupg-2.2.29.tar.bz2
-    95c32a1af583ecfcb280648874c0fbd9  gnutls-3.7.2.tar.xz
-    e31b9e0efc5a2e1ec1bbed22e7a082a4  gpgme-1.16.0.tar.bz2
-    a60273d0fab9c808646fcf5e9edc2e8f  nettle-3.7.3.tar.gz
-    8ccf11c4a2e2e505b8e516d8549e64a5  p11-kit-0.24.0.tar.xz
-    d2249e3dd108c830df00efd7c1b79d86  nano-5.8.tar.xz
-    2ba9f1f8c169aa9caf8e2d34dde323be  libarchive-3.5.2.tar.xz
-    7194453152bb67e3d45da698762b5d6f  libassuan-2.5.5.tar.bz2
-    edc7becfe09c75d8f95ff7623e40c52e  libgcrypt-1.9.4.tar.bz2
-    133fed221ba8f63f5842858a1ff67cb3  libgpg-error-1.42.tar.bz2
-    d333b2e1381068d4f9a328240f062f0f  libksba-1.6.0.tar.bz2
-    c46f6eb3bd1287031ae5d36465094402  libtasn1-4.17.0.tar.gz
-    db08bb384e81968957f997ec9808926e  libunistring-0.9.10.tar.xz
-    484dec4a06e183c20be815019ce9ddd0  libuv-v1.42.0.tar.gz
-    f433a39be087a9f0b197eb2307ad9f75  libxml2-2.9.12.tar.gz
-    375d1a15ad969f32d25f1a7630929854  npth-1.6.tar.bz2
-    450f2f636e6a3aa527de803d0ae76c5a  popt-1.18.tar.gz
-    f931582653774e310ed3a7e49b7167a3  freetype-2.11.0.tar.xz
-    36cdea1058ef13cbbfdabe6cb019dc1c  fontconfig-2.13.1.tar.bz2
-    32e09a982711d6e705f9d89020424c2d  pinentry-1.2.0.tar.bz2
-    2ecc4091021c44f400bfbb25dcc77e97  cmake-3.21.2.tar.gz
-    209f8326f5137d8817a6276d9577a2f1  rsync-3.2.3.tar.gz
-    b939ee54eabc6b9b0a8d5c03ace879c9  wget-1.21.1.tar.gz
-    419c2461366cf404160a820f7a902b7e  curl-7.78.0.tar.xz
-    d9702786d89ec8053a96ab4768a172e4  nghttp2-1.44.0.tar.xz
-    34954869627f62f9992808b6cff0d0a9  libxcrypt-4.4.26.tar.xz
-    b99454564d5b4479750567031d66fe24  db-5.3.28.tar.gz
-    a33820c66e0622222c5aefafa1581083  cyrus-sasl-2.1.27.tar.gz
-    1a17a2d56984e95382b604833fe9b92d  cyrus-sasl-2.1.27-doc_fixes-1.patch
-    e7847d1463ce4cdc8e3fd831d1cd267c  openldap-2.5.7.tgz
-    79aab81c90018978ef698f389917b8ca  openldap-2.5.7-consolidated-1.patch
-    919af7f33576816b423d537f8a8692e8  keyutils-1.6.1.tar.bz2
-    eb51b7724111e1a458a8c9a261d45a31  krb5-1.19.2.tar.gz
-    20750f9a7686f02b90a025303645f133  audit-3.0.6.tar.gz
-    0990ff97af1511be0d9f0d3223dd4359  git-2.33.0.tar.xz
-    84c0522bb65d17f9127896268b72ea2a  doxygen-1.9.2.src.tar.gz
-    1b1ec243a3e7d568e15e08c490181fe1  archlinux-keyring-20211028.tar.gz
+    
 EOF
 ```
 ```
