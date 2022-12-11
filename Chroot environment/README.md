@@ -136,19 +136,16 @@ wget https://curl.se/download/curl-7.84.0.tar.xz
 wget https://github.com/nghttp2/nghttp2/releases/download/v1.48.0/nghttp2-1.48.0.tar.xz
 wget https://github.com/besser82/libxcrypt/releases/download/v4.4.33/libxcrypt-4.4.33.tar.xz
 wget https://anduin.linuxfromscratch.org/BLFS/bdb/db-5.3.28.tar.gz
-
->>>> w i p
-
-wget https://github.com/cyrusimap/cyrus-sasl/releases/download/cyrus-sasl-2.1.27/cyrus-sasl-2.1.27.tar.gz
-wget https://www.linuxfromscratch.org/patches/blfs/11.0/cyrus-sasl-2.1.27-doc_fixes-1.patch
-wget https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.5.7.tgz
-wget https://www.linuxfromscratch.org/patches/blfs/11.0/openldap-2.5.7-consolidated-1.patch
+wget https://github.com/cyrusimap/cyrus-sasl/releases/download/cyrus-sasl-2.1.28/cyrus-sasl-2.1.28.tar.gz
+wget https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.6.3.tgz
+wget https://www.linuxfromscratch.org/patches/blfs/11.2/openldap-2.6.3-consolidated-1.patch
 wget https://people.redhat.com/~dhowells/keyutils/keyutils-1.6.1.tar.bz2
-wget https://kerberos.org/dist/krb5/1.19/krb5-1.19.2.tar.gz
-wget https://people.redhat.com/sgrubb/audit/audit-3.0.6.tar.gz
-wget https://www.kernel.org/pub/software/scm/git/git-2.33.0.tar.xz
-wget https://doxygen.nl/files/doxygen-1.9.2.src.tar.gz
-wget --no-check-certificate https://sources.archlinux.org/other/archlinux-keyring/archlinux-keyring-20211028.tar.gz
+wget https://kerberos.org/dist/krb5/1.20/krb5-1.20.tar.gz
+wget https://people.redhat.com/sgrubb/audit/audit-3.0.8.tar.gz
+wget https://people.redhat.com/sgrubb/audit/audit-3.0.8-config_paths.patch
+wget https://www.kernel.org/pub/software/scm/git/git-2.37.2.tar.xz
+wget https://doxygen.nl/files/doxygen-1.9.4.src.tar.gz
+wget --no-check-certificate https://sources.archlinux.org/other/archlinux-keyring/archlinux-keyring-20221123-1.tar.gz
 
 
 ```
