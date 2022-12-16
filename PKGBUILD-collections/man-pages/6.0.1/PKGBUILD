@@ -1,1 +1,16 @@
-a
+pkgname="man-pages"
+pkgver="6.0.1"
+pkgrel="1"
+pkgdesc=""
+arch=('x86_64')
+url="http://www."
+license=('')
+#backup=()
+source=("https://www.kernel.org/pub/linux/docs/${pkgname}/${pkgname}-${pkgver}.tar.xz")
+md5sums=('83b25a1a120df78ec4c01221a1926463')
+install="${pkgname}.install"
+
+package() {
+    cd "${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} install
+}
