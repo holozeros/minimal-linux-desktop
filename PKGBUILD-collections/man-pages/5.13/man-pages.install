@@ -1,9 +1,0 @@
-
-post_install() {
-
-rm -rf /usr/src/man-pages/5.13/pkg
-rm -rf /usr/src/man-pages/5.13/src
-rm -v /usr/src/man-pages/5.13/man-pages-5.13.tar.xz
-mv -v /usr/src/man-pages/5.13/man-pages-5.13-1-x86_64.pkg.tar.gz /var/cache/pacman/pkg
-
-}
