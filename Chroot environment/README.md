@@ -86,7 +86,7 @@ wget https://www.linuxfromscratch.org/lfs/view/stable/wget-list
 wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
 wget https://www.linuxfromscratch.org/lfs/view/stable/md5sums
 ```
-If there are some tarballs that could not be downloaded automatically from the list, check the download address with LFS-11.0 Book or Google search and make up for it manually. If failed auto download anyone (e.g. ninja), retry download with an another link (find out and security check for yourself):
+If there are some tarballs that could not be downloaded automatically from the list, check the download address with latest LFS Book or Google search and make up for it manually. If failed auto download anyone (e.g. ninja), retry download with an another link (find out and security check for yourself):
 ```
 wget https://github.com/ninja-build/ninja/archive/v1.10.2.tar.gz
 mv v1.10.2.tar.gz ninja-1.10.2.tar.gz
@@ -97,7 +97,7 @@ Additional sources for arch build system
 ```
 cd $LFS/sources
 ```
-The following downloads refer to BeyondLinux® FromScratch (System V Edition) version 11.0, Archlinux's PKGBUILD,..etc.
+The following downloads refer to latest Beyond Linux FromScratch (System V Edition)Book and Archlinux's PKGBUILD.
 ```
 wget https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
 wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.30.1.orig.tar.gz
