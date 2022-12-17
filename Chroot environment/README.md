@@ -189,7 +189,11 @@ find /tools/{lib,libexec} -name \*.la -delete
 In the chroot environmennt as root.
 ```
 exit  # It will be change into host environment from chroot environmennt.
+```
+```
 su -
+```
+```
 umount $LFS/dev{/pts,}
 umount $LFS/{sys,proc,run}
 export LFS=/mnt/lfs
@@ -201,11 +205,13 @@ Restore ( when starting over from here at a later step )
 ## On the host.
 ```
 su -
+```
+```
 export LFS=/mnt/lfs
-mount /dev/<the chroot environment partition> $LFS
+#mount /dev/<the chroot environment partition> $LFS
 cd $LFS 
 rm -rf ./* 
-tar -xpf /PATH/to/lfs11-tools.tar.xz
+tar -xpf /PATH/to/lfs-12-tools.tar.xz
 cd $LFS/sources
 ```
 ## Chroot
