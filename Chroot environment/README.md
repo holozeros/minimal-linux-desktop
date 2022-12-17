@@ -26,7 +26,7 @@ mkdir -v /mnt/lfs
 mount -v /dev/sda2 $LFS
 ```
 ### Checking host system requirement  see:[Linux From Scratch book](https://www.linuxfromscratch.org/lfs/view/stable/chapter02/hostreqs.html)
-Copy the [version-check.sh](version-check.sh) version-check.sh files in ~dir. and Run this shell script and check the outputs.
+Copy the [version-check.sh](version-check.sh)files in ~ dir. and run this shell script then check the outputs.
 ```
 cd ~
 chmod +x version-check.sh
