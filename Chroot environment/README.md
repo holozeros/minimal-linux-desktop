@@ -28,11 +28,11 @@ Run the following script version-check.sh and check outputs.
 ```
 ./version-check.sh
 ```
-### Bash setting
+Bash setting
 ```
 [ ! -e /etc/bash.bashrc ] || mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
 ```
-### Directory settings
+Directory settings
 ```
 export LFS=/mnt/lfs
 mkdir -v $LFS/home
@@ -71,7 +71,7 @@ EOF
 ```
 source ~/.bash_profile
 ```
-### Downloading sources
+Downloading sources
 ```
 export LFS=/mnt/lfs
 cd $LFS/sources
@@ -158,7 +158,7 @@ cd $LFS/sources
 chmod +x build-chroot-environment.sh
 ./build-chroot-environment.sh
 ```
-### Changing owner
+Changing owner
 
 On the host.
 ```
@@ -170,7 +170,7 @@ mknod -m 600 $LFS/dev/console c 5 1
 mknod -m 666 $LFS/dev/null c 1 3
 cp /etc/{resolv.conf,hosts} $LFS/etc
 ```
-## Striping
+Striping
 
 On the host as root.
 ```
@@ -178,7 +178,7 @@ rm -rf /tools/share/{info,man,doc}/*
 rm -rf /tools/usr/share/{info,man,doc}/*
 find /tools/{lib,libexec} -name \*.la -delete
 ```
-## Backup
+Backup
 
 In the chroot environmennt as root.
 ```
@@ -196,7 +196,7 @@ tar -cJpf /PATH/to/lfs11-tools.tar.xz .
 ```
 Restore ( when starting over from here at a later step )
 
-## On the host.
+On the host.
 ```
 su -
 ```
@@ -208,7 +208,7 @@ rm -rf ./*
 tar -xpf /PATH/to/lfs-12-tools.tar.xz
 cd $LFS/sources
 ```
-## Chroot
+Chroot
 
 On the host.
 ```
@@ -238,7 +238,7 @@ EOF
 chmod +x chroot-1.sh
 ./chroot-1.sh
 ```
-## Creating dir
+Creating essential dirs
 
 In the chroot environment as root.
 ```
@@ -247,7 +247,7 @@ mkdir -v /lib/locale
 mkdir -pv /lib/udev/rules.d
 mkdir -pv /etc/udev/rules.d
 ```
-## Temporary toolchain settings
+Temporary toolchain settings
 
 The following links will be overridden by the main system installation.
 ```
@@ -266,7 +266,7 @@ ln -sfv /tools/lib/libncursesw.so.6         /lib
 ln -sfv /tools/bin/{cut,env,md5sum,perl,openssl,trust} /usr/bin
 ln -sv /proc/self/mounts /etc/mtab
 ```
-## User settings
+User settings
 
 In the chroot environment as root.
 ```
@@ -343,7 +343,7 @@ Install ABS
 It's best to install each package step by step, but you can also run this long script to install it all at once.
 Build abs_build.sh
 
-Ryzen2700x(8 core) takes about xx minuits. In the chroot environment as root.
+Ryzen5700g(8 core) takes about xx minuits. In the chroot environment as root.
 ```
 cd /sources
 chmod +x abs-build.sh
@@ -486,7 +486,7 @@ EOF
 ```
 source ~/.bash_profile
 ```
-## Striping
+Striping
 
 On the host (After complete building the chroot environment)._
 ```
@@ -503,7 +503,7 @@ rm -rf /tools/x86_64-lfs-linux-gnu
 find /tools/{lib,libexec} -name \*.la -delete
 find /tools/usr/{lib,libexec} -name \*.la -delete
 ```
-## Backup
+Backup
 
 On the host._
 ```
