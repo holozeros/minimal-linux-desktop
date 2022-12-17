@@ -1,1 +1,6 @@
-
+post_install() {
+rm -rf /usr/src/iana-etc/20221209/pkg
+rm -rf /usr/src/iana-etc/20221209/src
+rm -v /usr/src/iana-etc/20221209/iana-etc-20221209.tar.gz
+mv -v /usr/src/iana-etc/20221209/iana-etc-20221209-1-any.pkg.tar.gz /var/cache/pacman/pkg
+}
