@@ -1,6 +1,6 @@
 # MINIMAL LINUX DESKTOP
 Building a desktop environment from source codes to learn Linux. 
-This OS will be built with reference to the Linux From Scratch 11.0 book and installed use pacman-5.0. 
+This OS will be built with reference to the Linux From Scratch book and installed use pacman-5.0.2. 
 
 ## 1.Making chroot environment see: [Building chroot environment](Chroot%20environment)
 Make a chroot environment and then install the required commands to run Arch_Build_System(ABS).
