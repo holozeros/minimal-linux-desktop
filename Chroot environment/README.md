@@ -28,6 +28,8 @@ mount -v /dev/sda2 $LFS
 ## Checking host system requirement  see:[Linux From Scratch book](https://www.linuxfromscratch.org/lfs/view/stable/chapter02/hostreqs.html)
 Run the script [version-check.sh](version-check.sh) and check outputs.
 ```
+cd ~
+chmod +x version-check.sh
 ./version-check.sh
 ```
 ## Bash setting
