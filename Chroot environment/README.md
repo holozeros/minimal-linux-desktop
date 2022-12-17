@@ -91,9 +91,8 @@ If there are some tarballs that could not be downloaded automatically from the l
 wget https://github.com/ninja-build/ninja/archive/v1.10.2.tar.gz
 mv v1.10.2.tar.gz ninja-1.10.2.tar.gz
 md5sum ninja-1.10.2.tar.gz
+   # md5sum: 639f75bc2e3b19ab893eaf2c810d4eb4
 ```
-##### md5sum: 639f75bc2e3b19ab893eaf2c810d4eb4
-
 Additional sources for arch build system
 ```
 cd $LFS/sources
