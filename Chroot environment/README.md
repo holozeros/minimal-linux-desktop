@@ -28,11 +28,11 @@ Run the following script version-check.sh and check outputs.
 ```
 ./version-check.sh
 ```
-###Bash setting
+### Bash setting
 ```
 [ ! -e /etc/bash.bashrc ] || mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
 ```
-###Directory settings
+### Directory settings
 ```
 export LFS=/mnt/lfs
 mkdir -v $LFS/home
@@ -50,13 +50,13 @@ Making local user in your host system
 ```
 groupadd lfs
 useradd -s /bin/bash -g lfs -m -k /dev/null lfs
-
 passwd lfs
-
+```
+```
 chown -v lfs $LFS/*
-```
-```
 su - lfs
+```
+```
 cat > ~/.bash_profile << "EOF"
 exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
 EOF
@@ -76,28 +76,29 @@ EOF
 ```
 source ~/.bash_profile
 ```
-###Downloading sources
-
+### Downloading sources
+```
 export LFS=/mnt/lfs
 cd $LFS/sources
 
 wget https://www.linuxfromscratch.org/lfs/view/stable/wget-list
 wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
 wget https://www.linuxfromscratch.org/lfs/view/stable/md5sums
-
+```
 If there are some tarballs that could not be downloaded automatically from the list, check the download address with LFS-11.0 Book or Google search and make up for it manually. If failed auto download anyone (e.g. ninja), retry download with an another link (find out and security check for yourself):
-
+```
 wget https://github.com/ninja-build/ninja/archive/v1.10.2.tar.gz
 mv v1.10.2.tar.gz ninja-1.10.2.tar.gz
 md5sum ninja-1.10.2.tar.gz
- # md5sum: 639f75bc2e3b19ab893eaf2c810d4eb4
+```
+ md5sum: 639f75bc2e3b19ab893eaf2c810d4eb4
 
 Additional sources for arch build system
-
+```
 cd $LFS/sources
-
+```
 The following downloads refer to BeyondLinux® FromScratch (System V Edition) version 11.0, Archlinux's PKGBUILD,..etc.
-
+```
 wget https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
 wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.30.1.orig.tar.gz
 wget https://distfiles.dereferenced.org/pkgconf/pkgconf-1.9.3.tar.xz
@@ -139,32 +140,33 @@ wget https://github.com/archlinux/svntogit-packages/raw/packages/audit/trunk/aud
 wget https://www.kernel.org/pub/software/scm/git/git-2.37.2.tar.xz
 wget https://doxygen.nl/files/doxygen-1.9.5.linux.src.tar.gz
 wget https://gitlab.archlinux.org/archlinux/archlinux-keyring/-/archive/master/archlinux-keyring-master.tar.gz
-
+```
 This linux desktop system(except the chroot environment) uses ABS to build all packages and installs using "pacman -U" option, so it doesn't require an archlinux repository, but it also allows you to build an archlinux distribution using only pacman. Please verify md5sum arbitrarily.
-
+```
 cat >> $LFS/sources/md5sums << "EOF" 
     
 EOF
-
+```
+```
 pushd $LFS/sources
    md5sum -c md5sums
 popd
-
-Building chroot environment
+```
+### Building chroot environment
 
 In this section is different from the lfs-11.0 book. Here you need to install all of the chroot environment in the /tools directory. Test procedures that are possible but not required. Recommend that you install each package in stages, but you can also run a long script to install them all at once.
 BUILD build-chroot-environment.sh
 
 Ryzen2700x(8 core) takes about 20 minuits. On the host as lfs user.
-
+```
 cd $LFS/sources
 chmod +x build-chroot-environment.sh
 ./build-chroot-environment.sh
-
-Changing owner
+```
+### Changing owner
 
 On the host.
-
+```
 su -
 export LFS=/mnt/lfs
 chown -R root:root $LFS/tools
@@ -172,19 +174,19 @@ mkdir -pv $LFS/{dev,proc,sys,run,etc}
 mknod -m 600 $LFS/dev/console c 5 1
 mknod -m 666 $LFS/dev/null c 1 3
 cp /etc/{resolv.conf,hosts} $LFS/etc
-
-Striping
+```
+## Striping
 
 On the host as root.
-
+```
 rm -rf /tools/share/{info,man,doc}/*
 rm -rf /tools/usr/share/{info,man,doc}/*
 find /tools/{lib,libexec} -name \*.la -delete
-
-Backup
+```
+## Backup
 
 In the chroot environmennt as root.
-
+```
 exit  # It will be change into host environment from chroot environmennt.
 su -
 umount $LFS/dev{/pts,}
@@ -192,11 +194,11 @@ umount $LFS/{sys,proc,run}
 export LFS=/mnt/lfs
 cd $LFS 
 tar -cJpf /PATH/to/lfs11-tools.tar.xz .
-
+```
 Restore ( when starting over from here at a later step )
 
-On the host.
-
+## On the host.
+```
 su -
 export LFS=/mnt/lfs
 mount /dev/<the chroot environment partition> $LFS
@@ -204,13 +206,14 @@ cd $LFS
 rm -rf ./* 
 tar -xpf /PATH/to/lfs11-tools.tar.xz
 cd $LFS/sources
-
-Chroot
+```
+## Chroot
 
 On the host.
-
+```
 su -
-
+```
+```
 export LFS=/mnt/lfs
 cat > chroot-1.sh << "EOF"
 export LFS=/mnt/lfs
@@ -233,20 +236,20 @@ umount -v $LFS/{sys,proc,run}
 EOF
 chmod +x chroot-1.sh
 ./chroot-1.sh
-
-Creating dir
+```
+## Creating dir
 
 In the chroot environment as root.
-
+```
 mkdir -pv /{bin,boot,lib,lib64,sbin,usr,var}
 mkdir -v /lib/locale
 mkdir -pv /lib/udev/rules.d
 mkdir -pv /etc/udev/rules.d
-
-Temporary toolchain settings
+```
+## Temporary toolchain settings
 
 The following links will be overridden by the main system installation.
-
+```
 ln -sfv /run /var/run
 ln -sfv /run/lock /var/lock
 install -dv -m 0750 /root
@@ -261,11 +264,11 @@ ln -sfv /tools/lib/ld-linux-x86-64.so.2     /lib64/ld-lsb-x86-64.so.3
 ln -sfv /tools/lib/libncursesw.so.6         /lib
 ln -sfv /tools/bin/{cut,env,md5sum,perl,openssl,trust} /usr/bin
 ln -sv /proc/self/mounts /etc/mtab
-
-User settings
+```
+## User settings
 
 In the chroot environment as root.
-
+```
 cat > /etc/passwd << "EOF"
 root:x:0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/dev/null:/bin/false
@@ -273,6 +276,8 @@ daemon:x:6:6:Daemon User:/dev/null:/bin/false
 messagebus:x:18:18:D-Bus Message Daemon User:/var/run/dbus:/bin/false
 nobody:x:99:99:Unprivileged User:/dev/null:/bin/false
 EOF
+```
+```
 cat > /etc/group << "EOF"
 root:x:0:
 bin:x:1:daemon
@@ -299,36 +304,38 @@ wheel:x:97:
 nogroup:x:99:
 users:x:999:
 EOF
-
+```
+```
 exec /bin/bash --login +h
-
+```
+```
 echo "tester:x:101:101::/home/tester:/bin/bash" >> /etc/passwd
 echo "tester:x:101:" >> /etc/group
 install -o tester -d /home/tester
-
+```
+```
 mkdir -v /var/log
 touch /var/log/{btmp,lastlog,faillog,wtmp}
 chgrp -v utmp /var/log/lastlog
 chmod -v 664  /var/log/lastlog
 chmod -v 600  /var/log/btmp
-
+```
 Back to to the host environment from chroot environment.
-
 Issue:
-
+```
 exit
-
+```
 When back to the host environment, to check the mount status. Issue:
-
+```
 mount
-
+```
 Look at the output of mount, make sure the following directories are not mounted.
-
+```
 1./mnt/lfs/dev and  /mnt/lfs/dev/pts
 2./mnt/lfs/sys
 3./mnt/lfs/proc
 4./mnt/lfs/run
-
+```
 If left mounted kernel's virtual file systems on these directories, the storage and hardware of the host PC will be damaged. If you cannot unmount these, interrupt further operations and reboot the host immediately.
 Install ABS
 
@@ -336,15 +343,17 @@ It's best to install each package step by step, but you can also run this long s
 Build abs_build.sh
 
 Ryzen2700x(8 core) takes about xx minuits. In the chroot environment as root.
-
+```
 cd /sources
 chmod +x abs-build.sh
 ./abs-build.sh
-
+```
+```
 /tools/bin/cat > ~/.bash_profile << "EOF"
 exec /tools/bin/env -i HOME=$HOME TERM=$TERM PS1='(chroot)\u:\w\$ ' /tools/bin/bash
 EOF
-
+```
+```
 /tools/bin/cat > ~/.bashrc << "EOF"
 set +h
 umask 022
@@ -354,18 +363,20 @@ LFS_TGT=$(uname -m)-pc-linux-gnu
 PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin
 export LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
-
+```
+```
 source ~/.bash_profile
-
-Pacman settings
+```
+## Pacman settings
 
 In the chroot environment as root.
-
+```
 mkdir -p /var/lib/pacman
 mkdir -p /var/cache/pacman/pkg
 pacman-key --init
 pacman-key --populate archlinux
-
+```
+```
 cat >> /tools/etc/pacman.conf << "EOF"
 [core]
 Include = /tools/etc/pacman.d/mirrorlist
@@ -374,17 +385,18 @@ Include = /tools/etc/pacman.d/mirrorlist
 [community]
 Include = /tools/etc/pacman.d/mirrorlist
 EOF
-
+```
+```
 cat > /tools/etc/pacman.d/mirrorlist << "EOF"
 # This is an example when your location is Japan
 # Server = ftp://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
 Server = http://ftp.jaist.ac.jp/pub/Linux/ArchLinux/$repo/os/$arch
 EOF
-
+```
 Modify makepkg.conf and pacman.conf
-
+```
 nano /tools/etc/makepkg.conf
-
+```
   #########################################################################
   # SOURCE ACQUISITION
   #########################################################################
@@ -421,9 +433,9 @@ nano /tools/etc/makepkg.conf
                     .
                     .
                     .
-
+```
 nano /tools/etc/pacman.conf
-
+```
   [options]
   # The following paths are commented out with their default values listed.
   # If you wish to use different paths, uncomment and update the paths.
@@ -434,25 +446,28 @@ nano /tools/etc/pacman.conf
   GPGDir      = /tools/etc/pacman.d/gnupg/
   HookDir     = /tools/etc/pacman.d/hooks/
   HoldPkg     = pacman glibc
-
+```
 mkdir -p /var/lib/pacman
 mkdir -p /var/cache/pacman/pkg
 pacman -Syu
-
-ABS settings
+```
+## ABS settings
 
 ABS enable use only local user (disable root user). In the chroot environment as root.
-
+```
 groupadd lfs
 useradd -s /tools/bin/bash -g lfs -m -k /dev/null lfs
 passwd lfs
-
+```
+```
 su - lfs
-
+```
+```
 /tools/bin/cat > ~/.bash_profile << "EOF"
 exec /tools/bin/env -i HOME=$HOME TERM=$TERM PS1='(chroot)\u:\w\$ ' /tools/bin/bash
 EOF
-
+```
+```
 /tools/bin/cat > ~/.bashrc << "EOF"
 set +h
 umask 022
@@ -462,14 +477,17 @@ LFS_TGT=$(uname -m)-pc-linux-gnu
 PATH=/tools/bin:/tools/sbin:/tools/usr/bin:/tools/usr/sbin
 export LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
-
+```
+```
 source ~/.bash_profile
-
-Striping
+```
+## Striping
 
 On the host (After complete building the chroot environment)._
-
+```
 su -
+```
+```
 strip --strip-debug /tools/lib/*
 strip --strip-unneeded /tools/{,s}bin/*
 
@@ -479,23 +497,27 @@ rm -rf /tools/usr/share/{info,man,doc}/*
 rm -rf /tools/x86_64-lfs-linux-gnu
 find /tools/{lib,libexec} -name \*.la -delete
 find /tools/usr/{lib,libexec} -name \*.la -delete
-
-Backup
+```
+## Backup
 
 On the host._
-
+```
 su -
+```
+```
 cd /mnt/lfs
 tar cJpf /Path/to/tools-pacman5.tar.xz .
-
+```
 Restor (when starting over from here in a later step)
 
 On the host
-
+```
 # su -
-# export $LFS
+```
+```
+export LFS=/mnt/lfs
 # mount /dev/<partition to use as the chroot environment> $LFS
-# cd $LFS
-# rm -rf ./*
-# tar -xpf /Path/to/tools-pacman5.tar.xz
-
+cd $LFS
+rm -rf ./*
+tar -xpf /Path/to/tools-pacman5.tar.xz
+```
