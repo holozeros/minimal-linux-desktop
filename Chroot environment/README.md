@@ -1,5 +1,5 @@
 ## Build preparation
-Now, let's start "building chroot environment"
+Now, let's start "building chroot environment". This text assumes readers working on a host computer running the latest Archlinux desktop environment.
 ```
 su -
 ```
