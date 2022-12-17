@@ -40,11 +40,6 @@ mkdir -v $LFS/sources
 chmod -v a+wt $LFS/sources
 mkdir -v $LFS/tools
 ln -sv $LFS/tools /
-
-mkdir -pv $LFS/{etc,var,lib,bin} $LFS/usr/{bin,src}
-case $(uname -m) in
-  x86_64) mkdir -pv $LFS/lib64 ;;
-esac
 ```
 Making local user in your host system
 ```
