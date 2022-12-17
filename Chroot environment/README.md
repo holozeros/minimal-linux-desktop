@@ -398,6 +398,7 @@ Modify makepkg.conf and pacman.conf
 ```
 nano /tools/etc/makepkg.conf
 ```
+```
   #########################################################################
   # SOURCE ACQUISITION
   #########################################################################
@@ -434,8 +435,10 @@ nano /tools/etc/makepkg.conf
                     .
                     .
                     .
+```                   
 ```
 nano /tools/etc/pacman.conf
+```
 ```
   [options]
   # The following paths are commented out with their default values listed.
@@ -447,6 +450,7 @@ nano /tools/etc/pacman.conf
   GPGDir      = /tools/etc/pacman.d/gnupg/
   HookDir     = /tools/etc/pacman.d/hooks/
   HoldPkg     = pacman glibc
+```
 ```
 mkdir -p /var/lib/pacman
 mkdir -p /var/cache/pacman/pkg
