@@ -92,7 +92,7 @@ Additional sources for arch build system
 ```
 cd $LFS/sources
 ```
-The following downloads refer to latest Beyond Linux FromScratch (System V Edition)Book and Archlinux's PKGBUILD.
+The following downloads refer to latest Beyond Linux FromScratch(System V Edition) Book and Archlinux's PKGBUILD.
 ```
 wget https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz
 wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.30.1.orig.tar.gz
