@@ -149,10 +149,10 @@ popd
 ```
 ### Building chroot environment
 
-In this section is different from the lfs-11.0 book. Here you need to install all of the chroot environment in the /tools directory. Test procedures that are possible but not required. Recommend that you install each package in stages, but you can also run a long script to install them all at once.
+In this section is different from LFS book. Here you need to install all of the chroot environment in the /tools directory. Test procedures that are possible but not required. Recommend that you install each package in stages, but you can also run a long script to install them all at once.
 BUILD build-chroot-environment.sh
 
-Ryzen2700x(8 core) takes about 20 minuits. On the host as lfs user.
+Ryzen5700g(8 core) takes about 20 minuits. On the host as lfs user.
 ```
 cd $LFS/sources
 chmod +x build-chroot-environment.sh
