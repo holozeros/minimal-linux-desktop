@@ -1,39 +1,39 @@
-Build preparation
+# Build preparation
 
 Now, let's start "building chroot environment"
-
+```
 su -
-
+```
 The folloing directive is very important. When working as the root user, incorrect commands will destroy the your computer. For example, if you forget to set the $LFS environment variable, executing "rm -rf $LFS/bin" will execute "rm -rf /bin" because $LFS is empty, the Host operting system will be completely corrupted. In this works, $LFS is used frequently in many directives. If you resume work or "su - user" (change user), $LFS may be empty. Always check the contents of $LFS with the "echo $LFS" directive while working, and issue the following if it is empty.
-
+```
 export LFS=/mnt/lfs
-
+```
 If you need a new partition for building chroot environment, use cgdisk, gparted, etc.. to create a GPT partition of appropriate size.
-
+```
 mkfs.ext4 /dev/<new partition for building chroot environment>
-
+```
 Format of EFI System Partition is fat32. If it doesn't exist, create a new one.
-
+```
 mkfs.vfat /dev/<EFI System Partition>
-
+```
 Mount the new partition for building chroot environment to /mnt/lfs. for example in case /dev/sda2. Chroot environment will eventually become the root partition of a bootable linux OS. A partition of USB storage will not be perhaps recognized by a stub kernel at boot time without initramfs, but available initramfs can't install yet. It's physical storage shuld be connected SATA or M.2, unuse USB storage.
-
+```
 mkdir -v /mnt/lfs
 # You shuld change "sda2" to proper partition name.
 mount -v /dev/sda2 $LFS
-
+```
 Checking host system requirement see:Linux From Scratch book
 
 Run the following script version-check.sh and check outputs.
-
-bash version-check.sh
-
-Bash setting
-
+```
+./version-check.sh
+```
+###Bash setting
+```
 [ ! -e /etc/bash.bashrc ] || mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
-
-Directory settings
-
+```
+###Directory settings
+```
 export LFS=/mnt/lfs
 mkdir -v $LFS/home
 mkdir -v $LFS/sources
@@ -45,22 +45,23 @@ mkdir -pv $LFS/{etc,var,lib,bin} $LFS/usr/{bin,src}
 case $(uname -m) in
   x86_64) mkdir -pv $LFS/lib64 ;;
 esac
-
+```
 Making local user in your host system
-
+```
 groupadd lfs
 useradd -s /bin/bash -g lfs -m -k /dev/null lfs
 
 passwd lfs
 
 chown -v lfs $LFS/*
-
+```
+```
 su - lfs
-
 cat > ~/.bash_profile << "EOF"
 exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
 EOF
-    
+```
+```
 cat > ~/.bashrc << "EOF"
   set +h
   umask 022
@@ -71,10 +72,11 @@ cat > ~/.bashrc << "EOF"
   PATH=/tools/bin:/bin:/usr/bin
   export LFS LC_ALL LFS_TGT PATH MAKEFLAGS
 EOF
-    
+```
+```
 source ~/.bash_profile
-
-Downloading sources
+```
+###Downloading sources
 
 export LFS=/mnt/lfs
 cd $LFS/sources
