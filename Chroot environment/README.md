@@ -80,7 +80,8 @@ source ~/.bash_profile
 ```
 export LFS=/mnt/lfs
 cd $LFS/sources
-
+```
+```
 wget https://www.linuxfromscratch.org/lfs/view/stable/wget-list
 wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
 wget https://www.linuxfromscratch.org/lfs/view/stable/md5sums
