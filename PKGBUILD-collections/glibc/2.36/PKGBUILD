@@ -1,0 +1,43 @@
+pkgname=glibc
+pkgver=2.36
+pkgrel=1
+pkgdesc="GNU C Library"
+arch=('x86_64')
+url="http://www.gnu.org/software/libc"
+license=(GPL LGPL)
+options=(!strip staticlibs)
+source=(https://ftp.gnu.org/gnu/glibc/glibc-$pkgver.tar.xz
+        https://www.linuxfromscratch.org/patches/lfs/development/${pkgname}-${pkgver}-fhs-1.patch
+        )
+md5sums=('00e9b89e043340f688bc93ec03239b57'
+         '9a5997c3452909b1769918c759eff8a2'
+         )
+install=${pkgname}.install)
+
+prepare() {
+sed '/MAKEFLAGS :=/s/)r/) -r/' -i Makerules
+patch -Np1 -i ../glibc-2.36-fhs-1.patch
+mkdir -v build
+cd       build
+echo "rootsbindir=/usr/sbin" > configparms
+}
+
+build() {
+unset CPPFLAGS
+unset CFLAGS
+cd "$srcdir/build"
+../configure --prefix=/usr                            \
+             --disable-werror                         \
+             --enable-kernel=3.2                      \
+             --enable-stack-protector=strong          \
+             --with-headers=/usr/include              \
+             libc_cv_slibdir=/usr/lib
+make
+make check
+read -p "Hit the return key:"
+}
+
+package() {
+  cd "${srcdir}/build"
+  make DESTDIR=${pkgdir} install
+}
