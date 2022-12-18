@@ -23,8 +23,8 @@ echo "rootsbindir=/usr/sbin" > configparms
 }
 
 build() {
-unset CPPFLAGS
-unset CFLAGS
+#unset CPPFLAGS
+#unset CFLAGS
 cd "$srcdir/build"
 ../configure --prefix=/usr                            \
              --disable-werror                         \
@@ -35,6 +35,9 @@ cd "$srcdir/build"
 make
 make check
 read -p "Hit the return key:"
+
+touch /etc/ld.so.conf
+sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile
 }
 
 package() {
